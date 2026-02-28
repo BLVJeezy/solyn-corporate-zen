@@ -12,7 +12,7 @@ const projects = [
   },
   {
     image: portfolio2,
-    title: "AutoDetail Pro",
+    title: "Shinelab Detailing",
     category: "Automotive Detailing",
     description: "Lead-generatie platform met offerte-aanvraag systeem.",
   },
