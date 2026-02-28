@@ -1,17 +1,20 @@
 import { useState, useMemo } from "react";
-import { Search, Building2, Mail, Phone, Globe, Trash2, Pencil } from "lucide-react";
+import { Search, Trash2, Pencil } from "lucide-react";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useClients, useDeleteClient } from "@/hooks/useClients";
+import { Badge } from "@/components/ui/badge";
+import { useClients, useDeleteClient, Client } from "@/hooks/useClients";
 import AddClientDialog from "@/components/admin/AddClientDialog";
+import EditClientDialog from "@/components/admin/EditClientDialog";
 
 export default function ClientsSection() {
   const { data: clients = [], isLoading } = useClients();
   const deleteClient = useDeleteClient();
   const [search, setSearch] = useState("");
+  const [editingClient, setEditingClient] = useState<Client | null>(null);
 
   const filtered = useMemo(() => {
     if (!search) return clients;
@@ -57,42 +60,56 @@ export default function ClientsSection() {
             <TableRow className="border-border">
               <TableHead className="text-muted-foreground">Naam</TableHead>
               <TableHead className="text-muted-foreground hidden md:table-cell">Bedrijf</TableHead>
-              <TableHead className="text-muted-foreground hidden md:table-cell">E-mail</TableHead>
-              <TableHead className="text-muted-foreground hidden lg:table-cell">Telefoon</TableHead>
-              <TableHead className="text-muted-foreground hidden lg:table-cell">Sinds</TableHead>
-              <TableHead className="text-muted-foreground w-[60px]"></TableHead>
+              <TableHead className="text-muted-foreground hidden lg:table-cell">Setup Fee</TableHead>
+              <TableHead className="text-muted-foreground hidden lg:table-cell">Fee</TableHead>
+              <TableHead className="text-muted-foreground hidden md:table-cell">Startdatum</TableHead>
+              <TableHead className="text-muted-foreground w-[80px]"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.map((client) => (
               <TableRow key={client.id} className="border-border">
-                <TableCell className="font-medium text-card-foreground">{client.name}</TableCell>
-                <TableCell className="text-muted-foreground hidden md:table-cell">
-                  {client.company || "—"}
+                <TableCell>
+                  <div className="font-medium text-card-foreground">{client.name}</div>
+                  {client.email && <div className="text-xs text-muted-foreground">{client.email}</div>}
+                </TableCell>
+                <TableCell className="text-muted-foreground hidden md:table-cell">{client.company || "—"}</TableCell>
+                <TableCell className="text-primary font-semibold hidden lg:table-cell">{client.setup_fee || "—"}</TableCell>
+                <TableCell className="hidden lg:table-cell">
+                  {client.recurring_fee ? (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-primary font-semibold">{client.recurring_fee}</span>
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+                        {client.billing_cycle === "jaarlijks" ? "/jaar" : "/mnd"}
+                      </Badge>
+                    </div>
+                  ) : "—"}
                 </TableCell>
                 <TableCell className="text-muted-foreground hidden md:table-cell">
-                  {client.email || "—"}
-                </TableCell>
-                <TableCell className="text-muted-foreground hidden lg:table-cell">
-                  {client.phone || "—"}
-                </TableCell>
-                <TableCell className="text-muted-foreground hidden lg:table-cell">
-                  {format(new Date(client.created_at), "d MMM yyyy", { locale: nl })}
+                  {client.start_date ? format(new Date(client.start_date), "d MMM yyyy", { locale: nl }) : "—"}
                 </TableCell>
                 <TableCell>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                    onClick={() => handleDelete(client.id)}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  <div className="flex gap-1">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground" onClick={() => setEditingClient(client)}>
+                      <Pencil className="w-4 h-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-destructive" onClick={() => handleDelete(client.id)}>
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
+      )}
+
+      {editingClient && (
+        <EditClientDialog
+          client={editingClient}
+          open={!!editingClient}
+          onOpenChange={(open) => { if (!open) setEditingClient(null); }}
+        />
       )}
     </div>
   );
