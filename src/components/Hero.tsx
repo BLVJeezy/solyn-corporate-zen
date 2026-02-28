@@ -8,8 +8,8 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-charcoal/70" />
+        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
+        <div className="absolute inset-0 bg-charcoal/60" />
       </div>
 
       {/* Content */}
