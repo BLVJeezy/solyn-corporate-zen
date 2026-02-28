@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Menu, X, Globe, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lang, setLang] = useState("NL");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -65,6 +67,15 @@ const Navbar = () => {
                 </button>
               ))}
             </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
+              onClick={() => navigate("/login")}
+            >
+              <User className="w-4 h-4" />
+              Client Login
+            </Button>
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
               Gratis Advies
             </Button>
@@ -112,6 +123,14 @@ const Navbar = () => {
                   </button>
                 ))}
               </div>
+              <Button
+                variant="outline"
+                className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
+                onClick={() => { setMobileOpen(false); navigate("/login"); }}
+              >
+                <User className="w-4 h-4" />
+                Client Login
+              </Button>
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
                 Gratis Advies
               </Button>
