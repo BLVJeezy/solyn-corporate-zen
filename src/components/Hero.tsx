@@ -25,7 +25,7 @@ const Hero = () => {
             <span className="text-gradient-gold">Onze Expertise.</span>
           </h1>
           <p className="text-lg md:text-xl text-charcoal-foreground/70 leading-relaxed mb-10 max-w-2xl mx-auto">
-            Gespecialiseerde sourcing en infrastructuur oplossingen voor groeiende ondernemingen.
+            Web development, infrastructuur en consultancy oplossingen voor groeiende ondernemingen.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
