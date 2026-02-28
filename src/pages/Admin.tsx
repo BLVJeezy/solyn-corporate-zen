@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, TrendingUp, DollarSign, BarChart3, Search } from "lucide-react";
+import { ArrowLeft, Users, TrendingUp, DollarSign, BarChart3, Search, LogOut } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -12,6 +12,8 @@ import { useLeads, Lead, LeadStatus } from "@/hooks/useLeads";
 import LeadDetailPanel from "@/components/admin/LeadDetailPanel";
 import AddLeadDialog from "@/components/admin/AddLeadDialog";
 import ClientsSection from "@/components/admin/ClientsSection";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   nieuw: { label: "Nieuw", className: "bg-steel/20 text-steel" },
@@ -31,6 +33,7 @@ const trafficData = [
 ];
 
 const AdminPage = () => {
+  const { signOut } = useAuth();
   const { data: leads = [], isLoading } = useLeads();
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [search, setSearch] = useState("");
@@ -66,11 +69,16 @@ const AdminPage = () => {
   return (
     <div className="min-h-screen bg-background dark">
       <div className="bg-charcoal text-charcoal-foreground">
-        <div className="container mx-auto px-4 py-4 flex items-center gap-4">
-          <Link to="/" className="text-charcoal-foreground/60 hover:text-primary transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-          <h1 className="text-lg font-bold">Solyn Admin</h1>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="text-charcoal-foreground/60 hover:text-primary transition-colors">
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+            <h1 className="text-lg font-bold">Solyn Admin</h1>
+          </div>
+          <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
+            <LogOut className="w-4 h-4" /> Uitloggen
+          </Button>
         </div>
       </div>
 
