@@ -14,6 +14,38 @@ export type Database = {
   }
   public: {
     Tables: {
+      client_invoices: {
+        Row: {
+          client_id: string
+          created_at: string
+          file_name: string
+          file_path: string
+          id: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          file_name: string
+          file_path: string
+          id?: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          file_name?: string
+          file_path?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_invoices_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clients: {
         Row: {
           billing_cycle: Database["public"]["Enums"]["billing_cycle"] | null
