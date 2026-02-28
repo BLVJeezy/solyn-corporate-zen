@@ -60,8 +60,8 @@ const AdminPage = () => {
 
   // Live stats from data
   const totalLeads = leads.length;
-  const avgBudget = leads.length
-    ? fmtEuro(Math.round(leads.reduce((sum, l) => sum + parseEuro(l.budget), 0) / leads.length))
+  const avgSetupFee = clients.length
+    ? fmtEuro(Math.round(clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0) / clients.length))
     : "€0";
   const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
   const conversionRate = totalLeads ? ((wonLeads / totalLeads) * 100).toFixed(1) + "%" : "0%";
@@ -197,7 +197,7 @@ const AdminPage = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
             { label: "Leads", value: String(totalLeads), icon: Users },
-            { label: "Gem. Budget", value: avgBudget, icon: DollarSign },
+            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
             { label: "Conversie", value: conversionRate, icon: BarChart3 },
             { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro },
             { label: "MRR", value: fmtEuro(Math.round(totalRecurringMonthly)), icon: TrendingUp },
