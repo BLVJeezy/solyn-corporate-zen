@@ -29,6 +29,7 @@ export default function EditClientDialog({ client, open, onOpenChange }: Props) 
     recurring_fee: client.recurring_fee || "",
     billing_cycle: (client.billing_cycle || "maandelijks") as BillingCycle,
     start_date: client.start_date ? new Date(client.start_date) : undefined as Date | undefined,
+    credits_used: String(client.credits_used || ""),
   });
 
   const updateClient = useUpdateClient();
@@ -48,6 +49,7 @@ export default function EditClientDialog({ client, open, onOpenChange }: Props) 
         recurring_fee: form.recurring_fee || null,
         billing_cycle: form.billing_cycle,
         start_date: form.start_date ? format(form.start_date, "yyyy-MM-dd") : null,
+        credits_used: form.credits_used ? parseInt(form.credits_used) : null,
       },
       { onSuccess: () => onOpenChange(false) }
     );
@@ -121,6 +123,13 @@ export default function EditClientDialog({ client, open, onOpenChange }: Props) 
             </div>
           </div>
 
+          <div>
+            <label className="text-xs text-muted-foreground mb-1 block">Credits gebruikt</label>
+            <Input placeholder="bijv. 45" type="number" min="0" value={form.credits_used} onChange={set("credits_used")} className="bg-muted border-border" />
+            {form.credits_used && parseInt(form.credits_used) > 0 && (
+              <p className="text-xs text-muted-foreground mt-1">Kosten: €{(parseInt(form.credits_used) * 0.23).toFixed(2)}</p>
+            )}
+          </div>
           <Textarea placeholder="Notities" value={form.notes} onChange={set("notes")} className="bg-muted border-border" />
           <Button type="submit" className="w-full" disabled={updateClient.isPending}>
             {updateClient.isPending ? "Opslaan..." : "Opslaan"}
