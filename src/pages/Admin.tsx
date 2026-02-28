@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, TrendingUp, DollarSign, BarChart3, Search, LogOut } from "lucide-react";
+import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -22,15 +22,6 @@ const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive" },
 };
 
-const trafficData = [
-  { month: "Jan", visitors: 1200 },
-  { month: "Feb", visitors: 1800 },
-  { month: "Mar", visitors: 2400 },
-  { month: "Apr", visitors: 2100 },
-  { month: "May", visitors: 3200 },
-  { month: "Jun", visitors: 2800 },
-  { month: "Jul", visitors: 3600 },
-];
 
 const AdminPage = () => {
   const { signOut } = useAuth();
@@ -55,13 +46,27 @@ const AdminPage = () => {
   const avgBudget = leads.length
     ? "€" + Math.round(
         leads.reduce((sum, l) => {
-          const num = parseFloat((l.budget || "0").replace(/[€.,\s]/g, ""));
+          const cleaned = (l.budget || "0").replace(/[€\s]/g, "").replace(/\./g, "").replace(",", ".");
+          const num = parseFloat(cleaned);
           return sum + (isNaN(num) ? 0 : num);
         }, 0) / leads.length
       ).toLocaleString("nl-NL")
     : "€0";
   const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
   const conversionRate = totalLeads ? ((wonLeads / totalLeads) * 100).toFixed(1) + "%" : "0%";
+
+  // Leads per maand voor grafiek
+  const leadsPerMonth = useMemo(() => {
+    const monthMap: Record<string, number> = {};
+    leads.forEach((l) => {
+      const date = new Date(l.created_at);
+      const key = format(date, "MMM yyyy", { locale: nl });
+      monthMap[key] = (monthMap[key] || 0) + 1;
+    });
+    return Object.entries(monthMap)
+      .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime())
+      .map(([month, count]) => ({ month, leads: count }));
+  }, [leads]);
 
   // Keep selected lead in sync with data
   const activeLead = selectedLead ? leads.find((l) => l.id === selectedLead.id) || null : null;
@@ -86,8 +91,7 @@ const AdminPage = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Bezoekers", value: "3,642", icon: Users, change: "+12%" },
-            { label: "Leads", value: String(totalLeads), icon: TrendingUp, change: "" },
+            { label: "Leads", value: String(totalLeads), icon: Users, change: "" },
             { label: "Gem. Budget", value: avgBudget, icon: DollarSign, change: "" },
             { label: "Conversie", value: conversionRate, icon: BarChart3, change: "" },
           ].map((stat) => (
@@ -104,23 +108,27 @@ const AdminPage = () => {
 
         {/* Chart */}
         <div className="bg-card rounded-lg border border-border p-6">
-          <h2 className="text-lg font-semibold text-card-foreground mb-4">Bezoekers Overzicht</h2>
-          <ResponsiveContainer width="100%" height={280}>
-            <LineChart data={trafficData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
-              <XAxis dataKey="month" stroke="hsl(215,15%,60%)" fontSize={12} />
-              <YAxis stroke="hsl(215,15%,60%)" fontSize={12} />
-              <Tooltip
-                contentStyle={{
-                  background: "hsl(222,14%,15%)",
-                  border: "1px solid hsl(222,14%,20%)",
-                  borderRadius: "8px",
-                  color: "hsl(210,40%,98%)",
-                }}
-              />
-              <Line type="monotone" dataKey="visitors" stroke="hsl(40,48%,56%)" strokeWidth={2} dot={{ fill: "hsl(40,48%,56%)", r: 4 }} />
-            </LineChart>
-          </ResponsiveContainer>
+          <h2 className="text-lg font-semibold text-card-foreground mb-4">Leads per Maand</h2>
+          {leadsPerMonth.length === 0 ? (
+            <p className="text-muted-foreground text-sm text-center py-8">Nog geen data beschikbaar</p>
+          ) : (
+            <ResponsiveContainer width="100%" height={280}>
+              <LineChart data={leadsPerMonth}>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
+                <XAxis dataKey="month" stroke="hsl(215,15%,60%)" fontSize={12} />
+                <YAxis stroke="hsl(215,15%,60%)" fontSize={12} allowDecimals={false} />
+                <Tooltip
+                  contentStyle={{
+                    background: "hsl(222,14%,15%)",
+                    border: "1px solid hsl(222,14%,20%)",
+                    borderRadius: "8px",
+                    color: "hsl(210,40%,98%)",
+                  }}
+                />
+                <Line type="monotone" dataKey="leads" stroke="hsl(40,48%,56%)" strokeWidth={2} dot={{ fill: "hsl(40,48%,56%)", r: 4 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
         </div>
 
         {/* CRM Section */}
