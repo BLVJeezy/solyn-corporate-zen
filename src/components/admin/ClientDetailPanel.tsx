@@ -120,6 +120,36 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
             <span className="text-primary font-semibold">€{(client.credits_used * 0.23).toFixed(2)}</span>
           </div>
         )}
+        {(() => {
+          const parseNum = (v: string | null) => { if (!v) return 0; const n = parseFloat(v.replace(/[^0-9.,]/g, "").replace(",", ".")); return isNaN(n) ? 0 : n; };
+          const setupFee = parseNum(client.setup_fee);
+          const recurringFee = parseNum(client.recurring_fee);
+          const yearlyRecurring = client.billing_cycle === "jaarlijks" ? recurringFee : recurringFee * 12;
+          const totalRevenue = setupFee + yearlyRecurring;
+          const creditCost = (client.credits_used || 0) * 0.23;
+          const profitEuro = totalRevenue - creditCost;
+          const profitPct = totalRevenue > 0 ? (profitEuro / totalRevenue) * 100 : 0;
+          if (totalRevenue <= 0 && creditCost <= 0) return null;
+          return (
+            <div className="pt-2 border-t border-border space-y-2">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Totale omzet (jaar)</span>
+                <span className="text-card-foreground font-semibold">€{totalRevenue.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Profit</span>
+                <div className="flex items-center gap-1.5">
+                  <span className={`font-semibold ${profitEuro >= 0 ? "text-green-500" : "text-destructive"}`}>
+                    €{profitEuro.toFixed(2)}
+                  </span>
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
+                    {profitPct.toFixed(1)}%
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
         {client.notes && (
           <div className="pt-2 border-t border-border">
             <span className="text-muted-foreground text-xs block mb-1">Notities</span>
