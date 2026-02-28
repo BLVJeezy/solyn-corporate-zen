@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp } from "lucide-react";
+import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
@@ -65,6 +65,10 @@ const AdminPage = () => {
     : "€0";
   const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
   const conversionRate = totalLeads ? ((wonLeads / totalLeads) * 100).toFixed(1) + "%" : "0%";
+  const clientsWithCredits = clients.filter((c) => c.credits_used && c.credits_used > 0);
+  const avgCreditSpend = clientsWithCredits.length
+    ? fmtEuro(Math.round((clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0)) / clientsWithCredits.length))
+    : "€0";
 
   // Revenue stats from clients
   const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
@@ -194,13 +198,14 @@ const AdminPage = () => {
 
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
         {/* Stats */}
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
           {[
             { label: "Leads", value: String(totalLeads), icon: Users },
             { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
             { label: "Conversie", value: conversionRate, icon: BarChart3 },
             { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro },
             { label: "MRR", value: fmtEuro(Math.round(totalRecurringMonthly)), icon: TrendingUp },
+            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins },
           ].map((stat) => (
             <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
               <div className="flex items-center justify-between mb-1 sm:mb-2">
