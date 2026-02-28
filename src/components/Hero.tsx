@@ -7,10 +7,15 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="" className="w-full h-full object-cover object-center" />
-        <div className="absolute inset-0 bg-charcoal/60" />
+      <div className="absolute inset-0 bg-charcoal" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <img
+          src={heroBg}
+          alt=""
+          className="w-[120%] max-w-none aspect-square object-contain animate-[spin_60s_linear_infinite]"
+        />
       </div>
+      <div className="absolute inset-0 bg-charcoal/50" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
