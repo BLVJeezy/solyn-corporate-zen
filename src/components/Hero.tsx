@@ -8,11 +8,14 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-charcoal" />
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: '1000px' }}>
         <img
           src={heroBg}
           alt=""
-          className="w-[120%] max-w-none aspect-square object-contain animate-[spin_60s_linear_infinite]"
+          className="w-[120%] max-w-none aspect-square object-contain"
+          style={{
+            animation: 'globeRotate 20s ease-in-out infinite',
+          }}
         />
       </div>
       <div className="absolute inset-0 bg-charcoal/50" />
