@@ -139,12 +139,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile sticky CTA */}
-      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
-        <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-lg glow-gold">
-          Gratis Advies
-        </Button>
-      </div>
     </>
   );
 };
