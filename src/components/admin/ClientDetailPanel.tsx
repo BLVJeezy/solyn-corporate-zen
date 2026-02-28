@@ -108,6 +108,18 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
             <span className="text-card-foreground">{format(new Date(client.start_date), "d MMM yyyy", { locale: nl })}</span>
           </div>
         )}
+        {(client.credits_used != null && client.credits_used > 0) && (
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Credits gebruikt</span>
+            <span className="text-card-foreground">{client.credits_used}</span>
+          </div>
+        )}
+        {(client.credits_used != null && client.credits_used > 0) && (
+          <div className="flex justify-between">
+            <span className="text-muted-foreground">Kosten credits</span>
+            <span className="text-primary font-semibold">€{(client.credits_used * 0.23).toFixed(2)}</span>
+          </div>
+        )}
         {client.notes && (
           <div className="pt-2 border-t border-border">
             <span className="text-muted-foreground text-xs block mb-1">Notities</span>

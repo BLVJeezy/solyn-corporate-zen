@@ -51,6 +51,7 @@ export type Database = {
           billing_cycle: Database["public"]["Enums"]["billing_cycle"] | null
           company: string | null
           created_at: string
+          credits_used: number | null
           email: string | null
           id: string
           name: string
@@ -66,6 +67,7 @@ export type Database = {
           billing_cycle?: Database["public"]["Enums"]["billing_cycle"] | null
           company?: string | null
           created_at?: string
+          credits_used?: number | null
           email?: string | null
           id?: string
           name: string
@@ -81,6 +83,7 @@ export type Database = {
           billing_cycle?: Database["public"]["Enums"]["billing_cycle"] | null
           company?: string | null
           created_at?: string
+          credits_used?: number | null
           email?: string | null
           id?: string
           name?: string

@@ -1,0 +1,1 @@
+ALTER TABLE public.clients ADD COLUMN credits_used integer DEFAULT 0;

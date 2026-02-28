@@ -16,6 +16,7 @@ export interface Client {
   recurring_fee: string | null;
   billing_cycle: BillingCycle | null;
   start_date: string | null;
+  credits_used: number | null;
   created_at: string;
   updated_at: string;
 }

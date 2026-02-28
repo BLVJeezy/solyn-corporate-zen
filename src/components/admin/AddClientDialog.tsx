@@ -16,7 +16,7 @@ export default function AddClientDialog() {
   const [form, setForm] = useState({
     name: "", company: "", email: "", phone: "", website: "", notes: "",
     setup_fee: "", recurring_fee: "", billing_cycle: "maandelijks" as BillingCycle,
-    start_date: undefined as Date | undefined,
+    start_date: undefined as Date | undefined, credits_used: "",
   });
   const createClient = useCreateClient();
 
@@ -34,11 +34,12 @@ export default function AddClientDialog() {
         recurring_fee: form.recurring_fee || null,
         billing_cycle: form.billing_cycle,
         start_date: form.start_date ? format(form.start_date, "yyyy-MM-dd") : null,
+        credits_used: form.credits_used ? parseInt(form.credits_used) : null,
       },
       {
         onSuccess: () => {
           setOpen(false);
-          setForm({ name: "", company: "", email: "", phone: "", website: "", notes: "", setup_fee: "", recurring_fee: "", billing_cycle: "maandelijks", start_date: undefined });
+          setForm({ name: "", company: "", email: "", phone: "", website: "", notes: "", setup_fee: "", recurring_fee: "", billing_cycle: "maandelijks", start_date: undefined, credits_used: "" });
         },
       }
     );
@@ -117,6 +118,13 @@ export default function AddClientDialog() {
             </div>
           </div>
 
+          <div>
+            <label className="text-xs text-muted-foreground mb-1 block">Credits gebruikt</label>
+            <Input placeholder="bijv. 45" type="number" min="0" value={form.credits_used} onChange={set("credits_used")} className="bg-muted border-border" />
+            {form.credits_used && parseInt(form.credits_used) > 0 && (
+              <p className="text-xs text-muted-foreground mt-1">Kosten: €{(parseInt(form.credits_used) * 0.23).toFixed(2)}</p>
+            )}
+          </div>
           <Textarea placeholder="Notities" value={form.notes} onChange={set("notes")} className="bg-muted border-border" />
           <Button type="submit" className="w-full" disabled={createClient.isPending}>
             {createClient.isPending ? "Opslaan..." : "Klant Aanmaken"}
