@@ -16,6 +16,7 @@ export type Database = {
     Tables: {
       clients: {
         Row: {
+          billing_cycle: Database["public"]["Enums"]["billing_cycle"] | null
           company: string | null
           created_at: string
           email: string | null
@@ -23,10 +24,14 @@ export type Database = {
           name: string
           notes: string | null
           phone: string | null
+          recurring_fee: string | null
+          setup_fee: string | null
+          start_date: string | null
           updated_at: string
           website: string | null
         }
         Insert: {
+          billing_cycle?: Database["public"]["Enums"]["billing_cycle"] | null
           company?: string | null
           created_at?: string
           email?: string | null
@@ -34,10 +39,14 @@ export type Database = {
           name: string
           notes?: string | null
           phone?: string | null
+          recurring_fee?: string | null
+          setup_fee?: string | null
+          start_date?: string | null
           updated_at?: string
           website?: string | null
         }
         Update: {
+          billing_cycle?: Database["public"]["Enums"]["billing_cycle"] | null
           company?: string | null
           created_at?: string
           email?: string | null
@@ -45,6 +54,9 @@ export type Database = {
           name?: string
           notes?: string | null
           phone?: string | null
+          recurring_fee?: string | null
+          setup_fee?: string | null
+          start_date?: string | null
           updated_at?: string
           website?: string | null
         }
@@ -126,6 +138,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      billing_cycle: "maandelijks" | "jaarlijks"
       lead_status: "nieuw" | "in_behandeling" | "gewonnen" | "verloren"
     }
     CompositeTypes: {
@@ -254,6 +267,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      billing_cycle: ["maandelijks", "jaarlijks"],
       lead_status: ["nieuw", "in_behandeling", "gewonnen", "verloren"],
     },
   },

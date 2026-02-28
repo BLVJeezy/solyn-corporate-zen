@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { format } from "date-fns";
-import { CalendarIcon, Plus } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,22 +8,36 @@ import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { BillingCycle, useCreateClient } from "@/hooks/useClients";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Client, BillingCycle, useUpdateClient } from "@/hooks/useClients";
 
-export default function AddClientDialog() {
-  const [open, setOpen] = useState(false);
+interface Props {
+  client: Client;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+export default function EditClientDialog({ client, open, onOpenChange }: Props) {
   const [form, setForm] = useState({
-    name: "", company: "", email: "", phone: "", website: "", notes: "",
-    setup_fee: "", recurring_fee: "", billing_cycle: "maandelijks" as BillingCycle,
-    start_date: undefined as Date | undefined,
+    name: client.name,
+    company: client.company || "",
+    email: client.email || "",
+    phone: client.phone || "",
+    website: client.website || "",
+    notes: client.notes || "",
+    setup_fee: client.setup_fee || "",
+    recurring_fee: client.recurring_fee || "",
+    billing_cycle: (client.billing_cycle || "maandelijks") as BillingCycle,
+    start_date: client.start_date ? new Date(client.start_date) : undefined as Date | undefined,
   });
-  const createClient = useCreateClient();
+
+  const updateClient = useUpdateClient();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    createClient.mutate(
+    updateClient.mutate(
       {
+        id: client.id,
         name: form.name,
         company: form.company || null,
         email: form.email || null,
@@ -35,12 +49,7 @@ export default function AddClientDialog() {
         billing_cycle: form.billing_cycle,
         start_date: form.start_date ? format(form.start_date, "yyyy-MM-dd") : null,
       },
-      {
-        onSuccess: () => {
-          setOpen(false);
-          setForm({ name: "", company: "", email: "", phone: "", website: "", notes: "", setup_fee: "", recurring_fee: "", billing_cycle: "maandelijks", start_date: undefined });
-        },
-      }
+      { onSuccess: () => onOpenChange(false) }
     );
   };
 
@@ -48,15 +57,10 @@ export default function AddClientDialog() {
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button size="sm" className="gap-1.5">
-          <Plus className="w-4 h-4" /> Nieuwe Klant
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="bg-card border-border max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-card-foreground">Nieuwe Klant</DialogTitle>
+          <DialogTitle className="text-card-foreground">Klant Bewerken</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-3">
           <Input placeholder="Naam *" required value={form.name} onChange={set("name")} className="bg-muted border-border" />
@@ -67,6 +71,7 @@ export default function AddClientDialog() {
           </div>
           <Input placeholder="Website" value={form.website} onChange={set("website")} className="bg-muted border-border" />
 
+          {/* Fees */}
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label className="text-xs text-muted-foreground mb-1 block">Setup Fee</label>
@@ -97,7 +102,6 @@ export default function AddClientDialog() {
                 <PopoverTrigger asChild>
                   <Button
                     variant="outline"
-                    type="button"
                     className={cn("w-full justify-start text-left font-normal bg-muted border-border", !form.start_date && "text-muted-foreground")}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
@@ -118,8 +122,8 @@ export default function AddClientDialog() {
           </div>
 
           <Textarea placeholder="Notities" value={form.notes} onChange={set("notes")} className="bg-muted border-border" />
-          <Button type="submit" className="w-full" disabled={createClient.isPending}>
-            {createClient.isPending ? "Opslaan..." : "Klant Aanmaken"}
+          <Button type="submit" className="w-full" disabled={updateClient.isPending}>
+            {updateClient.isPending ? "Opslaan..." : "Opslaan"}
           </Button>
         </form>
       </DialogContent>
