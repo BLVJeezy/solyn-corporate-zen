@@ -1,11 +1,11 @@
-import { Package, Building2, Users } from "lucide-react";
+import { Code, Building2, Users } from "lucide-react";
 import { motion } from "framer-motion";
 
 const services = [
 {
-  icon: Package,
-  title: "Sourcing",
-  description: "Betrouwbare sourcing-oplossingen met een wereldwijd netwerk van geverifieerde leveranciers en partners."
+  icon: Code,
+  title: "Web Development",
+  description: "Professionele websites en webapplicaties op maat, gebouwd met de nieuwste technologieën voor optimale prestaties."
 },
 {
   icon: Building2,
