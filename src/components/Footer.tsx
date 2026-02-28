@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <img src={solynLogo} alt="Solyn Global Ltd" className="h-12 mb-4" />
             <p className="text-charcoal-foreground/60 text-sm leading-relaxed">
-              Gespecialiseerde sourcing en infrastructuur oplossingen voor groeiende ondernemingen.
+              Web development, infrastructuur en consultancy oplossingen voor groeiende ondernemingen.
             </p>
           </div>
           <div>
