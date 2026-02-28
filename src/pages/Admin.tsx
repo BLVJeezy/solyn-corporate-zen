@@ -192,9 +192,9 @@ const AdminPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8 space-y-8">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
           {[
             { label: "Leads", value: String(totalLeads), icon: Users },
             { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
@@ -202,24 +202,24 @@ const AdminPage = () => {
             { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro },
             { label: "MRR", value: fmtEuro(Math.round(totalRecurringMonthly)), icon: TrendingUp },
           ].map((stat) => (
-            <div key={stat.label} className="bg-card rounded-lg border border-border p-5">
-              <div className="flex items-center justify-between mb-2">
-                <stat.icon className="w-5 h-5 text-muted-foreground" />
+            <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
+              <div className="flex items-center justify-between mb-1 sm:mb-2">
+                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
               </div>
-              <div className="text-2xl font-bold text-card-foreground">{stat.value}</div>
-              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+              <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
+              <div className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 truncate">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Revenue Analytics */}
-        <div className="bg-card rounded-lg border border-border p-6">
-          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-            <h2 className="text-lg font-semibold text-card-foreground">Omzet Analytics</h2>
+        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
+            <h2 className="text-base sm:text-lg font-semibold text-card-foreground">Omzet Analytics</h2>
             <Tabs value={revPeriod} onValueChange={setRevPeriod}>
               <TabsList className="bg-muted">
                 {["dag", "week", "maand", "kwartaal", "jaar"].map((p) => (
-                  <TabsTrigger key={p} value={p} className="text-xs capitalize">{p}</TabsTrigger>
+                  <TabsTrigger key={p} value={p} className="text-[10px] sm:text-xs capitalize px-2 sm:px-3">{p}</TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
@@ -229,7 +229,7 @@ const AdminPage = () => {
           ) : (
             <div className="space-y-6">
               {/* Bar chart: setup + recurring per period */}
-              <ResponsiveContainer width="100%" height={240}>
+              <ResponsiveContainer width="100%" height={180} className="sm:!h-[240px]">
                 <BarChart data={revenueTimeline}>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
                   <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
@@ -247,7 +247,7 @@ const AdminPage = () => {
               {/* Trendline: cumulative revenue */}
               <div>
                 <h3 className="text-sm font-medium text-muted-foreground mb-2">Cumulatieve omzet (trendlijn)</h3>
-                <ResponsiveContainer width="100%" height={200}>
+                <ResponsiveContainer width="100%" height={160} className="sm:!h-[200px]">
                   <AreaChart data={revenueTimeline}>
                     <defs>
                       <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
@@ -273,7 +273,7 @@ const AdminPage = () => {
         {/* CRM Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Lead Table */}
-          <div className="lg:col-span-2 bg-card rounded-lg border border-border p-6">
+          <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
               <h2 className="text-lg font-semibold text-card-foreground">Lead Manager</h2>
               <AddLeadDialog />
@@ -343,12 +343,12 @@ const AdminPage = () => {
             )}
           </div>
 
-          {/* Detail Panel */}
+          {/* Detail Panel - hide empty state on mobile */}
           <div className="lg:col-span-1">
             {activeLead ? (
               <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} />
             ) : (
-              <div className="bg-card rounded-lg border border-border p-8 text-center">
+              <div className="hidden lg:block bg-card rounded-lg border border-border p-8 text-center">
                 <p className="text-muted-foreground text-sm">Selecteer een lead om details te bekijken</p>
               </div>
             )}

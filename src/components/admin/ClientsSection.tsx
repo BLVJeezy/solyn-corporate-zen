@@ -41,7 +41,7 @@ export default function ClientsSection() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 bg-card rounded-lg border border-border p-6">
+      <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 sm:p-6">
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <h2 className="text-lg font-semibold text-card-foreground">Klanten ({clients.length})</h2>
           <AddClientDialog />
@@ -124,12 +124,12 @@ export default function ClientsSection() {
         )}
       </div>
 
-      {/* Detail Panel */}
+      {/* Detail Panel - hide empty state on mobile */}
       <div className="lg:col-span-1">
         {activeClient ? (
           <ClientDetailPanel client={activeClient} onClose={() => setSelectedClient(null)} />
         ) : (
-          <div className="bg-card rounded-lg border border-border p-8 text-center">
+          <div className="hidden lg:block bg-card rounded-lg border border-border p-8 text-center">
             <p className="text-muted-foreground text-sm">Selecteer een klant om details en facturen te bekijken</p>
           </div>
         )}
