@@ -1,23 +1,22 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg-new.png";
+import heroBgVideo from "@/assets/hero-bg-video.mp4";
 
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+      {/* Background Video */}
       <div className="absolute inset-0 bg-charcoal" />
-      <div className="absolute inset-0 flex items-center justify-center" style={{ perspective: '1000px' }}>
-        <img
-          src={heroBg}
-          alt=""
-          className="w-[120%] max-w-none aspect-square object-contain"
-          style={{
-            animation: 'globeRotate 20s ease-in-out infinite',
-          }}
-        />
-      </div>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={heroBgVideo} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-charcoal/50" />
 
       {/* Content */}
