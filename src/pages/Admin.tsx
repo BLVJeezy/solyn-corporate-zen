@@ -11,6 +11,7 @@ import { nl } from "date-fns/locale";
 import { useLeads, Lead, LeadStatus } from "@/hooks/useLeads";
 import LeadDetailPanel from "@/components/admin/LeadDetailPanel";
 import AddLeadDialog from "@/components/admin/AddLeadDialog";
+import ClientsSection from "@/components/admin/ClientsSection";
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   nieuw: { label: "Nieuw", className: "bg-steel/20 text-steel" },
@@ -198,6 +199,9 @@ const AdminPage = () => {
             )}
           </div>
         </div>
+
+        {/* Clients Section */}
+        <ClientsSection />
       </div>
     </div>
   );
