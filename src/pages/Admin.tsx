@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -79,13 +81,82 @@ const AdminPage = () => {
       const setup = parseEuro(c.setup_fee);
       const recurring = parseEuro(c.recurring_fee);
       const yearlyRecurring = c.billing_cycle === "jaarlijks" ? recurring : recurring * 12;
-      return {
-        name: c.name,
-        setup,
-        recurring: yearlyRecurring,
-      };
+      return { name: c.name, setup, recurring: yearlyRecurring };
     });
   }, [clients]);
+
+  const [revPeriod, setRevPeriod] = useState<string>("maand");
+
+  const revenueTimeline = useMemo(() => {
+    if (clients.length === 0) return [];
+    const now = new Date();
+    type PK = "dag" | "week" | "maand" | "kwartaal" | "jaar";
+    const rangeStart: Record<PK, Date> = {
+      dag: subMonths(now, 1), week: subMonths(now, 3), maand: subYears(now, 1),
+      kwartaal: subYears(now, 2), jaar: subYears(now, 5),
+    };
+    const start = rangeStart[revPeriod as PK] || subYears(now, 1);
+
+    const getKey = (d: Date) => {
+      switch (revPeriod) {
+        case "dag": return fnsFormat(d, "dd/MM");
+        case "week": return "W" + fnsFormat(d, "ww/yy");
+        case "maand": return fnsFormat(d, "MMM yy");
+        case "kwartaal": return "Q" + (Math.floor(d.getMonth() / 3) + 1) + " " + fnsFormat(d, "yy");
+        case "jaar": return fnsFormat(d, "yyyy");
+        default: return fnsFormat(d, "MMM yy");
+      }
+    };
+    const getBucketStart = (d: Date) => {
+      switch (revPeriod) {
+        case "dag": return startOfDay(d);
+        case "week": return startOfWeek(d, { weekStartsOn: 1 });
+        case "maand": return startOfMonth(d);
+        case "kwartaal": return startOfQuarter(d);
+        case "jaar": return startOfYear(d);
+        default: return startOfMonth(d);
+      }
+    };
+
+    const buckets = new Map<string, { label: string; setup: number; recurring: number }>();
+    let intervals: Date[];
+    if (revPeriod === "dag") intervals = eachDayOfInterval({ start, end: now });
+    else if (revPeriod === "week") intervals = eachWeekOfInterval({ start, end: now }, { weekStartsOn: 1 });
+    else {
+      intervals = eachMonthOfInterval({ start, end: now });
+      if (revPeriod === "kwartaal") intervals = intervals.filter((d) => d.getMonth() % 3 === 0);
+      else if (revPeriod === "jaar") intervals = intervals.filter((d) => d.getMonth() === 0);
+    }
+    intervals.forEach((d) => { const k = getKey(d); if (!buckets.has(k)) buckets.set(k, { label: k, setup: 0, recurring: 0 }); });
+
+    clients.forEach((c) => {
+      const setupVal = parseEuro(c.setup_fee);
+      const recurringVal = parseEuro(c.recurring_fee);
+      const clientStart = c.start_date ? new Date(c.start_date) : new Date(c.created_at);
+      if (clientStart >= start && clientStart <= now) {
+        const key = getKey(getBucketStart(clientStart));
+        const b = buckets.get(key);
+        if (b) b.setup += setupVal;
+      }
+      if (recurringVal > 0) {
+        const monthlyFee = c.billing_cycle === "jaarlijks" ? recurringVal / 12 : recurringVal;
+        let mult = 1;
+        switch (revPeriod) { case "dag": mult = 1/30; break; case "week": mult = 7/30; break; case "maand": mult = 1; break; case "kwartaal": mult = 3; break; case "jaar": mult = 12; break; }
+        const feePerPeriod = monthlyFee * mult;
+        buckets.forEach((b, key) => {
+          const bd = intervals.find((d) => getKey(d) === key);
+          if (bd && bd >= getBucketStart(clientStart)) b.recurring += feePerPeriod;
+        });
+      }
+    });
+
+    let cum = 0;
+    return Array.from(buckets.values()).map((b) => {
+      const total = Math.round(b.setup + b.recurring);
+      cum += total;
+      return { label: b.label, setup: Math.round(b.setup), recurring: Math.round(b.recurring), totaal: total, cumulatief: cum };
+    });
+  }, [clients, revPeriod]);
 
   // Keep selected lead in sync with data
   const activeLead = selectedLead ? leads.find((l) => l.id === selectedLead.id) || null : null;
@@ -126,30 +197,61 @@ const AdminPage = () => {
           ))}
         </div>
 
-        {/* Revenue Chart */}
+        {/* Revenue Analytics */}
         <div className="bg-card rounded-lg border border-border p-6">
-          <h2 className="text-lg font-semibold text-card-foreground mb-4">Omzet per Klant (jaarlijks)</h2>
-          {revenuePerClient.length === 0 ? (
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+            <h2 className="text-lg font-semibold text-card-foreground">Omzet Analytics</h2>
+            <Tabs value={revPeriod} onValueChange={setRevPeriod}>
+              <TabsList className="bg-muted">
+                {["dag", "week", "maand", "kwartaal", "jaar"].map((p) => (
+                  <TabsTrigger key={p} value={p} className="text-xs capitalize">{p}</TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+          {revenueTimeline.length === 0 ? (
             <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p>
           ) : (
-            <ResponsiveContainer width="100%" height={280}>
-              <BarChart data={revenuePerClient}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
-                <XAxis dataKey="name" stroke="hsl(215,15%,60%)" fontSize={12} />
-                <YAxis stroke="hsl(215,15%,60%)" fontSize={12} tickFormatter={(v) => `€${v}`} />
-                <Tooltip
-                  contentStyle={{
-                    background: "hsl(222,14%,15%)",
-                    border: "1px solid hsl(222,14%,20%)",
-                    borderRadius: "8px",
-                    color: "hsl(210,40%,98%)",
-                  }}
-                  formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup Fee" : "Recurring/jaar"]}
-                />
-                <Bar dataKey="setup" stackId="a" fill="hsl(40,48%,56%)" name="setup" radius={[0, 0, 0, 0]} />
-                <Bar dataKey="recurring" stackId="a" fill="hsl(40,48%,36%)" name="recurring" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="space-y-6">
+              {/* Bar chart: setup + recurring per period */}
+              <ResponsiveContainer width="100%" height={240}>
+                <BarChart data={revenueTimeline}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
+                  <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
+                  <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
+                  <Tooltip
+                    contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
+                    formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]}
+                  />
+                  <Legend />
+                  <Bar dataKey="setup" stackId="a" fill="hsl(40,48%,56%)" name="Setup" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="recurring" stackId="a" fill="hsl(40,48%,36%)" name="Recurring" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+
+              {/* Trendline: cumulative revenue */}
+              <div>
+                <h3 className="text-sm font-medium text-muted-foreground mb-2">Cumulatieve omzet (trendlijn)</h3>
+                <ResponsiveContainer width="100%" height={200}>
+                  <AreaChart data={revenueTimeline}>
+                    <defs>
+                      <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="hsl(40,48%,56%)" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(40,48%,56%)" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
+                    <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
+                    <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
+                    <Tooltip
+                      contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
+                      formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]}
+                    />
+                    <Area type="monotone" dataKey="cumulatief" stroke="hsl(40,48%,56%)" fill="url(#trendGrad)" strokeWidth={2} />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           )}
         </div>
 
