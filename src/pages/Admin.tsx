@@ -139,14 +139,29 @@ const AdminPage = () => {
         if (b) b.setup += setupVal;
       }
       if (recurringVal > 0) {
-        const monthlyFee = c.billing_cycle === "jaarlijks" ? recurringVal / 12 : recurringVal;
-        let mult = 1;
-        switch (revPeriod) { case "dag": mult = 1/30; break; case "week": mult = 7/30; break; case "maand": mult = 1; break; case "kwartaal": mult = 3; break; case "jaar": mult = 12; break; }
-        const feePerPeriod = monthlyFee * mult;
-        buckets.forEach((b, key) => {
-          const bd = intervals.find((d) => getKey(d) === key);
-          if (bd && bd >= getBucketStart(clientStart)) b.recurring += feePerPeriod;
-        });
+        if (c.billing_cycle === "jaarlijks") {
+          // Yearly billing: full amount paid upfront at start date (once per year)
+          // Place full recurring fee in the bucket of each yearly anniversary
+          let anniversary = new Date(clientStart);
+          while (anniversary <= now) {
+            if (anniversary >= start) {
+              const key = getKey(getBucketStart(anniversary));
+              const b = buckets.get(key);
+              if (b) b.recurring += recurringVal;
+            }
+            anniversary = new Date(anniversary.getFullYear() + 1, anniversary.getMonth(), anniversary.getDate());
+          }
+        } else {
+          // Monthly billing: distribute per period
+          const monthlyFee = recurringVal;
+          let mult = 1;
+          switch (revPeriod) { case "dag": mult = 1/30; break; case "week": mult = 7/30; break; case "maand": mult = 1; break; case "kwartaal": mult = 3; break; case "jaar": mult = 12; break; }
+          const feePerPeriod = monthlyFee * mult;
+          buckets.forEach((b, key) => {
+            const bd = intervals.find((d) => getKey(d) === key);
+            if (bd && bd >= getBucketStart(clientStart)) b.recurring += feePerPeriod;
+          });
+        }
       }
     });
 
