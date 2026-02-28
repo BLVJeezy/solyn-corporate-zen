@@ -85,11 +85,11 @@ export default function ClientsSection() {
                     {client.email && <div className="text-xs text-muted-foreground">{client.email}</div>}
                   </TableCell>
                   <TableCell className="text-muted-foreground hidden md:table-cell">{client.company || "—"}</TableCell>
-                  <TableCell className="text-primary font-semibold hidden lg:table-cell">{client.setup_fee || "—"}</TableCell>
+                  <TableCell className="text-primary font-semibold hidden lg:table-cell">{client.setup_fee ? `€${client.setup_fee}` : "—"}</TableCell>
                   <TableCell className="hidden lg:table-cell">
                     {client.recurring_fee ? (
                       <div className="flex items-center gap-1.5">
-                        <span className="text-primary font-semibold">{client.recurring_fee}</span>
+                        <span className="text-primary font-semibold">€{client.recurring_fee}</span>
                         <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
                           {client.billing_cycle === "jaarlijks" ? "/jaar" : "/mnd"}
                         </Badge>

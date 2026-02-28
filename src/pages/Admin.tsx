@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,25 @@ import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
 import { useLeads, Lead, LeadStatus } from "@/hooks/useLeads";
+import { useClients } from "@/hooks/useClients";
 import LeadDetailPanel from "@/components/admin/LeadDetailPanel";
 import AddLeadDialog from "@/components/admin/AddLeadDialog";
 import ClientsSection from "@/components/admin/ClientsSection";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+
+/** Parse a euro string like "1.500", "€1500", "1500,50" to a number */
+function parseEuro(val: string | null): number {
+  if (!val) return 0;
+  const cleaned = val.replace(/[€\s]/g, "").replace(/\./g, "").replace(",", ".");
+  const num = parseFloat(cleaned);
+  return isNaN(num) ? 0 : num;
+}
+
+/** Format number as euro */
+function fmtEuro(val: number): string {
+  return "€" + val.toLocaleString("nl-NL", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+}
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   nieuw: { label: "Nieuw", className: "bg-steel/20 text-steel" },
@@ -26,6 +40,7 @@ const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
 const AdminPage = () => {
   const { signOut } = useAuth();
   const { data: leads = [], isLoading } = useLeads();
+  const { data: clients = [] } = useClients();
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -44,29 +59,33 @@ const AdminPage = () => {
   // Live stats from data
   const totalLeads = leads.length;
   const avgBudget = leads.length
-    ? "€" + Math.round(
-        leads.reduce((sum, l) => {
-          const cleaned = (l.budget || "0").replace(/[€\s]/g, "").replace(/\./g, "").replace(",", ".");
-          const num = parseFloat(cleaned);
-          return sum + (isNaN(num) ? 0 : num);
-        }, 0) / leads.length
-      ).toLocaleString("nl-NL")
+    ? fmtEuro(Math.round(leads.reduce((sum, l) => sum + parseEuro(l.budget), 0) / leads.length))
     : "€0";
   const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
   const conversionRate = totalLeads ? ((wonLeads / totalLeads) * 100).toFixed(1) + "%" : "0%";
 
-  // Leads per maand voor grafiek
-  const leadsPerMonth = useMemo(() => {
-    const monthMap: Record<string, number> = {};
-    leads.forEach((l) => {
-      const date = new Date(l.created_at);
-      const key = format(date, "MMM yyyy", { locale: nl });
-      monthMap[key] = (monthMap[key] || 0) + 1;
+  // Revenue stats from clients
+  const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
+  const totalRecurringMonthly = clients.reduce((sum, c) => {
+    const fee = parseEuro(c.recurring_fee);
+    return sum + (c.billing_cycle === "jaarlijks" ? fee / 12 : fee);
+  }, 0);
+  const totalRecurringYearly = totalRecurringMonthly * 12;
+  const totalRevenue = totalSetupFees + totalRecurringYearly;
+
+  // Revenue per client for chart
+  const revenuePerClient = useMemo(() => {
+    return clients.map((c) => {
+      const setup = parseEuro(c.setup_fee);
+      const recurring = parseEuro(c.recurring_fee);
+      const yearlyRecurring = c.billing_cycle === "jaarlijks" ? recurring : recurring * 12;
+      return {
+        name: c.name,
+        setup,
+        recurring: yearlyRecurring,
+      };
     });
-    return Object.entries(monthMap)
-      .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime())
-      .map(([month, count]) => ({ month, leads: count }));
-  }, [leads]);
+  }, [clients]);
 
   // Keep selected lead in sync with data
   const activeLead = selectedLead ? leads.find((l) => l.id === selectedLead.id) || null : null;
@@ -89,16 +108,17 @@ const AdminPage = () => {
 
       <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {[
-            { label: "Leads", value: String(totalLeads), icon: Users, change: "" },
-            { label: "Gem. Budget", value: avgBudget, icon: DollarSign, change: "" },
-            { label: "Conversie", value: conversionRate, icon: BarChart3, change: "" },
+            { label: "Leads", value: String(totalLeads), icon: Users },
+            { label: "Gem. Budget", value: avgBudget, icon: DollarSign },
+            { label: "Conversie", value: conversionRate, icon: BarChart3 },
+            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro },
+            { label: "MRR", value: fmtEuro(Math.round(totalRecurringMonthly)), icon: TrendingUp },
           ].map((stat) => (
             <div key={stat.label} className="bg-card rounded-lg border border-border p-5">
               <div className="flex items-center justify-between mb-2">
                 <stat.icon className="w-5 h-5 text-muted-foreground" />
-                {stat.change && <span className="text-xs text-green-500 font-medium">{stat.change}</span>}
               </div>
               <div className="text-2xl font-bold text-card-foreground">{stat.value}</div>
               <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
@@ -106,17 +126,17 @@ const AdminPage = () => {
           ))}
         </div>
 
-        {/* Chart */}
+        {/* Revenue Chart */}
         <div className="bg-card rounded-lg border border-border p-6">
-          <h2 className="text-lg font-semibold text-card-foreground mb-4">Leads per Maand</h2>
-          {leadsPerMonth.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-8">Nog geen data beschikbaar</p>
+          <h2 className="text-lg font-semibold text-card-foreground mb-4">Omzet per Klant (jaarlijks)</h2>
+          {revenuePerClient.length === 0 ? (
+            <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p>
           ) : (
             <ResponsiveContainer width="100%" height={280}>
-              <LineChart data={leadsPerMonth}>
+              <BarChart data={revenuePerClient}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
-                <XAxis dataKey="month" stroke="hsl(215,15%,60%)" fontSize={12} />
-                <YAxis stroke="hsl(215,15%,60%)" fontSize={12} allowDecimals={false} />
+                <XAxis dataKey="name" stroke="hsl(215,15%,60%)" fontSize={12} />
+                <YAxis stroke="hsl(215,15%,60%)" fontSize={12} tickFormatter={(v) => `€${v}`} />
                 <Tooltip
                   contentStyle={{
                     background: "hsl(222,14%,15%)",
@@ -124,9 +144,11 @@ const AdminPage = () => {
                     borderRadius: "8px",
                     color: "hsl(210,40%,98%)",
                   }}
+                  formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup Fee" : "Recurring/jaar"]}
                 />
-                <Line type="monotone" dataKey="leads" stroke="hsl(40,48%,56%)" strokeWidth={2} dot={{ fill: "hsl(40,48%,56%)", r: 4 }} />
-              </LineChart>
+                <Bar dataKey="setup" stackId="a" fill="hsl(40,48%,56%)" name="setup" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="recurring" stackId="a" fill="hsl(40,48%,36%)" name="recurring" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           )}
         </div>
