@@ -202,30 +202,66 @@ const AdminPage = () => {
       </div>
 
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
-        {/* Stats */}
-        <div className="grid grid-cols-4 md:grid-cols-8 gap-2 sm:gap-4">
-          {[
-            { label: "Leads", value: String(totalLeads), icon: Users, onClick: undefined, color: "" },
-            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign, onClick: undefined, color: "" },
-            { label: "Conversie", value: conversionRate, icon: BarChart3, onClick: undefined, color: "" },
-            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
-            { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr"), color: "" },
-            { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr"), color: "" },
-            { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" },
-            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins, onClick: undefined, color: "" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className={`bg-card rounded-lg border border-border p-3 sm:p-5 ${stat.onClick ? "cursor-pointer hover:border-primary/50 transition-colors" : ""}`}
-              onClick={stat.onClick}
-            >
-              <div className="flex items-center justify-between mb-1 sm:mb-2">
-                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
-              </div>
-              <div className={`text-lg sm:text-2xl font-bold truncate ${stat.color || "text-card-foreground"}`}>{stat.value}</div>
-              <div className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 truncate">{stat.label}</div>
+        {/* Stats - grouped by category */}
+        <div className="space-y-3 sm:space-y-4">
+          {/* Row 1: CRM Stats */}
+          <div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">CRM</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
+              {[
+                { label: "Leads", value: String(totalLeads), icon: Users },
+                { label: "Conversie", value: conversionRate, icon: BarChart3 },
+                { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
+                  <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
+                    <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
+                    <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
+                  </div>
+                  <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Row 2: Revenue Stats */}
+          <div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">Omzet</p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+              {[
+                { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
+                { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr"), color: "" },
+                { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr"), color: "" },
+                { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className={`bg-card rounded-lg border border-border p-3 sm:p-5 ${stat.onClick ? "cursor-pointer hover:border-primary/50 transition-colors" : ""}`}
+                  onClick={stat.onClick}
+                >
+                  <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
+                    <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
+                    <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
+                  </div>
+                  <div className={`text-lg sm:text-2xl font-bold truncate ${stat.color || "text-card-foreground"}`}>{stat.value}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 3: Credits */}
+          <div>
+            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">Credits</p>
+            <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:max-w-sm">
+              <div className="bg-card rounded-lg border border-border p-3 sm:p-5">
+                <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
+                  <Coins className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
+                  <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Credits/Project</span>
+                </div>
+                <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{avgCreditSpend}</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Package Detail Panel */}
