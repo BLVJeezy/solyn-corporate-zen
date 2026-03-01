@@ -70,6 +70,9 @@ const AdminPage = () => {
   const avgCreditSpend = clientsWithCredits.length
     ? fmtEuro(Math.round((clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0)) / clientsWithCredits.length))
     : "€0";
+  const avgCreditCount = clientsWithCredits.length
+    ? Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0), 0) / clientsWithCredits.length)
+    : 0;
 
   // Revenue stats from clients
   const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
@@ -264,11 +267,18 @@ const AdminPage = () => {
           {/* Row 3: Credits */}
           <div>
             <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">Credits</p>
-            <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:max-w-sm">
+            <div className="grid grid-cols-2 gap-2 sm:gap-4">
               <div className="bg-card rounded-lg border border-border p-3 sm:p-5">
                 <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                   <Coins className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                   <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Credits/Project</span>
+                </div>
+                <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{avgCreditCount} credits</div>
+              </div>
+              <div className="bg-card rounded-lg border border-border p-3 sm:p-5">
+                <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
+                  <Euro className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
+                  <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Kosten/Project</span>
                 </div>
                 <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{avgCreditSpend}</div>
               </div>
