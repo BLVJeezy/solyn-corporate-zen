@@ -1,7 +1,17 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import solynLogo from "@/assets/solyn-logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
+  const links = [
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
+
   return (
     <footer className="bg-charcoal text-charcoal-foreground py-16 border-t border-border">
       <div className="container mx-auto px-4">
@@ -9,25 +19,25 @@ const Footer = () => {
           <div>
             <img src={solynLogo} alt="Solyn Global Ltd" className="h-12 mb-4" />
             <p className="text-charcoal-foreground/60 text-sm leading-relaxed">
-              Web development, infrastructuur en consultancy oplossingen voor groeiende ondernemingen.
+              {t("footer.desc")}
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-primary mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-primary mb-4">{t("footer.quickLinks")}</h4>
             <div className="space-y-2">
-              {["Home", "Services", "Portfolio", "Contact"].map((link) => (
+              {links.map((link) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
+                  key={link.href}
+                  href={link.href}
                   className="block text-sm text-charcoal-foreground/60 hover:text-primary transition-colors"
                 >
-                  {link}
+                  {link.label}
                 </a>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-primary mb-4">Contact</h4>
+            <h4 className="font-semibold text-primary mb-4">{t("footer.contact")}</h4>
             <div className="space-y-3 text-sm text-charcoal-foreground/60">
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-primary" />
@@ -45,7 +55,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-charcoal-foreground/10 pt-6 text-center text-xs text-charcoal-foreground/40">
-          © 2026 Solyn Global Ltd. Alle rechten voorbehouden.
+          {t("footer.rights")}
         </div>
       </div>
     </footer>

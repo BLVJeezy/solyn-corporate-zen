@@ -7,20 +7,23 @@ import PortfolioSection from "@/components/PortfolioSection";
 import LeadForm from "@/components/LeadForm";
 import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 const Index = () => {
   return (
-    <div className="dark">
-      <Navbar />
-      <Hero />
-      <ServicesGrid />
-      <TrustBar />
-      <ProcessSection />
-      <PortfolioSection />
-      <LeadForm />
-      <Footer />
-      <ChatWidget />
-    </div>
+    <LanguageProvider>
+      <div className="dark">
+        <Navbar />
+        <Hero />
+        <ServicesGrid />
+        <TrustBar />
+        <ProcessSection />
+        <PortfolioSection />
+        <LeadForm />
+        <Footer />
+        <ChatWidget />
+      </div>
+    </LanguageProvider>
   );
 };
 

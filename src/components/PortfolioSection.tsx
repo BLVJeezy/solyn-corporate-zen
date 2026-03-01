@@ -2,29 +2,32 @@ import { motion } from "framer-motion";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
-
-const projects = [
-  {
-    image: portfolio1,
-    title: "Belgomed BV",
-    category: "Medische Groothandel",
-    description: "Corporate website met GDP & WDA certificering integratie.",
-  },
-  {
-    image: portfolio2,
-    title: "Shinelab Detailing",
-    category: "Automotive Detailing",
-    description: "Lead-generatie platform met offerte-aanvraag systeem.",
-  },
-  {
-    image: portfolio3,
-    title: "L'atelier 9",
-    category: "Beauty & Wellness",
-    description: "Elegant brand platform voor premium nail art studio.",
-  },
-];
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const PortfolioSection = () => {
+  const { t } = useLanguage();
+
+  const projects = [
+    {
+      image: portfolio1,
+      title: "Belgomed BV",
+      categoryKey: "portfolio.p1.category",
+      descKey: "portfolio.p1.desc",
+    },
+    {
+      image: portfolio2,
+      title: "Shinelab Detailing",
+      categoryKey: "portfolio.p2.category",
+      descKey: "portfolio.p2.desc",
+    },
+    {
+      image: portfolio3,
+      title: "L'atelier 9",
+      categoryKey: "portfolio.p3.category",
+      descKey: "portfolio.p3.desc",
+    },
+  ];
+
   return (
     <section id="portfolio" className="py-24 bg-background">
       <div className="container mx-auto px-6">
@@ -36,13 +39,13 @@ const PortfolioSection = () => {
           className="text-center mb-16"
         >
           <span className="text-sm uppercase tracking-[0.3em] text-gold font-medium">
-            Portfolio
+            {t("portfolio.label")}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3">
-            Recente Projecten
+            {t("portfolio.heading")}
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Een selectie van onze meest recente samenwerkingen en resultaten.
+            {t("portfolio.subtitle")}
           </p>
         </motion.div>
 
@@ -66,13 +69,13 @@ const PortfolioSection = () => {
               </div>
               <div className="p-6">
                 <span className="text-xs uppercase tracking-widest text-gold/80 font-medium">
-                  {project.category}
+                  {t(project.categoryKey)}
                 </span>
                 <h3 className="text-lg font-semibold text-foreground mt-1">
                   {project.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mt-2">
-                  {project.description}
+                  {t(project.descKey)}
                 </p>
               </div>
             </motion.div>

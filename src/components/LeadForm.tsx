@@ -5,22 +5,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const LeadForm = () => {
+  const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({ name: "", company: "", budget: "", message: "" });
 
   const fields = [
-    { key: "name" as const, label: "Uw naam", placeholder: "Jan Janssen", type: "text" },
-    { key: "company" as const, label: "Bedrijfsnaam", placeholder: "Uw bedrijf B.V.", type: "text" },
-    { key: "budget" as const, label: "Budget (EUR)", placeholder: "€750 - €2.000", type: "text" },
+    { key: "name" as const, labelKey: "lead.name", phKey: "lead.namePh", type: "text" },
+    { key: "company" as const, labelKey: "lead.company", phKey: "lead.companyPh", type: "text" },
+    { key: "budget" as const, labelKey: "lead.budget", phKey: "lead.budgetPh", type: "text" },
   ];
 
   const handleNext = () => {
     if (step < fields.length) {
       setStep(step + 1);
     } else {
-      toast.success("Bedankt! We nemen zo snel mogelijk contact met u op.");
+      toast.success(t("lead.success"));
       setForm({ name: "", company: "", budget: "", message: "" });
       setStep(0);
     }
@@ -36,14 +38,13 @@ const LeadForm = () => {
           className="max-w-lg mx-auto text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Plan een <span className="text-gradient-gold">Afspraak</span>
+            {t("lead.heading1")} <span className="text-gradient-gold">{t("lead.heading2")}</span>
           </h2>
           <p className="text-muted-foreground mb-10 leading-relaxed">
-            Laat uw gegevens achter en wij nemen binnen 24 uur contact met u op.
+            {t("lead.subtitle")}
           </p>
 
           <div className="space-y-4 text-left">
-            {/* Progress */}
             <div className="flex gap-1 mb-6">
               {[0, 1, 2, 3].map((i) => (
                 <div
@@ -62,9 +63,9 @@ const LeadForm = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-3"
               >
-                <label className="text-sm font-medium text-foreground">{fields[step].label}</label>
+                <label className="text-sm font-medium text-foreground">{t(fields[step].labelKey)}</label>
                 <Input
-                  placeholder={fields[step].placeholder}
+                  placeholder={t(fields[step].phKey)}
                   value={form[fields[step].key]}
                   onChange={(e) => setForm({ ...form, [fields[step].key]: e.target.value })}
                   className="bg-background border-border"
@@ -76,9 +77,9 @@ const LeadForm = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="space-y-3"
               >
-                <label className="text-sm font-medium text-foreground">Uw bericht</label>
+                <label className="text-sm font-medium text-foreground">{t("lead.message")}</label>
                 <Textarea
-                  placeholder="Vertel ons over uw project..."
+                  placeholder={t("lead.messagePh")}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   rows={4}
@@ -94,11 +95,11 @@ const LeadForm = () => {
                   onClick={() => setStep(step - 1)}
                   className="border-border text-foreground"
                 >
-                  Terug
+                  {t("lead.back")}
                 </Button>
               )}
               <Button onClick={handleNext} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                {step < fields.length ? "Volgende" : "Versturen"}
+                {step < fields.length ? t("lead.next") : t("lead.send")}
                 {step === fields.length && <Send className="ml-2 w-4 h-4" />}
               </Button>
             </div>

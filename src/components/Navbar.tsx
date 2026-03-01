@@ -4,21 +4,23 @@ import { Menu, X, Globe, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { Lang } from "@/i18n/translations";
 
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
-];
-
-const languages = ["NL", "FR", "EN"];
+const languages: Lang[] = ["NL", "FR", "EN"];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lang, setLang] = useState("NL");
+  const { lang, setLang, t } = useLanguage();
   const navigate = useNavigate();
+
+  const navLinks = [
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -74,10 +76,10 @@ const Navbar = () => {
               onClick={() => navigate("/login")}
             >
               <User className="w-4 h-4" />
-              Client Login
+              {t("nav.clientLogin")}
             </Button>
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-              Gratis Advies
+              {t("nav.cta")}
             </Button>
           </div>
 
@@ -90,7 +92,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -129,16 +130,15 @@ const Navbar = () => {
                 onClick={() => { setMobileOpen(false); navigate("/login"); }}
               >
                 <User className="w-4 h-4" />
-                Client Login
+                {t("nav.clientLogin")}
               </Button>
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                Gratis Advies
+                {t("nav.cta")}
               </Button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   );
 };
