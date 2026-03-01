@@ -13,7 +13,15 @@ const Hero = () => {
         loop
         muted
         playsInline
+        webkit-playsinline=""
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
+        ref={(el) => {
+          if (el) {
+            el.muted = true;
+            el.play().catch(() => {});
+          }
+        }}
       >
         <source src={heroBgVideo} type="video/mp4" />
       </video>
