@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins, CalendarClock, X } from "lucide-react";
+import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins, CalendarClock, X, Percent } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
@@ -80,6 +80,9 @@ const AdminPage = () => {
   const totalRecurringMonthly = mrr + jrr / 12;
   const totalRecurringYearly = totalRecurringMonthly * 12;
   const totalRevenue = totalSetupFees + totalRecurringYearly;
+  const transactionFees = totalRevenue * 0.02811;
+  const totalCreditCosts = clients.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0);
+  const profit = totalRevenue - transactionFees - totalCreditCosts;
 
   // Revenue per client for chart
   const revenuePerClient = useMemo(() => {
@@ -200,15 +203,16 @@ const AdminPage = () => {
 
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
         {/* Stats */}
-        <div className="grid grid-cols-3 md:grid-cols-7 gap-2 sm:gap-4">
+        <div className="grid grid-cols-4 md:grid-cols-8 gap-2 sm:gap-4">
           {[
-            { label: "Leads", value: String(totalLeads), icon: Users, onClick: undefined },
-            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign, onClick: undefined },
-            { label: "Conversie", value: conversionRate, icon: BarChart3, onClick: undefined },
-            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined },
-            { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr") },
-            { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr") },
-            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins, onClick: undefined },
+            { label: "Leads", value: String(totalLeads), icon: Users, onClick: undefined, color: "" },
+            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign, onClick: undefined, color: "" },
+            { label: "Conversie", value: conversionRate, icon: BarChart3, onClick: undefined, color: "" },
+            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
+            { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr"), color: "" },
+            { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr"), color: "" },
+            { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" },
+            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins, onClick: undefined, color: "" },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -218,7 +222,7 @@ const AdminPage = () => {
               <div className="flex items-center justify-between mb-1 sm:mb-2">
                 <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
               </div>
-              <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
+              <div className={`text-lg sm:text-2xl font-bold truncate ${stat.color || "text-card-foreground"}`}>{stat.value}</div>
               <div className="text-[10px] sm:text-xs text-muted-foreground mt-0.5 sm:mt-1 truncate">{stat.label}</div>
             </div>
           ))}
