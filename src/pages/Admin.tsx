@@ -235,7 +235,7 @@ const AdminPage = () => {
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 {[
                 { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
-                { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" }].
+                { label: "Profit", value: `+${fmtEuro(Math.round(profit))}`, icon: Percent, onClick: undefined, color: "text-green-500" }].
                 map((stat) =>
                 <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
                     <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
