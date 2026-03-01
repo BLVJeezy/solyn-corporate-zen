@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins } from "lucide-react";
+import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins, CalendarClock, X } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
@@ -46,6 +46,7 @@ const AdminPage = () => {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [showPackagePanel, setShowPackagePanel] = useState<"mrr" | "jrr" | null>(null);
 
   const filteredLeads = useMemo(() => {
     return leads.filter((l) => {
@@ -72,10 +73,11 @@ const AdminPage = () => {
 
   // Revenue stats from clients
   const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
-  const totalRecurringMonthly = clients.reduce((sum, c) => {
-    const fee = parseEuro(c.recurring_fee);
-    return sum + (c.billing_cycle === "jaarlijks" ? fee / 12 : fee);
-  }, 0);
+  const monthlyClients = clients.filter((c) => c.billing_cycle !== "jaarlijks");
+  const yearlyClients = clients.filter((c) => c.billing_cycle === "jaarlijks");
+  const mrr = monthlyClients.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0);
+  const jrr = yearlyClients.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0);
+  const totalRecurringMonthly = mrr + jrr / 12;
   const totalRecurringYearly = totalRecurringMonthly * 12;
   const totalRevenue = totalSetupFees + totalRecurringYearly;
 
@@ -198,16 +200,21 @@ const AdminPage = () => {
 
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
         {/* Stats */}
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 sm:gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-7 gap-2 sm:gap-4">
           {[
-            { label: "Leads", value: String(totalLeads), icon: Users },
-            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
-            { label: "Conversie", value: conversionRate, icon: BarChart3 },
-            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro },
-            { label: "MRR", value: fmtEuro(Math.round(totalRecurringMonthly)), icon: TrendingUp },
-            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins },
+            { label: "Leads", value: String(totalLeads), icon: Users, onClick: undefined },
+            { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign, onClick: undefined },
+            { label: "Conversie", value: conversionRate, icon: BarChart3, onClick: undefined },
+            { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined },
+            { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr") },
+            { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr") },
+            { label: "Gem. Credits/Project", value: avgCreditSpend, icon: Coins, onClick: undefined },
           ].map((stat) => (
-            <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
+            <div
+              key={stat.label}
+              className={`bg-card rounded-lg border border-border p-3 sm:p-5 ${stat.onClick ? "cursor-pointer hover:border-primary/50 transition-colors" : ""}`}
+              onClick={stat.onClick}
+            >
               <div className="flex items-center justify-between mb-1 sm:mb-2">
                 <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
               </div>
@@ -216,6 +223,53 @@ const AdminPage = () => {
             </div>
           ))}
         </div>
+
+        {/* Package Detail Panel */}
+        {showPackagePanel && (
+          <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-base sm:text-lg font-semibold text-card-foreground">
+                {showPackagePanel === "mrr" ? "Maandelijkse abonnementen (MRR)" : "Jaarlijkse abonnementen (JRR)"}
+              </h2>
+              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShowPackagePanel(null)}>
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+            {(() => {
+              const list = showPackagePanel === "mrr" ? monthlyClients : yearlyClients;
+              if (list.length === 0) return <p className="text-muted-foreground text-sm text-center py-4">Geen klanten met dit abonnementstype</p>;
+              return (
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-border">
+                      <TableHead className="text-muted-foreground">Naam</TableHead>
+                      <TableHead className="text-muted-foreground hidden md:table-cell">Bedrijf</TableHead>
+                      <TableHead className="text-muted-foreground">Fee</TableHead>
+                      <TableHead className="text-muted-foreground hidden md:table-cell">Startdatum</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {list.map((c) => (
+                      <TableRow key={c.id} className="border-border">
+                        <TableCell className="font-medium text-card-foreground">{c.name}</TableCell>
+                        <TableCell className="text-muted-foreground hidden md:table-cell">{c.company || "—"}</TableCell>
+                        <TableCell>
+                          <span className="text-primary font-semibold">{c.recurring_fee ? `€${c.recurring_fee}` : "—"}</span>
+                          <Badge variant="secondary" className="ml-1.5 text-[10px] px-1.5 py-0">
+                            {showPackagePanel === "mrr" ? "/mnd" : "/jaar"}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-muted-foreground hidden md:table-cell">
+                          {c.start_date ? format(new Date(c.start_date), "d MMM yyyy", { locale: nl }) : "—"}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              );
+            })()}
+          </div>
+        )}
 
         {/* Revenue Analytics */}
         <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
