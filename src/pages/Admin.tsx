@@ -280,7 +280,7 @@ const AdminPage = () => {
                   <Euro className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                   <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Kosten/Project</span>
                 </div>
-                <div className="text-lg sm:text-2xl font-bold truncate text-red-600">{avgCreditSpend}</div>
+                <div className="text-lg sm:text-2xl font-bold truncate text-red-600">-{avgCreditSpend}</div>
               </div>
             </div>
           </div>
