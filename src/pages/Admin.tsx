@@ -31,11 +31,11 @@ function fmtEuro(val: number): string {
   return "€" + val.toLocaleString("nl-NL", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 }
 
-const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
+const statusConfig: Record<LeadStatus, {label: string;className: string;}> = {
   nieuw: { label: "Nieuw", className: "bg-steel/20 text-steel" },
   in_behandeling: { label: "In behandeling", className: "bg-primary/20 text-primary" },
   gewonnen: { label: "Gewonnen", className: "bg-green-500/20 text-green-500" },
-  verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive" },
+  verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive" }
 };
 
 
@@ -51,9 +51,9 @@ const AdminPage = () => {
   const filteredLeads = useMemo(() => {
     return leads.filter((l) => {
       const matchesSearch =
-        !search ||
-        l.name.toLowerCase().includes(search.toLowerCase()) ||
-        (l.company?.toLowerCase() || "").includes(search.toLowerCase());
+      !search ||
+      l.name.toLowerCase().includes(search.toLowerCase()) ||
+      (l.company?.toLowerCase() || "").includes(search.toLowerCase());
       const matchesStatus = statusFilter === "all" || l.status === statusFilter;
       return matchesSearch && matchesStatus;
     });
@@ -61,18 +61,18 @@ const AdminPage = () => {
 
   // Live stats from data
   const totalLeads = leads.length;
-  const avgSetupFee = clients.length
-    ? fmtEuro(Math.round(clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0) / clients.length))
-    : "€0";
+  const avgSetupFee = clients.length ?
+  fmtEuro(Math.round(clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0) / clients.length)) :
+  "€0";
   const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
-  const conversionRate = totalLeads ? ((wonLeads / totalLeads) * 100).toFixed(1) + "%" : "0%";
+  const conversionRate = totalLeads ? (wonLeads / totalLeads * 100).toFixed(1) + "%" : "0%";
   const clientsWithCredits = clients.filter((c) => c.credits_used && c.credits_used > 0);
-  const avgCreditSpend = clientsWithCredits.length
-    ? fmtEuro(Math.round((clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0)) / clientsWithCredits.length))
-    : "€0";
-  const avgCreditCount = clientsWithCredits.length
-    ? Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0), 0) / clientsWithCredits.length)
-    : 0;
+  const avgCreditSpend = clientsWithCredits.length ?
+  fmtEuro(Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0) / clientsWithCredits.length)) :
+  "€0";
+  const avgCreditCount = clientsWithCredits.length ?
+  Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0), 0) / clientsWithCredits.length) :
+  0;
 
   // Revenue stats from clients
   const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
@@ -105,41 +105,41 @@ const AdminPage = () => {
     type PK = "dag" | "week" | "maand" | "kwartaal" | "jaar";
     const rangeStart: Record<PK, Date> = {
       dag: subMonths(now, 1), week: subMonths(now, 3), maand: subYears(now, 1),
-      kwartaal: subYears(now, 2), jaar: subYears(now, 5),
+      kwartaal: subYears(now, 2), jaar: subYears(now, 5)
     };
     const start = rangeStart[revPeriod as PK] || subYears(now, 1);
 
     const getKey = (d: Date) => {
       switch (revPeriod) {
-        case "dag": return fnsFormat(d, "dd/MM");
-        case "week": return "W" + fnsFormat(d, "ww/yy");
-        case "maand": return fnsFormat(d, "MMM yy");
-        case "kwartaal": return "Q" + (Math.floor(d.getMonth() / 3) + 1) + " " + fnsFormat(d, "yy");
-        case "jaar": return fnsFormat(d, "yyyy");
-        default: return fnsFormat(d, "MMM yy");
+        case "dag":return fnsFormat(d, "dd/MM");
+        case "week":return "W" + fnsFormat(d, "ww/yy");
+        case "maand":return fnsFormat(d, "MMM yy");
+        case "kwartaal":return "Q" + (Math.floor(d.getMonth() / 3) + 1) + " " + fnsFormat(d, "yy");
+        case "jaar":return fnsFormat(d, "yyyy");
+        default:return fnsFormat(d, "MMM yy");
       }
     };
     const getBucketStart = (d: Date) => {
       switch (revPeriod) {
-        case "dag": return startOfDay(d);
-        case "week": return startOfWeek(d, { weekStartsOn: 1 });
-        case "maand": return startOfMonth(d);
-        case "kwartaal": return startOfQuarter(d);
-        case "jaar": return startOfYear(d);
-        default: return startOfMonth(d);
+        case "dag":return startOfDay(d);
+        case "week":return startOfWeek(d, { weekStartsOn: 1 });
+        case "maand":return startOfMonth(d);
+        case "kwartaal":return startOfQuarter(d);
+        case "jaar":return startOfYear(d);
+        default:return startOfMonth(d);
       }
     };
 
-    const buckets = new Map<string, { label: string; setup: number; recurring: number }>();
+    const buckets = new Map<string, {label: string;setup: number;recurring: number;}>();
     let intervals: Date[];
-    if (revPeriod === "dag") intervals = eachDayOfInterval({ start, end: now });
-    else if (revPeriod === "week") intervals = eachWeekOfInterval({ start, end: now }, { weekStartsOn: 1 });
-    else {
+    if (revPeriod === "dag") intervals = eachDayOfInterval({ start, end: now });else
+    if (revPeriod === "week") intervals = eachWeekOfInterval({ start, end: now }, { weekStartsOn: 1 });else
+    {
       intervals = eachMonthOfInterval({ start, end: now });
-      if (revPeriod === "kwartaal") intervals = intervals.filter((d) => d.getMonth() % 3 === 0);
-      else if (revPeriod === "jaar") intervals = intervals.filter((d) => d.getMonth() === 0);
+      if (revPeriod === "kwartaal") intervals = intervals.filter((d) => d.getMonth() % 3 === 0);else
+      if (revPeriod === "jaar") intervals = intervals.filter((d) => d.getMonth() === 0);
     }
-    intervals.forEach((d) => { const k = getKey(d); if (!buckets.has(k)) buckets.set(k, { label: k, setup: 0, recurring: 0 }); });
+    intervals.forEach((d) => {const k = getKey(d);if (!buckets.has(k)) buckets.set(k, { label: k, setup: 0, recurring: 0 });});
 
     clients.forEach((c) => {
       const setupVal = parseEuro(c.setup_fee);
@@ -167,7 +167,7 @@ const AdminPage = () => {
           // Monthly billing: distribute per period
           const monthlyFee = recurringVal;
           let mult = 1;
-          switch (revPeriod) { case "dag": mult = 1/30; break; case "week": mult = 7/30; break; case "maand": mult = 1; break; case "kwartaal": mult = 3; break; case "jaar": mult = 12; break; }
+          switch (revPeriod) {case "dag":mult = 1 / 30;break;case "week":mult = 7 / 30;break;case "maand":mult = 1;break;case "kwartaal":mult = 3;break;case "jaar":mult = 12;break;}
           const feePerPeriod = monthlyFee * mult;
           buckets.forEach((b, key) => {
             const bd = intervals.find((d) => getKey(d) === key);
@@ -212,18 +212,18 @@ const AdminPage = () => {
             <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">CRM</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
               {[
-                { label: "Leads", value: String(totalLeads), icon: Users },
-                { label: "Conversie", value: conversionRate, icon: BarChart3 },
-                { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
+              { label: "Leads", value: String(totalLeads), icon: Users },
+              { label: "Conversie", value: conversionRate, icon: BarChart3 },
+              { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign }].
+              map((stat) =>
+              <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
                   <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                     <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                     <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
                   </div>
                   <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
                 </div>
-              ))}
+              )}
             </div>
           </div>
 
@@ -234,32 +234,32 @@ const AdminPage = () => {
               {/* Totale Omzet + Profit */}
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 {[
-                  { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
-                  { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" },
-                ].map((stat) => (
-                  <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
+                { label: "Totale Omzet", value: fmtEuro(totalRevenue), icon: Euro, onClick: undefined, color: "" },
+                { label: "Profit", value: fmtEuro(Math.round(profit)), icon: Percent, onClick: undefined, color: "text-green-500" }].
+                map((stat) =>
+                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
                     <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                       <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                       <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
                     </div>
                     <div className={`text-lg sm:text-2xl font-bold truncate ${stat.color || "text-card-foreground"}`}>{stat.value}</div>
                   </div>
-                ))}
+                )}
               </div>
               {/* MRR + JRR */}
               <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 {[
-                  { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr") },
-                  { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr") },
-                ].map((stat) => (
-                  <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5 cursor-pointer hover:border-primary/50 transition-colors" onClick={stat.onClick}>
+                { label: "MRR", value: fmtEuro(Math.round(mrr)), icon: TrendingUp, onClick: () => setShowPackagePanel("mrr") },
+                { label: "JRR", value: fmtEuro(Math.round(jrr)), icon: CalendarClock, onClick: () => setShowPackagePanel("jrr") }].
+                map((stat) =>
+                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5 cursor-pointer hover:border-primary/50 transition-colors" onClick={stat.onClick}>
                     <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
                       <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                       <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
                     </div>
                     <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>
@@ -280,15 +280,15 @@ const AdminPage = () => {
                   <Euro className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
                   <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Kosten/Project</span>
                 </div>
-                <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{avgCreditSpend}</div>
+                <div className="text-lg sm:text-2xl font-bold truncate text-red-600">{avgCreditSpend}</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Package Detail Panel */}
-        {showPackagePanel && (
-          <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
+        {showPackagePanel &&
+        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base sm:text-lg font-semibold text-card-foreground">
                 {showPackagePanel === "mrr" ? "Maandelijkse abonnementen (MRR)" : "Jaarlijkse abonnementen (JRR)"}
@@ -298,10 +298,10 @@ const AdminPage = () => {
               </Button>
             </div>
             {(() => {
-              const list = showPackagePanel === "mrr" ? monthlyClients : yearlyClients;
-              if (list.length === 0) return <p className="text-muted-foreground text-sm text-center py-4">Geen klanten met dit abonnementstype</p>;
-              return (
-                <Table>
+            const list = showPackagePanel === "mrr" ? monthlyClients : yearlyClients;
+            if (list.length === 0) return <p className="text-muted-foreground text-sm text-center py-4">Geen klanten met dit abonnementstype</p>;
+            return (
+              <Table>
                   <TableHeader>
                     <TableRow className="border-border">
                       <TableHead className="text-muted-foreground">Naam</TableHead>
@@ -311,8 +311,8 @@ const AdminPage = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {list.map((c) => (
-                      <TableRow key={c.id} className="border-border">
+                    {list.map((c) =>
+                  <TableRow key={c.id} className="border-border">
                         <TableCell className="font-medium text-card-foreground">{c.name}</TableCell>
                         <TableCell className="text-muted-foreground hidden md:table-cell">{c.company || "—"}</TableCell>
                         <TableCell>
@@ -325,7 +325,7 @@ const AdminPage = () => {
                           {c.start_date ? format(new Date(c.start_date), "d MMM yyyy", { locale: nl }) : "—"}
                         </TableCell>
                       </TableRow>
-                    ))}
+                  )}
                     <TableRow className="border-border border-t-2">
                       <TableCell className="font-bold text-card-foreground">Totaal ({list.length} klanten)</TableCell>
                       <TableCell className="hidden md:table-cell" />
@@ -340,11 +340,11 @@ const AdminPage = () => {
                       <TableCell className="hidden md:table-cell" />
                     </TableRow>
                   </TableBody>
-                </Table>
-              );
-            })()}
+                </Table>);
+
+          })()}
           </div>
-        )}
+        }
 
         {/* Revenue Analytics */}
         <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
@@ -352,16 +352,16 @@ const AdminPage = () => {
             <h2 className="text-base sm:text-lg font-semibold text-card-foreground">Omzet Analytics</h2>
             <Tabs value={revPeriod} onValueChange={setRevPeriod}>
               <TabsList className="bg-muted">
-                {["dag", "week", "maand", "kwartaal", "jaar"].map((p) => (
-                  <TabsTrigger key={p} value={p} className="text-[10px] sm:text-xs capitalize px-2 sm:px-3">{p}</TabsTrigger>
-                ))}
+                {["dag", "week", "maand", "kwartaal", "jaar"].map((p) =>
+                <TabsTrigger key={p} value={p} className="text-[10px] sm:text-xs capitalize px-2 sm:px-3">{p}</TabsTrigger>
+                )}
               </TabsList>
             </Tabs>
           </div>
-          {revenueTimeline.length === 0 ? (
-            <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p>
-          ) : (
-            <div className="space-y-6">
+          {revenueTimeline.length === 0 ?
+          <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p> :
+
+          <div className="space-y-6">
               {/* Bar chart: setup + recurring per period */}
               <ResponsiveContainer width="100%" height={180} className="sm:!h-[240px]">
                 <BarChart data={revenueTimeline}>
@@ -369,9 +369,9 @@ const AdminPage = () => {
                   <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
                   <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
                   <Tooltip
-                    contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
-                    formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]}
-                  />
+                  contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
+                  formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]} />
+
                   <Legend />
                   <Bar dataKey="setup" stackId="a" fill="hsl(40,48%,56%)" name="Setup" radius={[0, 0, 0, 0]} />
                   <Bar dataKey="recurring" stackId="a" fill="hsl(40,48%,36%)" name="Recurring" radius={[4, 4, 0, 0]} />
@@ -393,15 +393,15 @@ const AdminPage = () => {
                     <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
                     <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
                     <Tooltip
-                      contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
-                      formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]}
-                    />
+                    contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
+                    formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]} />
+
                     <Area type="monotone" dataKey="cumulatief" stroke="hsl(40,48%,56%)" fill="url(#trendGrad)" strokeWidth={2} />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
             </div>
-          )}
+          }
         </div>
 
         {/* CRM Section */}
@@ -421,8 +421,8 @@ const AdminPage = () => {
                   placeholder="Zoek op naam of bedrijf..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="pl-9 bg-muted border-border"
-                />
+                  className="pl-9 bg-muted border-border" />
+
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-[160px] bg-muted border-border">
@@ -430,19 +430,19 @@ const AdminPage = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Alle statussen</SelectItem>
-                  {Object.entries(statusConfig).map(([key, cfg]) => (
-                    <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
-                  ))}
+                  {Object.entries(statusConfig).map(([key, cfg]) =>
+                  <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
+                  )}
                 </SelectContent>
               </Select>
             </div>
 
-            {isLoading ? (
-              <p className="text-muted-foreground text-sm py-8 text-center">Laden...</p>
-            ) : filteredLeads.length === 0 ? (
-              <p className="text-muted-foreground text-sm py-8 text-center">Geen leads gevonden</p>
-            ) : (
-              <Table>
+            {isLoading ?
+            <p className="text-muted-foreground text-sm py-8 text-center">Laden...</p> :
+            filteredLeads.length === 0 ?
+            <p className="text-muted-foreground text-sm py-8 text-center">Geen leads gevonden</p> :
+
+            <Table>
                 <TableHeader>
                   <TableRow className="border-border">
                     <TableHead className="text-muted-foreground">Naam</TableHead>
@@ -453,12 +453,12 @@ const AdminPage = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredLeads.map((lead) => (
-                    <TableRow
-                      key={lead.id}
-                      className={`border-border cursor-pointer transition-colors hover:bg-muted/50 ${activeLead?.id === lead.id ? "bg-muted/50" : ""}`}
-                      onClick={() => setSelectedLead(lead)}
-                    >
+                  {filteredLeads.map((lead) =>
+                <TableRow
+                  key={lead.id}
+                  className={`border-border cursor-pointer transition-colors hover:bg-muted/50 ${activeLead?.id === lead.id ? "bg-muted/50" : ""}`}
+                  onClick={() => setSelectedLead(lead)}>
+
                       <TableCell className="font-medium text-card-foreground">{lead.name}</TableCell>
                       <TableCell className="text-muted-foreground hidden md:table-cell">{lead.company || "—"}</TableCell>
                       <TableCell className="text-primary font-semibold">{lead.budget || "—"}</TableCell>
@@ -471,29 +471,29 @@ const AdminPage = () => {
                         {format(new Date(lead.created_at), "d MMM yyyy", { locale: nl })}
                       </TableCell>
                     </TableRow>
-                  ))}
+                )}
                 </TableBody>
               </Table>
-            )}
+            }
           </div>
 
           {/* Detail Panel - hide empty state on mobile */}
           <div className="lg:col-span-1">
-            {activeLead ? (
-              <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} />
-            ) : (
-              <div className="hidden lg:block bg-card rounded-lg border border-border p-8 text-center">
+            {activeLead ?
+            <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} /> :
+
+            <div className="hidden lg:block bg-card rounded-lg border border-border p-8 text-center">
                 <p className="text-muted-foreground text-sm">Selecteer een lead om details te bekijken</p>
               </div>
-            )}
+            }
           </div>
         </div>
 
         {/* Clients Section */}
         <ClientsSection />
       </div>
-    </div>
-  );
+    </div>);
+
 };
 
 export default AdminPage;
