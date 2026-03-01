@@ -127,7 +127,8 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
           const yearlyRecurring = client.billing_cycle === "jaarlijks" ? recurringFee : recurringFee * 12;
           const totalRevenue = setupFee + yearlyRecurring;
           const creditCost = (client.credits_used || 0) * 0.23;
-          const profitEuro = totalRevenue - creditCost;
+          const txFees = totalRevenue * 0.02811;
+          const profitEuro = totalRevenue - creditCost - txFees;
           const profitPct = totalRevenue > 0 ? (profitEuro / totalRevenue) * 100 : 0;
           if (totalRevenue <= 0 && creditCost <= 0) return null;
           return (
@@ -135,6 +136,10 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Totale omzet (jaar)</span>
                 <span className="text-card-foreground font-semibold">€{totalRevenue.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Transaction fees (2,811%)</span>
+                <span className="text-destructive font-semibold">-€{txFees.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Profit</span>
