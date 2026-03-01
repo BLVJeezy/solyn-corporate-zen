@@ -264,6 +264,19 @@ const AdminPage = () => {
                         </TableCell>
                       </TableRow>
                     ))}
+                    <TableRow className="border-border border-t-2">
+                      <TableCell className="font-bold text-card-foreground">Totaal ({list.length} klanten)</TableCell>
+                      <TableCell className="hidden md:table-cell" />
+                      <TableCell>
+                        <span className="text-primary font-bold">
+                          {fmtEuro(list.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0))}
+                        </span>
+                        <Badge variant="secondary" className="ml-1.5 text-[10px] px-1.5 py-0">
+                          {showPackagePanel === "mrr" ? "/mnd" : "/jaar"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell" />
+                    </TableRow>
                   </TableBody>
                 </Table>
               );
