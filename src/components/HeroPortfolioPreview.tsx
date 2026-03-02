@@ -21,14 +21,6 @@ const HeroPortfolioPreview = () => {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,4%)] via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6 md:p-8">
-              <span className="text-xs uppercase tracking-widest text-[hsl(0,0%,60%)] font-medium">
-                Medisch Platform
-              </span>
-              <h3 className="text-lg font-semibold text-[hsl(0,0%,97%)] mt-1">
-                Belgomed BV
-              </h3>
-            </div>
           </motion.div>
 
           <motion.div
