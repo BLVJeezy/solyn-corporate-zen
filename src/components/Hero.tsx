@@ -10,7 +10,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="home" className="min-h-[70vh] md:min-h-[90vh] flex items-center bg-[hsl(0_0%_7%)] pt-20 pb-16 md:pt-24 md:pb-20">
+    <section id="home" className="min-h-[70vh] md:min-h-[90vh] flex items-center bg-[hsl(0_0%_7%)] pt-20 pb-16 md:pt-24 md:pb-20 py-[10px]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
