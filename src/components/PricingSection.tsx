@@ -48,17 +48,6 @@ const PricingSection = () => {
 
   const plans = [
     {
-      nameKey: "pricing.sprint.name",
-      priceKey: "pricing.sprint.price",
-      periodKey: "pricing.sprint.period",
-      descKey: "pricing.sprint.desc",
-      features: ["pricing.sprint.f1", "pricing.sprint.f2", "pricing.sprint.f3", "pricing.sprint.f4"],
-      highlighted: false,
-      ctaKey: "pricing.sprint.cta",
-      inverted: false,
-      icon: Zap,
-    },
-    {
       nameKey: "pricing.mvp.name",
       priceKey: "pricing.mvp.price",
       periodKey: "pricing.mvp.period",
@@ -118,7 +107,7 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+        <div className="grid md:grid-cols-1 gap-6 max-w-lg">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.nameKey}
