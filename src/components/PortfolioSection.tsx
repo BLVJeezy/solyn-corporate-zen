@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 import portfolio1 from "@/assets/portfolio-1.png";
+import portfolio1b from "@/assets/portfolio-1b.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
@@ -43,30 +44,30 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
           loading="lazy" />) : (
 
 
-        /* Multi-image - 2x2 grid with slight overlap and rotation */
-        <div className="relative w-full h-full grid grid-cols-2 gap-2 p-1">
+        /* Multi-image layout */
+        <div className={`relative w-full h-full ${project.images.length === 2 ? 'flex flex-col gap-2' : 'grid grid-cols-2 gap-2'} p-1`}>
             <img
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
-              className="w-full h-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
+              className={`w-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[55%]' : 'h-full'}`}
               loading="lazy" />
             <img
               src={project.images[1].src}
               alt={`${project.title} - ${project.images[1].label}`}
-              className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:rotate-1"
+              className={`w-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[45%]' : 'h-full'}`}
               loading="lazy" />
             {project.images[2] && (
               <img
                 src={project.images[2].src}
                 alt={`${project.title} - ${project.images[2].label}`}
-                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:rotate-1"
+                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="lazy" />
             )}
             {project.images[3] && (
               <img
                 src={project.images[3].src}
                 alt={`${project.title} - ${project.images[3].label}`}
-                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
+                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
                 loading="lazy" />
             )}
           </div>)
@@ -92,7 +93,7 @@ const PortfolioSection = () => {
   const [filter, setFilter] = useState<ProjectCategory>("websites");
 
   const projects: Project[] = [
-  { images: [{ src: portfolio1, label: "Homepage" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
+  { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
   { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
   { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
   { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }, { src: portfolioSheff3, label: "Trading Wisdom" }, { src: portfolioSheff4, label: "Sheff AI" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" }];
