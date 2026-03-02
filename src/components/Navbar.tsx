@@ -55,7 +55,13 @@ const Navbar = () => {
               <Button
                 size="sm"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => {
+                  if ((window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({ url: "https://calendly.com/solyn/global" });
+                  } else {
+                    window.open("https://calendly.com/solyn/global", "_blank");
+                  }
+                }}
               >
                 Book a Call
               </Button>
