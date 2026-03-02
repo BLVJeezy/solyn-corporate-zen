@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Zap, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { openCalendly, loadCalendlyScript } from "@/lib/calendly";
@@ -18,6 +18,7 @@ const PricingSection = () => {
       highlighted: false,
       ctaKey: "pricing.sprint.cta",
       inverted: false,
+      icon: Zap,
     },
     {
       nameKey: "pricing.mvp.name",
@@ -28,6 +29,7 @@ const PricingSection = () => {
       highlighted: true,
       ctaKey: "pricing.mvp.cta",
       inverted: true,
+      icon: Rocket,
     },
   ];
 
@@ -65,11 +67,14 @@ const PricingSection = () => {
               transition={{ delay: i * 0.1 }}
               className={`rounded-2xl border p-8 transition-all duration-300 ${
                 plan.inverted
-                  ? "border-foreground/20 bg-foreground text-background"
+                  ? "border-foreground/20 bg-foreground text-background shadow-[0_8px_40px_-12px_hsl(var(--gradient-from)/0.4)]"
                   : "border-border bg-card"
               }`}
             >
-              <h3 className={`text-xl font-semibold ${plan.inverted ? "text-background" : "text-foreground"}`}>{t(plan.nameKey)}</h3>
+              <h3 className={`text-xl font-semibold flex items-center gap-2 ${plan.inverted ? "text-background" : "text-foreground"}`}>
+                <plan.icon className="w-5 h-5" />
+                {t(plan.nameKey)}
+              </h3>
               <p className={`text-sm mt-1 ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6">
