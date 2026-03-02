@@ -66,28 +66,37 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)]"
+              className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group"
               style={{
                 backgroundImage: `url(${plan.inverted ? goldTexture : silverTexture})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             >
-              <h3 className={`text-xl font-semibold flex items-center gap-2 ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>
+              {/* Shimmer overlay */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
+                  animation: "shimmer 2.5s ease-in-out infinite",
+                }}
+              />
+
+              <h3 className="text-xl font-bold flex items-center gap-2 text-black relative z-10">
                 <plan.icon className="w-5 h-5" />
                 {t(plan.nameKey)}
               </h3>
-              <p className={`text-sm mt-1 ${plan.inverted ? "text-yellow-900/70" : "text-slate-600"}`}>{t(plan.descKey)}</p>
+              <p className="text-sm mt-1 text-black/70 relative z-10">{t(plan.descKey)}</p>
 
-              <div className="mt-6 mb-6">
-                <span className={`text-4xl font-semibold ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>{t(plan.priceKey)}</span>
-                <span className={`text-sm ml-2 ${plan.inverted ? "text-yellow-900/60" : "text-slate-500"}`}>{t(plan.periodKey)}</span>
+              <div className="mt-6 mb-6 relative z-10">
+                <span className="text-4xl font-bold text-black">{t(plan.priceKey)}</span>
+                <span className="text-sm ml-2 text-black/60">{t(plan.periodKey)}</span>
               </div>
 
-              <ul className="space-y-2.5 mb-8">
+              <ul className="space-y-2.5 mb-8 relative z-10">
                 {plan.features.map((fKey) => (
-                  <li key={fKey} className={`flex items-start gap-2.5 text-sm ${plan.inverted ? "text-yellow-900/70" : "text-slate-600"}`}>
-                    <span className={`mt-0.5 ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>—</span>
+                  <li key={fKey} className="flex items-start gap-2.5 text-sm text-black/80">
+                    <span className="mt-0.5 text-black font-bold">—</span>
                     {t(fKey)}
                   </li>
                 ))}
@@ -95,11 +104,7 @@ const PricingSection = () => {
 
               <Button
                 onClick={() => navigate("/book")}
-                className={`w-full font-medium rounded-full border-0 ${
-                  plan.inverted
-                    ? "bg-yellow-950 text-yellow-100 hover:bg-yellow-900"
-                    : "bg-slate-700 text-slate-100 hover:bg-slate-600"
-                }`}
+                className="w-full font-semibold rounded-full border-0 bg-black/80 text-white hover:bg-black relative z-10"
               >
                 {t(plan.ctaKey)}
                 <ArrowRight className="ml-2 w-4 h-4" />
