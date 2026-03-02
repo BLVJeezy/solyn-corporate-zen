@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 import { CALENDLY_URL, loadCalendlyScript } from "@/lib/calendly";
+import PageTransition from "@/components/PageTransition";
 
 
 const BookCallContent = () => {
@@ -15,6 +16,7 @@ const BookCallContent = () => {
   }, []);
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-background">
       {/* Top bar */}
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -50,6 +52,7 @@ const BookCallContent = () => {
         />
       </div>
     </div>
+    </PageTransition>
   );
 };
 
