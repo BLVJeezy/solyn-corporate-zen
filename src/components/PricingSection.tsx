@@ -215,7 +215,8 @@ const PricingSection = () => {
             <span className="text-5xl font-bold text-white drop-shadow-lg">€9.500</span>
             <span className="text-sm ml-2 text-white/70">{t("pricing.diamond.setupLabel")}</span>
           </div>
-          <p className="text-white/60 text-sm mb-6 relative z-10">+ €3.500 {t("pricing.diamond.period")}</p>
+          <p className="text-white/60 text-sm mb-1 relative z-10">+ €3.500 {t("pricing.diamond.period")}</p>
+          <p className="text-white/50 text-xs mb-6 relative z-10">⏱ {t("pricing.diamond.setup")} — {t("pricing.diamond.sprintDuration")}</p>
 
           <Button
             onClick={() => navigate("/book")}
