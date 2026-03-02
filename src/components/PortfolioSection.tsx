@@ -4,6 +4,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio1b from "@/assets/portfolio-1b.png";
 import portfolio2 from "@/assets/portfolio-2.png";
+import portfolio2b from "@/assets/portfolio-2b.png";
 import portfolio3 from "@/assets/portfolio-3.png";
 import portfolio3b from "@/assets/portfolio-3b.png";
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
@@ -98,7 +99,7 @@ const PortfolioSection = () => {
 
   const projects: Project[] = [
   { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites", brandColor: "#0a2622" },
-  { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites", brandColor: "#1a1a2e" },
+  { images: [{ src: portfolio2, label: "Homepage" }, { src: portfolio2b, label: "Gallery" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites", brandColor: "#1a1a2e" },
   { images: [{ src: portfolio3, label: "Homepage" }, { src: portfolio3b, label: "Resultaten" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites", brandColor: "#f0eeeb" },
   { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" }];
 
