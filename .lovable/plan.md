@@ -1,16 +1,23 @@
 
 
-## Problem
+## Probleem
 
-The navbar right-side elements (language switcher NL/FR/EN, theme toggle, user icon) use hardcoded `text-white` colors which are invisible on the light theme background. The centered pill nav works fine because it has a dark background, but the elements outside the pill blend into the light page background.
+De carousel in `MobileViewSection.tsx` bevat zowel mobiele als desktop afbeeldingen die om de beurt worden getoond, maar in de browser zijn alleen de desktop (laptop) screenshots zichtbaar. De mobiele mockups zijn waarschijnlijk niet zichtbaar omdat:
 
-## Fix
+1. De desktop afbeeldingen zijn veel breder (tot 620px) en hoger dan de mobiele mockups
+2. De mobiele afbeeldingen hebben een `scale-[1.08]` transform die ze vergroot maar ze blijven veel kleiner in hoogte dan de laptop screenshots
+3. De items worden niet verticaal gecentreerd (geen `items-center` op de flex container), waardoor de kleinere mobiele mockups bovenaan plakken en mogelijk achter de desktop afbeeldingen verdwijnen
 
-Update `src/components/Navbar.tsx` to use theme-aware colors for elements outside the dark pill:
+## Plan
 
-1. **Language switcher buttons**: Change from `text-white/50` / `bg-white/10 text-white` to `text-foreground/50` / `bg-foreground/10 text-foreground`
-2. **User login button**: Change from `text-white/50 hover:text-white hover:bg-white/10` to `text-foreground/50 hover:text-foreground hover:bg-foreground/10`
-3. **Mobile hamburger**: Change from `text-white` to `text-foreground`
+### Wijzigingen in `src/components/MobileViewSection.tsx`:
 
-The pill nav items inside the dark container keep their `text-white` styling since they sit on a dark background.
+1. **Voeg `items-center` toe aan de carousel flex container** zodat mobiele en desktop afbeeldingen verticaal gecentreerd worden
+2. **Geef de mobiele items een vaste hoogte** die vergelijkbaar is met de desktop items, zodat ze duidelijk zichtbaar zijn naast elkaar
+3. **Verwijder de `scale-[1.08]` transform** van mobiele items die de weergave kan verstoren, of pas de container aan zodat de schaling correct werkt
+4. **Optioneel: pas de breedtes aan** zodat de verhouding tussen mobiel en desktop items beter is (mobiele items iets breder maken zodat ze niet verdwijnen)
+
+### Technische details
+
+De `inline-flex` container op regel 52 krijgt `items-center` toegevoegd. De mobiele item containers krijgen een betere hoogte-verhouding. De `scale` transform op de img wordt verwijderd of vervangen door een betere crop-methode met `object-cover` en een vaste hoogte.
 
