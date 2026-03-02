@@ -70,7 +70,7 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-none">
-        <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
+        <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4 border-none">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
             <img src={solynLogo} alt="Solyn Global Ltd" className="h-7 md:h-9 w-auto" />

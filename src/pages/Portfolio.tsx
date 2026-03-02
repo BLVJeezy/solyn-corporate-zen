@@ -10,10 +10,10 @@ const Portfolio = () => {
   useTrackPageView("/portfolio");
   return (
     <LanguageProvider>
-      <div>
+      <div className="border-none">
         <Navbar />
         <PageTransition>
-          <div className="pt-20">
+            <div className="pt-20 border-none">
             <PortfolioSection />
             <MobileViewSection />
           </div>
