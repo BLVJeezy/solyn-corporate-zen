@@ -24,7 +24,7 @@ const TrustBar = () => {
               className="bg-[hsl(0_0%_12%)] border border-white/10 rounded-2xl p-6 md:p-8"
             >
               <div className="text-sm text-white/60 mb-8 md:mb-12">{t(stat.labelKey)}</div>
-              <div className="text-4xl md:text-5xl font-semibold bg-gradient-to-r from-[hsl(320_70%_55%)] to-[hsl(340_80%_60%)] bg-clip-text text-transparent">{stat.value}</div>
+              <div className="text-4xl md:text-5xl font-semibold bg-gradient-to-r from-[hsl(40_48%_56%)] to-[hsl(210_15%_70%)] bg-clip-text text-transparent">{stat.value}</div>
             </motion.div>
           ))}
         </div>
