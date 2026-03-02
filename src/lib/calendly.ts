@@ -1,0 +1,32 @@
+export const CALENDLY_URL = "https://calendly.com/solyn/global";
+
+const isMobile = () => window.innerWidth < 768;
+
+export const openCalendly = () => {
+  if (isMobile()) {
+    // On mobile, open directly in new tab for best UX
+    window.open(CALENDLY_URL, "_blank");
+    return;
+  }
+
+  if ((window as any).Calendly) {
+    (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+  } else {
+    window.open(CALENDLY_URL, "_blank");
+  }
+};
+
+export const loadCalendlyScript = () => {
+  if (!document.getElementById("calendly-script")) {
+    const script = document.createElement("script");
+    script.id = "calendly-script";
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    const link = document.createElement("link");
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }
+};
