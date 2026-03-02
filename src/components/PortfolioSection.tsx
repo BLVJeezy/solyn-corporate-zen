@@ -43,35 +43,30 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
           loading="lazy" />) : (
 
 
-        /* Multi-image - overlapping stacked layout */
-        <div className="relative w-full h-full">
-            {/* Back-left image */}
+        /* Multi-image - 2x2 grid with slight overlap and rotation */
+        <div className="relative w-full h-full grid grid-cols-2 gap-2 p-1">
             <img
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
-              className="absolute -top-2 -left-2 w-[65%] rounded-lg shadow-2xl object-cover object-top transition-transform duration-500 group-hover:-translate-x-1"
+              className="w-full h-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
               loading="lazy" />
-            
-            {/* Top-right image */}
             <img
               src={project.images[1].src}
               alt={`${project.title} - ${project.images[1].label}`}
-              className="absolute -top-1 right-[-3%] w-[55%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:translate-x-1"
+              className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:rotate-1"
               loading="lazy" />
-
             {project.images[2] && (
               <img
                 src={project.images[2].src}
                 alt={`${project.title} - ${project.images[2].label}`}
-                className="absolute bottom-[-2%] left-[5%] w-[52%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:-translate-y-1"
+                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:rotate-1"
                 loading="lazy" />
             )}
-
             {project.images[3] && (
               <img
                 src={project.images[3].src}
                 alt={`${project.title} - ${project.images[3].label}`}
-                className="absolute bottom-[2%] right-[0%] w-[50%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:translate-y-[-4px] group-hover:translate-x-1"
+                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.03] group-hover:-rotate-1"
                 loading="lazy" />
             )}
           </div>)
