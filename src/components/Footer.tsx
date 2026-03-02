@@ -6,30 +6,29 @@ const Footer = () => {
   const { t } = useLanguage();
 
   const links = [
-    { label: t("nav.home"), href: "#home" },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.portfolio"), href: "#portfolio" },
     { label: t("nav.contact"), href: "#contact" },
   ];
 
   return (
-    <footer className="bg-charcoal text-charcoal-foreground py-16 border-t border-border">
+    <footer className="py-16 border-t border-border">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <img src={solynLogo} alt="Solyn Global Ltd" className="h-12 mb-4" />
-            <p className="text-charcoal-foreground/60 text-sm leading-relaxed">
+            <img src={solynLogo} alt="Solyn Global Ltd" className="h-8 mb-4" />
+            <p className="text-muted-foreground text-sm leading-relaxed">
               {t("footer.desc")}
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-primary mb-4">{t("footer.quickLinks")}</h4>
+            <h4 className="font-semibold text-foreground mb-4 text-sm">{t("footer.quickLinks")}</h4>
             <div className="space-y-2">
               {links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block text-sm text-charcoal-foreground/60 hover:text-primary transition-colors"
+                  className="block text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </a>
@@ -37,24 +36,24 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-primary mb-4">{t("footer.contact")}</h4>
-            <div className="space-y-3 text-sm text-charcoal-foreground/60">
+            <h4 className="font-semibold text-foreground mb-4 text-sm">{t("footer.contact")}</h4>
+            <div className="space-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-primary" />
+                <Mail className="w-4 h-4" />
                 info@solynglobal.com
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-primary" />
+                <Phone className="w-4 h-4" />
                 +32 (0) 123 456 789
               </div>
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-primary" />
+                <MapPin className="w-4 h-4" />
                 Brussel, België
               </div>
             </div>
           </div>
         </div>
-        <div className="border-t border-charcoal-foreground/10 pt-6 text-center text-xs text-charcoal-foreground/40">
+        <div className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
           {t("footer.rights")}
         </div>
       </div>

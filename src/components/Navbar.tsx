@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X, Globe, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
@@ -16,10 +16,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navLinks = [
-    { label: t("nav.home"), href: "#home" },
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.portfolio"), href: "#portfolio" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: "Pricing", href: "#pricing" },
   ];
 
   useEffect(() => {
@@ -33,36 +32,44 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-lg border-b border-border shadow-sm"
+            ? "bg-background/90 backdrop-blur-lg border-b border-border"
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
           <a href="#home" className="flex items-center gap-2">
-            <img src={solynLogo} alt="Solyn Global Ltd" className="h-10 md:h-12 w-auto" />
+            <img src={solynLogo} alt="Solyn Global Ltd" className="h-8 md:h-10 w-auto" />
           </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+          <div className="hidden md:flex items-center">
+            <div className="flex items-center gap-1 bg-card border border-border rounded-full px-2 py-1.5">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-4 py-1.5 rounded-full hover:bg-accent"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Button
+                size="sm"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                {link.label}
-              </a>
-            ))}
+                Book a Call
+              </Button>
+            </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Globe className="w-4 h-4" />
+          <div className="hidden md:flex items-center gap-3">
+            <div className="flex items-center gap-0.5 text-sm text-muted-foreground">
               {languages.map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
-                  className={`px-1.5 py-0.5 rounded text-xs font-medium transition-colors ${
-                    lang === l ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                  className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+                    lang === l ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {l}
@@ -70,16 +77,12 @@ const Navbar = () => {
               ))}
             </div>
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
+              className="gap-2 text-muted-foreground hover:text-foreground"
               onClick={() => navigate("/login")}
             >
               <User className="w-4 h-4" />
-              {t("nav.clientLogin")}
-            </Button>
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-              {t("nav.cta")}
             </Button>
           </div>
 
@@ -106,7 +109,7 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors"
+                  className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </a>
@@ -116,8 +119,8 @@ const Navbar = () => {
                   <button
                     key={l}
                     onClick={() => setLang(l)}
-                    className={`px-3 py-1 rounded text-sm font-medium ${
-                      lang === l ? "text-primary" : "text-muted-foreground"
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      lang === l ? "bg-accent text-foreground" : "text-muted-foreground"
                     }`}
                   >
                     {l}
@@ -126,14 +129,17 @@ const Navbar = () => {
               </div>
               <Button
                 variant="outline"
-                className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
+                className="gap-2 border-border text-foreground rounded-full"
                 onClick={() => { setMobileOpen(false); navigate("/login"); }}
               >
                 <User className="w-4 h-4" />
                 {t("nav.clientLogin")}
               </Button>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                {t("nav.cta")}
+              <Button
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full"
+                onClick={() => { setMobileOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+              >
+                Book a Call
               </Button>
             </div>
           </motion.div>
