@@ -35,7 +35,7 @@ const PortfolioSection = () => {
 
   return (
     <section id="portfolio" className="py-24 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4">
+      <div className="px-6 lg:px-12 xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
