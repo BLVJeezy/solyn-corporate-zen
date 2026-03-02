@@ -120,6 +120,11 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
+        {/* Website Development heading */}
+        <h3 className="text-center text-sm uppercase tracking-[0.15em] text-muted-foreground font-medium mb-6">
+          {t("pricing.section.websites")}
+        </h3>
+
         {/* Plans Grid */}
         <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch mb-5">
           {plans.map((plan, i) => (
@@ -200,6 +205,11 @@ const PricingSection = () => {
         </div>
 
         
+
+        {/* App Development heading */}
+        <h3 className="text-center text-sm uppercase tracking-[0.15em] text-muted-foreground font-medium mb-6 mt-10">
+          {t("pricing.section.apps")}
+        </h3>
 
         {/* Sprints + MVP Development Grid */}
         <div className="grid md:grid-cols-2 gap-6">
