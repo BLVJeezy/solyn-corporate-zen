@@ -22,8 +22,6 @@ interface Project {
 }
 
 const ProjectCard = ({ project, index, t }: { project: Project; index: number; t: (key: string) => string }) => {
-  const [activeTab, setActiveTab] = useState(0);
-
   return (
     <motion.div
       key={project.title}
@@ -32,43 +30,38 @@ const ProjectCard = ({ project, index, t }: { project: Project; index: number; t
       transition={{ delay: index * 0.08 }}
       className="group"
     >
-      {/* Card */}
-      <div className="relative rounded-2xl overflow-hidden border border-border/60 aspect-[4/3] bg-muted/20 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15)]">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={activeTab}
-            src={project.images[activeTab].src}
-            alt={`${project.title} - ${project.images[activeTab].label}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="w-full h-full object-cover object-top"
+      {/* Card container */}
+      <div className="relative rounded-2xl overflow-hidden border border-border/40 aspect-[4/3] bg-gradient-to-br from-muted/40 to-muted/20 p-5 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)]">
+        {project.images.length === 1 ? (
+          /* Single image - clean full view */
+          <img
+            src={project.images[0].src}
+            alt={project.title}
+            className="w-full h-full object-cover object-top rounded-xl shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
             loading="lazy"
           />
-        </AnimatePresence>
-
-        {/* Tab switcher inside card */}
-        {project.images.length > 1 && (
-          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex rounded-full bg-black/50 backdrop-blur-md p-0.5 border border-white/10">
-            {project.images.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveTab(i)}
-                className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                  activeTab === i
-                    ? "bg-white text-black shadow-sm"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {img.label}
-              </button>
-            ))}
+        ) : (
+          /* Multi-image - overlapping stacked layout */
+          <div className="relative w-full h-full">
+            {/* Back image - offset right and down */}
+            <img
+              src={project.images[1].src}
+              alt={`${project.title} - ${project.images[1].label}`}
+              className="absolute top-4 right-0 w-[75%] h-auto rounded-xl shadow-xl object-cover object-top border border-white/20 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+              loading="lazy"
+            />
+            {/* Front image - offset left and up */}
+            <img
+              src={project.images[0].src}
+              alt={`${project.title} - ${project.images[0].label}`}
+              className="absolute top-0 left-0 w-[78%] h-auto rounded-xl shadow-2xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:-translate-x-1 group-hover:translate-y-1"
+              loading="lazy"
+            />
           </div>
         )}
 
         {/* Bottom light glow on hover */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/60 via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-b-2xl" />
       </div>
 
       {/* Project info below card */}
