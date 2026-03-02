@@ -61,9 +61,13 @@ const Navbar = () => {
     return activeSection === href;
   };
 
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isHomePage ? "bg-transparent" : "bg-background border-b border-border"
+      }`}>
         <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
@@ -72,7 +76,11 @@ const Navbar = () => {
 
           {/* Center pill nav */}
           <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
-            <div className="flex items-center gap-0.5 bg-[hsl(0_0%_14%)] border border-white/10 rounded-full px-1.5 py-1">
+            <div className={`flex items-center gap-0.5 rounded-full px-1.5 py-1 border ${
+              isHomePage
+                ? "bg-[hsl(0_0%_14%)] border-white/10"
+                : "bg-muted border-border"
+            }`}>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -89,8 +97,8 @@ const Navbar = () => {
                   }}
                   className={`text-sm font-medium transition-colors px-4 py-1.5 rounded-full ${
                     isActive(link.href)
-                      ? "bg-white/10 text-white"
-                      : "text-white/50 hover:text-white"
+                      ? isHomePage ? "bg-white/10 text-white" : "bg-primary text-primary-foreground"
+                      : isHomePage ? "text-white/50 hover:text-white" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {link.label}
@@ -98,10 +106,14 @@ const Navbar = () => {
               ))}
               <Button
                 size="sm"
-                className={`font-medium rounded-full px-5 border border-white/10 ${
-                  location.pathname === "/book"
-                    ? "bg-white text-[hsl(0_0%_7%)] hover:bg-white/90"
-                    : "bg-[hsl(0_0%_24%)] text-white hover:bg-[hsl(0_0%_30%)]"
+                className={`font-medium rounded-full px-5 border ${
+                  isHomePage
+                    ? location.pathname === "/book"
+                      ? "bg-white text-[hsl(0_0%_7%)] hover:bg-white/90 border-white/10"
+                      : "bg-[hsl(0_0%_24%)] text-white hover:bg-[hsl(0_0%_30%)] border-white/10"
+                    : location.pathname === "/book"
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90 border-border"
+                      : "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-border"
                 }`}
                 onClick={() => navigate("/book")}
               >
@@ -118,7 +130,9 @@ const Navbar = () => {
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                    lang === l ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                    lang === l
+                      ? isHomePage ? "bg-white/10 text-white" : "bg-primary text-primary-foreground"
+                      : isHomePage ? "text-white/50 hover:text-white" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {l}
@@ -128,7 +142,11 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 text-white/50 hover:text-white hover:bg-white/10"
+              className={`gap-2 ${
+                isHomePage
+                  ? "text-white/50 hover:text-white hover:bg-white/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
+              }`}
               onClick={() => navigate("/login")}
             >
               <User className="w-4 h-4" />
@@ -139,7 +157,7 @@ const Navbar = () => {
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-white"
+              className={isHomePage ? "text-white" : "text-foreground"}
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
