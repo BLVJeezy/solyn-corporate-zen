@@ -72,6 +72,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform voor premium nail art studio.",
     "portfolio.p4.desc": "Elite trading academy met AI-gestuurde analyse en live sessies.",
+    "portfolio.filter.all": "Alles",
+    "portfolio.filter.websites": "Websites",
+    "portfolio.filter.apps": "Apps",
 
     // Mobile View
     "mobileView.heading": "Mobiele View",
@@ -256,6 +259,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauté & Bien-être",
     "portfolio.p3.desc": "Plateforme de marque élégante pour un studio de nail art premium.",
     "portfolio.p4.desc": "Académie de trading élite avec analyse pilotée par l'IA et sessions en direct.",
+    "portfolio.filter.all": "Tout",
+    "portfolio.filter.websites": "Sites Web",
+    "portfolio.filter.apps": "Applications",
 
     // Mobile View
     "mobileView.heading": "Vue Mobile",
@@ -440,6 +446,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform for a premium nail art studio.",
     "portfolio.p4.desc": "Elite trading academy with AI-powered analysis and live sessions.",
+    "portfolio.filter.all": "All",
+    "portfolio.filter.websites": "Websites",
+    "portfolio.filter.apps": "Apps",
 
     // Mobile View
     "mobileView.heading": "Mobile View",

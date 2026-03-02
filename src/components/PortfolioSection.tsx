@@ -1,34 +1,47 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
 
+type ProjectCategory = "all" | "websites" | "apps";
+
 interface Project {
   image: string;
   title: string;
   descKey: string;
+  category: "websites" | "apps";
 }
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
+  const [filter, setFilter] = useState<ProjectCategory>("all");
 
   const projects: Project[] = [
-    { image: portfolio1, title: "Belgomed BV", descKey: "portfolio.p1.desc" },
-    { image: portfolio2, title: "Shinelab Detailing", descKey: "portfolio.p2.desc" },
-    { image: portfolio3, title: "L'atelier 9", descKey: "portfolio.p3.desc" },
-    { image: portfolioSheff, title: "Sheff Trades", descKey: "portfolio.p4.desc" },
+    { image: portfolio1, title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
+    { image: portfolio2, title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
+    { image: portfolio3, title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
+    { image: portfolioSheff, title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" },
+  ];
+
+  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+
+  const filters: { key: ProjectCategory; labelKey: string }[] = [
+    { key: "all", labelKey: "portfolio.filter.all" },
+    { key: "websites", labelKey: "portfolio.filter.websites" },
+    { key: "apps", labelKey: "portfolio.filter.apps" },
   ];
 
   return (
-    <section id="portfolio" className="py-24 bg-white dark:bg-background">
+    <section id="portfolio" className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="mb-10 text-center"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
             {t("portfolio.heading")}
@@ -38,15 +51,38 @@ const PortfolioSection = () => {
           </p>
         </motion.div>
 
-        {projects.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-            {projects.map((project, index) => (
+        {/* Filter tabs */}
+        <div className="flex justify-center gap-2 mb-14">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                filter === f.key
+                  ? "bg-foreground text-background shadow-md"
+                  : "bg-muted/40 text-muted-foreground hover:bg-muted/70 hover:text-foreground"
+              }`}
+            >
+              {t(f.labelKey)}
+            </button>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
+          >
+            {filtered.map((project, index) => (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
                 className="group"
               >
                 {/* Card with bottom glow on hover */}
@@ -73,8 +109,8 @@ const PortfolioSection = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-        )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
