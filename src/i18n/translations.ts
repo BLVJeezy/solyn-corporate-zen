@@ -63,8 +63,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Portfolio
     "portfolio.label": "Portfolio",
-    "portfolio.heading": "Recente Projecten",
-    "portfolio.subtitle": "Een selectie van onze meest recente samenwerkingen en resultaten.",
+    "portfolio.heading": "Ontdek onze projecten",
+    "portfolio.subtitle": "Wij werken samen met vooruitstrevende merken om overtuigende verhalen te creëren die diep resoneren.",
     "portfolio.p1.category": "Medische Groothandel",
     "portfolio.p1.desc": "Corporate website met GDP & WDA certificering integratie.",
     "portfolio.p2.category": "Automotive Detailing",
@@ -246,8 +246,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Portfolio
     "portfolio.label": "Portfolio",
-    "portfolio.heading": "Projets Récents",
-    "portfolio.subtitle": "Une sélection de nos collaborations et résultats les plus récents.",
+    "portfolio.heading": "Découvrez nos projets",
+    "portfolio.subtitle": "Nous collaborons avec des marques visionnaires pour créer des histoires captivantes qui résonnent profondément.",
     "portfolio.p1.category": "Grossiste Médical",
     "portfolio.p1.desc": "Site corporate avec intégration de certification GDP & WDA.",
     "portfolio.p2.category": "Detailing Automobile",
@@ -429,8 +429,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Portfolio
     "portfolio.label": "Portfolio",
-    "portfolio.heading": "Recent Projects",
-    "portfolio.subtitle": "A selection of our most recent collaborations and results.",
+    "portfolio.heading": "Explore our projects",
+    "portfolio.subtitle": "We partner with forward-thinking brands to create compelling stories that resonate deeply.",
     "portfolio.p1.category": "Medical Wholesale",
     "portfolio.p1.desc": "Corporate website with GDP & WDA certification integration.",
     "portfolio.p2.category": "Automotive Detailing",
