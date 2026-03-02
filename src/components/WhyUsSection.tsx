@@ -23,10 +23,10 @@ const WhyUsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group relative rounded-2xl border border-border bg-card p-8 md:p-10 overflow-hidden"
+              className="group relative rounded-2xl border border-[hsl(40_48%_56%_/_0.2)] bg-card p-8 md:p-10 overflow-hidden shadow-[0_0_20px_-5px_hsl(40_48%_56%_/_0.15)]"
             >
-              {/* Gold glow gradient */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,_hsl(40_48%_56%_/_0.12),_transparent_60%)]" />
+              {/* Gold glow gradient - always visible */}
+              <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,_hsl(40_48%_56%_/_0.1),_transparent_60%)] group-hover:bg-[radial-gradient(ellipse_at_bottom_left,_hsl(40_48%_56%_/_0.18),_transparent_60%)] transition-all duration-500" />
 
               <card.icon className="w-7 h-7 text-foreground mb-6" strokeWidth={1.5} />
 
