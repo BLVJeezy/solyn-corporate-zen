@@ -3,13 +3,11 @@ import { motion } from "framer-motion";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
-import portfolioSolyn from "@/assets/portfolio-solyn.png";
 
 const portfolioItems = [
   { src: portfolio1, alt: "Belgomed BV" },
   { src: portfolio2, alt: "Shinelab Detailing" },
   { src: portfolio3, alt: "L'atelier 9" },
-  { src: portfolioSolyn, alt: "Solyn Growth Platform" },
 ];
 
 const HeroPortfolioPreview = () => {
