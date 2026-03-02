@@ -47,12 +47,12 @@ const MobileViewSection = () => {
             {[...mobileItems, ...mobileItems].map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-[200px] sm:w-[260px] md:w-[330px] lg:w-[370px] mx-3 md:mx-4 rounded-2xl overflow-hidden group"
+                className="flex-shrink-0 w-[240px] sm:w-[300px] md:w-[380px] lg:w-[420px] mx-3 md:mx-4 rounded-2xl overflow-hidden group"
               >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-[115%] h-auto object-cover -ml-[7.5%] -mt-[5%] transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto object-cover scale-[1.08] origin-top-left transition-transform duration-500 group-hover:scale-[1.13]"
                   loading="lazy"
                 />
               </div>
