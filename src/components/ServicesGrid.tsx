@@ -7,9 +7,7 @@ import portfolioImg2 from "@/assets/portfolio-2.png";
 const ServicesGrid = () => {
   const { t } = useLanguage();
 
-  return (
-    <section id="services" className="py-12 md:py-24 bg-background">
-      
+  return;
 
 
 
@@ -144,7 +142,9 @@ const ServicesGrid = () => {
 
 
 
-    </section>);
+
+
+
 
 };
 
