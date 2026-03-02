@@ -19,6 +19,7 @@ const Hero = () => {
             <span className="text-sm font-medium text-foreground">
               Official <strong>Gold</strong> Partner of <strong>Lovable</strong>
             </span>
+            <img src="https://lovable.dev/favicon.ico" alt="Lovable" className="w-4 h-4" />
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1] tracking-tight mb-6">
