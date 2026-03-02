@@ -9,13 +9,13 @@ const BookCallSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="book" className="py-24 bg-background">
+    <section id="book" className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-border bg-card p-12 md:p-16 max-w-3xl"
+          className="rounded-2xl border border-border bg-card p-8 md:p-16 max-w-3xl"
         >
           <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-4">
             {t("book.heading")}

@@ -13,14 +13,14 @@ const WhyUsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-3xl space-y-6">
         {/* Design matters card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-border bg-card p-10 md:p-14 text-center"
+          className="rounded-2xl border border-border bg-card p-6 md:p-14 text-center"
         >
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground tracking-tight">
             {t("whyUs.designTitle")}
@@ -36,7 +36,7 @@ const WhyUsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="rounded-2xl border border-border bg-card p-10 md:p-14"
+          className="rounded-2xl border border-border bg-card p-6 md:p-14"
         >
           <div className="bg-background rounded-xl border border-border p-6 md:p-8 max-w-md">
             <h3 className="text-xl font-semibold text-foreground mb-5">
