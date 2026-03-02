@@ -10,15 +10,6 @@ const PricingSection = () => {
 
   const plans = [
     {
-      nameKey: "pricing.mvp.name",
-      priceKey: "pricing.mvp.price",
-      periodKey: "pricing.mvp.period",
-      descKey: "pricing.mvp.desc",
-      features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-      highlighted: true,
-      ctaKey: "pricing.mvp.cta",
-    },
-    {
       nameKey: "pricing.sprint.name",
       priceKey: "pricing.sprint.price",
       periodKey: "pricing.sprint.period",
@@ -26,6 +17,17 @@ const PricingSection = () => {
       features: ["pricing.sprint.f1", "pricing.sprint.f2", "pricing.sprint.f3", "pricing.sprint.f4"],
       highlighted: false,
       ctaKey: "pricing.sprint.cta",
+      inverted: false,
+    },
+    {
+      nameKey: "pricing.mvp.name",
+      priceKey: "pricing.mvp.price",
+      periodKey: "pricing.mvp.period",
+      descKey: "pricing.mvp.desc",
+      features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
+      highlighted: true,
+      ctaKey: "pricing.mvp.cta",
+      inverted: true,
     },
   ];
 
@@ -62,21 +64,23 @@ const PricingSection = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               className={`rounded-2xl border p-8 transition-all duration-300 ${
-                plan.highlighted ? "border-foreground/20 bg-card" : "border-border bg-card"
+                plan.inverted
+                  ? "border-foreground/20 bg-foreground text-background"
+                  : "border-border bg-card"
               }`}
             >
-              <h3 className="text-xl font-semibold text-foreground">{t(plan.nameKey)}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{t(plan.descKey)}</p>
+              <h3 className={`text-xl font-semibold ${plan.inverted ? "text-background" : "text-foreground"}`}>{t(plan.nameKey)}</h3>
+              <p className={`text-sm mt-1 ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6">
                 <span className="text-4xl font-semibold bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t(plan.priceKey)}</span>
-                <span className="text-sm text-muted-foreground ml-2">{t(plan.periodKey)}</span>
+                <span className={`text-sm ml-2 ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>{t(plan.periodKey)}</span>
               </div>
 
               <ul className="space-y-2.5 mb-8">
                 {plan.features.map((fKey) => (
-                  <li key={fKey} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                    <span className="text-foreground mt-0.5">—</span>
+                  <li key={fKey} className={`flex items-start gap-2.5 text-sm ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>
+                    <span className={`mt-0.5 ${plan.inverted ? "text-background" : "text-foreground"}`}>—</span>
                     {t(fKey)}
                   </li>
                 ))}
@@ -85,8 +89,8 @@ const PricingSection = () => {
               <Button
                 onClick={openCalendly}
                 className={`w-full font-medium rounded-full ${
-                  plan.highlighted
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  plan.inverted
+                    ? "bg-background text-foreground hover:bg-background/90"
                     : "bg-transparent border border-border text-foreground hover:border-foreground/30"
                 }`}
               >
