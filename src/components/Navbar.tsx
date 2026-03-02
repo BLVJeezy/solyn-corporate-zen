@@ -7,6 +7,7 @@ import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
 import { openCalendly } from "@/lib/calendly";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const languages: Lang[] = ["NL", "FR", "EN"];
 
@@ -83,6 +84,7 @@ const Navbar = () => {
                 </button>
               ))}
             </div>
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
