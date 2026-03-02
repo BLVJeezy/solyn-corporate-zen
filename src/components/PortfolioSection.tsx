@@ -22,6 +22,7 @@ interface Project {
   title: string;
   descKey: string;
   category: "websites" | "apps";
+  brandColor?: string; // bg color matching the app/website branding
 }
 
 const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (key: string) => string;}) => {
@@ -34,7 +35,9 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
       className="group">
       
       {/* Card container */}
-      <div className="relative rounded-2xl border border-border/40 aspect-[4/3] bg-gradient-to-br from-[#f0eeeb] to-[#e8e5e0] p-4 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)] overflow-hidden">
+      <div
+        className="relative rounded-2xl border border-border/40 aspect-[4/3] p-4 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)] overflow-hidden"
+        style={{ background: project.brandColor || 'linear-gradient(to bottom right, #f0eeeb, #e8e5e0)' }}>
         {project.images.length === 1 ? (
         /* Single image - clean full view */
         <img
@@ -93,10 +96,10 @@ const PortfolioSection = () => {
   const [filter, setFilter] = useState<ProjectCategory>("websites");
 
   const projects: Project[] = [
-  { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
-  { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
-  { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
-  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }, { src: portfolioSheff3, label: "Trading Wisdom" }, { src: portfolioSheff4, label: "Sheff AI" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" }];
+  { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites", brandColor: "#0a2622" },
+  { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites", brandColor: "#1a1a2e" },
+  { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites", brandColor: "#f0eeeb" },
+  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }, { src: portfolioSheff3, label: "Trading Wisdom" }, { src: portfolioSheff4, label: "Sheff AI" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
