@@ -31,37 +31,34 @@ const ProjectCard = ({ project, index, t }: { project: Project; index: number; t
       className="group"
     >
       {/* Card container */}
-      <div className="relative rounded-2xl overflow-hidden border border-border/40 aspect-[4/3] bg-gradient-to-br from-muted/40 to-muted/20 p-5 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)]">
+      <div className="relative rounded-2xl border border-border/40 aspect-[4/3] bg-gradient-to-br from-[#f0eeeb] to-[#e8e5e0] p-4 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)] overflow-hidden">
         {project.images.length === 1 ? (
           /* Single image - clean full view */
           <img
             src={project.images[0].src}
             alt={project.title}
-            className="w-full h-full object-cover object-top rounded-xl shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
+            className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
             loading="lazy"
           />
         ) : (
-          /* Multi-image - overlapping stacked layout */
+          /* Multi-image - overlapping stacked layout like reference */
           <div className="relative w-full h-full">
-            {/* Back image - offset right and down */}
-            <img
-              src={project.images[1].src}
-              alt={`${project.title} - ${project.images[1].label}`}
-              className="absolute top-6 right-0 w-[88%] h-auto rounded-xl shadow-xl object-cover object-top border border-white/20 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-              loading="lazy"
-            />
-            {/* Front image - offset left and up */}
+            {/* Back image - large, offset to the right */}
             <img
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
-              className="absolute top-0 left-0 w-[90%] h-auto rounded-xl shadow-2xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:-translate-x-1 group-hover:translate-y-1"
+              className="absolute -top-2 -left-2 w-[85%] rounded-lg shadow-2xl object-cover object-top transition-transform duration-500 group-hover:-translate-x-1"
+              loading="lazy"
+            />
+            {/* Front/overlay image - overlapping from center-right */}
+            <img
+              src={project.images[1].src}
+              alt={`${project.title} - ${project.images[1].label}`}
+              className="absolute top-[25%] right-[-5%] w-[70%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
               loading="lazy"
             />
           </div>
         )}
-
-        {/* Bottom light glow on hover */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-b-2xl" />
       </div>
 
       {/* Project info below card */}
