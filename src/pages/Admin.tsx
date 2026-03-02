@@ -198,9 +198,16 @@ const AdminPage = () => {
             </Link>
             <h1 className="text-lg font-bold">Solyn Admin</h1>
           </div>
-          <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
-            <LogOut className="w-4 h-4" /> Uitloggen
-          </Button>
+          <div className="flex items-center gap-2">
+            <Link to="/admin/analytics">
+              <Button variant="ghost" size="sm" className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
+                <BarChart3 className="w-4 h-4" /> Analytics
+              </Button>
+            </Link>
+            <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
+              <LogOut className="w-4 h-4" /> Uitloggen
+            </Button>
+          </div>
         </div>
       </div>
 

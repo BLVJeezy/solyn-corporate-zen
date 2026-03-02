@@ -8,8 +8,10 @@ import LeadForm from "@/components/LeadForm";
 import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { useTrackPageView } from "@/hooks/useTrackPageView";
 
 const Index = () => {
+  useTrackPageView("/");
   return (
     <LanguageProvider>
       <div className="dark">
