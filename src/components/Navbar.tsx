@@ -47,9 +47,13 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => {
+                    e.preventDefault();
                     if (link.href.startsWith("/")) {
-                      e.preventDefault();
                       navigate(link.href);
+                    } else if (window.location.pathname !== "/") {
+                      navigate("/" + link.href);
+                    } else {
+                      document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
                   className="text-sm font-medium text-white/70 hover:text-white transition-colors px-4 py-1.5 rounded-full"
@@ -120,10 +124,14 @@ const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => {
+                    e.preventDefault();
                     setMobileOpen(false);
                     if (link.href.startsWith("/")) {
-                      e.preventDefault();
                       navigate(link.href);
+                    } else if (window.location.pathname !== "/") {
+                      navigate("/" + link.href);
+                    } else {
+                      document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
                   className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
