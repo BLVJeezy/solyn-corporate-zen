@@ -65,9 +65,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isHomePage ? "bg-transparent" : "bg-background border-b border-border"
-      }`}>
+      <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
         <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2">
