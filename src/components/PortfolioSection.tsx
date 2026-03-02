@@ -11,6 +11,8 @@ import portfolioSheff from "@/assets/portfolio-shefftrades.png";
 import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.png";
 import portfolioLeplana from "@/assets/portfolio-leplana.png";
 import portfolioLeplana2 from "@/assets/portfolio-leplana-2.png";
+import portfolioRW from "@/assets/portfolio-rw-academy.png";
+import portfolioRW2 from "@/assets/portfolio-rw-academy-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -102,7 +104,8 @@ const PortfolioSection = () => {
   { images: [{ src: portfolio2, label: "Homepage" }, { src: portfolio2b, label: "Gallery" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites", brandColor: "#1a1a2e" },
   { images: [{ src: portfolio3, label: "Homepage" }, { src: portfolio3b, label: "Resultaten" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites", brandColor: "#f0eeeb" },
   { images: [{ src: portfolioLeplana, label: "Homepage" }, { src: portfolioLeplana2, label: "Dashboard" }], title: "Le Plan A", descKey: "portfolio.p5.desc", category: "websites", brandColor: "#1a1a1a" },
-  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" }];
+  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" },
+  { images: [{ src: portfolioRW, label: "Dashboard" }, { src: portfolioRW2, label: "Workspace" }], title: "RW Academy", descKey: "portfolio.p6.desc", category: "apps", brandColor: "#0a1628" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
