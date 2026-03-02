@@ -53,7 +53,7 @@ const MobileViewSection = () => {
             {[...mobileItems, ...mobileItems].map((item, i) => (
               <div
                 key={i}
-                className={`flex-shrink-0 ${item.type === "mobile" ? "w-[200px] sm:w-[240px] md:w-[300px] lg:w-[340px]" : "w-[320px] sm:w-[420px] md:w-[540px] lg:w-[620px]"} mx-3 md:mx-4 rounded-2xl overflow-hidden group`}
+                className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[300px] lg:w-[340px] mx-3 md:mx-4 rounded-2xl overflow-hidden group"
               >
                 <img
                   src={item.src}
