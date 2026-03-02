@@ -31,19 +31,17 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-background/90 backdrop-blur-lg border-b border-border"
-            : "bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       >
         <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
+          {/* Logo - left */}
           <a href="#home" className="flex items-center gap-2">
-            <img src={solynLogo} alt="Solyn Global Ltd" className="h-8 md:h-10 w-auto" />
+            <img src={solynLogo} alt="Solyn Global Ltd" className="h-7 md:h-9 w-auto" />
           </a>
 
-          <div className="hidden md:flex items-center">
-            <div className="flex items-center gap-1 bg-card border border-border rounded-full px-2 py-1.5">
+          {/* Center pill nav */}
+          <div className="hidden md:flex items-center absolute left-1/2 -translate-x-1/2">
+            <div className="flex items-center gap-0.5 bg-[hsl(0_0%_18%)] border border-white/10 rounded-full px-1.5 py-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -54,14 +52,14 @@ const Navbar = () => {
                       navigate(link.href);
                     }
                   }}
-                  className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-4 py-1.5 rounded-full hover:bg-accent"
+                  className="text-sm font-medium text-white/70 hover:text-white transition-colors px-4 py-1.5 rounded-full"
                 >
                   {link.label}
                 </a>
               ))}
               <Button
                 size="sm"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
+                className="bg-[hsl(0_0%_24%)] text-white hover:bg-[hsl(0_0%_30%)] font-medium rounded-full px-5 border border-white/10"
                 onClick={() => navigate("/book")}
               >
                 {t("nav.bookCall")}
@@ -69,14 +67,15 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* Right side */}
           <div className="hidden md:flex items-center gap-3">
-            <div className="flex items-center gap-0.5 text-sm text-muted-foreground">
+            <div className="flex items-center gap-0.5 text-sm">
               {languages.map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                    lang === l ? "bg-accent text-foreground" : "text-muted-foreground hover:text-foreground"
+                    lang === l ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
                   }`}
                 >
                   {l}
@@ -87,18 +86,19 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 text-muted-foreground hover:text-foreground"
+              className="gap-2 text-white/50 hover:text-white hover:bg-white/10"
               onClick={() => navigate("/login")}
             >
               <User className="w-4 h-4" />
             </Button>
           </div>
 
+          {/* Mobile */}
           <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-foreground"
+              className="text-white"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
