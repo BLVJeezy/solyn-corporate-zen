@@ -142,6 +142,7 @@ const Navbar = () => {
                   </button>
                 ))}
               </div>
+              <ThemeToggle />
               <Button
                 variant="outline"
                 className="gap-2 border-border text-foreground rounded-full"
