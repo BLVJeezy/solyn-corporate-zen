@@ -16,9 +16,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navLinks = [
-    { label: t("nav.home"), href: "#home" },
-    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.services"), href: "#process" },
     { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.pricing"), href: "#pricing" },
     { label: t("nav.contact"), href: "#contact" },
   ];
 
@@ -33,13 +33,13 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-lg border-b border-border shadow-sm"
+            ? "bg-background/95 backdrop-blur-lg border-b border-border"
             : "bg-transparent"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between h-16 md:h-20 px-4">
           <a href="#home" className="flex items-center gap-2">
-            <img src={solynLogo} alt="Solyn Global Ltd" className="h-10 md:h-12 w-auto" />
+            <img src={solynLogo} alt="Solyn Global Ltd" className="h-9 md:h-10 w-auto" />
           </a>
 
           <div className="hidden md:flex items-center gap-8">
@@ -47,22 +47,21 @@ const Navbar = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                className="text-sm font-medium text-foreground/60 hover:text-foreground transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Globe className="w-4 h-4" />
+          <div className="hidden md:flex items-center gap-3">
+            <div className="flex items-center gap-0.5 text-sm text-muted-foreground mr-2">
               {languages.map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-1.5 py-0.5 rounded text-xs font-medium transition-colors ${
-                    lang === l ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                    lang === l ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {l}
@@ -70,17 +69,18 @@ const Navbar = () => {
               ))}
             </div>
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
-              className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
+              className="text-foreground/60 hover:text-foreground"
               onClick={() => navigate("/login")}
             >
-              <User className="w-4 h-4" />
               {t("nav.clientLogin")}
             </Button>
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-              {t("nav.cta")}
-            </Button>
+            <a href="#contact">
+              <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 font-medium rounded-full px-5">
+                {t("nav.cta")}
+              </Button>
+            </a>
           </div>
 
           <button
@@ -95,46 +95,49 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 top-16 z-40 bg-background/98 backdrop-blur-lg md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 top-16 z-40 bg-background md:hidden"
           >
-            <div className="flex flex-col items-center gap-6 pt-12">
+            <div className="flex flex-col px-6 pt-12 gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors"
+                  className="text-2xl font-serif font-semibold text-foreground py-3 border-b border-border"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex gap-2">
+              <div className="flex gap-3 mt-8">
                 {languages.map((l) => (
                   <button
                     key={l}
                     onClick={() => setLang(l)}
                     className={`px-3 py-1 rounded text-sm font-medium ${
-                      lang === l ? "text-primary" : "text-muted-foreground"
+                      lang === l ? "text-foreground bg-muted" : "text-muted-foreground"
                     }`}
                   >
                     {l}
                   </button>
                 ))}
               </div>
-              <Button
-                variant="outline"
-                className="gap-2 border-border text-foreground/70 hover:text-primary hover:border-primary"
-                onClick={() => { setMobileOpen(false); navigate("/login"); }}
-              >
-                <User className="w-4 h-4" />
-                {t("nav.clientLogin")}
-              </Button>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
-                {t("nav.cta")}
-              </Button>
+              <div className="mt-6 space-y-3">
+                <Button
+                  variant="outline"
+                  className="w-full border-border text-foreground/70"
+                  onClick={() => { setMobileOpen(false); navigate("/login"); }}
+                >
+                  {t("nav.clientLogin")}
+                </Button>
+                <a href="#contact" onClick={() => setMobileOpen(false)}>
+                  <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-medium rounded-full">
+                    {t("nav.cta")}
+                  </Button>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
