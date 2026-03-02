@@ -17,7 +17,7 @@ interface Project {
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
-  const [filter, setFilter] = useState<ProjectCategory>("all");
+  const [filter, setFilter] = useState<ProjectCategory>("websites");
 
   const projects: Project[] = [
     { image: portfolio1, title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
@@ -28,8 +28,7 @@ const PortfolioSection = () => {
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
-  const filters: { key: ProjectCategory; labelKey: string }[] = [
-    { key: "all", labelKey: "portfolio.filter.all" },
+  const pillFilters: { key: "websites" | "apps"; labelKey: string }[] = [
     { key: "websites", labelKey: "portfolio.filter.websites" },
     { key: "apps", labelKey: "portfolio.filter.apps" },
   ];
@@ -51,21 +50,33 @@ const PortfolioSection = () => {
           </p>
         </motion.div>
 
-        {/* Filter tabs */}
-        <div className="flex justify-center gap-2 mb-14">
-          {filters.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setFilter(f.key)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === f.key
-                  ? "bg-foreground text-background shadow-md"
-                  : "bg-muted/40 text-muted-foreground hover:bg-muted/70 hover:text-foreground"
-              }`}
-            >
-              {t(f.labelKey)}
-            </button>
-          ))}
+        {/* Pill toggle */}
+        <div className="flex justify-center mb-14">
+          <div className="relative inline-flex rounded-full bg-muted/50 p-1 border border-border/40">
+            {/* Sliding indicator */}
+            <motion.div
+              className="absolute top-1 bottom-1 rounded-full bg-foreground shadow-sm"
+              initial={false}
+              animate={{
+                left: filter === "websites" || filter === "all" ? "4px" : "50%",
+                right: filter === "apps" ? "4px" : "50%",
+              }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            />
+            {pillFilters.map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setFilter(f.key)}
+                className={`relative z-10 px-7 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                  filter === f.key
+                    ? "text-background"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {t(f.labelKey)}
+              </button>
+            ))}
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
