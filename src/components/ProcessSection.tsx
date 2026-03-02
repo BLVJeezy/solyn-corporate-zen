@@ -19,7 +19,7 @@ const ProcessSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4 tracking-tight">
             {t("process.heading1")} <span className="text-gradient-gold">{t("process.heading2")}</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">

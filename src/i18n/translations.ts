@@ -56,6 +56,41 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform voor premium nail art studio.",
 
+    // Pricing
+    "pricing.label": "Pakketten",
+    "pricing.heading": "Transparante Prijzen",
+    "pricing.subtitle": "Geen verborgen kosten. Kies het pakket dat bij uw fase past.",
+    "pricing.cta": "Start Nu",
+    "pricing.mvp.name": "MVP Launch",
+    "pricing.mvp.price": "€2.000",
+    "pricing.mvp.period": "eenmalig",
+    "pricing.mvp.desc": "Van idee naar live product in 48 uur.",
+    "pricing.mvp.f1": "Volledig functionele website of webapp",
+    "pricing.mvp.f2": "Responsive design op maat",
+    "pricing.mvp.f3": "CMS of admin-paneel inbegrepen",
+    "pricing.mvp.f4": "48 uur doorlooptijd",
+    "pricing.sprint.name": "Growth Sprint",
+    "pricing.sprint.price": "€250",
+    "pricing.sprint.period": "per 48u sprint",
+    "pricing.sprint.desc": "Continue verbetering en schaling.",
+    "pricing.sprint.f1": "Feature-ontwikkeling op maat",
+    "pricing.sprint.f2": "Bug fixes & optimalisatie",
+    "pricing.sprint.f3": "SEO & performance upgrades",
+    "pricing.sprint.f4": "Flexibel inzetbaar per sprint",
+
+    // Book a Call
+    "book.heading": "Klaar om te starten?",
+    "book.subtitle": "Plan een vrijblijvend gesprek en ontdek hoe wij uw project binnen 48 uur kunnen realiseren.",
+    "book.cta": "Start Jouw 48u Sprint",
+
+    // Newsletter
+    "newsletter.heading": "Blijf op de hoogte",
+    "newsletter.subtitle": "Ontvang updates over nieuwe sprints en mogelijkheden.",
+    "newsletter.placeholder": "uw@email.com",
+    "newsletter.success": "U bent aangemeld!",
+    "newsletter.alreadySubscribed": "U bent al aangemeld.",
+    "newsletter.error": "Er ging iets mis. Probeer het opnieuw.",
+
     // LeadForm
     "lead.heading1": "Plan een",
     "lead.heading2": "Afspraak",
@@ -135,6 +170,41 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauté & Bien-être",
     "portfolio.p3.desc": "Plateforme de marque élégante pour un studio de nail art premium.",
 
+    // Pricing
+    "pricing.label": "Forfaits",
+    "pricing.heading": "Prix Transparents",
+    "pricing.subtitle": "Pas de frais cachés. Choisissez le forfait qui correspond à votre phase.",
+    "pricing.cta": "Commencer",
+    "pricing.mvp.name": "MVP Launch",
+    "pricing.mvp.price": "€2.000",
+    "pricing.mvp.period": "unique",
+    "pricing.mvp.desc": "De l'idée au produit live en 48 heures.",
+    "pricing.mvp.f1": "Site web ou webapp entièrement fonctionnel",
+    "pricing.mvp.f2": "Design responsive sur mesure",
+    "pricing.mvp.f3": "CMS ou panneau d'administration inclus",
+    "pricing.mvp.f4": "Délai de 48 heures",
+    "pricing.sprint.name": "Growth Sprint",
+    "pricing.sprint.price": "€250",
+    "pricing.sprint.period": "par sprint de 48h",
+    "pricing.sprint.desc": "Amélioration continue et mise à l'échelle.",
+    "pricing.sprint.f1": "Développement de fonctionnalités sur mesure",
+    "pricing.sprint.f2": "Corrections de bugs & optimisation",
+    "pricing.sprint.f3": "Mises à niveau SEO & performance",
+    "pricing.sprint.f4": "Flexible par sprint",
+
+    // Book a Call
+    "book.heading": "Prêt à commencer ?",
+    "book.subtitle": "Planifiez un appel gratuit et découvrez comment nous pouvons réaliser votre projet en 48 heures.",
+    "book.cta": "Démarrez Votre Sprint 48h",
+
+    // Newsletter
+    "newsletter.heading": "Restez informé",
+    "newsletter.subtitle": "Recevez des mises à jour sur les nouveaux sprints et opportunités.",
+    "newsletter.placeholder": "votre@email.com",
+    "newsletter.success": "Vous êtes inscrit !",
+    "newsletter.alreadySubscribed": "Vous êtes déjà inscrit.",
+    "newsletter.error": "Une erreur est survenue. Réessayez.",
+
     // LeadForm
     "lead.heading1": "Prenez",
     "lead.heading2": "Rendez-vous",
@@ -213,6 +283,41 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p2.desc": "Lead generation platform with quote request system.",
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform for a premium nail art studio.",
+
+    // Pricing
+    "pricing.label": "Packages",
+    "pricing.heading": "Transparent Pricing",
+    "pricing.subtitle": "No hidden fees. Choose the package that fits your stage.",
+    "pricing.cta": "Get Started",
+    "pricing.mvp.name": "MVP Launch",
+    "pricing.mvp.price": "€2,000",
+    "pricing.mvp.period": "one-time",
+    "pricing.mvp.desc": "From idea to live product in 48 hours.",
+    "pricing.mvp.f1": "Fully functional website or web app",
+    "pricing.mvp.f2": "Custom responsive design",
+    "pricing.mvp.f3": "CMS or admin panel included",
+    "pricing.mvp.f4": "48-hour turnaround",
+    "pricing.sprint.name": "Growth Sprint",
+    "pricing.sprint.price": "€250",
+    "pricing.sprint.period": "per 48h sprint",
+    "pricing.sprint.desc": "Continuous improvement and scaling.",
+    "pricing.sprint.f1": "Custom feature development",
+    "pricing.sprint.f2": "Bug fixes & optimization",
+    "pricing.sprint.f3": "SEO & performance upgrades",
+    "pricing.sprint.f4": "Flexible per sprint",
+
+    // Book a Call
+    "book.heading": "Ready to start?",
+    "book.subtitle": "Schedule a free call and discover how we can bring your project to life within 48 hours.",
+    "book.cta": "Start Your 48h Sprint",
+
+    // Newsletter
+    "newsletter.heading": "Stay in the loop",
+    "newsletter.subtitle": "Get updates on new sprints and opportunities.",
+    "newsletter.placeholder": "your@email.com",
+    "newsletter.success": "You're subscribed!",
+    "newsletter.alreadySubscribed": "You're already subscribed.",
+    "newsletter.error": "Something went wrong. Please try again.",
 
     // LeadForm
     "lead.heading1": "Book an",

@@ -4,7 +4,10 @@ import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
 import PortfolioSection from "@/components/PortfolioSection";
+import PricingSection from "@/components/PricingSection";
+import BookCallSection from "@/components/BookCallSection";
 import LeadForm from "@/components/LeadForm";
+import NewsletterSection from "@/components/NewsletterSection";
 import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
@@ -21,7 +24,10 @@ const Index = () => {
         <TrustBar />
         <ProcessSection />
         <PortfolioSection />
+        <PricingSection />
+        <BookCallSection />
         <LeadForm />
+        <NewsletterSection />
         <Footer />
         <ChatWidget />
       </div>

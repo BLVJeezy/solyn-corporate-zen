@@ -24,7 +24,7 @@ const TrustBar = () => {
               transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="text-3xl md:text-4xl font-serif text-primary mb-2">{stat.value}</div>
               <div className="text-sm text-muted-foreground font-medium">{t(stat.labelKey)}</div>
             </motion.div>
           ))}
