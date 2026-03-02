@@ -43,10 +43,6 @@ const Footer = () => {
                 info@solynglobal.com
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                +32 (0) 123 456 789
-              </div>
-              <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 Brussel, België
               </div>
