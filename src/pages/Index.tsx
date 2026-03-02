@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import HeroPortfolioPreview from "@/components/HeroPortfolioPreview";
+
 import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
@@ -19,7 +19,7 @@ const Index = () => {
       <div>
         <Navbar />
         <Hero />
-        <HeroPortfolioPreview />
+        
         <ServicesGrid />
         <TrustBar />
         <MobileViewSection />
