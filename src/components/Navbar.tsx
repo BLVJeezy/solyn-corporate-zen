@@ -75,7 +75,7 @@ const Navbar = () => {
                   key={l}
                   onClick={() => setLang(l)}
                   className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                    lang === l ? "bg-white/10 text-white" : "text-white/50 hover:text-white"
+                    lang === l ? "bg-foreground/10 text-foreground" : "text-foreground/50 hover:text-foreground"
                   }`}
                 >
                   {l}
@@ -86,7 +86,7 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="gap-2 text-white/50 hover:text-white hover:bg-white/10"
+              className="gap-2 text-foreground/50 hover:text-foreground hover:bg-foreground/10"
               onClick={() => navigate("/login")}
             >
               <User className="w-4 h-4" />
@@ -98,7 +98,7 @@ const Navbar = () => {
             <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-white"
+              className="text-foreground"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
