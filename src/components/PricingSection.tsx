@@ -1,14 +1,49 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Rocket } from "lucide-react";
+import { ArrowRight, Zap, Rocket, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import goldTexture from "@/assets/gold-texture.jpeg";
 import silverTexture from "@/assets/silver-texture.webp";
 
+const useCountdown = () => {
+  const getTarget = () => {
+    const stored = localStorage.getItem("pricing_countdown_target");
+    if (stored) {
+      const target = parseInt(stored, 10);
+      if (target > Date.now()) return target;
+    }
+    const target = Date.now() + 3 * 24 * 60 * 60 * 1000;
+    localStorage.setItem("pricing_countdown_target", target.toString());
+    return target;
+  };
+
+  const [target] = useState(getTarget);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, target - Date.now());
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+
+  return timeLeft;
+};
+
 const PricingSection = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const timeLeft = useCountdown();
 
   const plans = [
     {
@@ -56,6 +91,30 @@ const PricingSection = () => {
           <p className="text-muted-foreground mt-3 max-w-lg leading-relaxed">
             {t("pricing.subtitle")}
           </p>
+        </motion.div>
+
+        {/* Countdown timer */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-10 flex items-center gap-3 flex-wrap"
+        >
+          <Clock className="w-5 h-5 text-destructive animate-pulse" />
+          <span className="text-sm font-semibold text-foreground">Aanbieding verloopt over:</span>
+          <div className="flex gap-2">
+            {[
+              { value: timeLeft.days, label: "d" },
+              { value: timeLeft.hours, label: "u" },
+              { value: timeLeft.minutes, label: "m" },
+              { value: timeLeft.seconds, label: "s" },
+            ].map((unit) => (
+              <div key={unit.label} className="bg-foreground text-background rounded-lg px-2.5 py-1.5 text-center min-w-[40px]">
+                <span className="text-lg font-bold tabular-nums">{String(unit.value).padStart(2, "0")}</span>
+                <span className="text-[10px] ml-0.5 opacity-70">{unit.label}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
