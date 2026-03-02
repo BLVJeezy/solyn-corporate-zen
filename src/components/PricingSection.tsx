@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const PricingSection = () => {
   const { t } = useLanguage();
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -14,6 +18,8 @@ const PricingSection = () => {
       descKey: "pricing.mvp.desc",
       features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
       highlighted: true,
+      amount: 2000,
+      currency: "EUR",
     },
     {
       nameKey: "pricing.sprint.name",
@@ -22,11 +28,49 @@ const PricingSection = () => {
       descKey: "pricing.sprint.desc",
       features: ["pricing.sprint.f1", "pricing.sprint.f2", "pricing.sprint.f3", "pricing.sprint.f4"],
       highlighted: false,
+      amount: 250,
+      currency: "EUR",
     },
   ];
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  const handlePayment = async (plan: typeof plans[0]) => {
+    setLoadingPlan(plan.nameKey);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("create-revolut-order", {
+        body: {
+          amount: plan.amount,
+          currency: plan.currency,
+          description: t(plan.nameKey),
+        },
+      });
+
+      if (error || !data?.token) {
+        throw new Error(error?.message || "Could not create order");
+      }
+
+      const { default: RevolutCheckout } = await import("@revolut/checkout");
+      const instance = await RevolutCheckout(data.token, data.mode || "prod");
+
+      instance.payWithPopup({
+        onSuccess: () => {
+          toast.success("Betaling geslaagd! We nemen snel contact op.");
+          setLoadingPlan(null);
+        },
+        onError: (err: Error) => {
+          console.error("Payment error:", err);
+          toast.error("Betaling mislukt. Probeer het opnieuw.");
+          setLoadingPlan(null);
+        },
+        onCancel: () => {
+          setLoadingPlan(null);
+        },
+      });
+    } catch (err) {
+      console.error("Payment init error:", err);
+      toast.error("Er ging iets mis. Probeer het later opnieuw.");
+      setLoadingPlan(null);
+    }
   };
 
   return (
@@ -89,15 +133,19 @@ const PricingSection = () => {
               </ul>
 
               <Button
-                onClick={scrollToContact}
+                onClick={() => handlePayment(plan)}
+                disabled={loadingPlan !== null}
                 className={`w-full font-semibold ${
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "bg-transparent border border-border text-foreground hover:border-primary hover:text-primary"
                 }`}
               >
-                {t("pricing.cta")}
-                <ArrowRight className="ml-2 w-4 h-4" />
+                {loadingPlan === plan.nameKey ? (
+                  <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                ) : null}
+                {loadingPlan === plan.nameKey ? "Laden..." : t("pricing.cta")}
+                {loadingPlan !== plan.nameKey && <ArrowRight className="ml-2 w-4 h-4" />}
               </Button>
             </motion.div>
           ))}
