@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://solyn-corporate-zen.lovable.app/sitemap.xml
+Sitemap: https://solyn-global.com/sitemap.xml
