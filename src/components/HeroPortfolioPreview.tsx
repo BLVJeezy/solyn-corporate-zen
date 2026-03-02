@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import portfolio1 from "@/assets/portfolio-1.png";
-import portfolio2 from "@/assets/portfolio-2.png";
-import portfolio3 from "@/assets/portfolio-3.png";
+import portfolio1 from "@/assets/portfolio-1.webp";
+import portfolio2 from "@/assets/portfolio-2.webp";
+import portfolio3 from "@/assets/portfolio-3.webp";
 
 const portfolioItems = [
   { src: portfolio1, alt: "Belgomed BV" },
