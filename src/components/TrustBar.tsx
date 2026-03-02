@@ -7,17 +7,14 @@ const TrustBar = () => {
   const stats = [
     { value: "50+", labelKey: "trust.projects" },
     { value: "98%", labelKey: "trust.clients" },
-    { value: "48h", labelKey: "trust.delivery" },
+    { value: "12+", labelKey: "trust.countries" },
     { value: "24/7", labelKey: "trust.support" },
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-16 bg-card border-y border-border">
       <div className="container mx-auto px-4">
-        <p className="text-center text-sm text-muted-foreground mb-12 tracking-wide">
-          {t("trust.heading")}
-        </p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.labelKey}
@@ -25,10 +22,10 @@ const TrustBar = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-card rounded-2xl p-8 text-center"
+              className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-serif font-bold text-gradient-gold mb-3">{stat.value}</div>
-              <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.value}</div>
+              <div className="text-sm text-muted-foreground font-medium">{t(stat.labelKey)}</div>
             </motion.div>
           ))}
         </div>

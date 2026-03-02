@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
-import PricingSection from "@/components/PricingSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import LeadForm from "@/components/LeadForm";
 import ChatWidget from "@/components/ChatWidget";
@@ -14,12 +14,12 @@ const Index = () => {
   useTrackPageView("/");
   return (
     <LanguageProvider>
-      <div>
+      <div className="dark">
         <Navbar />
         <Hero />
+        <ServicesGrid />
         <TrustBar />
         <ProcessSection />
-        <PricingSection />
         <PortfolioSection />
         <LeadForm />
         <Footer />
