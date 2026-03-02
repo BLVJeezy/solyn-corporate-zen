@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
-import { X, Send, Building2, Mail, Phone, Calendar, MessageSquare } from "lucide-react";
+import { X, Send, Building2, Mail, Phone, Calendar, MessageSquare, PhoneCall, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,6 +15,12 @@ const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive border-destructive/30" },
 };
 
+function parseEuro(val: string | null): number {
+  if (!val) return 0;
+  const cleaned = val.replace(/[€\s]/g, "").replace(/\./g, "").replace(",", ".");
+  return parseFloat(cleaned) || 0;
+}
+
 interface Props {
   lead: Lead;
   onClose: () => void;
@@ -26,6 +32,10 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
   const updateLead = useUpdateLead();
   const addNote = useAddNote();
   const deleteLead = useDeleteLead();
+
+  const budget = parseEuro(lead.budget);
+  const isTargetDeal = budget >= 750 && budget <= 2000;
+  const isPaid = lead.status === "gewonnen";
 
   const handleStatusChange = (status: LeadStatus) => {
     updateLead.mutate({ id: lead.id, status });
@@ -63,6 +73,44 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
       </div>
 
       <div className="p-5 space-y-5">
+        {/* Payment & Deal Status */}
+        <div className="flex gap-2 flex-wrap">
+          <div className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-md font-medium ${
+            isPaid 
+              ? "bg-green-500/10 text-green-500 border border-green-500/20" 
+              : "bg-destructive/10 text-destructive border border-destructive/20"
+          }`}>
+            {isPaid ? "✅ Fee voldaan" : "⚠️ Betaal de fee"}
+          </div>
+          {isTargetDeal && (
+            <div className="flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-md font-medium bg-primary/10 text-primary border border-primary/20">
+              🎯 Target Deal
+            </div>
+          )}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-3 gap-2">
+          {lead.phone && (
+            <a href={`tel:${lead.phone}`} className="flex flex-col items-center gap-1 bg-muted rounded-lg p-3 hover:bg-muted/70 transition-colors">
+              <PhoneCall className="w-5 h-5 text-primary" />
+              <span className="text-[10px] text-muted-foreground">Bellen</span>
+            </a>
+          )}
+          {lead.phone && (
+            <a href={`https://wa.me/${lead.phone.replace(/[^0-9+]/g, "")}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 bg-muted rounded-lg p-3 hover:bg-muted/70 transition-colors">
+              <MessageCircle className="w-5 h-5 text-primary" />
+              <span className="text-[10px] text-muted-foreground">WhatsApp</span>
+            </a>
+          )}
+          {lead.email && (
+            <a href={`mailto:${lead.email}`} className="flex flex-col items-center gap-1 bg-muted rounded-lg p-3 hover:bg-muted/70 transition-colors">
+              <Mail className="w-5 h-5 text-primary" />
+              <span className="text-[10px] text-muted-foreground">E-mail</span>
+            </a>
+          )}
+        </div>
+
         {/* Status */}
         <div>
           <label className="text-xs text-muted-foreground mb-1.5 block">Status</label>
@@ -78,22 +126,24 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
           </Select>
         </div>
 
-        {/* Contact info */}
-        <div className="space-y-2">
+        {/* Contact & Deal info */}
+        <div className="bg-muted rounded-lg p-3 space-y-2">
           {lead.email && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Mail className="w-3.5 h-3.5" /> {lead.email}
+              <Mail className="w-3.5 h-3.5 shrink-0" />
+              <a href={`mailto:${lead.email}`} className="text-primary hover:underline truncate">{lead.email}</a>
             </div>
           )}
           {lead.phone && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Phone className="w-3.5 h-3.5" /> {lead.phone}
+              <Phone className="w-3.5 h-3.5 shrink-0" />
+              <a href={`tel:${lead.phone}`} className="text-primary hover:underline">{lead.phone}</a>
             </div>
           )}
           {lead.budget && (
-            <div className="text-sm">
-              <span className="text-muted-foreground">Budget: </span>
-              <span className="text-primary font-semibold">{lead.budget}</span>
+            <div className="flex items-center justify-between text-sm pt-1 border-t border-border">
+              <span className="text-muted-foreground">Budget</span>
+              <span className={`font-semibold ${isTargetDeal ? "text-primary" : "text-card-foreground"}`}>{lead.budget}</span>
             </div>
           )}
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
