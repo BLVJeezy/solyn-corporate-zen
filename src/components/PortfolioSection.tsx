@@ -21,44 +21,44 @@ interface Project {
   category: "websites" | "apps";
 }
 
-const ProjectCard = ({ project, index, t }: { project: Project; index: number; t: (key: string) => string }) => {
+const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (key: string) => string;}) => {
   return (
     <motion.div
       key={project.title}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
-      className="group"
-    >
+      className="group">
+      
       {/* Card container */}
       <div className="relative rounded-2xl border border-border/40 aspect-[4/3] bg-gradient-to-br from-[#f0eeeb] to-[#e8e5e0] p-4 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.12)] overflow-hidden">
         {project.images.length === 1 ? (
-          /* Single image - clean full view */
-          <img
-            src={project.images[0].src}
-            alt={project.title}
-            className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-          />
-        ) : (
-          /* Multi-image - overlapping stacked layout like reference */
-          <div className="relative w-full h-full">
+        /* Single image - clean full view */
+        <img
+          src={project.images[0].src}
+          alt={project.title}
+          className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
+          loading="lazy" />) : (
+
+
+        /* Multi-image - overlapping stacked layout like reference */
+        <div className="relative w-full h-full">
             {/* Back image - large, offset to the right */}
             <img
-              src={project.images[0].src}
-              alt={`${project.title} - ${project.images[0].label}`}
-              className="absolute -top-2 -left-2 w-[85%] rounded-lg shadow-2xl object-cover object-top transition-transform duration-500 group-hover:-translate-x-1"
-              loading="lazy"
-            />
+            src={project.images[0].src}
+            alt={`${project.title} - ${project.images[0].label}`}
+            className="absolute -top-2 -left-2 w-[85%] rounded-lg shadow-2xl object-top transition-transform duration-500 group-hover:-translate-x-1 object-fill"
+            loading="lazy" />
+          
             {/* Front/overlay image - overlapping from center-right */}
             <img
-              src={project.images[1].src}
-              alt={`${project.title} - ${project.images[1].label}`}
-              className="absolute top-[25%] right-[-5%] w-[70%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-              loading="lazy"
-            />
-          </div>
-        )}
+            src={project.images[1].src}
+            alt={`${project.title} - ${project.images[1].label}`}
+            className="absolute top-[25%] right-[-5%] w-[70%] rounded-lg shadow-2xl object-cover object-top border border-white/50 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+            loading="lazy" />
+          
+          </div>)
+        }
       </div>
 
       {/* Project info below card */}
@@ -71,8 +71,8 @@ const ProjectCard = ({ project, index, t }: { project: Project; index: number; t
           <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t(project.descKey)}</p>
         </div>
       </div>
-    </motion.div>
-  );
+    </motion.div>);
+
 };
 
 const PortfolioSection = () => {
@@ -80,18 +80,18 @@ const PortfolioSection = () => {
   const [filter, setFilter] = useState<ProjectCategory>("websites");
 
   const projects: Project[] = [
-    { images: [{ src: portfolio1, label: "Homepage" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
-    { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
-    { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
-    { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" },
-  ];
+  { images: [{ src: portfolio1, label: "Homepage" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
+  { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
+  { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
+  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" }];
+
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
-  const pillFilters: { key: "websites" | "apps"; labelKey: string }[] = [
-    { key: "websites", labelKey: "portfolio.filter.websites" },
-    { key: "apps", labelKey: "portfolio.filter.apps" },
-  ];
+  const pillFilters: {key: "websites" | "apps";labelKey: string;}[] = [
+  { key: "websites", labelKey: "portfolio.filter.websites" },
+  { key: "apps", labelKey: "portfolio.filter.apps" }];
+
 
   return (
     <section id="portfolio" className="py-24 bg-white">
@@ -100,8 +100,8 @@ const PortfolioSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 text-center"
-        >
+          className="mb-10 text-center">
+          
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
             {t("portfolio.heading")}
           </h2>
@@ -118,23 +118,23 @@ const PortfolioSection = () => {
               initial={false}
               animate={{
                 left: filter === "websites" || filter === "all" ? "4px" : "50%",
-                right: filter === "apps" ? "4px" : "50%",
+                right: filter === "apps" ? "4px" : "50%"
               }}
-              transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            />
-            {pillFilters.map((f) => (
-              <button
-                key={f.key}
-                onClick={() => setFilter(f.key)}
-                className={`relative z-10 px-7 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                  filter === f.key
-                    ? "text-background"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
+              transition={{ type: "spring", stiffness: 400, damping: 30 }} />
+            
+            {pillFilters.map((f) =>
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`relative z-10 px-7 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+              filter === f.key ?
+              "text-background" :
+              "text-muted-foreground hover:text-foreground"}`
+              }>
+              
                 {t(f.labelKey)}
               </button>
-            ))}
+            )}
           </div>
         </div>
 
@@ -145,16 +145,16 @@ const PortfolioSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-14"
-          >
-            {filtered.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} t={t} />
-            ))}
+            className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-14">
+            
+            {filtered.map((project, index) =>
+            <ProjectCard key={project.title} project={project} index={index} t={t} />
+            )}
           </motion.div>
         </AnimatePresence>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default PortfolioSection;
