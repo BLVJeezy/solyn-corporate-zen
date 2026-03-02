@@ -61,6 +61,17 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Mobile View
     "mobileView.heading": "Mobiele View",
 
+    // Why Us
+    "whyUs.designTitle": "Design doet ertoe",
+    "whyUs.designDesc": "In een wereld vol AI-klonen is gebruikerservaring belangrijker dan ooit. Design is wat technologie menselijk laat voelen — en daar zijn wij geobsedeerd mee.",
+    "whyUs.noMoreTitle": "Zeg vaarwel tegen",
+    "whyUs.pain1": "Lange vergaderingen",
+    "whyUs.pain2": "Dure fulltime inhuur",
+    "whyUs.pain3": "Micromanagement",
+    "whyUs.pain4": "Lange contracten",
+    "whyUs.freedomTitle": "Werk met vrijheid",
+    "whyUs.freedomDesc": "Geen starre contracten. Gewoon een open, flexibel proces dat zich aanpast aan hoe jij werkt — niet andersom.",
+
     // Pricing
     "pricing.label": "Pakketten",
     "pricing.heading": "Transparante Prijzen",
@@ -185,6 +196,17 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Mobile View
     "mobileView.heading": "Vue Mobile",
 
+    // Why Us
+    "whyUs.designTitle": "Le design compte",
+    "whyUs.designDesc": "Dans un monde rempli de clones IA, l'expérience utilisateur compte plus que jamais. Le design est ce qui rend la technologie humaine — et c'est là que nous excellons.",
+    "whyUs.noMoreTitle": "Dites adieu aux",
+    "whyUs.pain1": "Longues réunions",
+    "whyUs.pain2": "Coûts élevés d'embauche",
+    "whyUs.pain3": "Microgestion",
+    "whyUs.pain4": "Contrats rigides",
+    "whyUs.freedomTitle": "Travaillez en liberté",
+    "whyUs.freedomDesc": "Pas de contrats rigides. Juste un processus ouvert et flexible qui s'adapte à votre façon de travailler — pas l'inverse.",
+
     // Pricing
     "pricing.label": "Forfaits",
     "pricing.heading": "Prix Transparents",
@@ -308,6 +330,17 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Mobile View
     "mobileView.heading": "Mobile View",
+
+    // Why Us
+    "whyUs.designTitle": "Design matters",
+    "whyUs.designDesc": "In a world filled with AI clones, user experience matters more than ever. Design is what makes technology feel human — and that's where we obsess.",
+    "whyUs.noMoreTitle": "Say no more to",
+    "whyUs.pain1": "Long meetings",
+    "whyUs.pain2": "High cost hiring full-time",
+    "whyUs.pain3": "Micromanagement",
+    "whyUs.pain4": "Long contracts",
+    "whyUs.freedomTitle": "Operate with freedom",
+    "whyUs.freedomDesc": "No rigid contracts. Just an open, flexible process that adapts to how you work — not the other way around.",
 
     // Pricing
     "pricing.label": "Packages",
