@@ -23,8 +23,8 @@ const Hero = () => {
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1] tracking-tight mb-6">
-            {t("hero.title1")}{" "}
-            {t("hero.title2")}
+            <span className="bg-gradient-to-r from-[hsl(40,48%,56%)] via-[hsl(40,60%,70%)] to-[hsl(210,15%,70%)] bg-clip-text text-transparent">{t("hero.title1")}</span>{" "}
+            <span className="bg-gradient-to-r from-[hsl(40,48%,56%)] via-[hsl(40,60%,70%)] to-[hsl(210,15%,70%)] bg-clip-text text-transparent">{t("hero.title2")}</span>
           </h1>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-xl">
