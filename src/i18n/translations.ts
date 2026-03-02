@@ -30,6 +30,20 @@ export const translations: Record<Lang, Record<string, string>> = {
     "services.consult.title": "Consultancy",
     "services.consult.desc": "Strategisch advies op maat dat uw organisatie begeleidt van visie naar realisatie.",
 
+    // How We Work
+    "howWeWork.heading": "Hoe werken wij?",
+    "howWeWork.subtitle": "Wij vereenvoudigen complexe projecten in snelle, gefocuste sprints die elke week echte resultaten opleveren.",
+    "howWeWork.build.title": "Bouw je MVP in slechts 1 week",
+    "howWeWork.build.desc": "We beginnen met het ontwerpen en ontwikkelen van de kernfunctionaliteit om je concept snel te valideren — zodat je tractie kunt bewijzen voordat je groot investeert.",
+    "howWeWork.iterate.title": "Bepaal je roadmap en mijlpalen",
+    "howWeWork.iterate.desc": "Eenmaal live helpen we je duidelijke doelen te definiëren en wekelijkse sprints te draaien om features te shippen, UX te verbeteren en efficiënt te schalen.",
+    "howWeWork.grow.title": "Schaal sneller met AI-tools",
+    "howWeWork.grow.desc": "AI is niet zomaar een tool — het is een vermenigvuldiger. Wij gebruiken het om frictie weg te nemen, creatie te versnellen en jou te laten focussen op visie, niet code.",
+    "howWeWork.grow.chat1": "Ik wil een design voor een landingspagina",
+    "howWeWork.grow.chat2": "Zeker! We hebben het klaar voor het einde van morgen 😉",
+    "howWeWork.grow.collabTitle": "Heldere, async samenwerking",
+    "howWeWork.grow.collabDesc": "Blijf in sync via wekelijkse calls en async updates. Geen eindeloze meetings, geen micromanagement — gewoon voortgang.",
+
     // TrustBar
     "trust.projects": "Projecten",
     "trust.clients": "Tevreden klanten",
@@ -165,6 +179,20 @@ export const translations: Record<Lang, Record<string, string>> = {
     "services.consult.title": "Conseil",
     "services.consult.desc": "Conseil stratégique sur mesure qui guide votre organisation de la vision à la réalisation.",
 
+    // How We Work
+    "howWeWork.heading": "Comment travaillons-nous ?",
+    "howWeWork.subtitle": "Nous simplifions les projets complexes en sprints rapides et ciblés qui livrent des résultats concrets chaque semaine.",
+    "howWeWork.build.title": "Construisez votre MVP en 1 semaine",
+    "howWeWork.build.desc": "Nous commençons par concevoir et développer les fonctionnalités clés pour valider votre concept rapidement — afin de prouver la traction avant d'investir gros.",
+    "howWeWork.iterate.title": "Définissez votre roadmap et jalons",
+    "howWeWork.iterate.desc": "Une fois en ligne, nous vous aidons à définir des objectifs clairs et à exécuter des sprints hebdomadaires pour livrer des fonctionnalités et améliorer l'UX.",
+    "howWeWork.grow.title": "Accélérez avec des outils IA",
+    "howWeWork.grow.desc": "L'IA n'est pas juste un outil — c'est un multiplicateur. Nous l'utilisons pour éliminer les frictions, accélérer la création et vous libérer pour vous concentrer sur la vision.",
+    "howWeWork.grow.chat1": "Je voudrais un design pour une landing page",
+    "howWeWork.grow.chat2": "Bien sûr ! On vous envoie ça demain en fin de journée 😉",
+    "howWeWork.grow.collabTitle": "Collaboration claire et asynchrone",
+    "howWeWork.grow.collabDesc": "Restez en sync via des appels hebdomadaires et des mises à jour asynchrones. Pas de réunions interminables — juste du progrès.",
+
     // TrustBar
     "trust.projects": "Projets",
     "trust.clients": "Clients satisfaits",
@@ -299,6 +327,20 @@ export const translations: Record<Lang, Record<string, string>> = {
     "services.infra.desc": "End-to-end infrastructure solutions that lay the foundation for sustainable growth and operational efficiency.",
     "services.consult.title": "Consultancy",
     "services.consult.desc": "Tailored strategic advice that guides your organization from vision to realization.",
+
+    // How We Work
+    "howWeWork.heading": "How we work?",
+    "howWeWork.subtitle": "We simplify complex builds into fast, focused sprints that ship real results every week.",
+    "howWeWork.build.title": "Build your MVP in just 1 week",
+    "howWeWork.build.desc": "We start by designing and developing the core functionality to validate your concept fast — so you can prove traction before investing big.",
+    "howWeWork.iterate.title": "Set your roadmap and milestones",
+    "howWeWork.iterate.desc": "Once live, we help you define clear goals and run weekly sprints to ship features, improve UX, and scale efficiently.",
+    "howWeWork.grow.title": "Move faster with AI-powered tools",
+    "howWeWork.grow.desc": "AI isn't just a tool — it's a multiplier. We use it to remove friction, accelerate creation, and free you to focus on vision, not code.",
+    "howWeWork.grow.chat1": "I would like to request a design for a landing page",
+    "howWeWork.grow.chat2": "Sure! We will get back to you by the end of tomorrow 😉",
+    "howWeWork.grow.collabTitle": "Clear, async collaboration",
+    "howWeWork.grow.collabDesc": "Stay in sync through weekly calls and async updates. No endless meetings, no micromanagement — just progress.",
 
     // TrustBar
     "trust.projects": "Projects",
