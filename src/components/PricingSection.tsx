@@ -64,27 +64,27 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-2xl border p-8 transition-all duration-300 backdrop-blur-xl ${
+              className={`rounded-2xl p-8 transition-all duration-300 ${
                 plan.inverted
-                  ? "border-yellow-500/30 bg-gradient-to-br from-yellow-500/10 via-amber-500/5 to-transparent shadow-[0_0_40px_-5px_rgba(234,179,8,0.2)]"
-                  : "border-slate-400/20 bg-gradient-to-br from-slate-300/10 via-gray-400/5 to-transparent shadow-[0_0_30px_-5px_rgba(148,163,184,0.1)]"
+                  ? "border border-yellow-600/40 bg-gradient-to-br from-yellow-200 via-yellow-400 to-amber-600 shadow-[inset_0_2px_1px_0_rgba(255,255,220,0.6),inset_0_-3px_6px_0_rgba(120,80,0,0.25),0_10px_40px_-4px_rgba(180,130,0,0.35)]"
+                  : "border border-slate-300/60 bg-gradient-to-br from-gray-100 via-slate-300 to-gray-500 shadow-[inset_0_2px_1px_0_rgba(255,255,255,0.7),inset_0_-3px_6px_0_rgba(100,100,120,0.15),0_10px_40px_-4px_rgba(100,100,120,0.25)]"
               }`}
             >
-              <h3 className="text-xl font-semibold flex items-center gap-2 text-foreground">
+              <h3 className={`text-xl font-semibold flex items-center gap-2 ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>
                 <plan.icon className="w-5 h-5" />
                 {t(plan.nameKey)}
               </h3>
-              <p className="text-sm mt-1 text-muted-foreground">{t(plan.descKey)}</p>
+              <p className={`text-sm mt-1 ${plan.inverted ? "text-yellow-900/70" : "text-slate-600"}`}>{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6">
-                <span className="text-4xl font-semibold bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t(plan.priceKey)}</span>
-                <span className="text-sm ml-2 text-muted-foreground">{t(plan.periodKey)}</span>
+                <span className={`text-4xl font-semibold ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>{t(plan.priceKey)}</span>
+                <span className={`text-sm ml-2 ${plan.inverted ? "text-yellow-900/60" : "text-slate-500"}`}>{t(plan.periodKey)}</span>
               </div>
 
               <ul className="space-y-2.5 mb-8">
                 {plan.features.map((fKey) => (
-                  <li key={fKey} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                    <span className="mt-0.5 text-foreground">—</span>
+                  <li key={fKey} className={`flex items-start gap-2.5 text-sm ${plan.inverted ? "text-yellow-900/70" : "text-slate-600"}`}>
+                    <span className={`mt-0.5 ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>—</span>
                     {t(fKey)}
                   </li>
                 ))}
@@ -92,10 +92,10 @@ const PricingSection = () => {
 
               <Button
                 onClick={() => navigate("/book")}
-                className={`w-full font-medium rounded-full ${
+                className={`w-full font-medium rounded-full border-0 ${
                   plan.inverted
-                    ? "bg-gradient-to-r from-yellow-500/80 to-amber-500/80 text-white hover:from-yellow-500 hover:to-amber-500 border-0"
-                    : "bg-transparent border border-border text-foreground hover:border-foreground/30"
+                    ? "bg-yellow-950 text-yellow-100 hover:bg-yellow-900"
+                    : "bg-slate-700 text-slate-100 hover:bg-slate-600"
                 }`}
               >
                 {t(plan.ctaKey)}
