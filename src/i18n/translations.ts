@@ -6,8 +6,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.home": "Home",
     "nav.services": "Diensten",
     "nav.portfolio": "Portfolio",
+    "nav.pricing": "Prijzen",
     "nav.contact": "Contact",
     "nav.clientLogin": "Client Login",
+    "nav.bookCall": "Bel Ons",
     "nav.cta": "Gratis Advies",
 
     // Hero
@@ -64,8 +66,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.heading": "Transparante Prijzen",
     "pricing.subtitle": "Geen verborgen kosten. Kies het pakket dat bij uw fase past.",
     "pricing.cta": "Start Nu",
-    "pricing.mvp.cta": "Get Started",
-    "pricing.sprint.cta": "Book a Call",
+    "pricing.mvp.cta": "Aan de Slag",
+    "pricing.sprint.cta": "Bel Ons",
     "pricing.mvp.name": "MVP Launch",
     "pricing.mvp.price": "€2.000",
     "pricing.mvp.period": "eenmalig",
@@ -125,8 +127,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.home": "Accueil",
     "nav.services": "Services",
     "nav.portfolio": "Portfolio",
+    "nav.pricing": "Tarifs",
     "nav.contact": "Contact",
     "nav.clientLogin": "Espace Client",
+    "nav.bookCall": "Appelez-nous",
     "nav.cta": "Conseil Gratuit",
 
     // Hero
@@ -183,8 +187,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.heading": "Prix Transparents",
     "pricing.subtitle": "Pas de frais cachés. Choisissez le forfait qui correspond à votre phase.",
     "pricing.cta": "Commencer",
-    "pricing.mvp.cta": "Get Started",
-    "pricing.sprint.cta": "Book a Call",
+    "pricing.mvp.cta": "Commencer",
+    "pricing.sprint.cta": "Appelez-nous",
     "pricing.mvp.name": "MVP Launch",
     "pricing.mvp.price": "€2.000",
     "pricing.mvp.period": "unique",
@@ -244,8 +248,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     "nav.home": "Home",
     "nav.services": "Services",
     "nav.portfolio": "Portfolio",
+    "nav.pricing": "Pricing",
     "nav.contact": "Contact",
     "nav.clientLogin": "Client Login",
+    "nav.bookCall": "Book a Call",
     "nav.cta": "Free Consultation",
 
     // Hero

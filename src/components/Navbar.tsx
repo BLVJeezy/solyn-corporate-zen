@@ -20,7 +20,7 @@ const Navbar = () => {
   const navLinks = [
     { label: t("nav.services"), href: "#services" },
     { label: t("nav.portfolio"), href: "/portfolio" },
-    { label: "Pricing", href: "#pricing" },
+    { label: t("nav.pricing"), href: "#pricing" },
   ];
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Navbar = () => {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
                 onClick={openCalendly}
               >
-                Book a Call
+                {t("nav.bookCall")}
               </Button>
             </div>
           </div>
@@ -158,7 +158,7 @@ const Navbar = () => {
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full"
                 onClick={() => { setMobileOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
               >
-                Book a Call
+                {t("nav.bookCall")}
               </Button>
             </div>
           </motion.div>
