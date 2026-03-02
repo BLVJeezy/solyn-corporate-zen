@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
+import Pricing from "./pages/Pricing";
 import BookCall from "./pages/BookCall";
 import Admin from "./pages/Admin";
 import Analytics from "./pages/Analytics";
@@ -34,6 +35,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/pricing" element={<Pricing />} />
               <Route path="/book" element={<BookCall />} />
               <Route path="/login" element={<Login />} />
               <Route path="/reset-password" element={<ResetPassword />} />

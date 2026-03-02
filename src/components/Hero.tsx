@@ -36,7 +36,7 @@ const Hero = () => {
               size="lg"
               variant="outline"
               className="border-white/20 text-white hover:bg-white/10 px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
-              onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}>
+              onClick={() => navigate("/pricing")}>
               {t("hero.cta2")}
             </Button>
           </div>

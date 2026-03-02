@@ -4,7 +4,7 @@ import HeroPortfolioPreview from "@/components/HeroPortfolioPreview";
 import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
-import PricingSection from "@/components/PricingSection";
+
 import MobileViewSection from "@/components/MobileViewSection";
 import WhyUsSection from "@/components/WhyUsSection";
 
@@ -27,7 +27,7 @@ const Index = () => {
         <TrustBar />
         <MobileViewSection />
         <WhyUsSection />
-        <PricingSection />
+        
         
         <LeadForm />
         <NewsletterSection />
