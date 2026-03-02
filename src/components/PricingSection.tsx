@@ -89,6 +89,9 @@ const PricingSection = () => {
               <p className={`text-sm mt-1 relative z-10 ${plan.inverted ? "text-black/80 font-semibold" : "text-black/70"}`}>{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6 relative z-10">
+                {plan.inverted && (
+                  <span className="text-lg text-black/50 line-through mr-2">€3.997</span>
+                )}
                 <span className="text-4xl font-bold text-black">{t(plan.priceKey)}</span>
                 <span className="text-sm ml-2 text-black/60">{t(plan.periodKey)}</span>
               </div>
