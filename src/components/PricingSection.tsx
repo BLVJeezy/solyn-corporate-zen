@@ -58,6 +58,17 @@ const PricingSection = () => {
       inverted: true,
       icon: Rocket,
     },
+    {
+      nameKey: "pricing.growth.name",
+      priceKey: "pricing.growth.price",
+      periodKey: "pricing.growth.period",
+      descKey: "pricing.growth.desc",
+      features: ["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
+      highlighted: false,
+      ctaKey: "pricing.growth.cta",
+      inverted: false,
+      icon: Zap,
+    },
   ];
 
 
@@ -107,7 +118,7 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-1 gap-6 max-w-lg">
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.nameKey}
