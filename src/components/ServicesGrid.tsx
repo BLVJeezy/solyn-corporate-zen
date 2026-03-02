@@ -31,7 +31,7 @@ const ServicesGrid = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-border bg-card p-8 md:p-10"
+            className="rounded-2xl border border-yellow-500/30 bg-gradient-to-br from-yellow-500/10 via-amber-500/5 to-transparent backdrop-blur-xl p-8 md:p-10 shadow-[0_0_30px_-5px_rgba(234,179,8,0.15)]"
           >
             <div className="flex items-center gap-3 mb-4">
               <span className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center">
@@ -61,7 +61,7 @@ const ServicesGrid = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="rounded-2xl border border-border bg-card p-8 md:p-10"
+            className="rounded-2xl border border-slate-400/30 bg-gradient-to-br from-slate-300/10 via-gray-400/5 to-transparent backdrop-blur-xl p-8 md:p-10 shadow-[0_0_30px_-5px_rgba(148,163,184,0.15)]"
           >
             <div className="flex items-center gap-3 mb-4">
               <span className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center">
