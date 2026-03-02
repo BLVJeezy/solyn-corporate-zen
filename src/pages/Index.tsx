@@ -11,6 +11,7 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
+import PageTransition from "@/components/PageTransition";
 
 const Index = () => {
   useTrackPageView("/");
@@ -18,14 +19,13 @@ const Index = () => {
     <LanguageProvider>
       <div>
         <Navbar />
-        <Hero />
-        
-        <ServicesGrid />
-        <TrustBar />
-        
-        <WhyUsSection />
-        <CTASection />
-        
+        <PageTransition>
+          <Hero />
+          <ServicesGrid />
+          <TrustBar />
+          <WhyUsSection />
+          <CTASection />
+        </PageTransition>
         <Footer />
       </div>
     </LanguageProvider>

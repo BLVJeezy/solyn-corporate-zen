@@ -4,6 +4,7 @@ import MobileViewSection from "@/components/MobileViewSection";
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
+import PageTransition from "@/components/PageTransition";
 
 const Portfolio = () => {
   useTrackPageView("/portfolio");
@@ -11,10 +12,12 @@ const Portfolio = () => {
     <LanguageProvider>
       <div>
         <Navbar />
-        <div className="pt-20">
-          <PortfolioSection />
-          <MobileViewSection />
-        </div>
+        <PageTransition>
+          <div className="pt-20">
+            <PortfolioSection />
+            <MobileViewSection />
+          </div>
+        </PageTransition>
         <Footer />
       </div>
     </LanguageProvider>
