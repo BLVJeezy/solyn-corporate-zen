@@ -165,6 +165,39 @@ export type Database = {
         }
         Relationships: []
       }
+      site_analytics: {
+        Row: {
+          created_at: string
+          device_type: string | null
+          event_type: string | null
+          id: string
+          page_path: string
+          referrer: string | null
+          session_id: string
+          source_type: string | null
+        }
+        Insert: {
+          created_at?: string
+          device_type?: string | null
+          event_type?: string | null
+          id?: string
+          page_path?: string
+          referrer?: string | null
+          session_id: string
+          source_type?: string | null
+        }
+        Update: {
+          created_at?: string
+          device_type?: string | null
+          event_type?: string | null
+          id?: string
+          page_path?: string
+          referrer?: string | null
+          session_id?: string
+          source_type?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
