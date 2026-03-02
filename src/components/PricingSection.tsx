@@ -118,13 +118,13 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
-        <div className="max-w-3xl space-y-0">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
           {/* MVP Launch Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-t-2xl rounded-b-none p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group"
+            className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group flex flex-col"
             style={{
               backgroundImage: `url(${goldTexture})`,
               backgroundSize: "cover",
@@ -142,16 +142,16 @@ const PricingSection = () => {
               <Rocket className="w-5 h-5" />
               {t("pricing.mvp.name")}
             </h3>
-            <p className="text-sm mt-1 relative z-10 text-black/80 font-semibold">{t("pricing.mvp.desc")}</p>
+            <p className="text-sm mt-1 relative z-10 text-black/70">{t("pricing.mvp.desc")}</p>
             <div className="mt-6 mb-6 relative z-10">
               <span className="text-lg font-bold text-red-700 line-through mr-2">€3.997</span>
               <span className="text-4xl font-bold text-black">{t("pricing.mvp.price")}</span>
               <span className="text-sm ml-2 text-black/60">{t("pricing.mvp.period")}</span>
             </div>
-            <ul className="space-y-2.5 mb-8 relative z-10">
+            <ul className="space-y-2 mb-8 relative z-10 flex-1">
               {["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"].map((fKey) => (
-                <li key={fKey} className="flex items-start gap-2.5 text-sm text-black/90 font-semibold">
-                  <span className="mt-0.5 text-black font-bold">—</span>
+                <li key={fKey} className="flex items-start gap-2 text-sm text-black/80">
+                  <CheckCircle className="w-4 h-4 mt-0.5 text-black/50 flex-shrink-0" />
                   {t(fKey)}
                 </li>
               ))}
@@ -165,13 +165,13 @@ const PricingSection = () => {
             </Button>
           </motion.div>
 
-          {/* Growth Plan - connected add-on */}
+          {/* Growth Plan */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="rounded-b-2xl rounded-t-none border-t-2 border-dashed border-black/20 p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group"
+            className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group flex flex-col"
             style={{
               backgroundImage: `url(${silverTexture})`,
               backgroundSize: "cover",
@@ -185,7 +185,7 @@ const PricingSection = () => {
                 animation: "shimmer 2.5s ease-in-out infinite",
               }}
             />
-            <div className="flex items-center gap-2 mb-3 relative z-10">
+            <div className="flex items-center gap-2 mb-2 relative z-10">
               <span className="text-[10px] uppercase tracking-widest font-bold text-black/50 bg-black/10 px-2.5 py-1 rounded-full">
                 {t("pricing.growth.requires")}
               </span>
@@ -199,10 +199,10 @@ const PricingSection = () => {
               <span className="text-4xl font-bold text-black">{t("pricing.growth.price")}</span>
               <span className="text-sm ml-2 text-black/60">{t("pricing.growth.period")}</span>
             </div>
-            <ul className="space-y-2.5 mb-8 relative z-10">
+            <ul className="space-y-2 mb-8 relative z-10 flex-1">
               {["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"].map((fKey) => (
-                <li key={fKey} className="flex items-start gap-2.5 text-sm text-black/80">
-                  <span className="mt-0.5 text-black font-bold">—</span>
+                <li key={fKey} className="flex items-start gap-2 text-sm text-black/80">
+                  <CheckCircle className="w-4 h-4 mt-0.5 text-black/50 flex-shrink-0" />
                   {t(fKey)}
                 </li>
               ))}
