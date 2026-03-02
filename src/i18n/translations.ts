@@ -76,15 +76,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "mobileView.heading": "Mobiele View",
 
     // Why Us
-    "whyUs.designTitle": "Design doet ertoe",
-    "whyUs.designDesc": "In een wereld vol AI-klonen is gebruikerservaring belangrijker dan ooit. Design is wat technologie menselijk laat voelen — en daar zijn wij geobsedeerd mee.",
-    "whyUs.noMoreTitle": "Zeg vaarwel tegen",
-    "whyUs.pain1": "Lange vergaderingen",
-    "whyUs.pain2": "Dure fulltime inhuur",
-    "whyUs.pain3": "Micromanagement",
-    "whyUs.pain4": "Lange contracten",
-    "whyUs.freedomTitle": "Werk met vrijheid",
-    "whyUs.freedomDesc": "Geen starre contracten. Gewoon een open, flexibel proces dat zich aanpast aan hoe jij werkt — niet andersom.",
+    "whyUs.card1Title": "Snel schakelen",
+    "whyUs.card1Desc": "Als AI-team begrijpen we dat snelheid telt. Daarom nemen we intern en extern stappen om alles net dat beetje sneller te leveren.",
+    "whyUs.card2Title": "Gebruikerservaring centraal",
+    "whyUs.card2Desc": "Wij geloven dat UI/UX het verschil maakt bij producten in dit tijdperk. Een product bouwen waar gebruikers graag naar terugkeren is belangrijker dan ooit.",
+    "whyUs.card3Title": "Altijd samenwerken",
+    "whyUs.card3Desc": "De beste producten ontstaan vanuit verschillende perspectieven. Wij weten dat we als team alleen gedijen door elkaars krachten en meningen te erkennen.",
+    "whyUs.card4Title": "Proces maakt kwaliteit",
+    "whyUs.card4Desc": "Elk project, ongeacht de omvang, verdient dezelfde kwaliteit. Wij hebben een solide design- en ontwikkelproces opgebouwd zodat niets aan het toeval wordt overgelaten.",
 
     // Pricing
     "pricing.countdown": "Aanbieding verloopt over:",
@@ -260,15 +259,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "mobileView.heading": "Vue Mobile",
 
     // Why Us
-    "whyUs.designTitle": "Le design compte",
-    "whyUs.designDesc": "Dans un monde rempli de clones IA, l'expérience utilisateur compte plus que jamais. Le design est ce qui rend la technologie humaine — et c'est là que nous excellons.",
-    "whyUs.noMoreTitle": "Dites adieu aux",
-    "whyUs.pain1": "Longues réunions",
-    "whyUs.pain2": "Coûts élevés d'embauche",
-    "whyUs.pain3": "Microgestion",
-    "whyUs.pain4": "Contrats rigides",
-    "whyUs.freedomTitle": "Travaillez en liberté",
-    "whyUs.freedomDesc": "Pas de contrats rigides. Juste un processus ouvert et flexible qui s'adapte à votre façon de travailler — pas l'inverse.",
+    "whyUs.card1Title": "Avancer vite",
+    "whyUs.card1Desc": "En tant qu'équipe IA, nous comprenons que la vitesse compte. C'est pourquoi nous prenons des mesures internes et externes pour livrer plus rapidement.",
+    "whyUs.card2Title": "Expérience utilisateur d'abord",
+    "whyUs.card2Desc": "Nous croyons que l'UI/UX fait la différence pour les produits de cette ère. Construire un produit où les utilisateurs veulent revenir est plus important que jamais.",
+    "whyUs.card3Title": "Toujours collaborer",
+    "whyUs.card3Desc": "Les meilleurs produits naissent de perspectives diverses. Nous savons qu'en équipe, nous ne prospérons qu'en reconnaissant les forces et opinions de chacun.",
+    "whyUs.card4Title": "Le processus fait la qualité",
+    "whyUs.card4Desc": "Chaque projet, quelle que soit sa taille, mérite la même qualité. Nous avons élaboré un processus de design et développement solide pour ne rien laisser au hasard.",
 
     // Pricing
     "pricing.countdown": "L'offre expire dans :",
@@ -444,15 +442,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "mobileView.heading": "Mobile View",
 
     // Why Us
-    "whyUs.designTitle": "Design matters",
-    "whyUs.designDesc": "In a world filled with AI clones, user experience matters more than ever. Design is what makes technology feel human — and that's where we obsess.",
-    "whyUs.noMoreTitle": "Say no more to",
-    "whyUs.pain1": "Long meetings",
-    "whyUs.pain2": "High cost hiring full-time",
-    "whyUs.pain3": "Micromanagement",
-    "whyUs.pain4": "Long contracts",
-    "whyUs.freedomTitle": "Operate with freedom",
-    "whyUs.freedomDesc": "No rigid contracts. Just an open, flexible process that adapts to how you work — not the other way around.",
+    "whyUs.card1Title": "Move with speed",
+    "whyUs.card1Desc": "As an AI team, we understand we're selling speed and time. So we make it our priority to take steps internally and externally to push things the extra step faster.",
+    "whyUs.card2Title": "User-experience focused",
+    "whyUs.card2Desc": "We believe UI/UX is a make or break when it comes to products in this era. Building a product the users wants to come back to is more important than ever.",
+    "whyUs.card3Title": "Collaboration always",
+    "whyUs.card3Desc": "The best products are born out of many different perspectives. We know that as a team, we won't thrive without recognizing other people's strengths and opinions.",
+    "whyUs.card4Title": "Process makes quality",
+    "whyUs.card4Desc": "Every project, no matter the size should have the same quality as the last. We have crafted a solid design and development process to ensure that no stone is left unturned in our products.",
 
     // Pricing
     "pricing.countdown": "Offer expires in:",
