@@ -9,8 +9,6 @@ import portfolio3 from "@/assets/portfolio-3.png";
 import portfolio3b from "@/assets/portfolio-3b.png";
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
 import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.png";
-import portfolioSheff3 from "@/assets/portfolio-shefftrades-3.png";
-import portfolioSheff4 from "@/assets/portfolio-shefftrades-4.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
