@@ -86,7 +86,7 @@ const PortfolioSection = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
+            className="grid grid-cols-1 gap-y-14"
           >
             {filtered.map((project, index) => (
               <motion.div
@@ -97,7 +97,7 @@ const PortfolioSection = () => {
                 className="group"
               >
                 {/* Card with bottom glow on hover */}
-                <div className="relative rounded-2xl overflow-hidden border border-border/60 aspect-[4/3] bg-muted/20 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15)]">
+                <div className="relative rounded-2xl overflow-hidden border border-border/60 aspect-[16/10] bg-muted/20 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15)]">
                   <img
                     src={project.image}
                     alt={project.title}
