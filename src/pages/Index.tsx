@@ -9,7 +9,7 @@ import PricingSection from "@/components/PricingSection";
 import BookCallSection from "@/components/BookCallSection";
 import LeadForm from "@/components/LeadForm";
 import NewsletterSection from "@/components/NewsletterSection";
-import ChatWidget from "@/components/ChatWidget";
+
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
@@ -31,7 +31,7 @@ const Index = () => {
         <LeadForm />
         <NewsletterSection />
         <Footer />
-        <ChatWidget />
+        
       </div>
     </LanguageProvider>
   );
