@@ -197,6 +197,8 @@ const PricingSection = () => {
           ))}
         </div>
 
+        <div className="w-full border-t border-border my-8" />
+
         {/* VIP Card */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
