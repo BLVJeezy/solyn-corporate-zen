@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const navLinks = [
     { label: t("nav.services"), href: "#services" },
-    { label: t("nav.portfolio"), href: "#portfolio" },
+    { label: t("nav.portfolio"), href: "/portfolio" },
     { label: "Pricing", href: "#pricing" },
   ];
 
@@ -48,6 +48,12 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => {
+                    if (link.href.startsWith("/")) {
+                      e.preventDefault();
+                      navigate(link.href);
+                    }
+                  }}
                   className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors px-4 py-1.5 rounded-full hover:bg-accent"
                 >
                   {link.label}
@@ -109,7 +115,13 @@ const Navbar = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    setMobileOpen(false);
+                    if (link.href.startsWith("/")) {
+                      e.preventDefault();
+                      navigate(link.href);
+                    }
+                  }}
                   className="text-lg font-medium text-foreground/80 hover:text-foreground transition-colors"
                 >
                   {link.label}
