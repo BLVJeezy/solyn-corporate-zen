@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
-import ThemeToggle from "@/components/ThemeToggle";
+
 
 const languages: Lang[] = ["NL", "FR", "EN"];
 
@@ -125,7 +125,6 @@ const Navbar = () => {
                 </button>
               ))}
             </div>
-            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
@@ -138,7 +137,6 @@ const Navbar = () => {
 
           {/* Mobile */}
           <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="text-white"
@@ -193,7 +191,7 @@ const Navbar = () => {
                   </button>
                 ))}
               </div>
-              <ThemeToggle />
+              
               <Button
                 variant="outline"
                 className="gap-2 border-white/20 text-white rounded-full hover:bg-white/10"
