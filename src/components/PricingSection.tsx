@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle } from "lucide-react";
+import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -196,6 +196,29 @@ const PricingSection = () => {
             </React.Fragment>
           ))}
         </div>
+
+        {/* Book a Call card */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mb-8"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-[hsl(0_0%_7%)] flex items-center justify-center text-white text-sm font-bold">S</div>
+            <div>
+              <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
+              <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
+            </div>
+          </div>
+          <Button
+            onClick={() => navigate("/book")}
+            className="rounded-full bg-[hsl(0_0%_14%)] text-white hover:bg-[hsl(0_0%_20%)] px-5 text-sm shrink-0"
+          >
+            <Calendar className="w-4 h-4 mr-2" />
+            {t("nav.book")}
+          </Button>
+        </motion.div>
 
         <div className="w-full border-t border-border my-8" />
 

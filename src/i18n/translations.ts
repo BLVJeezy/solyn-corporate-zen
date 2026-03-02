@@ -93,6 +93,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "Aanbieding verloopt over:",
+    "pricing.bookCall.title": "Boek een gesprek",
+    "pricing.bookCall.subtitle": "Boek een gratis gesprek van 15 minuten met ons team",
     "pricing.mostPopular": "Meest populair",
     "pricing.label": "Pakketten",
     "pricing.heading": "Transparante Prijzen",
@@ -282,6 +284,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "L'offre expire dans :",
+    "pricing.bookCall.title": "Réserver un appel",
+    "pricing.bookCall.subtitle": "Réservez un appel gratuit de 15 minutes avec notre équipe",
     "pricing.mostPopular": "Le plus populaire",
     "pricing.label": "Forfaits",
     "pricing.heading": "Prix Transparents",
@@ -471,6 +475,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "Offer expires in:",
+    "pricing.bookCall.title": "Book a call",
+    "pricing.bookCall.subtitle": "Book a free 15-minute call with our team",
     "pricing.mostPopular": "Most popular",
     "pricing.label": "Packages",
     "pricing.heading": "Transparent Pricing",
