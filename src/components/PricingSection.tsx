@@ -157,12 +157,6 @@ const PricingSection = () => {
                 )}
                 <span className="text-4xl font-bold text-black">{t(plan.priceKey)}</span>
                 <span className="text-sm ml-2 text-black/60">{t(plan.periodKey)}</span>
-                {!plan.inverted && (
-                  <div className="mt-2">
-                    <span className="text-2xl font-bold text-black">{t("pricing.sprint.priceApp")}</span>
-                    <span className="text-sm ml-2 text-black/60">{t("pricing.sprint.periodApp")}</span>
-                  </div>
-                )}
               </div>
 
               <ul className="space-y-2.5 mb-8 relative z-10">
