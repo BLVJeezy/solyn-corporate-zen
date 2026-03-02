@@ -31,7 +31,7 @@ const BookCallContent = () => {
         
       </div>
 
-      <hr className="border-border" />
+      
 
       {/* Hero text */}
       <div className="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-12 text-center max-w-3xl">
