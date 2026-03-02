@@ -67,7 +67,7 @@ const PricingSection = () => {
               transition={{ delay: i * 0.1 }}
               className={`rounded-2xl border p-8 transition-all duration-300 ${
                 plan.inverted
-                  ? "border-foreground/20 bg-foreground text-background shadow-[0_8px_40px_-12px_hsl(var(--gradient-from)/0.4)]"
+                  ? "border-foreground/20 bg-foreground text-background shadow-[0_0_50px_-4px_hsl(var(--gradient-from)/0.5),0_0_80px_-8px_hsl(var(--gradient-via)/0.3)]"
                   : "border-border bg-card"
               }`}
             >
