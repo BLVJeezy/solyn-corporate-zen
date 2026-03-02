@@ -17,7 +17,7 @@ const Index = () => {
   useTrackPageView("/");
   return (
     <LanguageProvider>
-      <div className="dark">
+      <div>
         <Navbar />
         <Hero />
         <ServicesGrid />

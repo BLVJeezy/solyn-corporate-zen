@@ -12,7 +12,7 @@ const TrustBar = () => {
   ];
 
   return (
-    <section className="py-16 bg-card border-y border-border">
+    <section className="py-16 border-y border-border">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
@@ -24,8 +24,8 @@ const TrustBar = () => {
               transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl md:text-4xl font-serif text-primary mb-2">{stat.value}</div>
-              <div className="text-sm text-muted-foreground font-medium">{t(stat.labelKey)}</div>
+              <div className="text-3xl md:text-4xl font-semibold text-foreground mb-1">{stat.value}</div>
+              <div className="text-sm text-muted-foreground">{t(stat.labelKey)}</div>
             </motion.div>
           ))}
         </div>

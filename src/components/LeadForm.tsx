@@ -29,28 +29,28 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-card border-t border-border">
+    <section id="contact" className="py-24 border-t border-border">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-lg mx-auto text-center"
+          className="max-w-lg"
         >
-          <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4 tracking-tight">
-            {t("lead.heading1")} <span className="text-gradient-gold">{t("lead.heading2")}</span>
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight mb-2">
+            {t("lead.heading1")} {t("lead.heading2")}
           </h2>
           <p className="text-muted-foreground mb-10 leading-relaxed">
             {t("lead.subtitle")}
           </p>
 
-          <div className="space-y-4 text-left">
+          <div className="space-y-4">
             <div className="flex gap-1 mb-6">
               {[0, 1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className={`h-1 flex-1 rounded-full transition-colors ${
-                    i <= step ? "bg-primary" : "bg-border"
+                  className={`h-0.5 flex-1 rounded-full transition-colors ${
+                    i <= step ? "bg-foreground" : "bg-border"
                   }`}
                 />
               ))}
@@ -68,7 +68,7 @@ const LeadForm = () => {
                   placeholder={t(fields[step].phKey)}
                   value={form[fields[step].key]}
                   onChange={(e) => setForm({ ...form, [fields[step].key]: e.target.value })}
-                  className="bg-background border-border"
+                  className="bg-card border-border rounded-xl"
                 />
               </motion.div>
             ) : (
@@ -83,7 +83,7 @@ const LeadForm = () => {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   rows={4}
-                  className="bg-background border-border"
+                  className="bg-card border-border rounded-xl"
                 />
               </motion.div>
             )}
@@ -93,12 +93,12 @@ const LeadForm = () => {
                 <Button
                   variant="outline"
                   onClick={() => setStep(step - 1)}
-                  className="border-border text-foreground"
+                  className="border-border text-foreground rounded-full"
                 >
                   {t("lead.back")}
                 </Button>
               )}
-              <Button onClick={handleNext} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">
+              <Button onClick={handleNext} className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full">
                 {step < fields.length ? t("lead.next") : t("lead.send")}
                 {step === fields.length && <Send className="ml-2 w-4 h-4" />}
               </Button>
