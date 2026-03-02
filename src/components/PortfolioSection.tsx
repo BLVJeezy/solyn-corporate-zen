@@ -116,7 +116,7 @@ const PortfolioSection = () => {
 
 
   return (
-    <section id="portfolio" className="py-24 bg-white">
+    <section id="portfolio" className="py-24 bg-background">
       <div className="px-6 lg:px-12 xl:px-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
