@@ -2,14 +2,21 @@
 
 ## Probleem
 
-De afbeeldingen voor L'atelier 9 (`portfolio-3.png` en `portfolio-3b.png`) zijn waarschijnlijk niet correct gekopieerd bij de vorige bewerking. De kaart toont alleen de achtergrondkleur (`#f0eeeb`, bijna wit) zonder zichtbare foto's.
+De afbeeldingen voor Shinelab Detailing en L'atelier 9 worden niet weergegeven in de browser, ondanks dat de bestanden bestaan in het project. Dit duidt op corrupte of niet-correct opgeslagen bestanden na eerdere kopieeracties.
 
 ## Oplossing
 
-De twee eerder geüploade afbeeldingen opnieuw kopiëren naar de juiste bestanden:
+Alle vier de afbeeldingsbestanden opnieuw kopiëren vanuit de originele uploads:
 
-1. **`user-uploads://image-20.png`** → `src/assets/portfolio-3.png` (Homepage)
-2. **`user-uploads://image-21.png`** → `src/assets/portfolio-3b.png` (Resultaten)
+1. **Shinelab Detailing:**
+   - `user-uploads://image-23.png` → `src/assets/portfolio-2.png`
+   - `user-uploads://image-24.png` → `src/assets/portfolio-2b.png`
 
-Geen codewijzigingen nodig - de imports en projectdata in `PortfolioSection.tsx` zijn al correct ingesteld.
+2. **L'atelier 9:**
+   - `user-uploads://image-20.png` → `src/assets/portfolio-3.png`
+   - `user-uploads://image-21.png` → `src/assets/portfolio-3b.png`
+
+3. **Opruiming:** De ongebruikte imports `portfolioSheff3` en `portfolioSheff4` verwijderen uit `PortfolioSection.tsx` (deze afbeeldingen worden niet meer gebruikt).
+
+Geen verdere codewijzigingen nodig - de imports en projectdata zijn al correct.
 
