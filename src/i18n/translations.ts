@@ -87,6 +87,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "whyUs.freedomDesc": "Geen starre contracten. Gewoon een open, flexibel proces dat zich aanpast aan hoe jij werkt — niet andersom.",
 
     // Pricing
+    "pricing.countdown": "Aanbieding verloopt over:",
     "pricing.label": "Pakketten",
     "pricing.heading": "Transparante Prijzen",
     "pricing.subtitle": "Geen verborgen kosten. Kies het pakket dat bij uw fase past.",
@@ -236,6 +237,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "whyUs.freedomDesc": "Pas de contrats rigides. Juste un processus ouvert et flexible qui s'adapte à votre façon de travailler — pas l'inverse.",
 
     // Pricing
+    "pricing.countdown": "L'offre expire dans :",
     "pricing.label": "Forfaits",
     "pricing.heading": "Prix Transparents",
     "pricing.subtitle": "Pas de frais cachés. Choisissez le forfait qui correspond à votre phase.",
@@ -385,6 +387,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "whyUs.freedomDesc": "No rigid contracts. Just an open, flexible process that adapts to how you work — not the other way around.",
 
     // Pricing
+    "pricing.countdown": "Offer expires in:",
     "pricing.label": "Packages",
     "pricing.heading": "Transparent Pricing",
     "pricing.subtitle": "No hidden fees. Choose the package that fits your stage.",
