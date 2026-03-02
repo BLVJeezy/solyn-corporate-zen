@@ -29,7 +29,7 @@ const HeroPortfolioPreview = () => {
             {[...portfolioItems, ...portfolioItems].map((item, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-[280px] sm:w-[360px] md:w-[480px] lg:w-[560px] mx-2 md:mx-3 rounded-2xl overflow-hidden bg-[hsl(0,0%,8%)] aspect-[16/10] relative group"
+                className="flex-shrink-0 w-[280px] sm:w-[360px] md:w-[480px] lg:w-[560px] mx-2 md:mx-3 rounded-2xl overflow-hidden bg-card dark:bg-[hsl(0,0%,8%)] aspect-[16/10] relative group"
               >
                 <img
                   src={item.src}
@@ -37,7 +37,7 @@ const HeroPortfolioPreview = () => {
                   className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,4%)] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-4 md:bottom-4 md:left-5">
                   <span className="text-xs md:text-sm font-medium text-foreground/80">{item.alt}</span>
                 </div>
