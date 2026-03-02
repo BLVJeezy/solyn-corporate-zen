@@ -99,7 +99,7 @@ const PortfolioSection = () => {
   { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites", brandColor: "#0a2622" },
   { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites", brandColor: "#1a1a2e" },
   { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites", brandColor: "#f0eeeb" },
-  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }, { src: portfolioSheff3, label: "Trading Wisdom" }, { src: portfolioSheff4, label: "Sheff AI" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" }];
+  { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
