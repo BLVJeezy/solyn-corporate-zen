@@ -119,7 +119,7 @@ const PricingSection = () => {
         </motion.div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-center mb-5">
+        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch mb-5">
           {plans.map((plan, i) => (
             <React.Fragment key={plan.nameKey}>
               {i === 1 && (
@@ -137,7 +137,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="rounded-2xl p-7 relative overflow-hidden group flex flex-col"
+                className="rounded-2xl p-7 relative overflow-hidden group flex flex-col h-full"
                 style={{
                   backgroundImage: `url(${plan.texture})`,
                   backgroundSize: "cover",
