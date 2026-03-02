@@ -34,8 +34,7 @@ const Hero = () => {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/10 px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
+              className="bg-[hsl(0_0%_14%)] text-white border border-white/10 hover:bg-[hsl(0_0%_20%)] px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
               onClick={() => navigate("/pricing")}>
               {t("hero.cta2")}
             </Button>
