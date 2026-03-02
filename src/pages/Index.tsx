@@ -7,7 +7,7 @@ import ProcessSection from "@/components/ProcessSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import MobileViewSection from "@/components/MobileViewSection";
 import PricingSection from "@/components/PricingSection";
-import BookCallSection from "@/components/BookCallSection";
+
 import LeadForm from "@/components/LeadForm";
 import NewsletterSection from "@/components/NewsletterSection";
 
@@ -29,7 +29,7 @@ const Index = () => {
         <PortfolioSection />
         <MobileViewSection />
         <PricingSection />
-        <BookCallSection />
+        
         <LeadForm />
         <NewsletterSection />
         <Footer />
