@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import goldTexture from "@/assets/gold-texture.jpeg";
 import silverTexture from "@/assets/silver-texture.webp";
+import diamondTexture from "@/assets/diamond-texture.jpeg";
 
 const useCountdown = () => {
   const getTarget = () => {
@@ -189,32 +190,39 @@ const PricingSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-6 max-w-3xl rounded-2xl p-8 md:p-10 relative overflow-hidden bg-foreground text-background shadow-[0_10px_60px_-4px_rgba(0,0,0,0.4)] group"
+          className="mt-6 max-w-3xl rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-[0_10px_60px_-4px_rgba(0,0,0,0.4)] group"
+          style={{
+            backgroundImage: `url(${diamondTexture})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/60 z-0" />
           {/* Diamond shimmer */}
           <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
             style={{
               background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
               animation: "shimmer 2.5s ease-in-out infinite",
             }}
           />
 
-          <div className="flex items-center gap-3 mb-2 relative z-10">
+          <div className="flex items-center gap-3 mb-2 relative z-10 drop-shadow-lg">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
               <Diamond className="w-6 h-6 text-white" />
             </span>
             <div>
-              <h3 className="text-xl font-bold text-background">{t("pricing.diamond.name")}</h3>
-              <p className="text-sm text-background/60">{t("pricing.diamond.desc")}</p>
+              <h3 className="text-xl font-bold text-white">{t("pricing.diamond.name")}</h3>
+              <p className="text-sm text-white/70">{t("pricing.diamond.desc")}</p>
             </div>
           </div>
 
           <div className="mt-4 mb-2 relative z-10">
-            <span className="text-5xl font-bold text-background">€9.500</span>
-            <span className="text-sm ml-2 text-background/60">{t("pricing.diamond.setupLabel")}</span>
+            <span className="text-5xl font-bold text-white drop-shadow-lg">€9.500</span>
+            <span className="text-sm ml-2 text-white/70">{t("pricing.diamond.setupLabel")}</span>
           </div>
-          <p className="text-background/50 text-sm mb-6 relative z-10">+ €3.500 {t("pricing.diamond.period")}</p>
+          <p className="text-white/60 text-sm mb-6 relative z-10">+ €3.500 {t("pricing.diamond.period")}</p>
 
           <Button
             onClick={() => navigate("/book")}
@@ -225,11 +233,11 @@ const PricingSection = () => {
           </Button>
 
           <div className="relative z-10">
-            <p className="font-semibold text-background mb-4">{t("pricing.diamond.included") || "What's included:"}</p>
+            <p className="font-semibold text-white mb-4">{t("pricing.diamond.included") || "What's included:"}</p>
             <ul className="grid sm:grid-cols-2 gap-3">
               {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
-                <li key={fKey} className="flex items-center gap-3 text-sm text-background/80">
-                  <CheckCircle className="w-5 h-5 text-background/60 flex-shrink-0" />
+                <li key={fKey} className="flex items-center gap-3 text-sm text-white/80">
+                  <CheckCircle className="w-5 h-5 text-white/60 flex-shrink-0" />
                   {t(fKey)}
                 </li>
               ))}
