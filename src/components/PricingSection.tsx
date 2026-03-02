@@ -49,181 +49,150 @@ const PricingSection = () => {
   const plans = [
     {
       nameKey: "pricing.mvp.name",
+      descKey: "pricing.mvp.desc",
       priceKey: "pricing.mvp.price",
       periodKey: "pricing.mvp.period",
-      descKey: "pricing.mvp.desc",
+      oldPrice: "€3.997",
       features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-      highlighted: true,
       ctaKey: "pricing.mvp.cta",
-      inverted: true,
       icon: Rocket,
+      texture: goldTexture,
+      badge: null,
     },
     {
       nameKey: "pricing.growth.name",
+      descKey: "pricing.growth.desc",
       priceKey: "pricing.growth.price",
       periodKey: "pricing.growth.period",
-      descKey: "pricing.growth.desc",
+      oldPrice: null,
       features: ["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
-      highlighted: false,
       ctaKey: "pricing.growth.cta",
-      inverted: false,
       icon: Zap,
+      texture: silverTexture,
+      badge: "pricing.growth.requires",
     },
   ];
 
-
-
-
   return (
-    <section id="pricing" className="py-12 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-16 md:py-28 bg-background">
+      <div className="container mx-auto px-4 max-w-5xl">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="text-center mb-14"
         >
-          <span className="text-sm uppercase tracking-[0.2em] text-muted-foreground font-medium">
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
             {t("pricing.label")}
           </span>
-          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mt-2 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-semibold text-foreground mt-3 tracking-tight">
             {t("pricing.heading")}
           </h2>
-          <p className="text-muted-foreground mt-3 max-w-lg leading-relaxed">
+          <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed">
             {t("pricing.subtitle")}
           </p>
         </motion.div>
 
-        {/* Countdown timer */}
+        {/* Countdown */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mb-10 flex items-center gap-3 flex-wrap"
+          className="mb-12 flex items-center justify-center gap-3"
         >
-          <Clock className="w-5 h-5 text-destructive animate-pulse" />
-          <span className="text-sm font-semibold text-foreground">{t("pricing.countdown")}</span>
-          <div className="flex gap-2">
+          <Clock className="w-4 h-4 text-destructive animate-pulse" />
+          <span className="text-sm font-medium text-muted-foreground">{t("pricing.countdown")}</span>
+          <div className="flex gap-1.5">
             {[
               { value: timeLeft.days, label: "d" },
-              { value: timeLeft.hours, label: "u" },
+              { value: timeLeft.hours, label: "h" },
               { value: timeLeft.minutes, label: "m" },
               { value: timeLeft.seconds, label: "s" },
             ].map((unit) => (
-              <div key={unit.label} className="bg-foreground text-background rounded-lg px-2.5 py-1.5 text-center min-w-[40px]">
-                <span className="text-lg font-bold tabular-nums">{String(unit.value).padStart(2, "0")}</span>
-                <span className="text-[10px] ml-0.5 opacity-70">{unit.label}</span>
+              <div key={unit.label} className="bg-foreground text-background rounded-md px-2 py-1 text-center min-w-[36px]">
+                <span className="text-sm font-bold tabular-nums">{String(unit.value).padStart(2, "0")}</span>
+                <span className="text-[9px] ml-0.5 opacity-60">{unit.label}</span>
               </div>
             ))}
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
-          {/* MVP Launch Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group flex flex-col"
-            style={{
-              backgroundImage: `url(${goldTexture})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        {/* Plans Grid */}
+        <div className="grid md:grid-cols-2 gap-5 mb-5">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={plan.nameKey}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="rounded-2xl p-7 relative overflow-hidden group flex flex-col"
               style={{
-                background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
-                animation: "shimmer 2.5s ease-in-out infinite",
+                backgroundImage: `url(${plan.texture})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
               }}
-            />
-            <h3 className="text-xl font-bold flex items-center gap-2 text-black relative z-10">
-              <Rocket className="w-5 h-5" />
-              {t("pricing.mvp.name")}
-            </h3>
-            <p className="text-sm mt-1 relative z-10 text-black/70">{t("pricing.mvp.desc")}</p>
-            <div className="mt-6 mb-6 relative z-10">
-              <span className="text-lg font-bold text-red-700 line-through mr-2">€3.997</span>
-              <span className="text-4xl font-bold text-black">{t("pricing.mvp.price")}</span>
-              <span className="text-sm ml-2 text-black/60">{t("pricing.mvp.period")}</span>
-            </div>
-            <ul className="space-y-2 mb-8 relative z-10 flex-1">
-              {["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"].map((fKey) => (
-                <li key={fKey} className="flex items-start gap-2 text-sm text-black/80">
-                  <CheckCircle className="w-4 h-4 mt-0.5 text-black/50 flex-shrink-0" />
-                  {t(fKey)}
-                </li>
-              ))}
-            </ul>
-            <Button
-              onClick={() => navigate("/book")}
-              className="w-full font-semibold rounded-full border-0 bg-black/80 text-white hover:bg-black relative z-10"
             >
-              {t("pricing.mvp.cta")}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </motion.div>
+              {/* Shimmer */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
+                  animation: "shimmer 2.5s ease-in-out infinite",
+                }}
+              />
 
-          {/* Growth Plan */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)] group flex flex-col"
-            style={{
-              backgroundImage: `url(${silverTexture})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style={{
-                background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
-                animation: "shimmer 2.5s ease-in-out infinite",
-              }}
-            />
-            <div className="flex items-center gap-2 mb-2 relative z-10">
-              <span className="text-[10px] uppercase tracking-widest font-bold text-black/50 bg-black/10 px-2.5 py-1 rounded-full">
-                {t("pricing.growth.requires")}
-              </span>
-            </div>
-            <h3 className="text-xl font-bold flex items-center gap-2 text-black relative z-10">
-              <Zap className="w-5 h-5" />
-              {t("pricing.growth.name")}
-            </h3>
-            <p className="text-sm mt-1 relative z-10 text-black/70">{t("pricing.growth.desc")}</p>
-            <div className="mt-6 mb-6 relative z-10">
-              <span className="text-4xl font-bold text-black">{t("pricing.growth.price")}</span>
-              <span className="text-sm ml-2 text-black/60">{t("pricing.growth.period")}</span>
-            </div>
-            <ul className="space-y-2 mb-8 relative z-10 flex-1">
-              {["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"].map((fKey) => (
-                <li key={fKey} className="flex items-start gap-2 text-sm text-black/80">
-                  <CheckCircle className="w-4 h-4 mt-0.5 text-black/50 flex-shrink-0" />
-                  {t(fKey)}
-                </li>
-              ))}
-            </ul>
-            <Button
-              onClick={() => navigate("/book")}
-              className="w-full font-semibold rounded-full border-0 bg-black/80 text-white hover:bg-black relative z-10"
-            >
-              {t("pricing.growth.cta")}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </motion.div>
+              <div className="relative z-10 flex flex-col flex-1">
+                {plan.badge && (
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-black/40 bg-black/8 px-2.5 py-1 rounded-full self-start mb-3">
+                    {t(plan.badge)}
+                  </span>
+                )}
+
+                <div className="flex items-center gap-2 mb-1">
+                  <plan.icon className="w-4 h-4 text-black/60" />
+                  <h3 className="text-lg font-bold text-black">{t(plan.nameKey)}</h3>
+                </div>
+
+                <p className="text-sm text-black/60 mb-5">{t(plan.descKey)}</p>
+
+                <div className="mb-6">
+                  {plan.oldPrice && (
+                    <span className="text-base font-bold text-red-700 line-through mr-2">{plan.oldPrice}</span>
+                  )}
+                  <span className="text-3xl font-bold text-black">{t(plan.priceKey)}</span>
+                  <span className="text-xs ml-1.5 text-black/50">{t(plan.periodKey)}</span>
+                </div>
+
+                <ul className="space-y-2 mb-7 flex-1">
+                  {plan.features.map((fKey) => (
+                    <li key={fKey} className="flex items-start gap-2 text-sm text-black/70">
+                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-black/40 flex-shrink-0" />
+                      {t(fKey)}
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  onClick={() => navigate("/book")}
+                  className="w-full font-medium rounded-full border-0 bg-black/80 text-white hover:bg-black"
+                >
+                  {t(plan.ctaKey)}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* VIP Card */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mt-6 max-w-3xl rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-[0_10px_60px_-4px_rgba(0,0,0,0.4)] group"
+          transition={{ delay: 0.16 }}
+          className="rounded-2xl p-7 md:p-10 relative overflow-hidden group"
           style={{
             backgroundImage: `url(${diamondTexture})`,
             backgroundSize: "cover",
@@ -239,44 +208,44 @@ const PricingSection = () => {
             }}
           />
 
-          <div className="flex items-center gap-3 mb-2 relative z-10 drop-shadow-lg">
-            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-              <Crown className="w-6 h-6 text-white" />
-            </span>
-            <div>
-              <h3 className="text-xl font-bold text-white">{t("pricing.diamond.name")}</h3>
-              <p className="text-sm text-white/70">{t("pricing.diamond.desc")}</p>
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+                <Crown className="w-5 h-5 text-white" />
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
+                <p className="text-sm text-white/60">{t("pricing.diamond.desc")}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-baseline gap-x-2 mb-1">
+              <span className="text-4xl font-bold text-white">€9.500</span>
+              <span className="text-sm text-white/60">{t("pricing.diamond.setupLabel")}</span>
+            </div>
+            <p className="text-white/50 text-sm mb-1">+ €3.500 {t("pricing.diamond.period")}</p>
+            <p className="text-white/40 text-xs mb-7">⏱ {t("pricing.diamond.setup")} — {t("pricing.diamond.sprintDuration")}</p>
+
+            <div className="flex flex-col md:flex-row md:items-start gap-6">
+              <Button
+                onClick={() => navigate("/book")}
+                className="font-medium rounded-full bg-white text-black hover:bg-white/90 px-8 py-5 md:self-start"
+              >
+                {t("pricing.diamond.cta")}
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+
+              <ul className="grid sm:grid-cols-2 gap-2 flex-1">
+                {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
+                  <li key={fKey} className="flex items-center gap-2 text-sm text-white/70">
+                    <CheckCircle className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
+                    {t(fKey)}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-
-          <div className="mt-4 mb-2 relative z-10">
-            <span className="text-5xl font-bold text-white drop-shadow-lg">€9.500</span>
-            <span className="text-sm ml-2 text-white/70">{t("pricing.diamond.setupLabel")}</span>
-          </div>
-          <p className="text-white/60 text-sm mb-1 relative z-10">+ €3.500 {t("pricing.diamond.period")}</p>
-          <p className="text-white/50 text-xs mb-6 relative z-10">⏱ {t("pricing.diamond.setup")} — {t("pricing.diamond.sprintDuration")}</p>
-
-          <Button
-            onClick={() => navigate("/book")}
-            className="w-full md:w-auto font-semibold rounded-full bg-background text-foreground hover:bg-background/90 px-8 py-6 text-base relative z-10 mb-8"
-          >
-            {t("pricing.diamond.cta")}
-            <ArrowRight className="ml-2 w-4 h-4" />
-          </Button>
-
-          <div className="relative z-10">
-            
-            <ul className="grid sm:grid-cols-2 gap-3">
-              {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
-                <li key={fKey} className="flex items-center gap-3 text-sm text-white/80">
-                  <CheckCircle className="w-5 h-5 text-white/60 flex-shrink-0" />
-                  {t(fKey)}
-                </li>
-              ))}
-            </ul>
-          </div>
         </motion.div>
-
       </div>
     </section>
   );
