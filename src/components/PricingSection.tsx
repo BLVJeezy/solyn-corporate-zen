@@ -198,29 +198,6 @@ const PricingSection = () => {
           ))}
         </div>
 
-        {/* Book a Call card */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mb-8"
-        >
-          <div className="flex items-center gap-4">
-            <img src={solynLogo} alt="Solyn" className="w-10 h-10 rounded-full object-cover" />
-            <div>
-              <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
-              <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
-            </div>
-          </div>
-          <Button
-            onClick={() => navigate("/book")}
-            className="rounded-full bg-[hsl(0_0%_14%)] text-white hover:bg-[hsl(0_0%_20%)] px-5 text-sm shrink-0"
-          >
-            <Calendar className="w-4 h-4 mr-2" />
-            {t("nav.book")}
-          </Button>
-        </motion.div>
-
         <div className="w-full border-t border-border my-8" />
 
         {/* Sprints + MVP Development Grid */}
@@ -330,7 +307,30 @@ const PricingSection = () => {
             </div>
           </motion.div>
         </div>
-      </div>
+        </div>
+
+        {/* Book a Call card */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mt-8"
+        >
+          <div className="flex items-center gap-4">
+            <img src={solynLogo} alt="Solyn" className="w-10 h-10 rounded-full object-cover" />
+            <div>
+              <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
+              <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
+            </div>
+          </div>
+          <Button
+            onClick={() => navigate("/book")}
+            className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-5 text-sm shrink-0"
+          >
+            <Calendar className="w-4 h-4 mr-2" />
+            {t("nav.book")}
+          </Button>
+        </motion.div>
     </section>
   );
 };
