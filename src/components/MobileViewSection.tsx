@@ -49,16 +49,16 @@ const MobileViewSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-flex animate-infinite-scroll hover:[animation-play-state:paused]">
+          <div className="inline-flex items-center animate-infinite-scroll hover:[animation-play-state:paused]">
             {[...mobileItems, ...mobileItems].map((item, i) => (
               <div
                 key={i}
-                className={`flex-shrink-0 ${item.type === "mobile" ? "w-[240px] sm:w-[300px] md:w-[380px] lg:w-[420px]" : "w-[320px] sm:w-[420px] md:w-[540px] lg:w-[620px]"} mx-3 md:mx-4 rounded-2xl overflow-hidden group`}
+                className={`flex-shrink-0 ${item.type === "mobile" ? "w-[200px] sm:w-[240px] md:w-[300px] lg:w-[340px]" : "w-[320px] sm:w-[420px] md:w-[540px] lg:w-[620px]"} mx-3 md:mx-4 rounded-2xl overflow-hidden group`}
               >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className={`w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 ${item.type === "mobile" ? "scale-[1.08] origin-top-left group-hover:scale-[1.13]" : ""}`}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
