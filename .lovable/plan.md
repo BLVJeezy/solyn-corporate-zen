@@ -1,20 +1,16 @@
 
 
-## Situatie
+## Problem
 
-De code bevat al alle "Manager Upgrade" wijzigingen:
-- **MobileLeadCard** component (card stack layout)
-- **MobileLeadDrawer** component (bottom drawer met quick actions)
-- **Sticky search & filter bar**
-- **Conditionele rendering**: mobiel → cards, desktop → tabel
+The navbar right-side elements (language switcher NL/FR/EN, theme toggle, user icon) use hardcoded `text-white` colors which are invisible on the light theme background. The centered pill nav works fine because it has a dark background, but the elements outside the pill blend into the light page background.
 
-Het probleem is dat de `leads`-tabel momenteel **leeg** is (API retourneert `[]`), waardoor je alleen "Geen leads gevonden" ziet — ongeacht mobiel of desktop.
+## Fix
 
-## Oplossingen
+Update `src/components/Navbar.tsx` to use theme-aware colors for elements outside the dark pill:
 
-1. **Test met data**: Voeg een lead toe via de "Lead toevoegen" knop in het admin dashboard. Dan worden de mobiele cards en drawer zichtbaar.
+1. **Language switcher buttons**: Change from `text-white/50` / `bg-white/10 text-white` to `text-foreground/50` / `bg-foreground/10 text-foreground`
+2. **User login button**: Change from `text-white/50 hover:text-white hover:bg-white/10` to `text-foreground/50 hover:text-foreground hover:bg-foreground/10`
+3. **Mobile hamburger**: Change from `text-white` to `text-foreground`
 
-2. **Optioneel**: Ik kan een lege-staat verbeteren met een duidelijkere call-to-action i.p.v. alleen "Geen leads gevonden".
-
-Er zijn geen code-wijzigingen nodig — de functionaliteit is al gebouwd en werkt zodra er leads in de database staan.
+The pill nav items inside the dark container keep their `text-white` styling since they sit on a dark background.
 
