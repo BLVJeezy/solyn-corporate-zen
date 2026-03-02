@@ -1,7 +1,7 @@
 import { Code, CheckCircle, Sparkles, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import portfolioImg from "@/assets/portfolio-1.png";
+import portfolioImg from "@/assets/mvp-preview.png";
 import portfolioImg2 from "@/assets/portfolio-2.png";
 
 const ServicesGrid = () => {
