@@ -199,7 +199,7 @@ const PricingSection = () => {
           ))}
         </div>
 
-        <div className="w-full border-t border-border my-8" />
+        
 
         {/* Sprints + MVP Development Grid */}
         <div className="grid md:grid-cols-2 gap-6">
