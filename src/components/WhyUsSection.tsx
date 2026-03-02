@@ -14,7 +14,7 @@ const WhyUsSection = () => {
 
   return (
     <section className="py-12 md:py-24 bg-background">
-      <div className="container mx-auto px-4 max-w-5xl">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {cards.map((card, i) => (
             <motion.div
