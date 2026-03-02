@@ -1,16 +1,21 @@
 
 
-## Plan: Verwijder de lijn onder de navbar op de portfolio pagina
+## Google Search Console verificatie
 
-De lijn wordt veroorzaakt door de globale CSS-regel `* { @apply border-border }` (in `index.css`, regel 90) die een border-kleur instelt op alle elementen. Op de homepage valt dit niet op door de donkere achtergrond, maar op de portfolio pagina (lichte achtergrond) wordt de border zichtbaar als een dunne lijn onder de navbar.
+**Probleem**: De HTML-bestand verificatiemethode werkt niet met Lovable's hosting.
 
-### Wijziging
+**Oplossing**: Gebruik de **HTML-tag** verificatiemethode in Google Search Console:
 
-**`src/components/Navbar.tsx`** (regel 72): Voeg `border-none` toe aan de `motion.nav` className:
+1. Ga in Google Search Console naar **Instellingen → Eigendomsverificatie**
+2. Kies **HTML-tag** als verificatiemethode
+3. Google geeft je een meta-tag zoals:
+   ```html
+   <meta name="google-site-verification" content="abc123xyz..." />
+   ```
+4. Stuur mij die meta-tag, dan voeg ik die toe aan `index.html` in de `<head>` sectie
 
-```
-"fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent border-none"
-```
+### Technische wijziging
+- **`index.html`**: Eén `<meta name="google-site-verification" ...>` tag toevoegen in de `<head>`
 
-Dit forceert de border naar nul en voorkomt dat de globale `border-border` regel een zichtbare lijn creëert.
+Dit is de snelste en betrouwbaarste methode voor verificatie met Lovable.
 
