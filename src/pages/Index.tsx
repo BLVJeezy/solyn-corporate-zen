@@ -7,7 +7,7 @@ import ProcessSection from "@/components/ProcessSection";
 
 import WhyUsSection from "@/components/WhyUsSection";
 import CTASection from "@/components/CTASection";
-import NewsletterSection from "@/components/NewsletterSection";
+
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
@@ -25,7 +25,7 @@ const Index = () => {
         
         <WhyUsSection />
         <CTASection />
-        <NewsletterSection />
+        
         <Footer />
       </div>
     </LanguageProvider>
