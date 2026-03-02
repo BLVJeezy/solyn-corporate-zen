@@ -10,45 +10,33 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="home" className="min-h-[60vh] md:min-h-[90vh] flex items-end md:items-center bg-background pt-20 pb-8 md:pt-24 md:pb-0">
+    <section id="home" className="min-h-[70vh] md:min-h-[90vh] flex items-center bg-[hsl(0_0%_7%)] pt-20 pb-16 md:pt-24 md:pb-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-3xl">
-
-          
+          className="max-w-4xl mx-auto text-center">
 
 
 
-
-
-
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1] tracking-tight mb-4 md:mb-6">
-            <span className="bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t("hero.title1")}</span>{" "}
-            <span className="bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t("hero.title2")}</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-[1.15] tracking-tight mb-6 md:mb-10">
+            {t("hero.subtitle")}
           </h1>
 
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 md:mb-10 max-w-xl">
-            {t("hero.subtitle")}
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Button
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
+              className="bg-white text-[hsl(0_0%_7%)] hover:bg-white/90 font-medium px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
               onClick={() => navigate("/book")}>
-
               <ArrowRight className="mr-2 w-4 h-4" />
               {t("hero.cta1")}
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-border text-foreground hover:bg-accent px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
+              className="border-white/20 text-white hover:bg-white/10 px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
               onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}>
-
               {t("hero.cta2")}
             </Button>
           </div>
