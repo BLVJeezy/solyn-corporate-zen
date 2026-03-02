@@ -56,6 +56,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform voor premium nail art studio.",
 
+    // Mobile View
+    "mobileView.heading": "Mobiele View",
+
     // Pricing
     "pricing.label": "Pakketten",
     "pricing.heading": "Transparante Prijzen",
@@ -172,6 +175,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p3.category": "Beauté & Bien-être",
     "portfolio.p3.desc": "Plateforme de marque élégante pour un studio de nail art premium.",
 
+    // Mobile View
+    "mobileView.heading": "Vue Mobile",
+
     // Pricing
     "pricing.label": "Forfaits",
     "pricing.heading": "Prix Transparents",
@@ -287,6 +293,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p2.desc": "Lead generation platform with quote request system.",
     "portfolio.p3.category": "Beauty & Wellness",
     "portfolio.p3.desc": "Elegant brand platform for a premium nail art studio.",
+
+    // Mobile View
+    "mobileView.heading": "Mobile View",
 
     // Pricing
     "pricing.label": "Packages",
