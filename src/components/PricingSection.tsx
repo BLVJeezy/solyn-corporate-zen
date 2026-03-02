@@ -64,27 +64,27 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-2xl border p-8 transition-all duration-300 ${
+              className={`rounded-2xl border p-8 transition-all duration-300 backdrop-blur-xl ${
                 plan.inverted
-                  ? "border-foreground/20 bg-foreground text-background shadow-[0_0_50px_-4px_hsl(var(--gradient-from)/0.5),0_0_80px_-8px_hsl(var(--gradient-via)/0.3)]"
-                  : "border-border bg-card"
+                  ? "border-yellow-500/30 bg-gradient-to-br from-yellow-500/10 via-amber-500/5 to-transparent shadow-[0_0_40px_-5px_rgba(234,179,8,0.2)]"
+                  : "border-slate-400/20 bg-gradient-to-br from-slate-300/10 via-gray-400/5 to-transparent shadow-[0_0_30px_-5px_rgba(148,163,184,0.1)]"
               }`}
             >
-              <h3 className={`text-xl font-semibold flex items-center gap-2 ${plan.inverted ? "text-background" : "text-foreground"}`}>
+              <h3 className="text-xl font-semibold flex items-center gap-2 text-foreground">
                 <plan.icon className="w-5 h-5" />
                 {t(plan.nameKey)}
               </h3>
-              <p className={`text-sm mt-1 ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>{t(plan.descKey)}</p>
+              <p className="text-sm mt-1 text-muted-foreground">{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6">
                 <span className="text-4xl font-semibold bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t(plan.priceKey)}</span>
-                <span className={`text-sm ml-2 ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>{t(plan.periodKey)}</span>
+                <span className="text-sm ml-2 text-muted-foreground">{t(plan.periodKey)}</span>
               </div>
 
               <ul className="space-y-2.5 mb-8">
                 {plan.features.map((fKey) => (
-                  <li key={fKey} className={`flex items-start gap-2.5 text-sm ${plan.inverted ? "text-background/60" : "text-muted-foreground"}`}>
-                    <span className={`mt-0.5 ${plan.inverted ? "text-background" : "text-foreground"}`}>—</span>
+                  <li key={fKey} className="flex items-start gap-2.5 text-sm text-muted-foreground">
+                    <span className="mt-0.5 text-foreground">—</span>
                     {t(fKey)}
                   </li>
                 ))}
@@ -94,7 +94,7 @@ const PricingSection = () => {
                 onClick={() => navigate("/book")}
                 className={`w-full font-medium rounded-full ${
                   plan.inverted
-                    ? "bg-background text-foreground hover:bg-background/90"
+                    ? "bg-gradient-to-r from-yellow-500/80 to-amber-500/80 text-white hover:from-yellow-500 hover:to-amber-500 border-0"
                     : "bg-transparent border border-border text-foreground hover:border-foreground/30"
                 }`}
               >
