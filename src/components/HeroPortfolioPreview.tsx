@@ -12,14 +12,14 @@ const HeroPortfolioPreview = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl overflow-hidden bg-[hsl(0,0%,8%)] aspect-[4/3] relative group"
-          >
+            className="rounded-2xl overflow-hidden bg-[hsl(0,0%,8%)] aspect-[4/3] relative group">
+
             <img
               src={portfolio1}
               alt="Belgomed BV"
               className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
+              loading="lazy" />
+
             <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,4%)] via-transparent to-transparent" />
           </motion.div>
 
@@ -28,28 +28,28 @@ const HeroPortfolioPreview = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-2xl overflow-hidden bg-[hsl(0,0%,8%)] aspect-[4/3] relative group"
-          >
+            className="rounded-2xl overflow-hidden bg-[hsl(0,0%,8%)] aspect-[4/3] relative group">
+
             <img
               src={portfolio2}
               alt="Shinelab Detailing"
               className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
+              loading="lazy" />
+
             <div className="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,4%)] via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 p-6 md:p-8">
-              <span className="text-xs uppercase tracking-widest text-[hsl(0,0%,60%)] font-medium">
-                Automotive
-              </span>
-              <h3 className="text-lg font-semibold text-[hsl(0,0%,97%)] mt-1">
-                Shinelab Detailing
-              </h3>
-            </div>
+            
+
+
+
+
+
+
+
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroPortfolioPreview;
