@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import portfolio1 from "@/assets/portfolio-1.png";
+import portfolio2 from "@/assets/portfolio-2.png";
+import portfolio3 from "@/assets/portfolio-3.png";
+import portfolioSheff from "@/assets/portfolio-shefftrades.png";
 
 interface Project {
   image: string;
@@ -10,8 +14,12 @@ interface Project {
 const PortfolioSection = () => {
   const { t } = useLanguage();
 
-  // Projects array - add new projects here
-  const projects: Project[] = [];
+  const projects: Project[] = [
+    { image: portfolio1, title: "Belgomed BV", descKey: "portfolio.p1.desc" },
+    { image: portfolio2, title: "Shinelab Detailing", descKey: "portfolio.p2.desc" },
+    { image: portfolio3, title: "L'atelier 9", descKey: "portfolio.p3.desc" },
+    { image: portfolioSheff, title: "Sheff Trades", descKey: "portfolio.p4.desc" },
+  ];
 
   return (
     <section id="portfolio" className="py-24 bg-white dark:bg-background">
