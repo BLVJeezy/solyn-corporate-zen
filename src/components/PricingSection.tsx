@@ -338,7 +338,7 @@ const PricingSection = () => {
             className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-5 text-sm shrink-0"
           >
             <Calendar className="w-4 h-4 mr-2" />
-            {t("nav.book")}
+            {t("nav.bookCall")}
           </Button>
         </motion.div>
       </div>
