@@ -69,7 +69,7 @@ const PricingSection = () => {
               <p className="text-sm text-muted-foreground mt-1">{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6">
-                <span className="text-4xl font-semibold bg-gradient-to-r from-[hsl(40,48%,56%)] via-[hsl(40,60%,70%)] to-[hsl(210,15%,70%)] bg-clip-text text-transparent">{t(plan.priceKey)}</span>
+                <span className="text-4xl font-semibold bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t(plan.priceKey)}</span>
                 <span className="text-sm text-muted-foreground ml-2">{t(plan.periodKey)}</span>
               </div>
 

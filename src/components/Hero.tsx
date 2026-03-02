@@ -24,8 +24,8 @@ const Hero = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.1] tracking-tight mb-4 md:mb-6">
-            <span className="bg-gradient-to-r from-[hsl(40,48%,56%)] via-[hsl(40,60%,70%)] to-[hsl(210,15%,70%)] bg-clip-text text-transparent">{t("hero.title1")}</span>{" "}
-            <span className="bg-gradient-to-r from-[hsl(40,48%,56%)] via-[hsl(40,60%,70%)] to-[hsl(210,15%,70%)] bg-clip-text text-transparent">{t("hero.title2")}</span>
+            <span className="bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t("hero.title1")}</span>{" "}
+            <span className="bg-gradient-to-r from-[hsl(var(--gradient-from))] via-[hsl(var(--gradient-via))] to-[hsl(var(--gradient-to))] bg-clip-text text-transparent">{t("hero.title2")}</span>
           </h1>
 
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-8 md:mb-10 max-w-xl">
