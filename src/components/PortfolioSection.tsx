@@ -47,14 +47,14 @@ const ProjectCard = ({ project, index, t }: { project: Project; index: number; t
             <img
               src={project.images[1].src}
               alt={`${project.title} - ${project.images[1].label}`}
-              className="absolute top-4 right-0 w-[75%] h-auto rounded-xl shadow-xl object-cover object-top border border-white/20 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
+              className="absolute top-6 right-0 w-[88%] h-auto rounded-xl shadow-xl object-cover object-top border border-white/20 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
               loading="lazy"
             />
             {/* Front image - offset left and up */}
             <img
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
-              className="absolute top-0 left-0 w-[78%] h-auto rounded-xl shadow-2xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:-translate-x-1 group-hover:translate-y-1"
+              className="absolute top-0 left-0 w-[90%] h-auto rounded-xl shadow-2xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:-translate-x-1 group-hover:translate-y-1"
               loading="lazy"
             />
           </div>
