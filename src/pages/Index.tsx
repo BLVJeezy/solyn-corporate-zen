@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
-import MobileViewSection from "@/components/MobileViewSection";
+
 import WhyUsSection from "@/components/WhyUsSection";
 import CTASection from "@/components/CTASection";
 import NewsletterSection from "@/components/NewsletterSection";
@@ -22,7 +22,7 @@ const Index = () => {
         
         <ServicesGrid />
         <TrustBar />
-        <MobileViewSection />
+        
         <WhyUsSection />
         <CTASection />
         <NewsletterSection />
