@@ -29,7 +29,7 @@ const LeadForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 border-t border-border">
+    <section id="contact" className="py-12 md:py-24 border-t border-border">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

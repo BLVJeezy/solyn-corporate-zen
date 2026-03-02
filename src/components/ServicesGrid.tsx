@@ -8,7 +8,7 @@ const ServicesGrid = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Heading */}
         <motion.div
