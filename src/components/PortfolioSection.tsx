@@ -41,7 +41,7 @@ const PortfolioSection = () => {
           <span className="text-sm uppercase tracking-[0.3em] text-gold font-medium">
             {t("portfolio.label")}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-3">
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground mt-3 tracking-tight">
             {t("portfolio.heading")}
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">

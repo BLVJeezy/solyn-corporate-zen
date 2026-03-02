@@ -36,7 +36,7 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl mx-auto"
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-charcoal-foreground leading-tight mb-6">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-charcoal-foreground leading-[0.95] mb-6 tracking-tight">
             {t("hero.title1")}{" "}
             <span className="text-gradient-gold">{t("hero.title2")}</span>
           </h1>

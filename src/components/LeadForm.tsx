@@ -37,7 +37,7 @@ const LeadForm = () => {
           viewport={{ once: true }}
           className="max-w-lg mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-3xl md:text-5xl text-foreground mb-4 tracking-tight">
             {t("lead.heading1")} <span className="text-gradient-gold">{t("lead.heading2")}</span>
           </h2>
           <p className="text-muted-foreground mb-10 leading-relaxed">
