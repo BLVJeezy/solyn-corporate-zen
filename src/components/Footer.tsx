@@ -103,6 +103,8 @@ const Footer = () => {
             <span>{t("footer.rights")}</span>
             <span className="text-white/20">·</span>
             <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <span className="text-white/20">·</span>
+            <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
           <div className="flex items-center gap-4 text-white/40">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
