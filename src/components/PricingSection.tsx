@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
+
+const CALENDLY_URL = "https://calendly.com/solyn/global";
 
 const PricingSection = () => {
   const { t } = useLanguage();
-  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
   const plans = [
     {
@@ -18,8 +17,7 @@ const PricingSection = () => {
       descKey: "pricing.mvp.desc",
       features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
       highlighted: true,
-      amount: 2000,
-      currency: "EUR",
+      ctaKey: "pricing.mvp.cta",
     },
     {
       nameKey: "pricing.sprint.name",
@@ -28,32 +26,33 @@ const PricingSection = () => {
       descKey: "pricing.sprint.desc",
       features: ["pricing.sprint.f1", "pricing.sprint.f2", "pricing.sprint.f3", "pricing.sprint.f4"],
       highlighted: false,
-      amount: 250,
-      currency: "EUR",
+      ctaKey: "pricing.sprint.cta",
     },
   ];
 
-  const handlePayment = async (plan: typeof plans[0]) => {
-    setLoadingPlan(plan.nameKey);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-revolut-order", {
-        body: { amount: plan.amount, currency: plan.currency, description: t(plan.nameKey) },
-      });
-      if (error || !data?.token) throw new Error(error?.message || "Could not create order");
-
-      const { default: RevolutCheckout } = await import("@revolut/checkout");
-      const instance = await RevolutCheckout(data.token, data.mode || "prod");
-
-      instance.payWithPopup({
-        onSuccess: () => { toast.success("Betaling geslaagd!"); setLoadingPlan(null); },
-        onError: () => { toast.error("Betaling mislukt."); setLoadingPlan(null); },
-        onCancel: () => { setLoadingPlan(null); },
-      });
-    } catch {
-      toast.error("Er ging iets mis.");
-      setLoadingPlan(null);
+  const openCalendly = () => {
+    if ((window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+    } else {
+      window.open(CALENDLY_URL, "_blank");
     }
   };
+
+  useEffect(() => {
+    // Load Calendly widget script
+    if (!document.getElementById("calendly-script")) {
+      const script = document.createElement("script");
+      script.id = "calendly-script";
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.head.appendChild(script);
+
+      const link = document.createElement("link");
+      link.href = "https://assets.calendly.com/assets/external/widget.css";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+    }
+  }, []);
 
   return (
     <section id="pricing" className="py-24 bg-background">
@@ -105,19 +104,15 @@ const PricingSection = () => {
               </ul>
 
               <Button
-                onClick={() => handlePayment(plan)}
-                disabled={loadingPlan !== null}
+                onClick={openCalendly}
                 className={`w-full font-medium rounded-full ${
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "bg-transparent border border-border text-foreground hover:border-foreground/30"
                 }`}
               >
-                {loadingPlan === plan.nameKey ? (
-                  <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                ) : null}
-                {loadingPlan === plan.nameKey ? "Laden..." : t("pricing.cta")}
-                {loadingPlan !== plan.nameKey && <ArrowRight className="ml-2 w-4 h-4" />}
+                {t(plan.ctaKey)}
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </motion.div>
           ))}
