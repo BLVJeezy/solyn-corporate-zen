@@ -7,7 +7,7 @@ import portfolioImg2 from "@/assets/portfolio-2.png";
 const ServicesGrid = () => {
   const { t } = useLanguage();
 
-  return;
+  return null;
 
 
 
