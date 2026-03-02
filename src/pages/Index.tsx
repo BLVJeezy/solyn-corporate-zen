@@ -24,9 +24,8 @@ const Index = () => {
         <HeroPortfolioPreview />
         <ServicesGrid />
         <TrustBar />
-        <ProcessSection />
-        <PricingSection />
         <MobileViewSection />
+        <PricingSection />
         
         <LeadForm />
         <NewsletterSection />
