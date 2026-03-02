@@ -69,14 +69,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.mvp.name": "MVP Launch",
     "pricing.mvp.price": "€2.000",
     "pricing.mvp.period": "eenmalig",
-    "pricing.mvp.desc": "Van idee naar live product in 48 uur.",
+    "pricing.mvp.desc": "Van idee naar live product in 1 week.",
     "pricing.mvp.f1": "Volledig functionele website of webapp",
     "pricing.mvp.f2": "Responsive design op maat",
     "pricing.mvp.f3": "CMS of admin-paneel inbegrepen",
-    "pricing.mvp.f4": "48 uur doorlooptijd",
+    "pricing.mvp.f4": "1 week doorlooptijd",
     "pricing.sprint.name": "Growth Sprint",
     "pricing.sprint.price": "€250",
-    "pricing.sprint.period": "per 48u sprint",
+    "pricing.sprint.period": "per week sprint",
     "pricing.sprint.desc": "Continue verbetering en schaling.",
     "pricing.sprint.f1": "Feature-ontwikkeling op maat",
     "pricing.sprint.f2": "Bug fixes & optimalisatie",
@@ -85,8 +85,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Book a Call
     "book.heading": "Klaar om te starten?",
-    "book.subtitle": "Plan een vrijblijvend gesprek en ontdek hoe wij uw project binnen 48 uur kunnen realiseren.",
-    "book.cta": "Start Jouw 48u Sprint",
+    "book.subtitle": "Plan een vrijblijvend gesprek en ontdek hoe wij uw project binnen 1 week kunnen realiseren.",
+    "book.cta": "Start Jouw Sprint",
 
     // Newsletter
     "newsletter.heading": "Blijf op de hoogte",
@@ -188,14 +188,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.mvp.name": "MVP Launch",
     "pricing.mvp.price": "€2.000",
     "pricing.mvp.period": "unique",
-    "pricing.mvp.desc": "De l'idée au produit live en 48 heures.",
+    "pricing.mvp.desc": "De l'idée au produit live en 1 semaine.",
     "pricing.mvp.f1": "Site web ou webapp entièrement fonctionnel",
     "pricing.mvp.f2": "Design responsive sur mesure",
     "pricing.mvp.f3": "CMS ou panneau d'administration inclus",
-    "pricing.mvp.f4": "Délai de 48 heures",
+    "pricing.mvp.f4": "Délai d'1 semaine",
     "pricing.sprint.name": "Growth Sprint",
     "pricing.sprint.price": "€250",
-    "pricing.sprint.period": "par sprint de 48h",
+    "pricing.sprint.period": "par sprint d'1 semaine",
     "pricing.sprint.desc": "Amélioration continue et mise à l'échelle.",
     "pricing.sprint.f1": "Développement de fonctionnalités sur mesure",
     "pricing.sprint.f2": "Corrections de bugs & optimisation",
@@ -204,8 +204,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Book a Call
     "book.heading": "Prêt à commencer ?",
-    "book.subtitle": "Planifiez un appel gratuit et découvrez comment nous pouvons réaliser votre projet en 48 heures.",
-    "book.cta": "Démarrez Votre Sprint 48h",
+    "book.subtitle": "Planifiez un appel gratuit et découvrez comment nous pouvons réaliser votre projet en 1 semaine.",
+    "book.cta": "Démarrez Votre Sprint",
 
     // Newsletter
     "newsletter.heading": "Restez informé",
@@ -307,14 +307,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.mvp.name": "MVP Launch",
     "pricing.mvp.price": "€2,000",
     "pricing.mvp.period": "one-time",
-    "pricing.mvp.desc": "From idea to live product in 48 hours.",
+    "pricing.mvp.desc": "From idea to live product in 1 week.",
     "pricing.mvp.f1": "Fully functional website or web app",
     "pricing.mvp.f2": "Custom responsive design",
     "pricing.mvp.f3": "CMS or admin panel included",
-    "pricing.mvp.f4": "48-hour turnaround",
+    "pricing.mvp.f4": "1-week turnaround",
     "pricing.sprint.name": "Growth Sprint",
     "pricing.sprint.price": "€250",
-    "pricing.sprint.period": "per 48h sprint",
+    "pricing.sprint.period": "per weekly sprint",
     "pricing.sprint.desc": "Continuous improvement and scaling.",
     "pricing.sprint.f1": "Custom feature development",
     "pricing.sprint.f2": "Bug fixes & optimization",
@@ -323,8 +323,8 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Book a Call
     "book.heading": "Ready to start?",
-    "book.subtitle": "Schedule a free call and discover how we can bring your project to life within 48 hours.",
-    "book.cta": "Start Your 48h Sprint",
+    "book.subtitle": "Schedule a free call and discover how we can bring your project to life within 1 week.",
+    "book.cta": "Start Your Sprint",
 
     // Newsletter
     "newsletter.heading": "Stay in the loop",
