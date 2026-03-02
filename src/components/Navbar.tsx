@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
+import { openCalendly } from "@/lib/calendly";
 
 const languages: Lang[] = ["NL", "FR", "EN"];
 
@@ -55,13 +56,7 @@ const Navbar = () => {
               <Button
                 size="sm"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
-                onClick={() => {
-                  if ((window as any).Calendly) {
-                    (window as any).Calendly.initPopupWidget({ url: "https://calendly.com/solyn/global" });
-                  } else {
-                    window.open("https://calendly.com/solyn/global", "_blank");
-                  }
-                }}
+                onClick={openCalendly}
               >
                 Book a Call
               </Button>

@@ -2,19 +2,10 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-
-const CALENDLY_URL = "https://calendly.com/solyn/global";
+import { openCalendly } from "@/lib/calendly";
 
 const BookCallSection = () => {
   const { t } = useLanguage();
-
-  const openCalendly = () => {
-    if ((window as any).Calendly) {
-      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
-    } else {
-      window.open(CALENDLY_URL, "_blank");
-    }
-  };
 
   return (
     <section id="book" className="py-24 bg-background">

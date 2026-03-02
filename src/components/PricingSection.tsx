@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/i18n/LanguageContext";
-
-const CALENDLY_URL = "https://calendly.com/solyn/global";
+import { openCalendly, loadCalendlyScript } from "@/lib/calendly";
 
 const PricingSection = () => {
   const { t } = useLanguage();
@@ -30,28 +29,8 @@ const PricingSection = () => {
     },
   ];
 
-  const openCalendly = () => {
-    if ((window as any).Calendly) {
-      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
-    } else {
-      window.open(CALENDLY_URL, "_blank");
-    }
-  };
-
   useEffect(() => {
-    // Load Calendly widget script
-    if (!document.getElementById("calendly-script")) {
-      const script = document.createElement("script");
-      script.id = "calendly-script";
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.head.appendChild(script);
-
-      const link = document.createElement("link");
-      link.href = "https://assets.calendly.com/assets/external/widget.css";
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
-    }
+    loadCalendlyScript();
   }, []);
 
   return (
