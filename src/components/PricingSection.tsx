@@ -331,6 +331,7 @@ const PricingSection = () => {
             {t("nav.book")}
           </Button>
         </motion.div>
+      </div>
     </section>
   );
 };
