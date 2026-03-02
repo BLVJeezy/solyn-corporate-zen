@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
-import LazyImage from "@/components/LazyImage";
-import portfolio1 from "@/assets/portfolio-1.webp";
-import portfolio1b from "@/assets/portfolio-1b.webp";
-import portfolio2 from "@/assets/portfolio-2.webp";
-import portfolio2b from "@/assets/portfolio-2b.webp";
-import portfolio3 from "@/assets/portfolio-3.webp";
-import portfolio3b from "@/assets/portfolio-3b.webp";
-import portfolioSheff from "@/assets/portfolio-shefftrades.webp";
-import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.webp";
-import portfolioLeplana from "@/assets/portfolio-leplana.webp";
-import portfolioLeplana2 from "@/assets/portfolio-leplana-2.webp";
-import portfolioRW from "@/assets/portfolio-rw-academy.webp";
-import portfolioRW2 from "@/assets/portfolio-rw-academy-2.webp";
+import portfolio1 from "@/assets/portfolio-1.png";
+import portfolio1b from "@/assets/portfolio-1b.png";
+import portfolio2 from "@/assets/portfolio-2.png";
+import portfolio2b from "@/assets/portfolio-2b.png";
+import portfolio3 from "@/assets/portfolio-3.png";
+import portfolio3b from "@/assets/portfolio-3b.png";
+import portfolioSheff from "@/assets/portfolio-shefftrades.png";
+import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.png";
+import portfolioLeplana from "@/assets/portfolio-leplana.png";
+import portfolioLeplana2 from "@/assets/portfolio-leplana-2.png";
+import portfolioRW from "@/assets/portfolio-rw-academy.png";
+import portfolioRW2 from "@/assets/portfolio-rw-academy-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -45,38 +44,38 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
         style={{ background: project.brandColor || 'linear-gradient(to bottom right, #f0eeeb, #e8e5e0)' }}>
         {project.images.length === 1 ? (
         /* Single image - clean full view */
-        <LazyImage
+        <img
           src={project.images[0].src}
           alt={project.title}
           className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
-        />) : (
+          loading="lazy" />) : (
 
 
         /* Multi-image layout */
         <div className={`relative w-full h-full ${project.images.length === 2 ? 'flex flex-col gap-2' : 'grid grid-cols-2 gap-2'} p-1`}>
-            <LazyImage
+            <img
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
               className={`w-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[55%]' : 'h-full'}`}
-            />
-            <LazyImage
+              loading="lazy" />
+            <img
               src={project.images[1].src}
               alt={`${project.title} - ${project.images[1].label}`}
               className={`w-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[45%]' : 'h-full'}`}
-            />
+              loading="lazy" />
             {project.images[2] && (
-              <LazyImage
+              <img
                 src={project.images[2].src}
                 alt={`${project.title} - ${project.images[2].label}`}
                 className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-              />
+                loading="lazy" />
             )}
             {project.images[3] && (
-              <LazyImage
+              <img
                 src={project.images[3].src}
                 alt={`${project.title} - ${project.images[3].label}`}
                 className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-              />
+                loading="lazy" />
             )}
           </div>)
         }
