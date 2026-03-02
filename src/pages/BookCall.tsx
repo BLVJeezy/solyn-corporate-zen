@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 import { CALENDLY_URL, loadCalendlyScript } from "@/lib/calendly";
-import ThemeToggle from "@/components/ThemeToggle";
+
 
 const BookCallContent = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const BookCallContent = () => {
           <ArrowLeft className="w-4 h-4" />
           {t("bookPage.back")}
         </Button>
-        <ThemeToggle />
+        
       </div>
 
       <hr className="border-border" />
