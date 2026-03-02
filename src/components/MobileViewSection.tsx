@@ -3,19 +3,13 @@ import mobile1 from "@/assets/mobile-preview-1.png";
 import mobile2 from "@/assets/mobile-preview-2.png";
 import mobile3 from "@/assets/mobile-preview-3.png";
 import mobile4 from "@/assets/mobile-preview-4.png";
-import portfolio1 from "@/assets/portfolio-1.png";
-import portfolio2 from "@/assets/portfolio-2.png";
-import portfolio3 from "@/assets/portfolio-3.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const mobileItems = [
-  { src: mobile1, alt: "Belgomed Analytics", type: "mobile" as const },
-  { src: portfolio1, alt: "Belgomed BV", type: "desktop" as const },
-  { src: mobile2, alt: "RW Intelligence", type: "mobile" as const },
-  { src: portfolio2, alt: "Shinelab Detailing", type: "desktop" as const },
-  { src: mobile3, alt: "Trading Journal", type: "mobile" as const },
-  { src: portfolio3, alt: "L'atelier 9", type: "desktop" as const },
-  { src: mobile4, alt: "Smash Burgers", type: "mobile" as const },
+  { src: mobile1, alt: "Belgomed Analytics" },
+  { src: mobile2, alt: "RW Intelligence" },
+  { src: mobile3, alt: "Trading Journal" },
+  { src: mobile4, alt: "Smash Burgers" },
 ];
 
 const MobileViewSection = () => {
@@ -53,12 +47,12 @@ const MobileViewSection = () => {
             {[...mobileItems, ...mobileItems].map((item, i) => (
               <div
                 key={i}
-                className={`flex-shrink-0 ${item.type === "mobile" ? "w-[140px] sm:w-[160px] md:w-[200px] lg:w-[220px]" : "w-[200px] sm:w-[240px] md:w-[300px] lg:w-[340px]"} h-[280px] sm:h-[320px] md:h-[400px] lg:h-[440px] mx-3 md:mx-4 rounded-2xl overflow-hidden group`}
+                className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] mx-3 md:mx-4 rounded-2xl overflow-hidden group shadow-lg"
               >
                 <img
                   src={item.src}
                   alt={item.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
