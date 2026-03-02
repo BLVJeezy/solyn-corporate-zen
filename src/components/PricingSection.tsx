@@ -3,6 +3,8 @@ import { ArrowRight, Zap, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
+import goldTexture from "@/assets/gold-texture.jpeg";
+import silverTexture from "@/assets/silver-texture.webp";
 
 const PricingSection = () => {
   const { t } = useLanguage();
@@ -64,11 +66,12 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-2xl p-8 transition-all duration-300 ${
-                plan.inverted
-                  ? "border border-yellow-600/40 bg-gradient-to-br from-yellow-200 via-yellow-400 to-amber-600 shadow-[inset_0_2px_1px_0_rgba(255,255,220,0.6),inset_0_-3px_6px_0_rgba(120,80,0,0.25),0_10px_40px_-4px_rgba(180,130,0,0.35)]"
-                  : "border border-slate-300/60 bg-gradient-to-br from-gray-100 via-slate-300 to-gray-500 shadow-[inset_0_2px_1px_0_rgba(255,255,255,0.7),inset_0_-3px_6px_0_rgba(100,100,120,0.15),0_10px_40px_-4px_rgba(100,100,120,0.25)]"
-              }`}
+              className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden shadow-[0_10px_40px_-4px_rgba(0,0,0,0.25)]"
+              style={{
+                backgroundImage: `url(${plan.inverted ? goldTexture : silverTexture})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             >
               <h3 className={`text-xl font-semibold flex items-center gap-2 ${plan.inverted ? "text-yellow-950" : "text-slate-800"}`}>
                 <plan.icon className="w-5 h-5" />
