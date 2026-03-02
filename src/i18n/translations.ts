@@ -166,6 +166,12 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. Alle rechten voorbehouden.",
+
+    // CTA
+    "cta.heading": "Klaar om uw volgende project te bouwen?",
+    "cta.subtitle": "Plan een gratis gesprek zodat we meer kunnen leren over uw idee.",
+    "cta.contact": "Neem Contact Op",
+    "cta.book": "Bel Ons",
   },
 
   FR: {
@@ -333,6 +339,12 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Liens Rapides",
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. Tous droits réservés.",
+
+    // CTA
+    "cta.heading": "Prêt à construire votre prochain projet ?",
+    "cta.subtitle": "Planifiez un appel gratuit pour que nous puissions en savoir plus sur votre idée.",
+    "cta.contact": "Contactez-nous",
+    "cta.book": "Réserver un Appel",
   },
 
   EN: {
@@ -500,5 +512,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. All rights reserved.",
+
+    // CTA
+    "cta.heading": "Looking to build your next project?",
+    "cta.subtitle": "Schedule a free call so we can learn more about it.",
+    "cta.contact": "Contact Us",
+    "cta.book": "Book a Call",
   },
 };

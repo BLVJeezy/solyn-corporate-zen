@@ -4,13 +4,10 @@ import HeroPortfolioPreview from "@/components/HeroPortfolioPreview";
 import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
-
 import MobileViewSection from "@/components/MobileViewSection";
 import WhyUsSection from "@/components/WhyUsSection";
-
-import LeadForm from "@/components/LeadForm";
+import CTASection from "@/components/CTASection";
 import NewsletterSection from "@/components/NewsletterSection";
-
 import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
@@ -27,12 +24,9 @@ const Index = () => {
         <TrustBar />
         <MobileViewSection />
         <WhyUsSection />
-        
-        
-        <LeadForm />
+        <CTASection />
         <NewsletterSection />
         <Footer />
-        
       </div>
     </LanguageProvider>
   );
