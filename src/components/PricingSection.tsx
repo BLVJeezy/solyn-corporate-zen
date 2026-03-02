@@ -7,6 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import goldTexture from "@/assets/gold-texture.jpeg";
 import silverTexture from "@/assets/silver-texture.webp";
 import diamondTexture from "@/assets/diamond-texture.jpeg";
+import solynLogo from "@/assets/solyn-logo.png";
 
 const useCountdown = () => {
   const getTarget = () => {
@@ -205,7 +206,7 @@ const PricingSection = () => {
           className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mb-8"
         >
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-[hsl(0_0%_7%)] flex items-center justify-center text-white text-sm font-bold">S</div>
+            <img src={solynLogo} alt="Solyn" className="w-10 h-10 rounded-full object-cover" />
             <div>
               <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
               <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
