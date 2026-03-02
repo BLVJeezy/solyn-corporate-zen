@@ -50,18 +50,6 @@ const PricingSection = () => {
 
   const plans = [
     {
-      nameKey: "pricing.mvp.name",
-      descKey: "pricing.mvp.desc",
-      priceKey: "pricing.mvp.price",
-      periodKey: "pricing.mvp.period",
-      oldPrice: "€3.997",
-      features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-      ctaKey: "pricing.mvp.cta",
-      icon: Rocket,
-      texture: goldTexture,
-      badge: null,
-    },
-    {
       nameKey: "pricing.growth.name",
       descKey: "pricing.growth.desc",
       priceKey: "pricing.growth.price",
@@ -72,6 +60,18 @@ const PricingSection = () => {
       icon: Zap,
       texture: silverTexture,
       badge: "pricing.growth.requires",
+    },
+    {
+      nameKey: "pricing.mvp.name",
+      descKey: "pricing.mvp.desc",
+      priceKey: "pricing.mvp.price",
+      periodKey: "pricing.mvp.period",
+      oldPrice: "€3.997",
+      features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
+      ctaKey: "pricing.mvp.cta",
+      icon: Rocket,
+      texture: goldTexture,
+      badge: null,
     },
   ];
 
