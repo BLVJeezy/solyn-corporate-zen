@@ -5,25 +5,95 @@ import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio2 from "@/assets/portfolio-2.png";
 import portfolio3 from "@/assets/portfolio-3.png";
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
+import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
+interface ProjectImage {
+  src: string;
+  label: string;
+}
+
 interface Project {
-  image: string;
+  images: ProjectImage[];
   title: string;
   descKey: string;
   category: "websites" | "apps";
 }
+
+const ProjectCard = ({ project, index, t }: { project: Project; index: number; t: (key: string) => string }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <motion.div
+      key={project.title}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.08 }}
+      className="group"
+    >
+      {/* Card */}
+      <div className="relative rounded-2xl overflow-hidden border border-border/60 aspect-[4/3] bg-muted/20 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15)]">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={activeTab}
+            src={project.images[activeTab].src}
+            alt={`${project.title} - ${project.images[activeTab].label}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+        </AnimatePresence>
+
+        {/* Tab switcher inside card */}
+        {project.images.length > 1 && (
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex rounded-full bg-black/50 backdrop-blur-md p-0.5 border border-white/10">
+            {project.images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTab(i)}
+                className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  activeTab === i
+                    ? "bg-white text-black shadow-sm"
+                    : "text-white/70 hover:text-white"
+                }`}
+              >
+                {img.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Bottom light glow on hover */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/60 via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+
+      {/* Project info below card */}
+      <div className="mt-5 flex items-start gap-3">
+        <div className="w-10 h-10 rounded-xl bg-foreground/[0.06] border border-border/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span className="text-sm font-bold text-foreground">{project.title.charAt(0)}</span>
+        </div>
+        <div>
+          <h3 className="text-[15px] font-semibold text-foreground leading-tight">{project.title}</h3>
+          <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t(project.descKey)}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const PortfolioSection = () => {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<ProjectCategory>("websites");
 
   const projects: Project[] = [
-    { image: portfolio1, title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
-    { image: portfolio2, title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
-    { image: portfolio3, title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
-    { image: portfolioSheff, title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" },
+    { images: [{ src: portfolio1, label: "Homepage" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites" },
+    { images: [{ src: portfolio2, label: "Homepage" }], title: "Shinelab Detailing", descKey: "portfolio.p2.desc", category: "websites" },
+    { images: [{ src: portfolio3, label: "Homepage" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites" },
+    { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps" },
   ];
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
@@ -53,7 +123,6 @@ const PortfolioSection = () => {
         {/* Pill toggle */}
         <div className="flex justify-center mb-14">
           <div className="relative inline-flex rounded-full bg-muted/50 p-1 border border-border/40">
-            {/* Sliding indicator */}
             <motion.div
               className="absolute top-1 bottom-1 rounded-full bg-foreground shadow-sm"
               initial={false}
@@ -89,36 +158,7 @@ const PortfolioSection = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-14"
           >
             {filtered.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08 }}
-                className="group"
-              >
-                {/* Card with bottom glow on hover */}
-                <div className="relative rounded-2xl overflow-hidden border border-border/60 aspect-[4/3] bg-muted/20 transition-shadow duration-500 group-hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15)]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                    loading="lazy"
-                  />
-                  {/* Bottom light glow on hover */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/60 via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                </div>
-
-                {/* Project info below card */}
-                <div className="mt-5 flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-foreground/[0.06] border border-border/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-sm font-bold text-foreground">{project.title.charAt(0)}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-[15px] font-semibold text-foreground leading-tight">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{t(project.descKey)}</p>
-                  </div>
-                </div>
-              </motion.div>
+              <ProjectCard key={project.title} project={project} index={index} t={t} />
             ))}
           </motion.div>
         </AnimatePresence>
