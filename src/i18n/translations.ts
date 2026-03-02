@@ -88,6 +88,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "Aanbieding verloopt over:",
+    "pricing.mostPopular": "Meest populair",
     "pricing.label": "Pakketten",
     "pricing.heading": "Transparante Prijzen",
     "pricing.subtitle": "Geen verborgen kosten. Kies het pakket dat bij uw fase past.",
@@ -251,6 +252,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "L'offre expire dans :",
+    "pricing.mostPopular": "Le plus populaire",
     "pricing.label": "Forfaits",
     "pricing.heading": "Prix Transparents",
     "pricing.subtitle": "Pas de frais cachés. Choisissez le forfait qui correspond à votre phase.",
@@ -414,6 +416,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Pricing
     "pricing.countdown": "Offer expires in:",
+    "pricing.mostPopular": "Most popular",
     "pricing.label": "Packages",
     "pricing.heading": "Transparent Pricing",
     "pricing.subtitle": "No hidden fees. Choose the package that fits your stage.",
