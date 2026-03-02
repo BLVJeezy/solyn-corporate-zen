@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins, CalendarClock, X, Percent } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
@@ -14,6 +15,8 @@ import { useLeads, Lead, LeadStatus } from "@/hooks/useLeads";
 import { useClients } from "@/hooks/useClients";
 import LeadDetailPanel from "@/components/admin/LeadDetailPanel";
 import AddLeadDialog from "@/components/admin/AddLeadDialog";
+import MobileLeadCard from "@/components/admin/MobileLeadCard";
+import MobileLeadDrawer from "@/components/admin/MobileLeadDrawer";
 import ClientsSection from "@/components/admin/ClientsSection";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -41,6 +44,7 @@ const statusConfig: Record<LeadStatus, {label: string;className: string;}> = {
 
 const AdminPage = () => {
   const { signOut } = useAuth();
+  const isMobile = useIsMobile();
   const { data: leads = [], isLoading } = useLeads();
   const { data: clients = [] } = useClients();
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
@@ -413,35 +417,36 @@ const AdminPage = () => {
 
         {/* CRM Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Lead Table */}
+          {/* Lead Table / Card Stack */}
           <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
               <h2 className="text-lg font-semibold text-card-foreground">Lead Manager</h2>
               <AddLeadDialog />
             </div>
 
-            {/* Search & Filter */}
-            <div className="flex gap-3 mb-4 flex-wrap">
-              <div className="relative flex-1 min-w-[180px]">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  placeholder="Zoek op naam of bedrijf..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="pl-9 bg-muted border-border" />
-
+            {/* Sticky Search & Filter */}
+            <div className="sticky top-0 z-10 bg-card pb-3 -mx-4 px-4 sm:-mx-6 sm:px-6 pt-1">
+              <div className="flex gap-3 flex-wrap">
+                <div className="relative flex-1 min-w-[140px]">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Zoek..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="pl-9 bg-muted border-border" />
+                </div>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-[130px] sm:w-[160px] bg-muted border-border">
+                    <SelectValue placeholder="Alle statussen" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Alle statussen</SelectItem>
+                    {Object.entries(statusConfig).map(([key, cfg]) =>
+                    <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[160px] bg-muted border-border">
-                  <SelectValue placeholder="Alle statussen" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Alle statussen</SelectItem>
-                  {Object.entries(statusConfig).map(([key, cfg]) =>
-                  <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
-                  )}
-                </SelectContent>
-              </Select>
             </div>
 
             {isLoading ?
@@ -449,14 +454,27 @@ const AdminPage = () => {
             filteredLeads.length === 0 ?
             <p className="text-muted-foreground text-sm py-8 text-center">Geen leads gevonden</p> :
 
-            <Table>
+            isMobile ? (
+              /* Mobile: Card Stack */
+              <div className="space-y-2">
+                {filteredLeads.map((lead) => (
+                  <MobileLeadCard
+                    key={lead.id}
+                    lead={lead}
+                    onClick={() => setSelectedLead(lead)}
+                  />
+                ))}
+              </div>
+            ) : (
+              /* Desktop: Table */
+              <Table>
                 <TableHeader>
                   <TableRow className="border-border">
                     <TableHead className="text-muted-foreground">Naam</TableHead>
-                    <TableHead className="text-muted-foreground hidden md:table-cell">Bedrijf</TableHead>
+                    <TableHead className="text-muted-foreground">Bedrijf</TableHead>
                     <TableHead className="text-muted-foreground">Budget</TableHead>
                     <TableHead className="text-muted-foreground">Status</TableHead>
-                    <TableHead className="text-muted-foreground hidden md:table-cell">Datum</TableHead>
+                    <TableHead className="text-muted-foreground">Datum</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -465,36 +483,42 @@ const AdminPage = () => {
                   key={lead.id}
                   className={`border-border cursor-pointer transition-colors hover:bg-muted/50 ${activeLead?.id === lead.id ? "bg-muted/50" : ""}`}
                   onClick={() => setSelectedLead(lead)}>
-
                       <TableCell className="font-medium text-card-foreground">{lead.name}</TableCell>
-                      <TableCell className="text-muted-foreground hidden md:table-cell">{lead.company || "—"}</TableCell>
+                      <TableCell className="text-muted-foreground">{lead.company || "—"}</TableCell>
                       <TableCell className="text-primary font-semibold">{lead.budget || "—"}</TableCell>
                       <TableCell>
                         <Badge variant="secondary" className={statusConfig[lead.status]?.className}>
                           {statusConfig[lead.status]?.label}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-muted-foreground hidden md:table-cell">
+                      <TableCell className="text-muted-foreground">
                         {format(new Date(lead.created_at), "d MMM yyyy", { locale: nl })}
                       </TableCell>
                     </TableRow>
-                )}
+                  )}
                 </TableBody>
               </Table>
+            )
             }
           </div>
 
-          {/* Detail Panel - hide empty state on mobile */}
-          <div className="lg:col-span-1">
+          {/* Desktop Detail Panel */}
+          <div className="hidden lg:block lg:col-span-1">
             {activeLead ?
             <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} /> :
-
-            <div className="hidden lg:block bg-card rounded-lg border border-border p-8 text-center">
+            <div className="bg-card rounded-lg border border-border p-8 text-center">
                 <p className="text-muted-foreground text-sm">Selecteer een lead om details te bekijken</p>
               </div>
             }
           </div>
         </div>
+
+        {/* Mobile Drawer */}
+        <MobileLeadDrawer
+          lead={activeLead}
+          open={isMobile && !!activeLead}
+          onClose={() => setSelectedLead(null)}
+        />
 
         {/* Clients Section */}
         <ClientsSection />
