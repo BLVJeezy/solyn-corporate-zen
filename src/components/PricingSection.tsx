@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -119,70 +119,81 @@ const PricingSection = () => {
         </motion.div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-center mb-5">
           {plans.map((plan, i) => (
-            <motion.div
-              key={plan.nameKey}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="rounded-2xl p-7 relative overflow-hidden group flex flex-col"
-              style={{
-                backgroundImage: `url(${plan.texture})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              {/* Shimmer */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            <React.Fragment key={plan.nameKey}>
+              {i === 1 && (
+                <div className="hidden md:flex items-center justify-center px-4">
+                  <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
+                </div>
+              )}
+              {i === 1 && (
+                <div className="flex md:hidden items-center justify-center py-4">
+                  <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
+                </div>
+              )}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="rounded-2xl p-7 relative overflow-hidden group flex flex-col"
                 style={{
-                  background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
-                  animation: "shimmer 2.5s ease-in-out infinite",
+                  backgroundImage: `url(${plan.texture})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
-              />
+              >
+                {/* Shimmer */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
+                    animation: "shimmer 2.5s ease-in-out infinite",
+                  }}
+                />
 
-              <div className="relative z-10 flex flex-col flex-1">
-                {plan.badge && (
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-black/40 bg-black/8 px-2.5 py-1 rounded-full self-start mb-3">
-                    {t(plan.badge)}
-                  </span>
-                )}
-
-                <div className="flex items-center gap-2 mb-1">
-                  <plan.icon className="w-4 h-4 text-black/60" />
-                  <h3 className="text-lg font-bold text-black">{t(plan.nameKey)}</h3>
-                </div>
-
-                <p className="text-sm text-black/60 mb-5">{t(plan.descKey)}</p>
-
-                <div className="mb-6">
-                  {plan.oldPrice && (
-                    <span className="text-base font-bold text-red-700 line-through mr-2">{plan.oldPrice}</span>
+                <div className="relative z-10 flex flex-col flex-1">
+                  {plan.badge && (
+                    <span className="text-[10px] uppercase tracking-widest font-bold text-black/40 bg-black/8 px-2.5 py-1 rounded-full self-start mb-3">
+                      {t(plan.badge)}
+                    </span>
                   )}
-                  <span className="text-3xl font-bold text-black">{t(plan.priceKey)}</span>
-                  <span className="text-xs ml-1.5 text-black/50">{t(plan.periodKey)}</span>
+
+                  <div className="flex items-center gap-2 mb-1">
+                    <plan.icon className="w-4 h-4 text-black/60" />
+                    <h3 className="text-lg font-bold text-black">{t(plan.nameKey)}</h3>
+                  </div>
+
+                  <p className="text-sm text-black/60 mb-5">{t(plan.descKey)}</p>
+
+                  <div className="mb-6">
+                    {plan.oldPrice && (
+                      <span className="text-base font-bold text-red-700 line-through mr-2">{plan.oldPrice}</span>
+                    )}
+                    <span className="text-3xl font-bold text-black">{t(plan.priceKey)}</span>
+                    <span className="text-xs ml-1.5 text-black/50">{t(plan.periodKey)}</span>
+                  </div>
+
+                  <ul className="space-y-2 mb-7 flex-1">
+                    {plan.features.map((fKey) => (
+                      <li key={fKey} className="flex items-start gap-2 text-sm text-black/70">
+                        <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-black/40 flex-shrink-0" />
+                        {t(fKey)}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button
+                    onClick={() => navigate("/book")}
+                    className="w-full font-medium rounded-full border-0 bg-black/80 text-white hover:bg-black"
+                  >
+                    {t(plan.ctaKey)}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
                 </div>
-
-                <ul className="space-y-2 mb-7 flex-1">
-                  {plan.features.map((fKey) => (
-                    <li key={fKey} className="flex items-start gap-2 text-sm text-black/70">
-                      <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-black/40 flex-shrink-0" />
-                      {t(fKey)}
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  onClick={() => navigate("/book")}
-                  className="w-full font-medium rounded-full border-0 bg-black/80 text-white hover:bg-black"
-                >
-                  {t(plan.ctaKey)}
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </div>
-            </motion.div>
+              </motion.div>
+            </React.Fragment>
           ))}
         </div>
 
