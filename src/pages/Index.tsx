@@ -5,6 +5,7 @@ import ServicesGrid from "@/components/ServicesGrid";
 import TrustBar from "@/components/TrustBar";
 import ProcessSection from "@/components/ProcessSection";
 import PortfolioSection from "@/components/PortfolioSection";
+import MobileViewSection from "@/components/MobileViewSection";
 import PricingSection from "@/components/PricingSection";
 import BookCallSection from "@/components/BookCallSection";
 import LeadForm from "@/components/LeadForm";
@@ -26,6 +27,7 @@ const Index = () => {
         <TrustBar />
         <ProcessSection />
         <PortfolioSection />
+        <MobileViewSection />
         <PricingSection />
         <BookCallSection />
         <LeadForm />
