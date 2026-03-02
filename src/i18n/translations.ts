@@ -15,7 +15,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Hero
     "hero.title1": "Uw Visie,",
     "hero.title2": "Onze Expertise.",
-    "hero.subtitle": "Web development, infrastructuur en consultancy oplossingen voor groeiende ondernemingen.",
+    "hero.subtitle": "Wij helpen ambitieuze founders hun ideeën tot leven te brengen.",
     "hero.cta1": "Start Jouw Project",
     "hero.cta2": "Bekijk Diensten",
 
@@ -199,7 +199,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Hero
     "hero.title1": "Votre Vision,",
     "hero.title2": "Notre Expertise.",
-    "hero.subtitle": "Développement web, infrastructure et solutions de conseil pour les entreprises en croissance.",
+    "hero.subtitle": "Nous aidons les fondateurs ambitieux à donner vie à leurs idées.",
     "hero.cta1": "Démarrez Votre Projet",
     "hero.cta2": "Voir les Services",
 
@@ -383,7 +383,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     // Hero
     "hero.title1": "Your Vision,",
     "hero.title2": "Our Expertise.",
-    "hero.subtitle": "Web development, infrastructure and consultancy solutions for growing businesses.",
+    "hero.subtitle": "We help ambitious founders bring their ideas to life.",
     "hero.cta1": "Start Your Project",
     "hero.cta2": "View Services",
 
