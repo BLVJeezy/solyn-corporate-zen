@@ -482,7 +482,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.mvp.price": "€2,000",
     "pricing.mvp.period": "one-time",
     "pricing.mvp.desc": "From idea to live product in 1 week.",
-    "pricing.mvp.f1": "Fully functional website or web app",
+    "pricing.mvp.f1": "Fully functional website",
     "pricing.mvp.f2": "Custom responsive design",
     "pricing.mvp.f3": "CMS or admin panel included",
     "pricing.mvp.f4": "1-week turnaround",
