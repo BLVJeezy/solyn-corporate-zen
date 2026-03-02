@@ -222,66 +222,113 @@ const PricingSection = () => {
 
         <div className="w-full border-t border-border my-8" />
 
-        {/* VIP Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.16 }}
-          className="rounded-2xl p-7 md:p-10 relative overflow-hidden group"
-          style={{
-            backgroundImage: `url(${diamondTexture})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60 z-0" />
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
-            style={{
-              background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
-              animation: "shimmer 2.5s ease-in-out infinite",
-            }}
-          />
-
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                <Crown className="w-5 h-5 text-white" />
+        {/* Sprints + MVP Development Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Sprints Card - Light */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="rounded-2xl border border-border bg-card p-7 md:p-8 flex flex-col"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
+                <Rocket className="w-5 h-5 text-white" />
               </span>
               <div>
-                <h3 className="text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
-                <p className="text-sm text-white/60">{t("pricing.diamond.desc")}</p>
+                <h3 className="text-lg font-bold text-foreground">{t("pricing.sprints.name")}</h3>
+                <p className="text-xs text-muted-foreground">{t("pricing.sprints.subtitle")}</p>
               </div>
             </div>
 
-            <div className="flex flex-wrap items-baseline gap-x-2 mb-1">
-              <span className="text-4xl font-bold text-white">€9.500</span>
-              <span className="text-sm text-white/60">{t("pricing.diamond.setupLabel")}</span>
-            </div>
-            <p className="text-white/50 text-sm mb-1">+ €3.500 {t("pricing.diamond.period")}</p>
-            <p className="text-white/40 text-xs mb-7">⏱ {t("pricing.diamond.setup")} — {t("pricing.diamond.sprintDuration")}</p>
+            <p className="text-sm text-muted-foreground mb-6">{t("pricing.sprints.desc")}</p>
 
-            <div className="flex flex-col md:flex-row md:items-start gap-6">
+            <div className="mb-1">
+              <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t("pricing.sprints.price")}</span>
+              <span className="text-sm text-muted-foreground ml-2">{t("pricing.sprints.period")}</span>
+            </div>
+            <p className="text-xs text-muted-foreground mb-6">{t("pricing.sprints.pauseCancel")}</p>
+
+            <Button
+              onClick={() => navigate("/book")}
+              className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-6"
+              variant="outline"
+            >
+              {t("pricing.sprints.cta")}
+            </Button>
+
+            <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
+            <ul className="space-y-2.5 flex-1">
+              {["pricing.sprints.f1", "pricing.sprints.f2", "pricing.sprints.f3", "pricing.sprints.f4", "pricing.sprints.f5", "pricing.sprints.f6"].map((fKey) => (
+                <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
+                  {t(fKey)}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* MVP Development Card - Dark */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.16 }}
+            className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+            style={{
+              backgroundImage: `url(${diamondTexture})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black/70 z-0" />
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
+              style={{
+                background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
+                animation: "shimmer 2.5s ease-in-out infinite",
+              }}
+            />
+
+            <div className="relative z-10 flex flex-col flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+                  <Crown className="w-5 h-5 text-white" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
+                  <p className="text-xs text-white/60">{t("pricing.diamond.desc")}</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-white/50 mb-6">{t("pricing.diamond.subtitle")}</p>
+
+              <div className="mb-1">
+                <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t("pricing.diamond.price")}</span>
+                <span className="text-sm text-white/60 ml-2">{t("pricing.diamond.setupLabel")}</span>
+              </div>
+              <p className="text-xs text-white/40 mb-6">{t("pricing.diamond.pauseCancel")}</p>
+
               <Button
                 onClick={() => navigate("/book")}
-                className="font-medium rounded-full bg-white text-black hover:bg-white/90 px-8 py-5 md:self-start"
+                className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6"
               >
                 {t("pricing.diamond.cta")}
-                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
 
-              <ul className="grid sm:grid-cols-2 gap-2 flex-1">
+              <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
+              <ul className="space-y-2.5 flex-1">
                 {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
-                  <li key={fKey} className="flex items-center gap-2 text-sm text-white/70">
-                    <CheckCircle className="w-3.5 h-3.5 text-white/50 flex-shrink-0" />
+                  <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
+                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
                     {t(fKey)}
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
