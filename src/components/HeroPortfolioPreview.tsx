@@ -4,9 +4,9 @@ import portfolio2 from "@/assets/portfolio-2.png";
 
 const HeroPortfolioPreview = () => {
   return (
-    <section className="pb-24 bg-background">
+    <section className="pb-12 md:pb-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
