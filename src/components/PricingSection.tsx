@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Rocket, Clock } from "lucide-react";
+import { ArrowRight, Zap, Rocket, Clock, Diamond, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -174,6 +174,61 @@ const PricingSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Diamond Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-6 max-w-3xl rounded-2xl p-8 md:p-10 relative overflow-hidden bg-foreground text-background shadow-[0_10px_60px_-4px_rgba(0,0,0,0.4)] group"
+        >
+          {/* Diamond shimmer */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{
+              background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
+              animation: "shimmer 2.5s ease-in-out infinite",
+            }}
+          />
+
+          <div className="flex items-center gap-3 mb-2 relative z-10">
+            <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+              <Diamond className="w-6 h-6 text-white" />
+            </span>
+            <div>
+              <h3 className="text-xl font-bold text-background">{t("pricing.diamond.name")}</h3>
+              <p className="text-sm text-background/60">{t("pricing.diamond.desc")}</p>
+            </div>
+          </div>
+
+          <p className="text-background/50 text-sm mt-4 relative z-10">{t("pricing.diamond.setup")}</p>
+
+          <div className="mt-4 mb-6 relative z-10">
+            <span className="text-5xl font-bold text-background">{t("pricing.diamond.price")}</span>
+            <span className="text-sm ml-2 text-background/60">{t("pricing.diamond.period")}</span>
+          </div>
+
+          <Button
+            onClick={() => navigate("/book")}
+            className="w-full md:w-auto font-semibold rounded-full bg-background text-foreground hover:bg-background/90 px-8 py-6 text-base relative z-10 mb-8"
+          >
+            {t("pricing.diamond.cta")}
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+
+          <div className="relative z-10">
+            <p className="font-semibold text-background mb-4">{t("pricing.diamond.included") || "What's included:"}</p>
+            <ul className="grid sm:grid-cols-2 gap-3">
+              {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
+                <li key={fKey} className="flex items-center gap-3 text-sm text-background/80">
+                  <CheckCircle className="w-5 h-5 text-background/60 flex-shrink-0" />
+                  {t(fKey)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
