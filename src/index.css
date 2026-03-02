@@ -6,40 +6,40 @@
 
 @layer base {
   :root {
-    --background: 0 0% 97.6%;
-    --foreground: 0 0% 4%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 4%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 4%;
-    --primary: 0 0% 4%;
-    --primary-foreground: 0 0% 97.6%;
-    --secondary: 0 0% 92%;
-    --secondary-foreground: 0 0% 4%;
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 45%;
-    --accent: 40 48% 56%;
+    --background: 40 20% 97%;
+    --foreground: 30 10% 8%;
+    --card: 40 20% 100%;
+    --card-foreground: 30 10% 8%;
+    --popover: 40 20% 100%;
+    --popover-foreground: 30 10% 8%;
+    --primary: 30 10% 8%;
+    --primary-foreground: 40 20% 97%;
+    --secondary: 40 12% 92%;
+    --secondary-foreground: 30 10% 8%;
+    --muted: 40 10% 94%;
+    --muted-foreground: 30 5% 38%;
+    --accent: 40 48% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 88%;
-    --input: 0 0% 88%;
-    --ring: 0 0% 4%;
+    --border: 40 10% 85%;
+    --input: 40 10% 85%;
+    --ring: 40 48% 50%;
     --radius: 0.75rem;
-    --gold: 40 48% 56%;
+    --gold: 40 48% 50%;
     --gold-foreground: 0 0% 100%;
-    --charcoal: 0 0% 4%;
-    --charcoal-foreground: 0 0% 97.6%;
-    --steel: 210 10% 50%;
+    --charcoal: 30 10% 8%;
+    --charcoal-foreground: 40 20% 97%;
+    --steel: 210 8% 45%;
     --steel-foreground: 0 0% 100%;
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 15%;
-    --sidebar-primary: 0 0% 4%;
-    --sidebar-primary-foreground: 0 0% 97.6%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 0% 4%;
+    --sidebar-background: 40 20% 100%;
+    --sidebar-foreground: 30 10% 15%;
+    --sidebar-primary: 30 10% 8%;
+    --sidebar-primary-foreground: 40 20% 97%;
+    --sidebar-accent: 40 12% 95%;
+    --sidebar-accent-foreground: 30 10% 10%;
+    --sidebar-border: 40 10% 88%;
+    --sidebar-ring: 40 48% 50%;
   }
 
   .dark {
