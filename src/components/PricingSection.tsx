@@ -86,7 +86,7 @@ const PricingSection = () => {
                 <plan.icon className="w-5 h-5" />
                 {t(plan.nameKey)}
               </h3>
-              <p className="text-sm mt-1 text-black/70 relative z-10">{t(plan.descKey)}</p>
+              <p className={`text-sm mt-1 relative z-10 ${plan.inverted ? "text-black/80 font-semibold" : "text-black/70"}`}>{t(plan.descKey)}</p>
 
               <div className="mt-6 mb-6 relative z-10">
                 <span className="text-4xl font-bold text-black">{t(plan.priceKey)}</span>
@@ -95,7 +95,7 @@ const PricingSection = () => {
 
               <ul className="space-y-2.5 mb-8 relative z-10">
                 {plan.features.map((fKey) => (
-                  <li key={fKey} className="flex items-start gap-2.5 text-sm text-black/80">
+                  <li key={fKey} className={`flex items-start gap-2.5 text-sm ${plan.inverted ? "text-black/90 font-semibold" : "text-black/80"}`}>
                     <span className="mt-0.5 text-black font-bold">—</span>
                     {t(fKey)}
                   </li>
