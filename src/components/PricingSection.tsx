@@ -265,7 +265,7 @@ const PricingSection = () => {
           </Button>
 
           <div className="relative z-10">
-            <p className="font-semibold text-white mb-4">{t("pricing.diamond.included") || "What's included:"}</p>
+            
             <ul className="grid sm:grid-cols-2 gap-3">
               {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
                 <li key={fKey} className="flex items-center gap-3 text-sm text-white/80">
