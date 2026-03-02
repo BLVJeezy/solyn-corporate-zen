@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Rocket, Clock, Diamond, CheckCircle } from "lucide-react";
+import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -209,7 +209,7 @@ const PricingSection = () => {
 
           <div className="flex items-center gap-3 mb-2 relative z-10 drop-shadow-lg">
             <span className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-              <Diamond className="w-6 h-6 text-white" />
+              <Crown className="w-6 h-6 text-white" />
             </span>
             <div>
               <h3 className="text-xl font-bold text-white">{t("pricing.diamond.name")}</h3>
