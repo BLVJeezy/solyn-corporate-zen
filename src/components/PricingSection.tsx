@@ -141,6 +141,14 @@ const PricingSection = () => {
                 }}
               />
 
+              {plan.inverted && (
+                <div className="absolute -top-0 right-4 z-20">
+                  <span className="bg-black text-white text-xs font-bold px-3 py-1.5 rounded-b-lg shadow-md">
+                    ⭐ {t("pricing.mostPopular")}
+                  </span>
+                </div>
+              )}
+
               <h3 className="text-xl font-bold flex items-center gap-2 text-black relative z-10">
                 <plan.icon className="w-5 h-5" />
                 {t(plan.nameKey)}
