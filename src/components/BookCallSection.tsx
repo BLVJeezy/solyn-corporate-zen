@@ -1,11 +1,12 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { openCalendly } from "@/lib/calendly";
 
 const BookCallSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <section id="book" className="py-24 bg-background">
@@ -25,7 +26,7 @@ const BookCallSection = () => {
           <Button
             size="lg"
             className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-8 py-6 text-base"
-            onClick={openCalendly}
+            onClick={() => navigate("/book")}
           >
             <ArrowRight className="mr-2 w-4 h-4" />
             {t("book.cta")}

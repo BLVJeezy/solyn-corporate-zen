@@ -1,11 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 import lovableLogo from "@/assets/lovable-logo.png";
 
 const Hero = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <section id="home" className="min-h-[70vh] md:min-h-[90vh] flex items-end md:items-center bg-background pt-20 pb-12 md:pt-24 md:pb-0">
@@ -36,7 +38,7 @@ const Hero = () => {
             <Button
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-full w-full sm:w-auto"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => navigate("/book")}
             >
               <ArrowRight className="mr-2 w-4 h-4" />
               {t("hero.cta1")}

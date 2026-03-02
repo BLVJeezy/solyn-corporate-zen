@@ -1,12 +1,12 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { openCalendly, loadCalendlyScript } from "@/lib/calendly";
 
 const PricingSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const plans = [
     {
@@ -33,9 +33,8 @@ const PricingSection = () => {
     },
   ];
 
-  useEffect(() => {
-    loadCalendlyScript();
-  }, []);
+
+
 
   return (
     <section id="pricing" className="py-24 bg-background">
@@ -92,7 +91,7 @@ const PricingSection = () => {
               </ul>
 
               <Button
-                onClick={openCalendly}
+                onClick={() => navigate("/book")}
                 className={`w-full font-medium rounded-full ${
                   plan.inverted
                     ? "bg-background text-foreground hover:bg-background/90"
