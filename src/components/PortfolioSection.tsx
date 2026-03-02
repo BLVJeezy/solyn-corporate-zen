@@ -7,11 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const PortfolioSection = () => {
   const { t } = useLanguage();
 
-  const projects = [
-    { image: portfolio1, title: "Belgomed BV", categoryKey: "portfolio.p1.category", descKey: "portfolio.p1.desc" },
-    { image: portfolio2, title: "Shinelab Detailing", categoryKey: "portfolio.p2.category", descKey: "portfolio.p2.desc" },
-    { image: portfolio3, title: "L'atelier 9", categoryKey: "portfolio.p3.category", descKey: "portfolio.p3.desc" },
-  ];
+  const projects: { image: string; title: string; categoryKey: string; descKey: string }[] = [];
 
   return (
     <section id="portfolio" className="py-24 bg-background">
