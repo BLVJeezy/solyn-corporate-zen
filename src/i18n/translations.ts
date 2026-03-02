@@ -89,6 +89,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "book.heading": "Klaar om te starten?",
     "book.subtitle": "Plan een vrijblijvend gesprek en ontdek hoe wij uw project binnen 1 week kunnen realiseren.",
     "book.cta": "Start Jouw Sprint",
+    "bookPage.back": "Terug naar Home",
+    "bookPage.heading": "Plan uw Gratis 30-Minuten MVP Strategie Sessie hieronder",
+    "bookPage.subtitle": "Wij helpen u uw idee te verduidelijken, de belangrijkste functies te bepalen en de juiste tools te kiezen om uw eerste versie binnen 2 weken live te krijgen.",
 
     // Newsletter
     "newsletter.heading": "Blijf op de hoogte",
@@ -210,6 +213,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "book.heading": "Prêt à commencer ?",
     "book.subtitle": "Planifiez un appel gratuit et découvrez comment nous pouvons réaliser votre projet en 1 semaine.",
     "book.cta": "Démarrez Votre Sprint",
+    "bookPage.back": "Retour à l'Accueil",
+    "bookPage.heading": "Réservez votre Session Stratégie MVP Gratuite de 30 Minutes ci-dessous",
+    "bookPage.subtitle": "Nous vous aiderons à clarifier votre idée, définir les fonctionnalités clés et choisir les bons outils pour mettre votre première version en ligne en 2 semaines.",
 
     // Newsletter
     "newsletter.heading": "Restez informé",
@@ -331,6 +337,9 @@ export const translations: Record<Lang, Record<string, string>> = {
     "book.heading": "Ready to start?",
     "book.subtitle": "Schedule a free call and discover how we can bring your project to life within 1 week.",
     "book.cta": "Start Your Sprint",
+    "bookPage.back": "Back to Home",
+    "bookPage.heading": "Book your Free 30-Minute MVP Strategy Session below",
+    "bookPage.subtitle": "We'll help you clarify your idea, outline key features, and pick the right tools to get your first version live within 2 weeks.",
 
     // Newsletter
     "newsletter.heading": "Stay in the loop",

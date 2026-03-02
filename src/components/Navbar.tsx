@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
-import { openCalendly } from "@/lib/calendly";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const languages: Lang[] = ["NL", "FR", "EN"];
@@ -63,7 +62,7 @@ const Navbar = () => {
               <Button
                 size="sm"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full px-5"
-                onClick={openCalendly}
+                onClick={() => navigate("/book")}
               >
                 {t("nav.bookCall")}
               </Button>
@@ -156,7 +155,7 @@ const Navbar = () => {
               </Button>
               <Button
                 className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium rounded-full"
-                onClick={() => { setMobileOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                onClick={() => { setMobileOpen(false); navigate("/book"); }}
               >
                 {t("nav.bookCall")}
               </Button>
