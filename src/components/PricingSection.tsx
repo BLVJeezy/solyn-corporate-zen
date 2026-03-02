@@ -307,7 +307,6 @@ const PricingSection = () => {
             </div>
           </motion.div>
         </div>
-        </div>
 
         {/* Book a Call card */}
         <motion.div
