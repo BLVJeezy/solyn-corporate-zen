@@ -101,7 +101,7 @@ const PricingSection = () => {
           className="mb-10 flex items-center gap-3 flex-wrap"
         >
           <Clock className="w-5 h-5 text-destructive animate-pulse" />
-          <span className="text-sm font-semibold text-foreground">Aanbieding verloopt over:</span>
+          <span className="text-sm font-semibold text-foreground">{t("pricing.countdown")}</span>
           <div className="flex gap-2">
             {[
               { value: timeLeft.days, label: "d" },
