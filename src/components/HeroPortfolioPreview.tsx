@@ -36,6 +36,7 @@ const HeroPortfolioPreview = () => {
                   alt={item.alt}
                   className="w-full h-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-4 md:bottom-4 md:left-5">

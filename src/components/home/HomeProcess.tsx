@@ -132,6 +132,7 @@ const HomeProcess = () => {
                           alt={step.tab}
                           className="w-full h-auto object-cover"
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     )}
