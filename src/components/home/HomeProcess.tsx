@@ -6,6 +6,7 @@ import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseShefftrades from "@/assets/portfolio-shefftrades.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import showcaseMomentum from "@/assets/showcase-momentumos.png";
+import showcaseTaskboard from "@/assets/showcase-taskboard.png";
 import showcaseLeplana from "@/assets/showcase-leplana.png";
 import iconSupabase from "@/assets/icon-supabase.svg";
 import iconCursor from "@/assets/icon-cursor.svg";
@@ -45,7 +46,7 @@ const steps = [
     tab: "Collaborate",
     title: "Stay flexible with async collaboration",
     text: "Communicate via Slack, get weekly updates, and provide feedback asynchronously. No unnecessary meetings or time zone friction.",
-    image: showcaseMomentum,
+    image: showcaseTaskboard,
   },
   {
     icon: PauseCircle,
