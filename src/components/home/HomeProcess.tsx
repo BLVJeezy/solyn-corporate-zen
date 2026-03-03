@@ -1,6 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Code2, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
+import showcaseBelgomed from "@/assets/showcase-belgomed.png";
+import showcaseDetailing from "@/assets/showcase-detailing.png";
+import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
+import showcaseMomentum from "@/assets/showcase-momentumos.png";
+import showcaseLeplana from "@/assets/showcase-leplana.png";
 
 const steps = [
   {
@@ -8,30 +13,35 @@ const steps = [
     tab: "Build",
     title: "Build your MVP in just 2 weeks",
     text: "We start by designing and developing the core functionality to validate your concept fast — so you can prove traction before investing big.",
+    image: showcaseBelgomed,
   },
   {
     icon: Map,
     tab: "Iterate",
     title: "Set your roadmap and milestones",
     text: "We help you prioritize features, set weekly milestones, and iterate based on real user feedback. Stay on track, ship fast.",
+    image: showcaseDetailing,
   },
   {
     icon: Cpu,
     tab: "Grow",
     title: "Move faster with AI-powered tools",
     text: "We leverage cutting-edge AI tools like Lovable, Cursor, and Supabase to deliver 10x faster than traditional development.",
+    image: showcaseAtelier9,
   },
   {
     icon: MessageCircle,
     tab: "Collaborate",
     title: "Stay flexible with async collaboration",
     text: "Communicate via Slack, get weekly updates, and provide feedback asynchronously. No unnecessary meetings or time zone friction.",
+    image: showcaseMomentum,
   },
   {
     icon: PauseCircle,
     tab: "Pause or Cancel",
     title: "Pause or cancel anytime",
     text: "No contracts, no lock-in. Pause your subscription when you need a break, or cancel anytime. Your code is always yours.",
+    image: showcaseLeplana,
   },
 ];
 
@@ -97,11 +107,14 @@ const HomeProcess = () => {
                         {step.text}
                       </p>
                     </div>
-                    {/* Visual placeholder */}
-                    <div className="rounded-2xl bg-gray-50 border border-gray-100 aspect-[4/3] flex items-center justify-center overflow-hidden">
-                      <div className="w-4/5 h-4/5 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                        <step.icon className="w-10 h-10 text-gray-200" />
-                      </div>
+                    {/* Screenshot visual */}
+                    <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm">
+                      <img
+                        src={step.image}
+                        alt={step.tab}
+                        className="w-full h-auto object-cover"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 </div>
