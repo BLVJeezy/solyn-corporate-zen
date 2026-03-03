@@ -7,6 +7,7 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import goldTexture from "@/assets/gold-texture.jpeg";
 import silverTexture from "@/assets/silver-texture.webp";
 import diamondTexture from "@/assets/diamond-texture.jpeg";
+import diamondsBg from "@/assets/diamonds-bg.webp";
 import solynLogo from "@/assets/solyn-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
@@ -191,12 +192,12 @@ const PricingSection = () => {
             transition={{ delay: 0.08 }}
             className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
             style={{
-              backgroundImage: `url(${diamondTexture})`,
+              backgroundImage: `url(${diamondsBg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute inset-0 bg-black/70 z-0" />
+            <div className="absolute inset-0 bg-black/60 z-0" />
             <div
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
               style={{
