@@ -73,21 +73,18 @@ const HomeProcess = () => {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="sticky"
-              style={{ top: `${80 + i * 32}px` }}
+              className="sticky h-[85vh] md:h-[80vh]"
+              style={{ top: `${60 + i * 24}px` }}
             >
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="max-w-6xl mx-auto mb-6"
+                className="max-w-6xl mx-auto"
               >
                 <div
-                  className="rounded-3xl bg-white p-8 md:p-12 shadow-2xl shadow-black/10"
-                  style={{
-                    transform: `scale(${1 - i * 0.01})`,
-                  }}
+                  className="rounded-3xl bg-white p-8 md:p-12 shadow-2xl shadow-black/10 origin-top"
                 >
                   {/* Tab label */}
                   <div className="flex items-center gap-2 mb-4">
