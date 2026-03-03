@@ -6,6 +6,15 @@ import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import showcaseMomentum from "@/assets/showcase-momentumos.png";
 import showcaseLeplana from "@/assets/showcase-leplana.png";
+import iconSupabase from "@/assets/icon-supabase.svg";
+import iconCursor from "@/assets/icon-cursor.svg";
+import iconLovable from "@/assets/icon-lovable.svg";
+
+const toolIcons = [
+  { src: iconLovable, alt: "Lovable" },
+  { src: iconCursor, alt: "Cursor" },
+  { src: iconSupabase, alt: "Supabase" },
+];
 
 const steps = [
   {
@@ -28,6 +37,7 @@ const steps = [
     title: "Move faster with AI-powered tools",
     text: "We leverage cutting-edge AI tools like Lovable, Cursor, and Supabase to deliver 10x faster than traditional development.",
     image: showcaseAtelier9,
+    toolScroll: true,
   },
   {
     icon: MessageCircle,
@@ -104,15 +114,27 @@ const HomeProcess = () => {
                         {step.text}
                       </p>
                     </div>
-                    {/* Screenshot visual */}
-                    <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm">
-                      <img
-                        src={step.image}
-                        alt={step.tab}
-                        className="w-full h-auto object-cover"
-                        loading="lazy"
-                      />
-                    </div>
+                    {/* Visual */}
+                    {step.toolScroll ? (
+                      <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm aspect-[4/3] flex items-center">
+                        <div className="w-full overflow-hidden">
+                          <div className="flex gap-10 animate-infinite-scroll w-max items-center py-8">
+                            {[...toolIcons, ...toolIcons, ...toolIcons, ...toolIcons].map((icon, j) => (
+                              <img key={j} src={icon.src} alt={icon.alt} className="h-16 md:h-20 w-auto flex-shrink-0" />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm">
+                        <img
+                          src={step.image}
+                          alt={step.tab}
+                          className="w-full h-auto object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
