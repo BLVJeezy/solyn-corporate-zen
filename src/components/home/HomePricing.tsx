@@ -13,29 +13,29 @@ const HomePricing = () => {
   const [activeTab, setActiveTab] = useState<"websites" | "apps">("websites");
 
   const websitePlans = [
-    {
-      nameKey: "pricing.growth.name",
-      descKey: "pricing.growth.desc",
-      priceKey: "pricing.growth.price",
-      periodKey: "pricing.growth.period",
-      badge: "pricing.growth.requires",
-      features: ["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
-      ctaKey: "pricing.growth.cta",
-      icon: Zap,
-      dark: false,
-    },
-    {
-      nameKey: "pricing.mvp.name",
-      descKey: "pricing.mvp.desc",
-      priceKey: "pricing.mvp.price",
-      periodKey: "pricing.mvp.period",
-      oldPrice: "€3.997",
-      features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-      ctaKey: "pricing.mvp.cta",
-      icon: Rocket,
-      dark: true,
-    },
-  ];
+  {
+    nameKey: "pricing.growth.name",
+    descKey: "pricing.growth.desc",
+    priceKey: "pricing.growth.price",
+    periodKey: "pricing.growth.period",
+    badge: "pricing.growth.requires",
+    features: ["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
+    ctaKey: "pricing.growth.cta",
+    icon: Zap,
+    dark: false
+  },
+  {
+    nameKey: "pricing.mvp.name",
+    descKey: "pricing.mvp.desc",
+    priceKey: "pricing.mvp.price",
+    periodKey: "pricing.mvp.period",
+    oldPrice: "€3.997",
+    features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
+    ctaKey: "pricing.mvp.cta",
+    icon: Rocket,
+    dark: true
+  }];
+
 
   return (
     <section className="py-24 px-6 bg-white">
@@ -45,8 +45,8 @@ const HomePricing = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
-        >
+          className="text-center mb-14">
+          
           <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight">
             Our Pricing.{" "}
             <span className="text-gray-400">
@@ -61,43 +61,43 @@ const HomePricing = () => {
             <button
               onClick={() => setActiveTab("websites")}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeTab === "websites"
-                  ? "bg-black text-white shadow-sm"
-                  : "text-gray-500 hover:text-black"
-              }`}
-            >
+              activeTab === "websites" ?
+              "bg-black text-white shadow-sm" :
+              "text-gray-500 hover:text-black"}`
+              }>
+              
               {t("pricing.section.websites")}
             </button>
             <button
               onClick={() => setActiveTab("apps")}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                activeTab === "apps"
-                  ? "bg-black text-white shadow-sm"
-                  : "text-gray-500 hover:text-black"
-              }`}
-            >
+              activeTab === "apps" ?
+              "bg-black text-white shadow-sm" :
+              "text-gray-500 hover:text-black"}`
+              }>
+              
               {t("pricing.section.apps")}
             </button>
           </div>
         </div>
 
         <AnimatePresence mode="wait">
-          {activeTab === "websites" && (
-            <motion.div
-              key="websites"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.25 }}
-            >
+          {activeTab === "websites" &&
+          <motion.div
+            key="websites"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}>
+            
               <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 items-stretch">
                 {/* Monthly Maintenance - Light */}
                 <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="rounded-2xl border border-gray-200 bg-white p-7 md:p-8 flex flex-col"
-                >
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-gray-200 bg-white p-7 md:p-8 flex flex-col">
+                
                   <div className="flex items-center gap-3 mb-4">
                     <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
                       <Zap className="w-5 h-5 text-white" />
@@ -108,11 +108,11 @@ const HomePricing = () => {
                     </div>
                   </div>
 
-                  {websitePlans[0].badge && (
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full self-start mb-3">
+                  {websitePlans[0].badge &&
+                <span className="text-[10px] uppercase tracking-widest font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full self-start mb-3">
                       {t(websitePlans[0].badge)}
                     </span>
-                  )}
+                }
 
                   <div className="mb-6">
                     <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(websitePlans[0].priceKey)}</span>
@@ -120,22 +120,22 @@ const HomePricing = () => {
                   </div>
 
                   <Button
-                    onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 mb-6"
-                    variant="outline"
-                  >
+                  onClick={() => navigate("/book")}
+                  className="w-full font-medium rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 mb-6"
+                  variant="outline">
+                  
                     {t(websitePlans[0].ctaKey)}
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
 
                   <h4 className="text-sm font-semibold text-black mb-3">{t("pricing.whatsIncluded")}</h4>
                   <ul className="space-y-2.5 flex-1">
-                    {websitePlans[0].features.map((fKey) => (
-                      <li key={fKey} className="flex items-center gap-2 text-sm text-gray-500">
+                    {websitePlans[0].features.map((fKey) =>
+                  <li key={fKey} className="flex items-center gap-2 text-sm text-gray-500">
                         <CheckCircle className="w-4 h-4 text-gray-400 flex-shrink-0" />
                         {t(fKey)}
                       </li>
-                    ))}
+                  )}
                   </ul>
                 </motion.div>
 
@@ -149,17 +149,17 @@ const HomePricing = () => {
 
                 {/* Website Development - Dark */}
                 <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.08 }}
-                  className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
-                  style={{
-                    backgroundImage: `url(${diamondsBg})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.08 }}
+                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+                style={{
+                  backgroundImage: `url(${diamondsBg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }}>
+                
                   <div className="absolute inset-0 bg-black/60 z-0" />
                   <div className="relative z-10 flex flex-col flex-1">
                     <div className="flex items-center gap-3 mb-4">
@@ -173,52 +173,52 @@ const HomePricing = () => {
                     </div>
 
                     <div className="mb-6">
-                      {websitePlans[1].oldPrice && (
-                        <span className="text-base font-bold text-red-400 line-through mr-2">{websitePlans[1].oldPrice}</span>
-                      )}
+                      {websitePlans[1].oldPrice
+
+                    }
                       <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(websitePlans[1].priceKey)}</span>
                       <span className="text-sm text-white/60 ml-2">{t(websitePlans[1].periodKey)}</span>
                     </div>
 
                     <Button
-                      onClick={() => navigate("/book")}
-                      className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6"
-                    >
+                    onClick={() => navigate("/book")}
+                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
+                    
                       {t(websitePlans[1].ctaKey)}
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
 
                     <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
                     <ul className="space-y-2.5 flex-1">
-                      {websitePlans[1].features.map((fKey) => (
-                        <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
+                      {websitePlans[1].features.map((fKey) =>
+                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
                           <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
                           {t(fKey)}
                         </li>
-                      ))}
+                    )}
                     </ul>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
-          )}
+          }
 
-          {activeTab === "apps" && (
-            <motion.div
-              key="apps"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.25 }}
-            >
+          {activeTab === "apps" &&
+          <motion.div
+            key="apps"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}>
+            
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Sprints - Light */}
                 <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="rounded-2xl border border-gray-200 bg-white p-7 md:p-8 flex flex-col"
-                >
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="rounded-2xl border border-gray-200 bg-white p-7 md:p-8 flex flex-col">
+                
                   <div className="flex items-center gap-3 mb-4">
                     <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
                       <Rocket className="w-5 h-5 text-white" />
@@ -238,37 +238,37 @@ const HomePricing = () => {
                   <p className="text-xs text-gray-400 mb-6">{t("pricing.sprints.pauseCancel")}</p>
 
                   <Button
-                    onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 mb-6"
-                    variant="outline"
-                  >
+                  onClick={() => navigate("/book")}
+                  className="w-full font-medium rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 mb-6"
+                  variant="outline">
+                  
                     {t("pricing.sprints.cta")}
                   </Button>
 
                   <h4 className="text-sm font-semibold text-black mb-3">{t("pricing.whatsIncluded")}</h4>
                   <ul className="space-y-2.5 flex-1">
-                    {["pricing.sprints.f1", "pricing.sprints.f2", "pricing.sprints.f3", "pricing.sprints.f4", "pricing.sprints.f5", "pricing.sprints.f6"].map((fKey) => (
-                      <li key={fKey} className="flex items-center gap-2 text-sm text-gray-500">
+                    {["pricing.sprints.f1", "pricing.sprints.f2", "pricing.sprints.f3", "pricing.sprints.f4", "pricing.sprints.f5", "pricing.sprints.f6"].map((fKey) =>
+                  <li key={fKey} className="flex items-center gap-2 text-sm text-gray-500">
                         <CheckCircle className="w-4 h-4 text-gray-400 flex-shrink-0" />
                         {t(fKey)}
                       </li>
-                    ))}
+                  )}
                   </ul>
                 </motion.div>
 
                 {/* MVP Development - Dark */}
                 <motion.div
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.16 }}
-                  className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
-                  style={{
-                    backgroundImage: `url(${diamondTexture})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                >
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.16 }}
+                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+                style={{
+                  backgroundImage: `url(${diamondTexture})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }}>
+                
                   <div className="absolute inset-0 bg-black/70 z-0" />
                   <div className="relative z-10 flex flex-col flex-1">
                     <div className="flex items-center gap-3 mb-4">
@@ -290,30 +290,30 @@ const HomePricing = () => {
                     <p className="text-xs text-white/40 mb-6">{t("pricing.diamond.pauseCancel")}</p>
 
                     <Button
-                      onClick={() => navigate("/book")}
-                      className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6"
-                    >
+                    onClick={() => navigate("/book")}
+                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
+                    
                       {t("pricing.diamond.cta")}
                     </Button>
 
                     <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
                     <ul className="space-y-2.5 flex-1">
-                      {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) => (
-                        <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
+                      {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) =>
+                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
                           <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
                           {t(fKey)}
                         </li>
-                      ))}
+                    )}
                     </ul>
                   </div>
                 </motion.div>
               </div>
             </motion.div>
-          )}
+          }
         </AnimatePresence>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HomePricing;
