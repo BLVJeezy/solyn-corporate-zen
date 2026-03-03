@@ -12,7 +12,7 @@ const HomeValueProps = () =>
       viewport={{ once: true }}
       className="text-center mb-16">
       
-        <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight max-w-3xl mx-auto">
           Why subscribe?{" "}
           <span className="text-gray-400">
             By the end you'll have a full working product ready to launch to the world.
