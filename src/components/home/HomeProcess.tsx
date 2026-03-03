@@ -120,11 +120,14 @@ const HomeProcess = () => {
                     </div>
                     {/* Visual */}
                     {step.toolScroll ? (
-                      <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm aspect-[4/3] flex items-center">
+                      <div className="relative rounded-2xl bg-gray-50 border border-gray-100 shadow-sm aspect-[4/3] flex items-center overflow-visible">
+                        {/* Fade edges */}
+                        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+                        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
                         <div className="w-full overflow-hidden">
-                          <div className="flex gap-10 animate-infinite-scroll w-max items-center py-8">
+                          <div className="flex gap-14 animate-infinite-scroll w-max items-center py-8">
                             {[...toolIcons, ...toolIcons, ...toolIcons, ...toolIcons].map((icon, j) => (
-                              <img key={j} src={icon.src} alt={icon.alt} className="h-16 md:h-20 w-auto flex-shrink-0" />
+                              <img key={j} src={icon.src} alt={icon.alt} className="h-24 md:h-32 w-auto flex-shrink-0 drop-shadow-lg" />
                             ))}
                           </div>
                         </div>
