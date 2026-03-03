@@ -21,7 +21,7 @@ const toolIcons = [
 ];
 
 const imageAnimations = [
-  { initial: { opacity: 0, x: 80 }, animate: { opacity: 1, x: 0 } },       // slide from right
+  { initial: { opacity: 0, x: 80, rotate: 3 }, animate: { opacity: 1, x: 0, rotate: 0 } },       // slide from right with rotation
   { initial: { opacity: 0, x: -80 }, animate: { opacity: 1, x: 0 } },      // slide from left
   {},                                                                         // toolScroll card — no image anim
   { initial: { opacity: 0, x: 60, y: 40 }, animate: { opacity: 1, x: 0, y: 0 } }, // slide from bottom-right
