@@ -94,7 +94,7 @@ const HomeProcess = () => {
                 className="max-w-6xl mx-auto"
               >
                 <div
-                  className="rounded-3xl bg-white p-8 md:p-12 shadow-2xl shadow-black/10 origin-top"
+                  className="rounded-3xl bg-white p-8 md:p-12 shadow-[0_-8px_30px_-6px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(0,0,0,0.1)] origin-top"
                 >
                   {/* Tab label */}
                   <div className="flex items-center gap-2 mb-4">
