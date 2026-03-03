@@ -29,7 +29,7 @@ const HomePricing = () => {
     descKey: "pricing.mvp.desc",
     priceKey: "pricing.mvp.price",
     periodKey: "pricing.mvp.period",
-    oldPrice: "",
+    oldPrice: "€3.997",
     features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
     ctaKey: "pricing.mvp.cta",
     icon: Rocket,
@@ -47,7 +47,7 @@ const HomePricing = () => {
           viewport={{ once: true }}
           className="text-center mb-14">
           
-          <h2 className="text-3xl text-black tracking-tight leading-tight font-semibold md:text-2xl">
+          <h2 className="text-3xl text-black tracking-tight leading-tight font-semibold md:text-3xl">
             Our Pricing.{" "}
             <span className="text-gray-400">
               Your own fractionalized team, with flexible pricing. No contract term.
