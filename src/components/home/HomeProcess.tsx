@@ -4,6 +4,7 @@ import { Code2, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseMvpBuilder from "@/assets/showcase-mvp-builder.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
+import showcaseRoadmap from "@/assets/showcase-roadmap.png";
 import showcaseShefftrades from "@/assets/portfolio-shefftrades.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import showcaseMomentum from "@/assets/showcase-momentumos.png";
@@ -32,7 +33,7 @@ const steps = [
     tab: "Iterate",
     title: "Set your roadmap and milestones",
     text: "We help you prioritize features, set weekly milestones, and iterate based on real user feedback. Stay on track, ship fast.",
-    image: showcaseShefftrades,
+    image: showcaseRoadmap,
   },
   {
     icon: Cpu,
