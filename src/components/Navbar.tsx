@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
@@ -141,18 +141,6 @@ const Navbar = () => {
                 </button>
               ))}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className={`gap-2 ${
-                isHomePage
-                  ? "text-white/50 hover:text-white hover:bg-white/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
-              }`}
-              onClick={() => navigate("/login")}
-            >
-              <User className="w-4 h-4" />
-            </Button>
           </div>
 
           {/* Mobile */}
@@ -212,14 +200,6 @@ const Navbar = () => {
                 ))}
               </div>
               
-              <Button
-                variant="outline"
-                className="gap-2 border-white/20 text-white rounded-full hover:bg-white/10"
-                onClick={() => { setMobileOpen(false); navigate("/login"); }}
-              >
-                <User className="w-4 h-4" />
-                {t("nav.clientLogin")}
-              </Button>
               <Button
                 className="bg-white text-[hsl(0_0%_7%)] hover:bg-white/90 font-medium rounded-full"
                 onClick={() => { setMobileOpen(false); navigate("/book"); }}
