@@ -41,6 +41,8 @@ const HomeProcess = () => {
 
   return (
     <section className="relative overflow-hidden">
+      {/* Top fade */}
+      <div className="h-24 bg-gradient-to-b from-white to-black" />
       {/* Gradient background */}
       <div className="bg-gradient-to-b from-black via-purple-900 to-blue-600 py-24 px-6">
         <motion.div
@@ -105,6 +107,8 @@ const HomeProcess = () => {
           </div>
         </div>
       </div>
+      {/* Bottom fade */}
+      <div className="h-24 bg-gradient-to-b from-blue-600 to-white" />
     </section>
   );
 };
