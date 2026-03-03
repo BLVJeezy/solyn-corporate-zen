@@ -4,21 +4,19 @@ import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import lovableLogo from "@/assets/solyn-icon.svg";
 
-// Import portfolio screenshots for the showcase
-import portfolioSheff from "@/assets/portfolio-shefftrades.png";
-import portfolioSheff2 from "@/assets/portfolio-shefftrades-2.png";
-import portfolioLeplana from "@/assets/portfolio-leplana.png";
-import portfolioMomentum from "@/assets/portfolio-momentumos-1.png";
-import portfolioRW from "@/assets/portfolio-rw-academy.png";
-import portfolioSolyn from "@/assets/portfolio-solyn.png";
+// Import showcase images
+import showcaseBelgomed from "@/assets/showcase-belgomed.png";
+import showcaseDetailing from "@/assets/showcase-detailing.png";
+import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
+import showcaseMomentum from "@/assets/showcase-momentumos.png";
+import showcaseLeplana from "@/assets/showcase-leplana.png";
 
 const showcaseItems = [
-  { img: portfolioSheff, alt: "SheffTrades Dashboard" },
-  { img: portfolioLeplana, alt: "LePlana Platform" },
-  { img: portfolioSheff2, alt: "SheffTrades Analytics" },
-  { img: portfolioMomentum, alt: "MomentumOS" },
-  { img: portfolioRW, alt: "RW Academy" },
-  { img: portfolioSolyn, alt: "Solyn Website" },
+  { img: showcaseBelgomed, alt: "Belgomed" },
+  { img: showcaseDetailing, alt: "Auto Detailing" },
+  { img: showcaseAtelier9, alt: "L'atelier 9" },
+  { img: showcaseMomentum, alt: "MomentumOS" },
+  { img: showcaseLeplana, alt: "Le Plan A" },
 ];
 
 const HomeHero = () => {
@@ -87,27 +85,29 @@ const HomeHero = () => {
         </motion.div>
       </div>
 
-      {/* Full-width product showcase */}
+      {/* Infinite scroll product showcase */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
         className="mt-16 w-full overflow-hidden"
       >
-        <div className="flex gap-5 px-6 pb-8 overflow-x-auto scrollbar-hide">
-          {showcaseItems.map((item, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 w-[420px] sm:w-[520px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm"
-            >
-              <img
-                src={item.img}
-                alt={item.alt}
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
-          ))}
+        <div className="relative">
+          <div className="flex gap-5 animate-infinite-scroll w-max">
+            {[...showcaseItems, ...showcaseItems].map((item, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[420px] sm:w-[520px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm"
+              >
+                <img
+                  src={item.img}
+                  alt={item.alt}
+                  className="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
