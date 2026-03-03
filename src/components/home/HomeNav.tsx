@@ -38,6 +38,7 @@ const HomeNav = () => {
           className="flex items-center gap-2"
         >
           <img src={solynLogo} alt="Solyn Global Ltd" className="h-7 md:h-9 w-auto" />
+          <span className="text-base md:text-lg font-semibold text-black tracking-tight">Solyn Global</span>
         </a>
 
         {/* Center pill nav */}
