@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Cpu, MessagesSquare, Palette, XCircle } from "lucide-react";
-import lovableLogo from "@/assets/lovable-logo-lobe.png";
+import solynIcon from "@/assets/solyn-icon.svg";
 
 const HomeValueProps = () => (
   <section className="py-24 px-6 bg-white">
@@ -30,8 +30,12 @@ const HomeValueProps = () => (
           className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
         >
           <div className="flex justify-center mb-8">
-            <div className="w-24 h-24 rounded-3xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-              <img src={lovableLogo} alt="AI" className="w-12 h-12" />
+            <div className="relative w-28 h-28 rounded-3xl flex items-center justify-center">
+              {/* Gradient glow */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-400 via-pink-400 to-blue-500 opacity-30 blur-xl scale-125" />
+              <div className="relative w-24 h-24 rounded-3xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
+                <img src={solynIcon} alt="Solyn" className="w-14 h-14" />
+              </div>
             </div>
           </div>
           <h3 className="text-black font-bold text-xl mb-3">AI Native</h3>
