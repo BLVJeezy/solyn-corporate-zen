@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import lovableLogo from "@/assets/lovable-logo-lobe.png";
+import lovableLogo from "@/assets/solyn-icon.svg";
 
 // Import portfolio screenshots for the showcase
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
