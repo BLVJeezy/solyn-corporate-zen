@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Code2, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
+import showcaseMvpBuilder from "@/assets/showcase-mvp-builder.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseShefftrades from "@/assets/portfolio-shefftrades.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -24,7 +25,7 @@ const steps = [
     tab: "Build",
     title: "Build your MVP in just 2 weeks",
     text: "We start by designing and developing the core functionality to validate your concept fast — so you can prove traction before investing big.",
-    image: showcaseBelgomed,
+    image: showcaseMvpBuilder,
   },
   {
     icon: Map,
