@@ -20,6 +20,13 @@ const toolIcons = [
   { src: iconSupabase, alt: "Supabase" },
 ];
 
+const imageAnimations = [
+  { initial: { opacity: 0, x: 80 }, animate: { opacity: 1, x: 0 } },       // slide from right
+  { initial: { opacity: 0, x: -80 }, animate: { opacity: 1, x: 0 } },      // slide from left
+  {},                                                                         // toolScroll card — no image anim
+  { initial: { opacity: 0, x: 60, y: 40 }, animate: { opacity: 1, x: 0, y: 0 } }, // slide from bottom-right
+];
+
 const steps = [
   {
     icon: Code2,
@@ -123,7 +130,13 @@ const HomeProcess = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm">
+                      <motion.div
+                        initial={imageAnimations[i]?.initial}
+                        whileInView={imageAnimations[i]?.animate}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+                        className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm"
+                      >
                         <img
                           src={step.image}
                           alt={step.tab}
@@ -131,7 +144,7 @@ const HomeProcess = () => {
                           loading="lazy"
                           decoding="async"
                         />
-                      </div>
+                      </motion.div>
                     )}
                   </div>
                 </div>
