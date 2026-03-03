@@ -1,34 +1,32 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-
-import ServicesGrid from "@/components/ServicesGrid";
-import TrustBar from "@/components/TrustBar";
-import ProcessSection from "@/components/ProcessSection";
-
-import WhyUsSection from "@/components/WhyUsSection";
-import CTASection from "@/components/CTASection";
-
-import Footer from "@/components/Footer";
-import { LanguageProvider } from "@/i18n/LanguageContext";
+import HomeNav from "@/components/home/HomeNav";
+import HomeHero from "@/components/home/HomeHero";
+import HomeMetrics from "@/components/home/HomeMetrics";
+import HomeProcess from "@/components/home/HomeProcess";
+import HomeWork from "@/components/home/HomeWork";
+import HomeValueProps from "@/components/home/HomeValueProps";
+import HomePricing from "@/components/home/HomePricing";
+import HomeTestimonials from "@/components/home/HomeTestimonials";
+import HomeFAQ from "@/components/home/HomeFAQ";
+import HomeCTA from "@/components/home/HomeCTA";
+import HomeFooter from "@/components/home/HomeFooter";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
-import PageTransition from "@/components/PageTransition";
 
 const Index = () => {
   useTrackPageView("/");
   return (
-    <LanguageProvider>
-      <div>
-        <Navbar />
-        <PageTransition>
-          <Hero />
-          <ServicesGrid />
-          <TrustBar />
-          <WhyUsSection />
-          <CTASection />
-        </PageTransition>
-        <Footer />
-      </div>
-    </LanguageProvider>
+    <div className="bg-[hsl(0_0%_4%)] min-h-screen text-white">
+      <HomeNav />
+      <HomeHero />
+      <HomeMetrics />
+      <HomeProcess />
+      <HomeWork />
+      <HomeValueProps />
+      <HomePricing />
+      <HomeTestimonials />
+      <HomeFAQ />
+      <HomeCTA />
+      <HomeFooter />
+    </div>
   );
 };
 
