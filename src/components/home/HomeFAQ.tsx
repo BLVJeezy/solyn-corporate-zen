@@ -8,7 +8,7 @@ import {
 import { FAQ_DATA } from "./placeholders";
 
 const HomeFAQ = () => (
-  <section className="py-24 px-6">
+  <section className="py-24 px-6 bg-white">
     <div className="max-w-3xl mx-auto">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -16,8 +16,9 @@ const HomeFAQ = () => (
         viewport={{ once: true }}
         className="text-center mb-14"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-          Questions? Answers.
+        <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight">
+          Questions?{" "}
+          <span className="text-gray-400">Answers.</span>
         </h2>
       </motion.div>
 
@@ -30,18 +31,18 @@ const HomeFAQ = () => (
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: gi * 0.1 }}
           >
-            <p className="text-white/30 text-xs uppercase tracking-[0.2em] mb-4">{group.category}</p>
+            <p className="text-gray-400 text-xs uppercase tracking-[0.2em] mb-4">{group.category}</p>
             <Accordion type="single" collapsible className="space-y-2">
               {group.items.map((item, qi) => (
                 <AccordionItem
                   key={qi}
                   value={`${gi}-${qi}`}
-                  className="border border-white/[0.06] rounded-xl bg-white/[0.02] px-5 data-[state=open]:bg-white/[0.04] transition-colors"
+                  className="border border-gray-100 rounded-xl bg-white px-5 data-[state=open]:bg-gray-50 transition-colors"
                 >
-                  <AccordionTrigger className="text-white/80 text-sm font-medium hover:text-white hover:no-underline py-4">
+                  <AccordionTrigger className="text-black text-sm font-medium hover:no-underline py-4">
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-white/40 text-sm leading-relaxed pb-4">
+                  <AccordionContent className="text-gray-500 text-sm leading-relaxed pb-4">
                     {item.a}
                   </AccordionContent>
                 </AccordionItem>

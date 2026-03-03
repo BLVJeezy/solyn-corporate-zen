@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Rocket, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
+import { Code2, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
 
 const steps = [
   {
-    icon: Rocket,
+    icon: Code2,
     tab: "Build",
     title: "Build your MVP in just 2 weeks",
-    text: "We take your idea from concept to a fully functional product. Rapid prototyping, real code, production-ready from day one.",
+    text: "We start by designing and developing the core functionality to validate your concept fast — so you can prove traction before investing big.",
   },
   {
     icon: Map,
@@ -40,60 +40,64 @@ const HomeProcess = () => {
   const current = steps[active];
 
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative overflow-hidden">
+      {/* Gradient background */}
+      <div className="bg-gradient-to-b from-black via-purple-900 to-blue-600 py-24 px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight max-w-3xl">
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
             How we work?{" "}
-            <span className="text-white/40">
+            <span className="text-white/50">
               We simplify complex builds into fast, focused sprints that ship real results every week.
             </span>
           </h2>
         </motion.div>
 
-        <div className="mt-12 flex flex-col lg:flex-row gap-8">
-          {/* Tab nav */}
-          <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible lg:w-56 flex-shrink-0">
-            {steps.map((s, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
-                  active === i
-                    ? "bg-white/[0.08] text-white border border-white/[0.1]"
-                    : "text-white/40 hover:text-white/60 hover:bg-white/[0.03]"
-                }`}
-              >
-                <s.icon className="w-4 h-4 flex-shrink-0" />
-                {s.tab}
-              </button>
-            ))}
-          </div>
+        {/* White card container */}
+        <div className="max-w-6xl mx-auto">
+          <div className="rounded-3xl bg-white p-8 md:p-12 shadow-2xl">
+            {/* Step tabs */}
+            <div className="flex gap-2 overflow-x-auto mb-10 pb-2">
+              {steps.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all whitespace-nowrap ${
+                    active === i
+                      ? "bg-gray-100 text-black"
+                      : "text-gray-400 hover:text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <s.icon className="w-4 h-4" />
+                  {s.tab}
+                </button>
+              ))}
+            </div>
 
-          {/* Content */}
-          <div className="flex-1 min-h-[320px]">
+            {/* Content */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="grid md:grid-cols-2 gap-8 h-full"
+                className="grid md:grid-cols-2 gap-10 items-center"
               >
-                <div className="flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{current.title}</h3>
-                  <p className="text-white/40 leading-relaxed">{current.text}</p>
+                <div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-black mb-5 leading-tight">
+                    {current.title}
+                  </h3>
+                  <p className="text-gray-500 leading-relaxed text-base">{current.text}</p>
                 </div>
-                <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] flex items-center justify-center min-h-[240px]">
-                  <div className="text-center p-8">
-                    <current.icon className="w-12 h-12 text-white/20 mx-auto mb-4" />
-                    <p className="text-white/20 text-sm">Visual placeholder</p>
+                {/* Visual placeholder */}
+                <div className="rounded-2xl bg-gray-50 border border-gray-100 aspect-[4/3] flex items-center justify-center overflow-hidden">
+                  <div className="w-4/5 h-4/5 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
+                    <current.icon className="w-10 h-10 text-gray-200" />
                   </div>
                 </div>
               </motion.div>
