@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -48,7 +49,7 @@ const PricingSection = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const timeLeft = useCountdown();
-
+  const [activeTab, setActiveTab] = useState<"websites" | "apps">("websites");
   const plans = [
     {
       nameKey: "pricing.growth.name",
@@ -121,11 +122,41 @@ const PricingSection = () => {
           </div>
         </motion.div>
 
-        {/* Website Development heading */}
-        <h3 className="text-center text-sm uppercase tracking-[0.15em] text-muted-foreground font-medium mb-6">
-          {t("pricing.section.websites")}
-        </h3>
+        {/* Tab Pill Toggle */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-full bg-muted p-1 border border-border">
+            <button
+              onClick={() => setActiveTab("websites")}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeTab === "websites"
+                  ? "bg-foreground text-background shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t("pricing.section.websites")}
+            </button>
+            <button
+              onClick={() => setActiveTab("apps")}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeTab === "apps"
+                  ? "bg-foreground text-background shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {t("pricing.section.apps")}
+            </button>
+          </div>
+        </div>
 
+        <AnimatePresence mode="wait">
+        {activeTab === "websites" && (
+        <motion.div
+          key="websites"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25 }}
+        >
         {/* Plans Grid */}
         <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch mb-5">
           {/* Monthly Maintenance - Light card (like Sprints) */}
@@ -245,17 +276,19 @@ const PricingSection = () => {
             </div>
           </motion.div>
         </div>
+        </motion.div>
+        )}
 
-        
-
-        {/* App Development heading */}
-        <h3 className="text-center text-sm uppercase tracking-[0.15em] text-muted-foreground font-medium mb-6 mt-10">
-          {t("pricing.section.apps")}
-        </h3>
-
+        {activeTab === "apps" && (
+        <motion.div
+          key="apps"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25 }}
+        >
         {/* Sprints + MVP Development Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Sprints Card - Light */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -360,6 +393,9 @@ const PricingSection = () => {
             </div>
           </motion.div>
         </div>
+        </motion.div>
+        )}
+        </AnimatePresence>
 
         {/* Book a Call card */}
         <motion.div
