@@ -4,6 +4,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import solynLogo from "@/assets/solyn-logo.png";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -36,12 +37,9 @@ const HomeNav = () => {
         <a
           href="/"
           onClick={(e) => { e.preventDefault(); navigate("/"); }}
-          className="flex items-center gap-2 text-black font-bold text-xl tracking-tight"
+          className="flex items-center gap-2"
         >
-          <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center">
-            <span className="text-white text-xs font-bold">S</span>
-          </div>
-          Solyn
+          <img src={solynLogo} alt="Solyn Global Ltd" className="h-7 md:h-9 w-auto" />
         </a>
 
         {/* Center pill nav */}
