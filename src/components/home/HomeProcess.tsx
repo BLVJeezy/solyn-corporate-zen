@@ -3,6 +3,7 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Code2, Map, Cpu, MessageCircle, PauseCircle } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
+import showcaseShefftrades from "@/assets/portfolio-shefftrades.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import showcaseMomentum from "@/assets/showcase-momentumos.png";
 import showcaseLeplana from "@/assets/showcase-leplana.png";
@@ -29,7 +30,7 @@ const steps = [
     tab: "Iterate",
     title: "Set your roadmap and milestones",
     text: "We help you prioritize features, set weekly milestones, and iterate based on real user feedback. Stay on track, ship fast.",
-    image: showcaseDetailing,
+    image: showcaseShefftrades,
   },
   {
     icon: Cpu,
