@@ -50,13 +50,6 @@ const steps = [
     text: "Communicate via Slack, get weekly updates, and provide feedback asynchronously. No unnecessary meetings or time zone friction.",
     image: showcaseTaskboard,
   },
-  {
-    icon: PauseCircle,
-    tab: "Pause or Cancel",
-    title: "Pause or cancel anytime",
-    text: "No contracts, no lock-in. Pause your subscription when you need a break, or cancel anytime. Your code is always yours.",
-    image: showcaseLeplana,
-  },
 ];
 
 const HomeProcess = () => {
