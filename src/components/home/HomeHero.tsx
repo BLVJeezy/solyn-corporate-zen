@@ -46,8 +46,8 @@ const HomeHero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-[3.25rem] font-bold text-black tracking-tight leading-[1.2]">
-            Turn your idea into a ready to<br className="hidden sm:block" /> launch MVP in 2-weeks
+          <h1 className="text-3xl sm:text-4xl md:text-[3.25rem] font-bold text-black tracking-tight leading-[1.15]">
+            Turn your idea into a<br className="hidden sm:block" /> ready-to-launch MVP in 2 weeks
           </h1>
         </motion.div>
 
