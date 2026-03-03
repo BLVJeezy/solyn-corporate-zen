@@ -46,7 +46,7 @@ const HomeHero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-3xl">
           
-          <h1 className="text-3xl sm:text-4xl font-bold text-black tracking-tight leading-[1.2] text-left md:text-3xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.1] text-left">
             Turn your idea into a ready to<br className="hidden sm:block" /> launch MVP in 2-weeks
           </h1>
         </motion.div>
