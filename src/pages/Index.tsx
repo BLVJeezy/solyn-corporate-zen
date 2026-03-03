@@ -14,7 +14,7 @@ import { useTrackPageView } from "@/hooks/useTrackPageView";
 const Index = () => {
   useTrackPageView("/");
   return (
-    <div className="bg-[hsl(0_0%_4%)] min-h-screen text-white">
+    <div className="bg-white min-h-screen">
       <HomeNav />
       <HomeHero />
       <HomeMetrics />

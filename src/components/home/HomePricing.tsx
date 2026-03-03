@@ -1,42 +1,46 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight } from "lucide-react";
+import { Check } from "lucide-react";
 import { motion } from "framer-motion";
+import { Rocket, Zap } from "lucide-react";
 
 const plans = [
   {
     name: "Sprints",
     subtitle: "2-Week Sprints",
+    desc: "For founders or teams who want to move fast — strategy, design, and development executed in 14 days.",
     price: "€4,500",
     period: "/ Bi-Weekly",
-    cta: "Book a Call",
+    cta: "Book A Call",
     href: "/book",
+    dark: false,
+    icon: Rocket,
     features: [
       "AI developer team",
       "Unlimited revisions",
       "Product strategy & roadmap",
-      "Integrations & APIs",
+      "Integrations & API's",
       "Communication via Slack",
       "Weekly progress updates",
-      "Pause or cancel anytime",
     ],
   },
   {
     name: "MVP Development",
     subtitle: "We deliver an MVP in 2 weeks",
+    desc: "In 2-weeks you'll have a full working product ready to launch to the world.",
     price: "€9,500",
     period: "/ One-time",
     cta: "Get Started Today",
     href: "/book",
-    highlight: true,
+    dark: true,
+    icon: Zap,
     features: [
       "Functional MVP built with Lovable",
-      "Database + API integrations",
-      "User auth & onboarding",
+      "Database + API integrations (Supabase, OpenAI, etc)",
+      "User authentication & onboarding flow",
       "Product design components",
       "Communication via Slack",
       "Weekly progress updates",
-      "Pause or cancel anytime",
     ],
   },
 ];
@@ -45,18 +49,21 @@ const HomePricing = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="pricing" className="py-24 px-6">
+    <section className="py-24 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Our Pricing</h2>
-          <p className="text-white/40 mt-4 max-w-lg mx-auto">
-            Your own fractionalized team, with flexible pricing. No contract term.
-          </p>
+          <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight">
+            Our Pricing.{" "}
+            <span className="text-gray-400">
+              Your own fractionalized team, with flexible pricing. No contract term.
+            </span>
+          </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -67,37 +74,69 @@ const HomePricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.15 }}
-              className={`rounded-2xl border p-8 flex flex-col transition-all ${
-                plan.highlight
-                  ? "border-white/[0.12] bg-white/[0.04]"
-                  : "border-white/[0.06] bg-white/[0.02]"
+              className={`rounded-2xl border p-8 flex flex-col ${
+                plan.dark
+                  ? "bg-gray-900 border-gray-800 text-white"
+                  : "bg-white border-gray-200 text-black"
               }`}
             >
-              <p className="text-white/50 text-sm font-medium uppercase tracking-wider">{plan.name}</p>
-              <p className="text-white/60 text-sm mt-1">{plan.subtitle}</p>
-              <div className="mt-6 mb-8">
-                <span className="text-4xl md:text-5xl font-bold text-white">{plan.price}</span>
-                <span className="text-white/40 text-sm ml-1">{plan.period}</span>
+              {/* Icon + name */}
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                  plan.dark
+                    ? "bg-gradient-to-br from-purple-500 to-blue-500"
+                    : "bg-gradient-to-br from-pink-500 to-orange-400"
+                }`}>
+                  <plan.icon className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-semibold text-lg">{plan.name}</p>
+                  <p className={`text-sm ${plan.dark ? "text-gray-400" : "text-gray-500"}`}>{plan.subtitle}</p>
+                </div>
               </div>
-              <ul className="space-y-3 mb-8 flex-1">
-                {plan.features.map((f, j) => (
-                  <li key={j} className="flex items-start gap-3 text-sm text-white/50">
-                    <Check className="w-4 h-4 text-white/30 mt-0.5 flex-shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+
+              <p className={`text-sm mt-4 mb-6 ${plan.dark ? "text-gray-400" : "text-gray-500"}`}>
+                {plan.desc}
+              </p>
+
+              {/* Price */}
+              <div className="mb-2">
+                <span className="text-5xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-pink-400 bg-clip-text text-transparent">
+                  {plan.price}
+                </span>
+                <span className={`text-sm ml-1 ${plan.dark ? "text-gray-400" : "text-gray-500"}`}>{plan.period}</span>
+              </div>
+              <p className={`text-sm mb-6 ${plan.dark ? "text-gray-500" : "text-gray-400"}`}>
+                Pause or cancel anytime
+              </p>
+
+              {/* CTA */}
               <Button
                 onClick={() => navigate(plan.href)}
-                className={`rounded-full font-medium py-6 ${
-                  plan.highlight
+                className={`rounded-full font-medium py-6 mb-8 ${
+                  plan.dark
                     ? "bg-white text-black hover:bg-white/90"
-                    : "bg-white/[0.08] text-white hover:bg-white/[0.12] border border-white/[0.1]"
+                    : "bg-black text-white hover:bg-black/90 border-0"
                 }`}
+                variant={plan.dark ? "default" : "outline"}
               >
                 {plan.cta}
-                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
+
+              {/* Features */}
+              <div>
+                <p className={`font-semibold text-sm mb-4 ${plan.dark ? "text-white" : "text-black"}`}>
+                  What's included:
+                </p>
+                <ul className="space-y-3">
+                  {plan.features.map((f, j) => (
+                    <li key={j} className={`flex items-start gap-3 text-sm ${plan.dark ? "text-gray-400" : "text-gray-500"}`}>
+                      <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.dark ? "text-gray-500" : "text-gray-400"}`} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
