@@ -13,6 +13,8 @@ import portfolioLeplana from "@/assets/portfolio-leplana.png";
 import portfolioLeplana2 from "@/assets/portfolio-leplana-2.png";
 import portfolioRW from "@/assets/portfolio-rw-academy.png";
 import portfolioRW2 from "@/assets/portfolio-rw-academy-2.png";
+import portfolioMomentum from "@/assets/portfolio-momentumos-1.png";
+import portfolioMomentum2 from "@/assets/portfolio-momentumos-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -105,7 +107,8 @@ const PortfolioSection = () => {
   { images: [{ src: portfolio3, label: "Homepage" }, { src: portfolio3b, label: "Resultaten" }], title: "L'atelier 9", descKey: "portfolio.p3.desc", category: "websites", brandColor: "#f0eeeb" },
   { images: [{ src: portfolioLeplana, label: "Homepage" }, { src: portfolioLeplana2, label: "Dashboard" }], title: "Le Plan A", descKey: "portfolio.p5.desc", category: "websites", brandColor: "#1a1a1a" },
   { images: [{ src: portfolioSheff, label: "Dashboard" }, { src: portfolioSheff2, label: "Leaderboard" }], title: "Sheff Trades", descKey: "portfolio.p4.desc", category: "apps", brandColor: "#1a1400" },
-  { images: [{ src: portfolioRW, label: "Dashboard" }, { src: portfolioRW2, label: "Workspace" }], title: "RW Academy", descKey: "portfolio.p6.desc", category: "apps", brandColor: "#0a1628" }];
+  { images: [{ src: portfolioRW, label: "Dashboard" }, { src: portfolioRW2, label: "Workspace" }], title: "RW Academy", descKey: "portfolio.p6.desc", category: "apps", brandColor: "#0a1628" },
+  { images: [{ src: portfolioMomentum, label: "Intelligence" }, { src: portfolioMomentum2, label: "Growth Strategy" }], title: "MomentumOS", descKey: "portfolio.p7.desc", category: "apps", brandColor: "#0d1117" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
