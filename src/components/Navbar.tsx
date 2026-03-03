@@ -19,7 +19,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const navLinks = [
-    { label: t("nav.services"), href: "#services" },
+    { label: t("nav.services"), href: "/about" },
     { label: t("nav.portfolio"), href: "/portfolio" },
     { label: t("nav.pricing"), href: "/pricing" },
   ];
