@@ -37,6 +37,7 @@ const HomeHero = () => {
           <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 shadow-sm">
             Official <span className="font-semibold text-black">Gold</span> Partner of
             <img src={lovableLogo} alt="Lovable" className="h-5 w-auto" />
+            <span className="font-bold text-black">Lovable</span>
           </div>
         </motion.div>
 
