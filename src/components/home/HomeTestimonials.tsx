@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { PLACEHOLDER_TESTIMONIALS } from "./placeholders";
 
-const HomeTestimonials = () => (
-  <section className="py-24 px-6 bg-white">
+const HomeTestimonials = () =>
+<section className="py-24 px-6 bg-white">
     <div className="max-w-6xl mx-auto">
       {/* Header */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-14"
-      >
-        <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight max-w-2xl mx-auto">
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-center mb-14">
+      
+        <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight max-w-2xl mx-auto text-center">
           Trusted by industry leaders.{" "}
           <span className="text-gray-400">Hear what clients are saying about Process.</span>
         </h2>
@@ -20,15 +20,15 @@ const HomeTestimonials = () => (
       {/* Horizontal scroll cards */}
       <div className="overflow-x-auto scrollbar-hide -mx-6 px-6">
         <div className="flex gap-5 w-max pb-4">
-          {PLACEHOLDER_TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="w-[340px] flex-shrink-0 rounded-2xl border border-gray-100 bg-white p-7 flex flex-col"
-            >
+          {PLACEHOLDER_TESTIMONIALS.map((t, i) =>
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: i * 0.05 }}
+          className="w-[340px] flex-shrink-0 rounded-2xl border border-gray-100 bg-white p-7 flex flex-col">
+          
               <p className="text-black text-sm leading-relaxed flex-1 mb-6">
                 "{t.quote}"
               </p>
@@ -47,11 +47,11 @@ const HomeTestimonials = () => (
                 </span>
               </div>
             </motion.div>
-          ))}
+        )}
         </div>
       </div>
     </div>
-  </section>
-);
+  </section>;
+
 
 export default HomeTestimonials;
