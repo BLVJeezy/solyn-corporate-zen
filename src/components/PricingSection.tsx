@@ -249,8 +249,8 @@ const PricingSection = () => {
               </div>
 
               <div className="mb-6">
-                {plans[1].oldPrice &&
-                    <span className="text-base font-bold text-red-400 line-through mr-2">{plans[1].oldPrice}</span>
+                {plans[1].oldPrice
+
                     }
                 <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(plans[1].priceKey)}</span>
                 <span className="text-sm text-white/60 ml-2">{t(plans[1].periodKey)}</span>
