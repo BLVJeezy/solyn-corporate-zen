@@ -57,7 +57,7 @@ const steps = [
 
 const HomeProcess = () => {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-x-clip">
       {/* Top fade */}
       <div className="h-32 bg-gradient-to-b from-white via-white to-transparent relative z-10" />
 
