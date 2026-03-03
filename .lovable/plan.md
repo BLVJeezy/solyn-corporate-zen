@@ -1,19 +1,20 @@
 
 
-## Google Search Console verificatie
+## Probleem
 
-De HTML-bestand methode werkt niet met Lovable's hosting — je kunt geen losse bestanden uploaden naar de root.
+De kaarten zijn `sticky` met een oplopende `top` waarde, maar ze hebben geen oplopende `z-index`. Hierdoor schuift kaart 2 niet **voor** kaart 1 — ze verdwijnen er achter. In de referentievideo komt elke volgende kaart juist **bovenop** de vorige.
 
-**Oplossing**: Gebruik de **HTML-tag** verificatiemethode:
+## Oplossing
 
-1. Ga in Google Search Console naar **Instellingen → Eigendomsverificatie**
-2. Kies **HTML-tag** als methode
-3. Je krijgt een meta-tag zoals:
-   ```html
-   <meta name="google-site-verification" content="abc123xyz..." />
-   ```
-4. Stuur mij die meta-tag, dan voeg ik die toe aan `index.html`
+Eén simpele fix: voeg een oplopende `z-index` toe aan elke sticky card wrapper zodat elke volgende kaart een hogere z-index heeft en dus vóór de vorige kaart verschijnt.
 
-### Technische wijziging
-- **`index.html`**: Eén `<meta name="google-site-verification" ...>` tag toevoegen in de `<head>` sectie
+### Wijziging in `src/components/home/HomeProcess.tsx`
+
+**Regel 87** — voeg `zIndex` toe aan de inline style:
+
+```tsx
+style={{ top: `${60 + i * 24}px`, zIndex: i + 1 }}
+```
+
+Dit zorgt ervoor dat kaart 1 z-index 1 heeft, kaart 2 z-index 2, etc. — elke volgende kaart schuift dus visueel vóór de vorige tijdens het scrollen.
 
