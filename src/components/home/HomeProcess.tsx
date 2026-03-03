@@ -84,7 +84,7 @@ const HomeProcess = () => {
             <div
               key={i}
               className="sticky h-[85vh] md:h-[80vh]"
-              style={{ top: `${60 + i * 24}px` }}
+              style={{ top: `${60 + i * 24}px`, zIndex: i + 1 }}
             >
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
