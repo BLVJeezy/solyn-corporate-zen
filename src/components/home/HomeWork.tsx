@@ -76,6 +76,7 @@ const HomeWork = () => {
                   alt={cs.title}
                   className="w-full aspect-[4/3] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               {/* Info */}

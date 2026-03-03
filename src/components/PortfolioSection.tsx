@@ -50,7 +50,8 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
           src={project.images[0].src}
           alt={project.title}
           className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
-          loading="lazy" />) : (
+           loading="lazy"
+           decoding="async" />) : (
 
 
         /* Multi-image layout */
@@ -59,25 +60,29 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
               src={project.images[0].src}
               alt={`${project.title} - ${project.images[0].label}`}
               className={`w-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[55%]' : 'h-full'}`}
-              loading="lazy" />
+               loading="lazy"
+               decoding="async" />
             <img
               src={project.images[1].src}
               alt={`${project.title} - ${project.images[1].label}`}
               className={`w-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[45%]' : 'h-full'}`}
-              loading="lazy" />
+               loading="lazy"
+               decoding="async" />
             {project.images[2] && (
               <img
                 src={project.images[2].src}
                 alt={`${project.title} - ${project.images[2].label}`}
                 className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="lazy" />
+                 loading="lazy"
+                 decoding="async" />
             )}
             {project.images[3] && (
               <img
                 src={project.images[3].src}
                 alt={`${project.title} - ${project.images[3].label}`}
                 className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="lazy" />
+                 loading="lazy"
+                 decoding="async" />
             )}
           </div>)
         }
