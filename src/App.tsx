@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
+import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 import BookCall from "./pages/BookCall";
 import Admin from "./pages/Admin";
@@ -40,6 +41,7 @@ const App = () => (
               <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/book" element={<BookCall />} />
