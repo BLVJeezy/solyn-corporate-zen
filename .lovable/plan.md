@@ -2,19 +2,20 @@
 
 ## Probleem
 
-De kaarten zijn `sticky` met een oplopende `top` waarde, maar ze hebben geen oplopende `z-index`. Hierdoor schuift kaart 2 niet **voor** kaart 1 — ze verdwijnen er achter. In de referentievideo komt elke volgende kaart juist **bovenop** de vorige.
+De `<section>` wrapper heeft `overflow-hidden` (regel 60). CSS `position: sticky` werkt **niet** binnen een container met `overflow: hidden`. Daarom scrollen de kaarten gewoon onder elkaar in plaats van te stapelen.
 
 ## Oplossing
 
-Eén simpele fix: voeg een oplopende `z-index` toe aan elke sticky card wrapper zodat elke volgende kaart een hogere z-index heeft en dus vóór de vorige kaart verschijnt.
+Twee wijzigingen in `src/components/home/HomeProcess.tsx`:
 
-### Wijziging in `src/components/home/HomeProcess.tsx`
+1. **Verwijder `overflow-hidden`** van de parent `<section>` (regel 60). Verplaats het naar alleen de elementen die het echt nodig hebben (de top/bottom fades en de infinite scroll container hebben het al via hun eigen overflow classes).
 
-**Regel 87** — voeg `zIndex` toe aan de inline style:
+2. **Clip de gradient visueel** door `overflow-x: clip` te gebruiken in plaats van `overflow-hidden`. Dit voorkomt horizontale scrollbar door de gradient maar breekt sticky niet:
 
 ```tsx
-style={{ top: `${60 + i * 24}px`, zIndex: i + 1 }}
+// Regel 60: was overflow-hidden, wordt overflow-x-clip
+<section className="relative overflow-x-clip">
 ```
 
-Dit zorgt ervoor dat kaart 1 z-index 1 heeft, kaart 2 z-index 2, etc. — elke volgende kaart schuift dus visueel vóór de vorige tijdens het scrollen.
+Dit is de enige wijziging. De `z-index` en `sticky` logica zijn al correct — ze worden alleen geblokkeerd door de overflow-hidden.
 
