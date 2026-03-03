@@ -127,81 +127,122 @@ const PricingSection = () => {
 
         {/* Plans Grid */}
         <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch mb-5">
-          {plans.map((plan, i) => (
-            <React.Fragment key={plan.nameKey}>
-              {i === 1 && (
-                <div className="hidden md:flex items-center justify-center px-4">
-                  <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
+          {/* Monthly Maintenance - Light card (like Sprints) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-border bg-card p-7 md:p-8 flex flex-col"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
+                <Zap className="w-5 h-5 text-white" />
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-foreground">{t(plans[0].nameKey)}</h3>
+                <p className="text-xs text-muted-foreground">{t(plans[0].descKey)}</p>
+              </div>
+            </div>
+
+            {plans[0].badge && (
+              <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground bg-muted px-2.5 py-1 rounded-full self-start mb-3">
+                {t(plans[0].badge)}
+              </span>
+            )}
+
+            <div className="mb-6">
+              <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(plans[0].priceKey)}</span>
+              <span className="text-sm text-muted-foreground ml-2">{t(plans[0].periodKey)}</span>
+            </div>
+
+            <Button
+              onClick={() => navigate("/book")}
+              className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-6"
+              variant="outline"
+            >
+              {t(plans[0].ctaKey)}
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+
+            <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
+            <ul className="space-y-2.5 flex-1">
+              {plans[0].features.map((fKey) => (
+                <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
+                  {t(fKey)}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Plus divider */}
+          <div className="hidden md:flex items-center justify-center px-4">
+            <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
+          </div>
+          <div className="flex md:hidden items-center justify-center py-4">
+            <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
+          </div>
+
+          {/* Website Development - Dark card (like MVP) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.08 }}
+            className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+            style={{
+              backgroundImage: `url(${diamondTexture})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black/70 z-0" />
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
+              style={{
+                background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
+                animation: "shimmer 2.5s ease-in-out infinite",
+              }}
+            />
+
+            <div className="relative z-10 flex flex-col flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
+                  <Rocket className="w-5 h-5 text-white" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-bold text-white">{t(plans[1].nameKey)}</h3>
+                  <p className="text-xs text-white/60">{t(plans[1].descKey)}</p>
                 </div>
-              )}
-              {i === 1 && (
-                <div className="flex md:hidden items-center justify-center py-4">
-                  <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
-                </div>
-              )}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="rounded-2xl p-7 relative overflow-hidden group flex flex-col h-full"
-                style={{
-                  backgroundImage: `url(${plan.texture})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+              </div>
+
+              <div className="mb-6">
+                {plans[1].oldPrice && (
+                  <span className="text-base font-bold text-red-400 line-through mr-2">{plans[1].oldPrice}</span>
+                )}
+                <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(plans[1].priceKey)}</span>
+                <span className="text-sm text-white/60 ml-2">{t(plans[1].periodKey)}</span>
+              </div>
+
+              <Button
+                onClick={() => navigate("/book")}
+                className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6"
               >
-                {/* Shimmer */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0.4) 55%, transparent 60%)",
-                    animation: "shimmer 2.5s ease-in-out infinite",
-                  }}
-                />
+                {t(plans[1].ctaKey)}
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
 
-                <div className="relative z-10 flex flex-col flex-1">
-                  {plan.badge && (
-                    <span className="text-[10px] uppercase tracking-widest font-bold text-black/40 bg-black/8 px-2.5 py-1 rounded-full self-start mb-3">
-                      {t(plan.badge)}
-                    </span>
-                  )}
-
-                  <div className="flex items-center gap-2 mb-1">
-                    <plan.icon className="w-4 h-4 text-black/60" />
-                    <h3 className="text-lg font-bold text-black">{t(plan.nameKey)}</h3>
-                  </div>
-
-                  <p className="text-sm text-black/60 mb-5">{t(plan.descKey)}</p>
-
-                  <div className="mb-6">
-                    {plan.oldPrice && (
-                      <span className="text-base font-bold text-red-700 line-through mr-2">{plan.oldPrice}</span>
-                    )}
-                    <span className="text-3xl font-bold text-black">{t(plan.priceKey)}</span>
-                    <span className="text-xs ml-1.5 text-black/50">{t(plan.periodKey)}</span>
-                  </div>
-
-                  <ul className="space-y-2 mb-7 flex-1">
-                    {plan.features.map((fKey) => (
-                      <li key={fKey} className="flex items-start gap-2 text-sm text-black/70">
-                        <CheckCircle className="w-3.5 h-3.5 mt-0.5 text-black/40 flex-shrink-0" />
-                        {t(fKey)}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Button
-                    onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full border-0 bg-black/80 text-white hover:bg-black"
-                  >
-                    {t(plan.ctaKey)}
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </div>
-              </motion.div>
-            </React.Fragment>
-          ))}
+              <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
+              <ul className="space-y-2.5 flex-1">
+                {plans[1].features.map((fKey) => (
+                  <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
+                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
+                    {t(fKey)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
         </div>
 
         
