@@ -18,6 +18,8 @@ import portfolioMomentum2 from "@/assets/portfolio-momentumos-2.png";
 import portfolioWedding from "@/assets/portfolio-wedding-app.png";
 import portfolioDaroumi from "@/assets/portfolio-daroumi-1.png";
 import portfolioDaroumi2 from "@/assets/portfolio-daroumi-2.png";
+import portfolioPilates from "@/assets/portfolio-poortpilates-1.png";
+import portfolioPilates2 from "@/assets/portfolio-poortpilates-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -118,7 +120,8 @@ const PortfolioSection = () => {
   { images: [{ src: portfolioRW, label: "Dashboard" }, { src: portfolioRW2, label: "Workspace" }], title: "RW Academy", descKey: "portfolio.p6.desc", category: "apps", brandColor: "#0a1628" },
   { images: [{ src: portfolioMomentum, label: "Intelligence" }, { src: portfolioMomentum2, label: "Growth Strategy" }], title: "MomentumOS", descKey: "portfolio.p7.desc", category: "apps", brandColor: "#0d1117" },
   { images: [{ src: portfolioWedding, label: "Homepage" }], title: "Wedding App", descKey: "portfolio.p8.desc", category: "apps", brandColor: "#f5f0e8" },
-  { images: [{ src: portfolioDaroumi, label: "Homepage" }, { src: portfolioDaroumi2, label: "Menu" }], title: "Dar Oumi", descKey: "portfolio.p9.desc", category: "websites", brandColor: "#3d3226" }];
+  { images: [{ src: portfolioDaroumi, label: "Homepage" }, { src: portfolioDaroumi2, label: "Menu" }], title: "Dar Oumi", descKey: "portfolio.p9.desc", category: "websites", brandColor: "#3d3226" },
+  { images: [{ src: portfolioPilates, label: "Homepage" }, { src: portfolioPilates2, label: "Lessen" }], title: "Poort Pilates", descKey: "portfolio.p10.desc", category: "websites", brandColor: "#c8a55a" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
