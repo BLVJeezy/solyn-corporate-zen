@@ -1,41 +1,22 @@
 
 
-## Image Performance Optimization Plan
+## Secret Admin Access
 
-### Problem
-All images are PNGs/JPEGs served without optimization. No preloading for above-the-fold images, and hero showcase images incorrectly have `loading="lazy"` (they're visible on first paint).
+A hidden entry point to `/admin` from the homepage. Common patterns:
 
-### Changes
+1. **Logo Easter Egg** — Triple-click (or 5x rapid click) on the Solyn logo in the footer navigates to `/admin`. No visual indicator whatsoever.
+2. **Konami-style shortcut** — A keyboard sequence (e.g. pressing `admin` keys in order) triggers navigation.
+3. **Hidden tap zone** — An invisible clickable area in the footer copyright text.
 
-**1. `index.html` — Preload critical above-the-fold images**
-Add `<link rel="preload">` for the logo and first 2-3 showcase images that are visible on load. Since Vite hashes asset URLs, we'll use a module preload approach instead — by eagerly loading the hero images.
+**Recommended approach: Combine #1 + #2**
 
-**2. `src/components/home/HomeHero.tsx` — Fix hero image loading**
-- Remove `loading="lazy"` from showcase images (they're above the fold and animate in immediately)
-- Add `decoding="async"` and `fetchpriority="high"` on first few images
-- Add explicit `width` and `height` attributes to prevent layout shifts
+- In `HomeFooter.tsx`, add a click counter on the logo/copyright. After 5 rapid clicks (within 2 seconds), navigate to `/admin`.
+- In `Index.tsx` (or a global hook), listen for the keyboard sequence `a-d-m-i-n` typed in order → navigate to `/admin`.
+- Zero visual indication. No hover effects, no cursor changes.
 
-**3. `src/components/home/HomeNav.tsx` — Optimize logo**
-- Add `fetchpriority="high"` to the logo `<img>` since it's the first visible element
+**Implementation:**
+- `src/components/home/HomeFooter.tsx` — Add a `useRef` counter + timeout on the footer logo. After 5 clicks within 2s, call `navigate("/admin")`.
+- `src/pages/Index.tsx` — Add a `useEffect` with a `keydown` listener tracking the sequence `['a','d','m','i','n']`. On completion, navigate to `/admin`.
 
-**4. All below-fold components — Ensure lazy loading + decoding**
-Add `decoding="async"` to all images that already have `loading="lazy"`:
-- `HomeProcess.tsx`
-- `HomeWork.tsx`
-- `PortfolioSection.tsx`
-- `MobileViewSection.tsx`
-- `HeroPortfolioPreview.tsx`
-
-**5. `vite.config.ts` — Add image optimization build settings**
-Add `build.assetsInlineLimit: 0` to prevent inlining images as base64 (which bloats JS bundles).
-
-**6. WebP conversion limitation**
-Vite doesn't convert images to WebP at build time without additional plugins. The practical approach:
-- For the 5 showcase images and portfolio images that are the heaviest, I'll add a `<picture>` element with WebP source fallback pattern, but since we can't convert files in this environment, I'll note this as a manual step.
-- The real win comes from the loading strategy changes (preload + lazy) which will have the biggest impact.
-
-### Summary of impact
-- **Hero LCP improvement**: Removing `loading="lazy"` from above-fold images and adding `fetchpriority="high"` directly improves Largest Contentful Paint
-- **Below-fold savings**: `decoding="async"` prevents main-thread blocking during image decode
-- **Layout stability**: Width/height attributes prevent CLS
+Both methods are completely invisible to regular users.
 
