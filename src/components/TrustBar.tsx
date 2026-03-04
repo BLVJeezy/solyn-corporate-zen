@@ -5,9 +5,9 @@ const TrustBar = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { value: "50+", labelKey: "trust.projects" },
-    { value: "98%", labelKey: "trust.clients" },
-    { value: "12+", labelKey: "trust.countries" },
+    { value: "200+", label: "Products Built" },
+    { value: "100%", label: "Satisfied clients" },
+    { value: "12+", label: "Countries" },
   ];
 
   return (
