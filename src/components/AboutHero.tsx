@@ -28,14 +28,14 @@ const AboutHero = () => {
         >
           <Button
             onClick={() => navigate("/book")}
-            className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-7 py-6 text-base gap-2"
+            className="rounded-full bg-white text-gray-950 hover:bg-white/90 font-medium px-7 py-6 text-base gap-2"
           >
             <ArrowRight className="w-4 h-4" />
             {t("aboutHero.cta1")}
           </Button>
           <Button
             onClick={() => navigate("/pricing")}
-            className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base"
+            className="rounded-full border-gray-600 text-white hover:bg-white/10 font-medium px-7 py-6 text-base"
             variant="outline"
           >
             {t("aboutHero.cta2")}
