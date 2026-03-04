@@ -185,6 +185,7 @@ export type Database = {
       }
       site_analytics: {
         Row: {
+          country: string | null
           created_at: string
           device_type: string | null
           event_type: string | null
@@ -195,6 +196,7 @@ export type Database = {
           source_type: string | null
         }
         Insert: {
+          country?: string | null
           created_at?: string
           device_type?: string | null
           event_type?: string | null
@@ -205,6 +207,7 @@ export type Database = {
           source_type?: string | null
         }
         Update: {
+          country?: string | null
           created_at?: string
           device_type?: string | null
           event_type?: string | null
