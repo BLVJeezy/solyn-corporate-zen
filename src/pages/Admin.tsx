@@ -132,7 +132,7 @@ const AdminPage = () => {
       <div className="flex relative z-[2]">
         {/* ── Sidebar (desktop) ── */}
         <aside className={`hidden lg:flex flex-col border-r border-border/60 bg-card/40 backdrop-blur-xl sticky top-14 h-[calc(100vh-3.5rem)] transition-all duration-300 ease-out ${sidebarCollapsed ? "w-[60px]" : "w-52"}`}>
-          <nav className="flex-1 py-4 px-2 space-y-0.5">
+          <nav className="flex-1 py-3 px-2 space-y-px">
             {sidebarItems.map((item) => {
               const isActive = activeTab === item.id;
               const count = item.id === "leads" ? leads.length : item.id === "clients" ? clients.length : undefined;
@@ -140,19 +140,19 @@ const AdminPage = () => {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${
+                  className={`group w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] transition-all duration-150 ${
                     isActive
-                      ? "bg-foreground text-background shadow-md shadow-foreground/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50 font-medium"
                   }`}
                 >
-                  <item.icon className="w-4 h-4 shrink-0" />
+                  <item.icon className={`w-[15px] h-[15px] shrink-0 transition-colors ${isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"}`} />
                   {!sidebarCollapsed && (
                     <>
-                      <span className="flex-1 text-left">{item.label}</span>
+                      <span className="flex-1 text-left truncate">{item.label}</span>
                       {count !== undefined && (
-                        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-md min-w-[20px] text-center ${
-                          isActive ? "bg-background/20 text-background" : "bg-muted text-muted-foreground"
+                        <span className={`text-[10px] tabular-nums font-medium px-1.5 py-0.5 rounded-full min-w-[18px] text-center transition-colors ${
+                          isActive ? "bg-primary/15 text-primary" : "text-muted-foreground/70"
                         }`}>
                           {count}
                         </span>
