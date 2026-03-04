@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
-import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
+import { useState, useMemo, useEffect, lazy, Suspense } from "react";
+import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, ChevronLeft, ChevronRight, Moon, Sun, Activity } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
@@ -35,7 +35,10 @@ const sidebarItems = [
   { id: "leads", icon: Users, label: "Leads" },
   { id: "clients", icon: Building2, label: "Klanten" },
   { id: "credits", icon: Coins, label: "Credits" },
+  { id: "analytics", icon: Activity, label: "Analytics" },
 ];
+
+const LazyAnalytics = lazy(() => import("@/pages/Analytics"));
 
 const AdminPage = () => {
   const { signOut } = useAuth();
@@ -115,12 +118,6 @@ const AdminPage = () => {
               {adminDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </Button>
             <ExportButtons leads={leads} clients={clients} />
-            <Link to="/admin/analytics">
-              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground h-8 w-8 p-0 lg:w-auto lg:px-3 lg:gap-1.5 hover:bg-muted/60">
-                <BarChart3 className="w-4 h-4" />
-                <span className="hidden lg:inline text-xs font-medium">Analytics</span>
-              </Button>
-            </Link>
             <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-muted-foreground hover:text-foreground h-8 w-8 p-0 lg:w-auto lg:px-3 lg:gap-1.5 hover:bg-muted/60">
               <LogOut className="w-4 h-4" />
               <span className="hidden lg:inline text-xs font-medium">Uit</span>
@@ -173,24 +170,24 @@ const AdminPage = () => {
           </div>
         </aside>
 
-        {/* ── Mobile Tab Bar ── */}
+        {/* ── Mobile Tab Bar (floating pill) ── */}
         {isMobile && (
-          <div className="fixed bottom-0 left-0 right-0 z-40 bg-card/80 backdrop-blur-2xl border-t border-border/60 safe-area-pb">
-            <div className="flex">
+          <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40">
+            <div className="flex items-center gap-0.5 px-1.5 py-1.5 bg-card/90 backdrop-blur-2xl border border-border/60 rounded-full shadow-lg dark:shadow-black/40">
               {sidebarItems.map((item) => {
                 const isActive = activeTab === item.id;
                 return (
                   <button
                     key={item.id}
                     onClick={() => setActiveTab(item.id)}
-                    className={`flex-1 flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-medium transition-all duration-200 ${
-                      isActive ? "text-foreground" : "text-muted-foreground"
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <div className={`p-1 rounded-lg transition-all duration-200 ${isActive ? "bg-foreground/10" : ""}`}>
-                      <item.icon className="w-4.5 h-4.5" />
-                    </div>
-                    <span>{item.label}</span>
+                    <item.icon className="w-3.5 h-3.5 shrink-0" />
+                    {isActive && <span>{item.label}</span>}
                   </button>
                 );
               })}
@@ -344,6 +341,13 @@ const AdminPage = () => {
 
             {/* ═══ Credits ═══ */}
             {activeTab === "credits" && <CreditsAnalytics clients={clients} />}
+
+            {/* ═══ Analytics ═══ */}
+            {activeTab === "analytics" && (
+              <Suspense fallback={<div className="flex items-center justify-center py-20"><Skeleton className="h-8 w-32" /></div>}>
+                <LazyAnalytics embedded />
+              </Suspense>
+            )}
           </div>
         </main>
       </div>
