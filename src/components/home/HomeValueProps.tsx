@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Palette, XCircle } from "lucide-react";
+import { Palette, XCircle, Check } from "lucide-react";
 import solynIcon from "@/assets/solyn-icon.svg";
 import { useLanguage } from "@/i18n/LanguageContext";
 
