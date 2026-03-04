@@ -29,7 +29,7 @@ const HomePricing = () => {
     descKey: "pricing.mvp.desc",
     priceKey: "pricing.mvp.price",
     periodKey: "pricing.mvp.period",
-    oldPrice: "€3.997",
+    
     features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
     ctaKey: "pricing.mvp.cta",
     icon: Rocket,
@@ -173,9 +173,6 @@ const HomePricing = () => {
                     </div>
 
                     <div className="mb-6">
-                      {websitePlans[1].oldPrice
-
-                    }
                       <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(websitePlans[1].priceKey)}</span>
                       <span className="text-sm text-white/60 ml-2">{t(websitePlans[1].periodKey)}</span>
                     </div>
