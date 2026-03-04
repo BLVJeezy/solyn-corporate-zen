@@ -1,46 +1,34 @@
 import { useState, useMemo } from "react";
-import { ArrowLeft, Users, DollarSign, BarChart3, Search, LogOut, Euro, TrendingUp, Coins, CalendarClock, X, Percent } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, Area, AreaChart } from "recharts";
+import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins } from "lucide-react";
+import { Link } from "react-router-dom";
+import { format } from "date-fns";
+import { nl } from "date-fns/locale";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, format as fnsFormat, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears } from "date-fns";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Link } from "react-router-dom";
-import { format } from "date-fns";
-import { nl } from "date-fns/locale";
+import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useLeads, Lead, LeadStatus } from "@/hooks/useLeads";
 import { useClients } from "@/hooks/useClients";
+import { useAuth } from "@/hooks/useAuth";
 import LeadDetailPanel from "@/components/admin/LeadDetailPanel";
 import AddLeadDialog from "@/components/admin/AddLeadDialog";
 import MobileLeadCard from "@/components/admin/MobileLeadCard";
 import MobileLeadDrawer from "@/components/admin/MobileLeadDrawer";
 import ClientsSection from "@/components/admin/ClientsSection";
-import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/button";
+import DashboardOverview from "@/components/admin/DashboardOverview";
+import CreditsAnalytics from "@/components/admin/CreditsAnalytics";
+import GlobalSearch from "@/components/admin/GlobalSearch";
+import ExportButtons from "@/components/admin/ExportButtons";
 
-/** Parse a euro string like "1.500", "€1500", "1500,50" to a number */
-function parseEuro(val: string | null): number {
-  if (!val) return 0;
-  const cleaned = val.replace(/[€\s]/g, "").replace(/\./g, "").replace(",", ".");
-  const num = parseFloat(cleaned);
-  return isNaN(num) ? 0 : num;
-}
-
-/** Format number as euro */
-function fmtEuro(val: number): string {
-  return "€" + val.toLocaleString("nl-NL", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-}
-
-const statusConfig: Record<LeadStatus, {label: string;className: string;}> = {
+const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   nieuw: { label: "Nieuw", className: "bg-steel/20 text-steel" },
   in_behandeling: { label: "In behandeling", className: "bg-primary/20 text-primary" },
-  gewonnen: { label: "Gewonnen", className: "bg-green-500/20 text-green-500" },
-  verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive" }
+  gewonnen: { label: "Gewonnen", className: "bg-emerald-500/20 text-emerald-400" },
+  verloren: { label: "Verloren", className: "bg-destructive/20 text-destructive" },
 };
-
 
 const AdminPage = () => {
   const { signOut } = useAuth();
@@ -50,481 +38,213 @@ const AdminPage = () => {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
-  const [showPackagePanel, setShowPackagePanel] = useState<"mrr" | "jrr" | null>(null);
+  const [activeTab, setActiveTab] = useState("overview");
 
   const filteredLeads = useMemo(() => {
     return leads.filter((l) => {
-      const matchesSearch =
-      !search ||
-      l.name.toLowerCase().includes(search.toLowerCase()) ||
-      (l.company?.toLowerCase() || "").includes(search.toLowerCase());
+      const matchesSearch = !search ||
+        l.name.toLowerCase().includes(search.toLowerCase()) ||
+        (l.company?.toLowerCase() || "").includes(search.toLowerCase());
       const matchesStatus = statusFilter === "all" || l.status === statusFilter;
       return matchesSearch && matchesStatus;
     });
   }, [leads, search, statusFilter]);
 
-  // Live stats from data
-  const totalLeads = leads.length;
-  const avgSetupFee = clients.length ?
-  fmtEuro(Math.round(clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0) / clients.length)) :
-  "€0";
-  const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
-  const conversionRate = totalLeads ? (wonLeads / totalLeads * 100).toFixed(1) + "%" : "0%";
-  const clientsWithCredits = clients.filter((c) => c.credits_used && c.credits_used > 0);
-  const avgCreditSpend = clientsWithCredits.length ?
-  fmtEuro(Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0) / clientsWithCredits.length)) :
-  "€0";
-  const avgCreditCount = clientsWithCredits.length ?
-  Math.round(clientsWithCredits.reduce((sum, c) => sum + (c.credits_used || 0), 0) / clientsWithCredits.length) :
-  0;
-
-  // Revenue stats from clients
-  const totalSetupFees = clients.reduce((sum, c) => sum + parseEuro(c.setup_fee), 0);
-  const monthlyClients = clients.filter((c) => c.billing_cycle !== "jaarlijks");
-  const yearlyClients = clients.filter((c) => c.billing_cycle === "jaarlijks");
-  const mrr = monthlyClients.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0);
-  const jrr = yearlyClients.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0);
-  const totalRecurringMonthly = mrr + jrr / 12;
-  const totalRecurringYearly = totalRecurringMonthly * 12;
-  const totalRevenue = totalSetupFees + totalRecurringYearly;
-  const transactionFees = totalRevenue * 0.02811;
-  const totalCreditCosts = clients.reduce((sum, c) => sum + (c.credits_used || 0) * 0.23, 0);
-  const profit = totalRevenue - transactionFees - totalCreditCosts;
-
-  // Revenue per client for chart
-  const revenuePerClient = useMemo(() => {
-    return clients.map((c) => {
-      const setup = parseEuro(c.setup_fee);
-      const recurring = parseEuro(c.recurring_fee);
-      const yearlyRecurring = c.billing_cycle === "jaarlijks" ? recurring : recurring * 12;
-      return { name: c.name, setup, recurring: yearlyRecurring };
-    });
-  }, [clients]);
-
-  const [revPeriod, setRevPeriod] = useState<string>("maand");
-
-  const revenueTimeline = useMemo(() => {
-    if (clients.length === 0) return [];
-    const now = new Date();
-    type PK = "dag" | "week" | "maand" | "kwartaal" | "jaar";
-    const rangeStart: Record<PK, Date> = {
-      dag: subMonths(now, 1), week: subMonths(now, 3), maand: subYears(now, 1),
-      kwartaal: subYears(now, 2), jaar: subYears(now, 5)
-    };
-    const start = rangeStart[revPeriod as PK] || subYears(now, 1);
-
-    const getKey = (d: Date) => {
-      switch (revPeriod) {
-        case "dag":return fnsFormat(d, "dd/MM");
-        case "week":return "W" + fnsFormat(d, "ww/yy");
-        case "maand":return fnsFormat(d, "MMM yy");
-        case "kwartaal":return "Q" + (Math.floor(d.getMonth() / 3) + 1) + " " + fnsFormat(d, "yy");
-        case "jaar":return fnsFormat(d, "yyyy");
-        default:return fnsFormat(d, "MMM yy");
-      }
-    };
-    const getBucketStart = (d: Date) => {
-      switch (revPeriod) {
-        case "dag":return startOfDay(d);
-        case "week":return startOfWeek(d, { weekStartsOn: 1 });
-        case "maand":return startOfMonth(d);
-        case "kwartaal":return startOfQuarter(d);
-        case "jaar":return startOfYear(d);
-        default:return startOfMonth(d);
-      }
-    };
-
-    const buckets = new Map<string, {label: string;setup: number;recurring: number;}>();
-    let intervals: Date[];
-    if (revPeriod === "dag") intervals = eachDayOfInterval({ start, end: now });else
-    if (revPeriod === "week") intervals = eachWeekOfInterval({ start, end: now }, { weekStartsOn: 1 });else
-    {
-      intervals = eachMonthOfInterval({ start, end: now });
-      if (revPeriod === "kwartaal") intervals = intervals.filter((d) => d.getMonth() % 3 === 0);else
-      if (revPeriod === "jaar") intervals = intervals.filter((d) => d.getMonth() === 0);
-    }
-    intervals.forEach((d) => {const k = getKey(d);if (!buckets.has(k)) buckets.set(k, { label: k, setup: 0, recurring: 0 });});
-
-    clients.forEach((c) => {
-      const setupVal = parseEuro(c.setup_fee);
-      const recurringVal = parseEuro(c.recurring_fee);
-      const clientStart = c.start_date ? new Date(c.start_date) : new Date(c.created_at);
-      if (clientStart >= start && clientStart <= now) {
-        const key = getKey(getBucketStart(clientStart));
-        const b = buckets.get(key);
-        if (b) b.setup += setupVal;
-      }
-      if (recurringVal > 0) {
-        if (c.billing_cycle === "jaarlijks") {
-          // Yearly billing: full amount paid upfront at start date (once per year)
-          // Place full recurring fee in the bucket of each yearly anniversary
-          let anniversary = new Date(clientStart);
-          while (anniversary <= now) {
-            if (anniversary >= start) {
-              const key = getKey(getBucketStart(anniversary));
-              const b = buckets.get(key);
-              if (b) b.recurring += recurringVal;
-            }
-            anniversary = new Date(anniversary.getFullYear() + 1, anniversary.getMonth(), anniversary.getDate());
-          }
-        } else {
-          // Monthly billing: distribute per period
-          const monthlyFee = recurringVal;
-          let mult = 1;
-          switch (revPeriod) {case "dag":mult = 1 / 30;break;case "week":mult = 7 / 30;break;case "maand":mult = 1;break;case "kwartaal":mult = 3;break;case "jaar":mult = 12;break;}
-          const feePerPeriod = monthlyFee * mult;
-          buckets.forEach((b, key) => {
-            const bd = intervals.find((d) => getKey(d) === key);
-            if (bd && bd >= getBucketStart(clientStart)) b.recurring += feePerPeriod;
-          });
-        }
-      }
-    });
-
-    let cum = 0;
-    return Array.from(buckets.values()).map((b) => {
-      const total = Math.round(b.setup + b.recurring);
-      cum += total;
-      return { label: b.label, setup: Math.round(b.setup), recurring: Math.round(b.recurring), totaal: total, cumulatief: cum };
-    });
-  }, [clients, revPeriod]);
-
-  // Keep selected lead in sync with data
   const activeLead = selectedLead ? leads.find((l) => l.id === selectedLead.id) || null : null;
+
+  const handleSearchSelectLead = (lead: Lead) => {
+    setActiveTab("leads");
+    setSelectedLead(lead);
+  };
+
+  const handleSearchSelectClient = () => {
+    setActiveTab("clients");
+  };
 
   return (
     <div className="min-h-screen bg-background dark">
-      <div className="bg-charcoal text-charcoal-foreground">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="text-charcoal-foreground/60 hover:text-primary transition-colors">
-              <ArrowLeft className="w-5 h-5" />
+      {/* ── Header ── */}
+      <div className="bg-card border-b border-border sticky top-0 z-30">
+        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="w-4.5 h-4.5" />
             </Link>
-            <h1 className="text-lg font-bold">Solyn Admin</h1>
+            <div>
+              <h1 className="text-base font-bold text-card-foreground">Command Center</h1>
+              <p className="text-[10px] text-muted-foreground hidden sm:block">Solyn Business Intelligence</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+
+          <div className="flex-1 max-w-md hidden md:block">
+            <GlobalSearch
+              leads={leads}
+              clients={clients}
+              onSelectLead={handleSearchSelectLead}
+              onSelectClient={handleSearchSelectClient}
+            />
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <ExportButtons leads={leads} clients={clients} />
             <Link to="/admin/analytics">
-              <Button variant="ghost" size="sm" className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
-                <BarChart3 className="w-4 h-4" /> Analytics
+              <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground gap-1.5 h-8 text-xs">
+                <BarChart3 className="w-3.5 h-3.5" /> Analytics
               </Button>
             </Link>
-            <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
-              <LogOut className="w-4 h-4" /> Uitloggen
+            <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-muted-foreground hover:text-foreground gap-1.5 h-8 text-xs">
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Uitloggen</span>
             </Button>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 space-y-4 sm:space-y-8">
-        {/* Stats - grouped by category */}
-        <div className="space-y-3 sm:space-y-4">
-          {/* Row 1: CRM Stats */}
-          <div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">CRM</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
-              {[
-              { label: "Leads", value: String(totalLeads), icon: Users },
-              { label: "Conversie", value: conversionRate, icon: BarChart3 },
-              { label: "Gem. Setup Fee", value: avgSetupFee, icon: DollarSign }].
-              map((stat) =>
-              <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
-                  <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                    <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
-                    <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
-                  </div>
-                  <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
-                </div>
-              )}
-            </div>
+      {/* ── Main Content ── */}
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          {/* Tab Navigation */}
+          <div className="mb-6 overflow-x-auto">
+            <TabsList className="bg-muted h-10 p-1 w-auto inline-flex">
+              <TabsTrigger value="overview" className="gap-1.5 text-xs px-4 h-8 data-[state=active]:bg-card">
+                <LayoutDashboard className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Overzicht</span>
+              </TabsTrigger>
+              <TabsTrigger value="leads" className="gap-1.5 text-xs px-4 h-8 data-[state=active]:bg-card">
+                <Users className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Leads</span>
+                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0 h-4">{leads.length}</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="clients" className="gap-1.5 text-xs px-4 h-8 data-[state=active]:bg-card">
+                <Building2 className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Klanten</span>
+                <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0 h-4">{clients.length}</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="credits" className="gap-1.5 text-xs px-4 h-8 data-[state=active]:bg-card">
+                <Coins className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Credits</span>
+              </TabsTrigger>
+            </TabsList>
           </div>
 
-          {/* Row 2: Revenue Stats */}
-          <div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">Omzet</p>
-            <div className="space-y-2 sm:space-y-3">
-              {/* Totale Omzet + Profit */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                {[
-                { label: "Totale Omzet", value: `+${fmtEuro(totalRevenue)}`, icon: Euro, onClick: undefined, color: "" },
-                { label: "Profit", value: `+${fmtEuro(Math.round(profit))}`, icon: Percent, onClick: undefined, color: "text-green-500" }].
-                map((stat) =>
-                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5">
-                    <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                      <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
-                      <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
+          {/* ═══ Overview Tab ═══ */}
+          <TabsContent value="overview" className="mt-0">
+            <DashboardOverview leads={leads} clients={clients} />
+          </TabsContent>
+
+          {/* ═══ Leads Tab ═══ */}
+          <TabsContent value="leads" className="mt-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2 bg-card rounded-xl border border-border p-4 sm:p-6">
+                <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+                  <h2 className="text-base font-semibold text-card-foreground">Lead Manager</h2>
+                  <AddLeadDialog />
+                </div>
+
+                {/* Search & Filter */}
+                <div className="sticky top-[57px] z-10 bg-card pb-3 -mx-4 px-4 sm:-mx-6 sm:px-6 pt-1">
+                  <div className="flex gap-3 flex-wrap">
+                    <div className="relative flex-1 min-w-[140px]">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        placeholder="Zoek..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="pl-9 bg-muted border-border h-9 text-sm"
+                      />
                     </div>
-                    <div className={`text-lg sm:text-2xl font-bold truncate ${stat.color || "text-card-foreground"}`}>{stat.value}</div>
+                    <Select value={statusFilter} onValueChange={setStatusFilter}>
+                      <SelectTrigger className="w-[130px] sm:w-[160px] bg-muted border-border h-9 text-sm">
+                        <SelectValue placeholder="Alle statussen" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">Alle statussen</SelectItem>
+                        {Object.entries(statusConfig).map(([key, cfg]) => (
+                          <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
-                )}
-              </div>
-              {/* MRR + JRR */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
-                {[
-                { label: "MRR", value: `+${fmtEuro(Math.round(mrr))}`, icon: TrendingUp, onClick: () => setShowPackagePanel("mrr") },
-                { label: "JRR", value: `+${fmtEuro(Math.round(jrr))}`, icon: CalendarClock, onClick: () => setShowPackagePanel("jrr") }].
-                map((stat) =>
-                <div key={stat.label} className="bg-card rounded-lg border border-border p-3 sm:p-5 cursor-pointer hover:border-primary/50 transition-colors" onClick={stat.onClick}>
-                    <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                      <stat.icon className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
-                      <span className="text-[10px] sm:text-xs text-muted-foreground truncate">{stat.label}</span>
-                    </div>
-                    <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{stat.value}</div>
+                </div>
+
+                {isLoading ? (
+                  <p className="text-muted-foreground text-sm py-8 text-center">Laden...</p>
+                ) : filteredLeads.length === 0 ? (
+                  <p className="text-muted-foreground text-sm py-8 text-center">Geen leads gevonden</p>
+                ) : isMobile ? (
+                  <div className="space-y-2">
+                    {filteredLeads.map((lead) => (
+                      <MobileLeadCard key={lead.id} lead={lead} onClick={() => setSelectedLead(lead)} />
+                    ))}
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Row 3: Credits */}
-          <div>
-            <p className="text-[10px] sm:text-xs text-muted-foreground uppercase tracking-wider mb-1.5 sm:mb-2 px-1">Credits</p>
-            <div className="grid grid-cols-2 gap-2 sm:gap-4">
-              <div className="bg-card rounded-lg border border-border p-3 sm:p-5">
-                <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                  <Coins className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
-                  <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Credits/Project</span>
-                </div>
-                <div className="text-lg sm:text-2xl font-bold text-card-foreground truncate">{avgCreditCount} credits</div>
-              </div>
-              <div className="bg-card rounded-lg border border-border p-3 sm:p-5">
-                <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                  <Euro className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-muted-foreground" />
-                  <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Gem. Kosten/Project</span>
-                </div>
-                <div className="text-lg sm:text-2xl font-bold truncate text-red-600">-{avgCreditSpend}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Package Detail Panel */}
-        {showPackagePanel &&
-        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base sm:text-lg font-semibold text-card-foreground">
-                {showPackagePanel === "mrr" ? "Maandelijkse abonnementen (MRR)" : "Jaarlijkse abonnementen (JRR)"}
-              </h2>
-              <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setShowPackagePanel(null)}>
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-            {(() => {
-            const list = showPackagePanel === "mrr" ? monthlyClients : yearlyClients;
-            if (list.length === 0) return <p className="text-muted-foreground text-sm text-center py-4">Geen klanten met dit abonnementstype</p>;
-            return (
-              <Table>
-                  <TableHeader>
-                    <TableRow className="border-border">
-                      <TableHead className="text-muted-foreground">Naam</TableHead>
-                      <TableHead className="text-muted-foreground hidden md:table-cell">Bedrijf</TableHead>
-                      <TableHead className="text-muted-foreground">Fee</TableHead>
-                      <TableHead className="text-muted-foreground hidden md:table-cell">Startdatum</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {list.map((c) =>
-                  <TableRow key={c.id} className="border-border">
-                        <TableCell className="font-medium text-card-foreground">{c.name}</TableCell>
-                        <TableCell className="text-muted-foreground hidden md:table-cell">{c.company || "—"}</TableCell>
-                        <TableCell>
-                          <span className="text-primary font-semibold">{c.recurring_fee ? `€${c.recurring_fee}` : "—"}</span>
-                          <Badge variant="secondary" className="ml-1.5 text-[10px] px-1.5 py-0">
-                            {showPackagePanel === "mrr" ? "/mnd" : "/jaar"}
-                          </Badge>
-                        </TableCell>
-                        <TableCell className="text-muted-foreground hidden md:table-cell">
-                          {c.start_date ? format(new Date(c.start_date), "d MMM yyyy", { locale: nl }) : "—"}
-                        </TableCell>
+                ) : (
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="border-border">
+                        <TableHead className="text-muted-foreground text-xs">Naam</TableHead>
+                        <TableHead className="text-muted-foreground text-xs">Bedrijf</TableHead>
+                        <TableHead className="text-muted-foreground text-xs">Budget</TableHead>
+                        <TableHead className="text-muted-foreground text-xs">Status</TableHead>
+                        <TableHead className="text-muted-foreground text-xs">Datum</TableHead>
                       </TableRow>
-                  )}
-                    <TableRow className="border-border border-t-2">
-                      <TableCell className="font-bold text-card-foreground">Totaal ({list.length} klanten)</TableCell>
-                      <TableCell className="hidden md:table-cell" />
-                      <TableCell>
-                        <span className="text-primary font-bold">
-                          {fmtEuro(list.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0))}
-                        </span>
-                        <Badge variant="secondary" className="ml-1.5 text-[10px] px-1.5 py-0">
-                          {showPackagePanel === "mrr" ? "/mnd" : "/jaar"}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="hidden md:table-cell" />
-                    </TableRow>
-                  </TableBody>
-                </Table>);
-
-          })()}
-          </div>
-        }
-
-        {/* Revenue Analytics */}
-        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
-            <h2 className="text-base sm:text-lg font-semibold text-card-foreground">Omzet Analytics</h2>
-            <Tabs value={revPeriod} onValueChange={setRevPeriod}>
-              <TabsList className="bg-muted">
-                {["dag", "week", "maand", "kwartaal", "jaar"].map((p) =>
-                <TabsTrigger key={p} value={p} className="text-[10px] sm:text-xs capitalize px-2 sm:px-3">{p}</TabsTrigger>
+                    </TableHeader>
+                    <TableBody>
+                      {filteredLeads.map((lead) => (
+                        <TableRow
+                          key={lead.id}
+                          className={`border-border cursor-pointer transition-colors hover:bg-muted/50 ${activeLead?.id === lead.id ? "bg-muted/50" : ""}`}
+                          onClick={() => setSelectedLead(lead)}
+                        >
+                          <TableCell className="font-medium text-card-foreground text-sm">{lead.name}</TableCell>
+                          <TableCell className="text-muted-foreground text-sm">{lead.company || "—"}</TableCell>
+                          <TableCell className="text-emerald-400 font-semibold text-sm">{lead.budget || "—"}</TableCell>
+                          <TableCell>
+                            <Badge variant="secondary" className={`${statusConfig[lead.status]?.className} text-[10px]`}>
+                              {statusConfig[lead.status]?.label}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-muted-foreground text-sm">
+                            {format(new Date(lead.created_at), "d MMM yyyy", { locale: nl })}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
                 )}
-              </TabsList>
-            </Tabs>
-          </div>
-          {revenueTimeline.length === 0 ?
-          <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p> :
-
-          <div className="space-y-6">
-              {/* Bar chart: setup + recurring per period */}
-              <ResponsiveContainer width="100%" height={180} className="sm:!h-[240px]">
-                <BarChart data={revenueTimeline}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
-                  <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
-                  <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
-                  <Tooltip
-                  contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
-                  formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]} />
-
-                  <Legend />
-                  <Bar dataKey="setup" stackId="a" fill="hsl(40,48%,56%)" name="Setup" radius={[0, 0, 0, 0]} />
-                  <Bar dataKey="recurring" stackId="a" fill="hsl(40,48%,36%)" name="Recurring" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-
-              {/* Trendline: cumulative revenue */}
-              <div>
-                <h3 className="text-sm font-medium text-muted-foreground mb-2">Cumulatieve omzet (trendlijn)</h3>
-                <ResponsiveContainer width="100%" height={160} className="sm:!h-[200px]">
-                  <AreaChart data={revenueTimeline}>
-                    <defs>
-                      <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="hsl(40,48%,56%)" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="hsl(40,48%,56%)" stopOpacity={0} />
-                      </linearGradient>
-                    </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(222,14%,20%)" />
-                    <XAxis dataKey="label" stroke="hsl(215,15%,60%)" fontSize={11} interval="preserveStartEnd" />
-                    <YAxis stroke="hsl(215,15%,60%)" fontSize={11} tickFormatter={(v) => `€${v}`} />
-                    <Tooltip
-                    contentStyle={{ background: "hsl(222,14%,15%)", border: "1px solid hsl(222,14%,20%)", borderRadius: "8px", color: "hsl(210,40%,98%)" }}
-                    formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]} />
-
-                    <Area type="monotone" dataKey="cumulatief" stroke="hsl(40,48%,56%)" fill="url(#trendGrad)" strokeWidth={2} />
-                  </AreaChart>
-                </ResponsiveContainer>
               </div>
-            </div>
-          }
-        </div>
 
-        {/* CRM Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Lead Table / Card Stack */}
-          <div className="lg:col-span-2 bg-card rounded-lg border border-border p-4 sm:p-6">
-            <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-              <h2 className="text-lg font-semibold text-card-foreground">Lead Manager</h2>
-              <AddLeadDialog />
-            </div>
-
-            {/* Sticky Search & Filter */}
-            <div className="sticky top-0 z-10 bg-card pb-3 -mx-4 px-4 sm:-mx-6 sm:px-6 pt-1">
-              <div className="flex gap-3 flex-wrap">
-                <div className="relative flex-1 min-w-[140px]">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Zoek..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="pl-9 bg-muted border-border" />
-                </div>
-                <Select value={statusFilter} onValueChange={setStatusFilter}>
-                  <SelectTrigger className="w-[130px] sm:w-[160px] bg-muted border-border">
-                    <SelectValue placeholder="Alle statussen" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Alle statussen</SelectItem>
-                    {Object.entries(statusConfig).map(([key, cfg]) =>
-                    <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
-                    )}
-                  </SelectContent>
-                </Select>
+              {/* Detail Panel */}
+              <div className="hidden lg:block lg:col-span-1">
+                {activeLead ? (
+                  <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} />
+                ) : (
+                  <div className="bg-card rounded-xl border border-border p-8 text-center">
+                    <p className="text-muted-foreground text-sm">Selecteer een lead</p>
+                  </div>
+                )}
               </div>
             </div>
 
-            {isLoading ?
-            <p className="text-muted-foreground text-sm py-8 text-center">Laden...</p> :
-            filteredLeads.length === 0 ?
-            <p className="text-muted-foreground text-sm py-8 text-center">Geen leads gevonden</p> :
+            <MobileLeadDrawer
+              lead={activeLead}
+              open={isMobile && !!activeLead}
+              onClose={() => setSelectedLead(null)}
+            />
+          </TabsContent>
 
-            isMobile ? (
-              /* Mobile: Card Stack */
-              <div className="space-y-2">
-                {filteredLeads.map((lead) => (
-                  <MobileLeadCard
-                    key={lead.id}
-                    lead={lead}
-                    onClick={() => setSelectedLead(lead)}
-                  />
-                ))}
-              </div>
-            ) : (
-              /* Desktop: Table */
-              <Table>
-                <TableHeader>
-                  <TableRow className="border-border">
-                    <TableHead className="text-muted-foreground">Naam</TableHead>
-                    <TableHead className="text-muted-foreground">Bedrijf</TableHead>
-                    <TableHead className="text-muted-foreground">Budget</TableHead>
-                    <TableHead className="text-muted-foreground">Status</TableHead>
-                    <TableHead className="text-muted-foreground">Datum</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredLeads.map((lead) =>
-                <TableRow
-                  key={lead.id}
-                  className={`border-border cursor-pointer transition-colors hover:bg-muted/50 ${activeLead?.id === lead.id ? "bg-muted/50" : ""}`}
-                  onClick={() => setSelectedLead(lead)}>
-                      <TableCell className="font-medium text-card-foreground">{lead.name}</TableCell>
-                      <TableCell className="text-muted-foreground">{lead.company || "—"}</TableCell>
-                      <TableCell className="text-primary font-semibold">{lead.budget || "—"}</TableCell>
-                      <TableCell>
-                        <Badge variant="secondary" className={statusConfig[lead.status]?.className}>
-                          {statusConfig[lead.status]?.label}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">
-                        {format(new Date(lead.created_at), "d MMM yyyy", { locale: nl })}
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
-            )
-            }
-          </div>
+          {/* ═══ Clients Tab ═══ */}
+          <TabsContent value="clients" className="mt-0">
+            <ClientsSection />
+          </TabsContent>
 
-          {/* Desktop Detail Panel */}
-          <div className="hidden lg:block lg:col-span-1">
-            {activeLead ?
-            <LeadDetailPanel lead={activeLead} onClose={() => setSelectedLead(null)} /> :
-            <div className="bg-card rounded-lg border border-border p-8 text-center">
-                <p className="text-muted-foreground text-sm">Selecteer een lead om details te bekijken</p>
-              </div>
-            }
-          </div>
-        </div>
-
-        {/* Mobile Drawer */}
-        <MobileLeadDrawer
-          lead={activeLead}
-          open={isMobile && !!activeLead}
-          onClose={() => setSelectedLead(null)}
-        />
-
-        {/* Clients Section */}
-        <ClientsSection />
+          {/* ═══ Credits Tab ═══ */}
+          <TabsContent value="credits" className="mt-0">
+            <CreditsAnalytics clients={clients} />
+          </TabsContent>
+        </Tabs>
       </div>
-    </div>);
-
+    </div>
+  );
 };
 
 export default AdminPage;
