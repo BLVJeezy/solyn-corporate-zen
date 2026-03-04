@@ -9,7 +9,7 @@ const AboutHero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-gray-950 min-h-[70vh] flex items-center justify-center px-6 pt-28 md:pt-36">
+    <section className="bg-[hsl(0_0%_7%)] min-h-[70vh] flex items-center justify-center px-6 pt-28 md:pt-36">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -28,14 +28,14 @@ const AboutHero = () => {
         >
           <Button
             onClick={() => navigate("/book")}
-            className="rounded-full bg-white text-gray-950 hover:bg-white/90 font-medium px-7 py-6 text-base gap-2"
+            className="rounded-full bg-white text-[hsl(0_0%_7%)] hover:bg-white/90 font-medium px-7 py-6 text-base gap-2"
           >
             <ArrowRight className="w-4 h-4" />
             {t("aboutHero.cta1")}
           </Button>
           <Button
             onClick={() => navigate("/pricing")}
-            className="rounded-full border-gray-600 text-white hover:bg-white/10 font-medium px-7 py-6 text-base"
+            className="rounded-full border-[hsl(40_48%_56%_/_0.3)] text-white hover:bg-white/5 hover:border-[hsl(40_48%_56%_/_0.5)] font-medium px-7 py-6 text-base"
             variant="outline"
           >
             {t("aboutHero.cta2")}
