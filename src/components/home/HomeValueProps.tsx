@@ -64,16 +64,41 @@ const HomeValueProps = () => {
             transition={{ delay: 0.1 }}
             className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
           >
-            {/* Chat mockup */}
-            <div className="mb-8 flex flex-col items-center gap-3 max-w-xs mx-auto">
-              <div className="self-start bg-white rounded-2xl rounded-tl-md px-4 py-3 border border-gray-100 shadow-sm text-sm text-gray-600">
-                {t("homeValue.collab.chat1")}
-              </div>
-              <div className="self-end bg-gray-900 rounded-2xl rounded-tr-md px-4 py-3 text-sm text-white">
-                {t("homeValue.collab.chat2")}
-              </div>
-              <div className="self-start bg-white rounded-2xl rounded-tl-md px-4 py-3 border border-gray-100 shadow-sm text-sm text-gray-600">
-                {t("homeValue.collab.chat3")}
+            {/* Async workflow mockup */}
+            <div className="mb-8 w-full max-w-xs mx-auto">
+              <div className="rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-3">
+                {/* Header */}
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
+                    <span className="text-[8px] text-white font-bold">S</span>
+                  </div>
+                  <span className="text-xs font-semibold text-gray-700">Solyn</span>
+                  <span className="text-[10px] text-gray-300 ml-auto">async</span>
+                </div>
+                {/* Timeline items */}
+                <div className="space-y-2.5">
+                  <div className="flex items-start gap-2.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat1")}</p>
+                      <p className="text-[10px] text-gray-300 mt-0.5">09:00</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat2")}</p>
+                      <p className="text-[10px] text-gray-300 mt-0.5">14:30</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-1.5 shrink-0" />
+                    <div>
+                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat3")}</p>
+                      <p className="text-[10px] text-gray-300 mt-0.5">18:00</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <h3 className="text-black font-bold text-xl mb-3">
