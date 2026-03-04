@@ -194,6 +194,7 @@ export type Database = {
           referrer: string | null
           session_id: string
           source_type: string | null
+          visitor_id: string | null
         }
         Insert: {
           country?: string | null
@@ -205,6 +206,7 @@ export type Database = {
           referrer?: string | null
           session_id: string
           source_type?: string | null
+          visitor_id?: string | null
         }
         Update: {
           country?: string | null
@@ -216,6 +218,7 @@ export type Database = {
           referrer?: string | null
           session_id?: string
           source_type?: string | null
+          visitor_id?: string | null
         }
         Relationships: []
       }

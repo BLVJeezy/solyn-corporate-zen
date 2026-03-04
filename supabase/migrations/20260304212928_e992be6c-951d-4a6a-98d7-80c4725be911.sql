@@ -1,0 +1,1 @@
+ALTER TABLE public.site_analytics ADD COLUMN IF NOT EXISTS visitor_id text DEFAULT null;
