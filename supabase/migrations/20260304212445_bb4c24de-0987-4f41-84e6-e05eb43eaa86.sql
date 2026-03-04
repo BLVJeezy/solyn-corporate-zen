@@ -1,0 +1,1 @@
+ALTER TABLE public.site_analytics ADD COLUMN IF NOT EXISTS country text DEFAULT null;
