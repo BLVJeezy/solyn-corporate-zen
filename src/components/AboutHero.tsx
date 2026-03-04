@@ -9,13 +9,13 @@ const AboutHero = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-white min-h-[70vh] flex items-center justify-center px-6 pt-28 md:pt-36">
+    <section className="bg-gray-950 min-h-[70vh] flex items-center justify-center px-6 pt-28 md:pt-36">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.15]"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.15]"
         >
           {t("aboutHero.headline")}
         </motion.h1>
