@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,20 @@ const HomeFooter = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const clickCount = useRef(0);
+  const clickTimer = useRef<NodeJS.Timeout>();
+
+  const handleSecretClick = useCallback(() => {
+    clickCount.current++;
+    if (clickCount.current === 1) {
+      clickTimer.current = setTimeout(() => { clickCount.current = 0; }, 2000);
+    }
+    if (clickCount.current >= 5) {
+      clickCount.current = 0;
+      clearTimeout(clickTimer.current);
+      navigate("/admin");
+    }
+  }, [navigate]);
 
   const footerLinks = [
     { labelKey: "homeFooter.about", href: "/about" },
@@ -64,7 +78,7 @@ const HomeFooter = () => {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
-          <p className="text-gray-300 text-xs">
+          <p className="text-gray-300 text-xs select-none" onClick={handleSecretClick}>
             {t("homeFooter.copyright")}
           </p>
           <div className="flex gap-3">
