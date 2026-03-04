@@ -48,8 +48,8 @@ export default function KpiCard({ icon: Icon, label, value, trend, trendUp, spar
           {trend && (
             <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
               trendUp 
-                ? "text-emerald-700 bg-emerald-50" 
-                : "text-red-700 bg-red-50"
+                ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10" 
+                : "text-red-600 dark:text-red-400 bg-red-500/10"
             }`}>
               {trendUp ? "↑" : "↓"} {trend}
             </span>
