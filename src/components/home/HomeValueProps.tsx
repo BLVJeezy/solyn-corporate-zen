@@ -160,7 +160,7 @@ const HomeValueProps = () => {
                 {/* Comparison header */}
                 <div className="grid grid-cols-[1fr_auto_auto] gap-3 items-center pb-2 border-b border-gray-100">
                   <span className="text-xs font-medium text-gray-400 uppercase tracking-wider"></span>
-                  <span className="text-[10px] font-bold text-red-400 uppercase tracking-wider w-16 text-center">{t("homeValue.freedom.sayNo").replace("Zeg vaarwel tegen", "Anderen").replace("Say no more to", "Others").replace("Dites adieu à", "Autres")}</span>
+                  <span className="text-[10px] font-bold text-red-400 uppercase tracking-wider w-16 text-center">Others</span>
                   <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider w-16 text-center">Solyn</span>
                 </div>
                 {/* Rows */}
