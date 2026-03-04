@@ -157,13 +157,23 @@ const Navbar = () => {
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 top-16 z-40 bg-[hsl(0_0%_7%)]/98 backdrop-blur-lg md:hidden"
-          >
-            <div className="flex flex-col items-center gap-6 pt-12">
+          <>
+            {/* Backdrop to close menu */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 md:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            {/* Dropdown card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed top-20 right-4 left-auto z-50 bg-white rounded-2xl shadow-xl p-5 flex flex-col gap-1 min-w-[180px] md:hidden"
+            >
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -179,35 +189,34 @@ const Navbar = () => {
                       document.querySelector(link.href)?.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
-                  className={`text-lg font-medium transition-colors ${
-                    isActive(link.href) ? "text-white" : "text-white/60 hover:text-white"
-                  }`}
+                  className="text-base font-medium text-black py-2 px-1 hover:text-black/70 transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex gap-2">
+
+              <div className="flex gap-2 py-2 px-1">
                 {languages.map((l) => (
                   <button
                     key={l}
                     onClick={() => setLang(l)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      lang === l ? "bg-white/10 text-white" : "text-white/50"
+                    className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+                      lang === l ? "bg-black text-white" : "text-black/50 hover:text-black"
                     }`}
                   >
                     {l}
                   </button>
                 ))}
               </div>
-              
+
               <Button
-                className="bg-white text-[hsl(0_0%_7%)] hover:bg-white/90 font-medium rounded-full"
+                className="bg-black text-white hover:bg-black/90 font-medium rounded-full mt-1 w-full"
                 onClick={() => { setMobileOpen(false); navigate("/book"); }}
               >
                 {t("nav.bookCall")}
               </Button>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
