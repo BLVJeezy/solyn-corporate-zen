@@ -91,15 +91,53 @@ const HomeValueProps = () => {
             className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
           >
             <div className="flex justify-center mb-8">
-              <div className="w-full max-w-sm rounded-xl bg-white border border-gray-100 shadow-sm p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Palette className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm font-medium text-gray-600">{t("homeValue.design.project")}</span>
+              <div className="w-full max-w-sm rounded-xl bg-white border border-gray-100 shadow-lg p-5 space-y-4">
+                {/* Top bar */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                  </div>
+                  <div className="h-5 w-28 bg-gray-100 rounded-full" />
+                  <div className="w-5" />
                 </div>
-                <div className="space-y-2">
-                  <div className="h-2 bg-gray-100 rounded-full w-full" />
-                  <div className="h-2 bg-gray-100 rounded-full w-3/4" />
-                  <div className="h-2 bg-gray-100 rounded-full w-1/2" />
+                {/* Nav mockup */}
+                <div className="flex items-center gap-3 px-1">
+                  <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-violet-500 to-pink-500" />
+                  <div className="flex gap-2">
+                    <div className="h-2 w-10 bg-gray-200 rounded-full" />
+                    <div className="h-2 w-8 bg-gray-100 rounded-full" />
+                    <div className="h-2 w-12 bg-gray-100 rounded-full" />
+                  </div>
+                </div>
+                {/* Hero mockup */}
+                <div className="rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 p-4 space-y-3">
+                  <div className="h-3 w-3/4 bg-gradient-to-r from-gray-300 to-gray-200 rounded-full" />
+                  <div className="h-2 w-full bg-gray-200/70 rounded-full" />
+                  <div className="h-2 w-2/3 bg-gray-200/50 rounded-full" />
+                  <div className="flex gap-2 mt-3">
+                    <div className="h-6 w-16 rounded-full bg-gradient-to-r from-violet-500 to-pink-500" />
+                    <div className="h-6 w-16 rounded-full border border-gray-200" />
+                  </div>
+                </div>
+                {/* Cards mockup */}
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="rounded-lg bg-gray-50 border border-gray-100 p-2 space-y-1.5">
+                    <div className="w-5 h-5 rounded-md bg-violet-100" />
+                    <div className="h-1.5 w-full bg-gray-200 rounded-full" />
+                    <div className="h-1.5 w-2/3 bg-gray-100 rounded-full" />
+                  </div>
+                  <div className="rounded-lg bg-gray-50 border border-gray-100 p-2 space-y-1.5">
+                    <div className="w-5 h-5 rounded-md bg-pink-100" />
+                    <div className="h-1.5 w-full bg-gray-200 rounded-full" />
+                    <div className="h-1.5 w-2/3 bg-gray-100 rounded-full" />
+                  </div>
+                  <div className="rounded-lg bg-gray-50 border border-gray-100 p-2 space-y-1.5">
+                    <div className="w-5 h-5 rounded-md bg-blue-100" />
+                    <div className="h-1.5 w-full bg-gray-200 rounded-full" />
+                    <div className="h-1.5 w-2/3 bg-gray-100 rounded-full" />
+                  </div>
                 </div>
               </div>
             </div>
