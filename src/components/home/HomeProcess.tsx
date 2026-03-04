@@ -87,7 +87,7 @@ const HomeProcess = () => {
           {steps.map((step, i) => (
             <div
               key={i}
-              className="sticky h-[85vh] md:h-[80vh]"
+              className="sticky min-h-[auto] md:h-[80vh]"
               style={{ top: `${60 + i * 24}px`, zIndex: i + 1 }}
             >
               <motion.div
@@ -98,7 +98,7 @@ const HomeProcess = () => {
                 className="max-w-6xl mx-auto"
               >
                 <div
-                  className="rounded-3xl bg-white p-8 md:p-12 shadow-[0_-8px_30px_-6px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(0,0,0,0.1)] origin-top"
+                  className="rounded-3xl bg-white p-6 md:p-12 shadow-[0_-8px_30px_-6px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(0,0,0,0.1)] origin-top"
                 >
                   {/* Tab label */}
                   <div className="flex items-center gap-2 mb-4">
@@ -109,9 +109,9 @@ const HomeProcess = () => {
                   </div>
 
                   {/* Content */}
-                  <div className="grid md:grid-cols-2 gap-8 items-start">
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-start">
                     <div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-black mb-4 leading-tight">
+                      <h3 className="text-2xl md:text-4xl font-bold text-black mb-3 md:mb-4 leading-tight">
                         {step.title}
                       </h3>
                       <p className="text-gray-500 leading-relaxed text-base max-w-md">
@@ -120,14 +120,14 @@ const HomeProcess = () => {
                     </div>
                     {/* Visual */}
                     {step.toolScroll ? (
-                      <div className="relative rounded-2xl bg-gray-50 border border-gray-100 shadow-sm aspect-[4/3] flex items-center overflow-visible">
+                      <div className="relative rounded-2xl bg-gray-50 border border-gray-100 shadow-sm aspect-[5/2] md:aspect-[4/3] flex items-center overflow-visible">
                         {/* Fade edges */}
                         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
                         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
                         <div className="w-full overflow-hidden">
-                          <div className="flex gap-14 animate-infinite-scroll w-max items-center py-8">
+                          <div className="flex gap-8 md:gap-14 animate-infinite-scroll w-max items-center py-4 md:py-8">
                             {[...toolIcons, ...toolIcons, ...toolIcons, ...toolIcons].map((icon, j) => (
-                              <img key={j} src={icon.src} alt={icon.alt} className="h-24 md:h-32 w-auto flex-shrink-0 drop-shadow-lg" />
+                              <img key={j} src={icon.src} alt={icon.alt} className="h-16 md:h-32 w-auto flex-shrink-0 drop-shadow-lg" />
                             ))}
                           </div>
                         </div>
