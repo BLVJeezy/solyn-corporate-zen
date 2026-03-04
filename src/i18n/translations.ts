@@ -215,6 +215,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. Alle rechten voorbehouden.",
 
+    // About Hero
+    "aboutHero.headline": "Wij helpen ambitieuze founders\nhun ideeën tot leven te brengen.",
+    "aboutHero.cta1": "Start Jouw Project",
+    "aboutHero.cta2": "Bekijk Diensten",
+
     // CTA
     "cta.heading": "Klaar om uw volgende project te bouwen?",
     "cta.subtitle": "Plan een gratis gesprek zodat we meer kunnen leren over uw idee.",
@@ -436,6 +441,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. Tous droits réservés.",
 
+    // About Hero
+    "aboutHero.headline": "Nous aidons les fondateurs ambitieux\nà donner vie à leurs idées.",
+    "aboutHero.cta1": "Démarrez Votre Projet",
+    "aboutHero.cta2": "Voir les Services",
+
     // CTA
     "cta.heading": "Prêt à construire votre prochain projet ?",
     "cta.subtitle": "Planifiez un appel gratuit pour que nous puissions en savoir plus sur votre idée.",
@@ -656,6 +666,11 @@ export const translations: Record<Lang, Record<string, string>> = {
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Contact",
     "footer.rights": "© 2026 Solyn Global Ltd. All rights reserved.",
+
+    // About Hero
+    "aboutHero.headline": "We help ambitious founders\nbring their ideas to life.",
+    "aboutHero.cta1": "Start Your Project",
+    "aboutHero.cta2": "View Services",
 
     // CTA
     "cta.heading": "Looking to build your next project?",

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AboutHero from "@/components/AboutHero";
 import WhyUsSection from "@/components/WhyUsSection";
 import ProcessSection from "@/components/ProcessSection";
 import TrustBar from "@/components/TrustBar";
@@ -15,7 +16,7 @@ const About = () => {
       <div>
         <Navbar />
         <PageTransition>
-          <div className="pt-20" />
+          <AboutHero />
           <WhyUsSection />
           <TrustBar />
           <ProcessSection />
