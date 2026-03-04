@@ -44,11 +44,12 @@ export default function ExportButtons({ leads, clients }: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-1.5 text-xs h-8">
-          <Download className="w-3.5 h-3.5" /> Export
+        <Button variant="outline" size="sm" className="h-8 w-8 p-0 lg:w-auto lg:px-3 lg:gap-1.5 shadow-sm">
+          <Download className="w-4 h-4" />
+          <span className="hidden lg:inline text-xs">Export</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="bg-card border-border">
+      <DropdownMenuContent align="end" className="w-44">
         <DropdownMenuItem onClick={handleExportLeads} className="gap-2 text-xs cursor-pointer">
           <Download className="w-3.5 h-3.5" /> Leads CSV
         </DropdownMenuItem>

@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
-import { Users, Percent, Euro, TrendingUp, CalendarClock, Coins, Target, BarChart3 } from "lucide-react";
+import { Users, Percent, Euro, TrendingUp, CalendarClock, Coins, Target, BarChart3, Info, X } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, Legend, LineChart, Line } from "recharts";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tooltip as UITooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
 import { startOfDay, startOfWeek, startOfMonth, startOfQuarter, startOfYear, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, subMonths, subYears, addMonths } from "date-fns";
@@ -12,14 +12,12 @@ import { parseEuro, fmtEuro, TX_FEE_RATE, CREDIT_COST } from "@/lib/adminUtils";
 import { Lead } from "@/hooks/useLeads";
 import { Client } from "@/hooks/useClients";
 import KpiCard from "./KpiCard";
-import { X } from "lucide-react";
 
-const CHART_GOLD = "hsl(40,48%,56%)";
-const CHART_GOLD_DARK = "hsl(40,48%,36%)";
-const CHART_GREEN = "hsl(142,71%,45%)";
-const CHART_SLATE = "hsl(215,15%,60%)";
-const CHART_BG = "hsl(222,14%,20%)";
-const CHART_TOOLTIP_BG = "hsl(222,14%,12%)";
+const ACCENT = "hsl(220, 90%, 56%)";
+const ACCENT_LIGHT = "hsl(220, 90%, 66%)";
+const GREEN = "hsl(152, 60%, 42%)";
+const SLATE = "hsl(215, 15%, 55%)";
+const GRID = "hsl(220, 10%, 92%)";
 
 interface Props {
   leads: Lead[];
@@ -30,7 +28,7 @@ export default function DashboardOverview({ leads, clients }: Props) {
   const [revPeriod, setRevPeriod] = useState<string>("maand");
   const [showPackagePanel, setShowPackagePanel] = useState<"mrr" | "jrr" | null>(null);
 
-  // ── KPI Calculations ──
+  // ── KPI Calculations (same logic) ──
   const stats = useMemo(() => {
     const totalLeads = leads.length;
     const wonLeads = leads.filter((l) => l.status === "gewonnen").length;
@@ -61,7 +59,7 @@ export default function DashboardOverview({ leads, clients }: Props) {
     };
   }, [leads, clients]);
 
-  // ── Sparkline data (monthly revenue for last 6 months) ──
+  // ── Sparklines ──
   const revenueSparkline = useMemo(() => {
     const now = new Date();
     return Array.from({ length: 6 }, (_, i) => {
@@ -98,7 +96,7 @@ export default function DashboardOverview({ leads, clients }: Props) {
     });
   }, [leads]);
 
-  // ── Revenue Timeline ──
+  // ── Revenue Timeline (same logic) ──
   const revenueTimeline = useMemo(() => {
     if (clients.length === 0) return [];
     const now = new Date();
@@ -176,7 +174,7 @@ export default function DashboardOverview({ leads, clients }: Props) {
     return Array.from(buckets.values()).map((b) => {
       const total = Math.round(b.setup + b.recurring);
       const txFee = total * TX_FEE_RATE;
-      const creditCostPeriod = 0; // approximate
+      const creditCostPeriod = 0;
       const periodProfit = total - txFee - creditCostPeriod;
       const margin = total > 0 ? (periodProfit / total) * 100 : 0;
       cum += total;
@@ -184,7 +182,7 @@ export default function DashboardOverview({ leads, clients }: Props) {
     });
   }, [clients, revPeriod]);
 
-  // ── Forecast (simple linear projection) ──
+  // ── Forecast ──
   const forecastData = useMemo(() => {
     if (revenueTimeline.length < 2) return [];
     const last6 = revenueTimeline.slice(-6);
@@ -193,56 +191,50 @@ export default function DashboardOverview({ leads, clients }: Props) {
     const now = new Date();
     return Array.from({ length: 6 }, (_, i) => {
       const m = addMonths(now, i + 1);
-      return {
-        label: format(m, "MMM yy"),
-        forecast: Math.max(0, Math.round(avg + growth * (i + 1))),
-      };
+      return { label: format(m, "MMM yy"), forecast: Math.max(0, Math.round(avg + growth * (i + 1))) };
     });
   }, [revenueTimeline]);
 
   const tooltipStyle = {
-    backgroundColor: CHART_TOOLTIP_BG,
-    border: `1px solid ${CHART_BG}`,
-    borderRadius: "10px",
-    color: "hsl(210,40%,98%)",
+    backgroundColor: "hsl(0, 0%, 100%)",
+    border: "1px solid hsl(220, 10%, 90%)",
+    borderRadius: "8px",
+    color: "hsl(220, 10%, 15%)",
     fontSize: 12,
+    boxShadow: "0 4px 12px -2px rgba(0,0,0,0.08)",
   };
+
+  const periods = ["dag", "week", "maand", "kwartaal", "jaar"];
 
   return (
     <div className="space-y-6">
       {/* ── KPI Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <KpiCard icon={Users} label="Leads" value={String(stats.totalLeads)} sparkData={leadsSparkline} color="hsl(194,28%,49%)" />
-        <KpiCard icon={Target} label="Conversie" value={`${stats.conversionRate}%`} color={CHART_GREEN} />
-        <KpiCard icon={BarChart3} label="Gem. Setup Fee" value={fmtEuro(stats.avgSetupFee)} />
-        <KpiCard icon={Euro} label="Totale Omzet" value={fmtEuro(Math.round(stats.totalRevenue))} sparkData={revenueSparkline} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+        <KpiCard icon={Users} label="Leads" value={String(stats.totalLeads)} sparkData={leadsSparkline} color={ACCENT} />
+        <KpiCard icon={Target} label="Conversie" value={`${stats.conversionRate}%`} color={GREEN} />
+        <KpiCard icon={BarChart3} label="Gem. Setup" value={fmtEuro(stats.avgSetupFee)} color={SLATE} />
+        <KpiCard icon={Euro} label="Omzet" value={fmtEuro(Math.round(stats.totalRevenue))} sparkData={revenueSparkline} color={ACCENT} highlight />
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-        <KpiCard icon={Percent} label="Profit" value={fmtEuro(Math.round(stats.profit))} valueColor="text-emerald-400" color={CHART_GREEN} />
-        <KpiCard
-          icon={TrendingUp} label="MRR" value={fmtEuro(Math.round(stats.mrr))}
-          color={CHART_GOLD}
-        />
-        <KpiCard
-          icon={CalendarClock} label="JRR" value={fmtEuro(Math.round(stats.jrr))}
-          color={CHART_GOLD}
-        />
+      <div className="grid grid-cols-3 gap-3 lg:gap-4">
+        <KpiCard icon={Percent} label="Profit" value={fmtEuro(Math.round(stats.profit))} valueColor="text-emerald-600" color={GREEN} highlight />
+        <KpiCard icon={TrendingUp} label="MRR" value={fmtEuro(Math.round(stats.mrr))} color={ACCENT} />
+        <KpiCard icon={CalendarClock} label="JRR" value={fmtEuro(Math.round(stats.jrr))} color={ACCENT_LIGHT} />
       </div>
 
-      {/* ── MRR/JRR Quick Expand ── */}
+      {/* ── MRR/JRR Expand ── */}
       <div className="flex gap-2">
-        <Button variant="outline" size="sm" className="text-xs" onClick={() => setShowPackagePanel(showPackagePanel === "mrr" ? null : "mrr")}>
+        <Button variant="outline" size="sm" className="text-xs h-8 shadow-sm" onClick={() => setShowPackagePanel(showPackagePanel === "mrr" ? null : "mrr")}>
           MRR Details
         </Button>
-        <Button variant="outline" size="sm" className="text-xs" onClick={() => setShowPackagePanel(showPackagePanel === "jrr" ? null : "jrr")}>
+        <Button variant="outline" size="sm" className="text-xs h-8 shadow-sm" onClick={() => setShowPackagePanel(showPackagePanel === "jrr" ? null : "jrr")}>
           JRR Details
         </Button>
       </div>
 
       {showPackagePanel && (
-        <div className="bg-card rounded-xl border border-border p-5">
+        <div className="bg-card rounded-xl border border-border shadow-sm p-5 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-semibold text-card-foreground">
+            <h3 className="text-sm font-semibold text-foreground">
               {showPackagePanel === "mrr" ? "Maandelijkse abonnementen" : "Jaarlijkse abonnementen"}
             </h3>
             <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => setShowPackagePanel(null)}>
@@ -255,34 +247,34 @@ export default function DashboardOverview({ leads, clients }: Props) {
             return (
               <Table>
                 <TableHeader>
-                  <TableRow className="border-border">
-                    <TableHead className="text-muted-foreground">Naam</TableHead>
-                    <TableHead className="text-muted-foreground hidden md:table-cell">Bedrijf</TableHead>
-                    <TableHead className="text-muted-foreground">Fee</TableHead>
-                    <TableHead className="text-muted-foreground hidden md:table-cell">Start</TableHead>
+                  <TableRow className="bg-muted/30 hover:bg-muted/30">
+                    <TableHead className="text-xs font-medium text-muted-foreground h-9">Naam</TableHead>
+                    <TableHead className="text-xs font-medium text-muted-foreground h-9 hidden md:table-cell">Bedrijf</TableHead>
+                    <TableHead className="text-xs font-medium text-muted-foreground h-9 text-right">Fee</TableHead>
+                    <TableHead className="text-xs font-medium text-muted-foreground h-9 hidden md:table-cell">Start</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {list.map((c) => (
-                    <TableRow key={c.id} className="border-border">
-                      <TableCell className="font-medium text-card-foreground">{c.name}</TableCell>
-                      <TableCell className="text-muted-foreground hidden md:table-cell">{c.company || "—"}</TableCell>
-                      <TableCell>
-                        <span className="text-emerald-400 font-semibold">{c.recurring_fee ? `€${c.recurring_fee}` : "—"}</span>
+                    <TableRow key={c.id} className="hover:bg-muted/30">
+                      <TableCell className="font-medium text-foreground text-sm">{c.name}</TableCell>
+                      <TableCell className="text-muted-foreground text-sm hidden md:table-cell">{c.company || "—"}</TableCell>
+                      <TableCell className="text-right">
+                        <span className="text-foreground font-semibold text-sm tabular-nums">{c.recurring_fee ? `€${c.recurring_fee}` : "—"}</span>
                         <Badge variant="secondary" className="ml-1.5 text-[10px] px-1.5 py-0">
                           {showPackagePanel === "mrr" ? "/mnd" : "/jaar"}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-muted-foreground hidden md:table-cell">
+                      <TableCell className="text-muted-foreground text-sm hidden md:table-cell tabular-nums">
                         {c.start_date ? format(new Date(c.start_date), "d MMM yyyy", { locale: nl }) : "—"}
                       </TableCell>
                     </TableRow>
                   ))}
-                  <TableRow className="border-border border-t-2">
-                    <TableCell className="font-bold text-card-foreground">Totaal ({list.length})</TableCell>
+                  <TableRow className="border-t-2 border-border hover:bg-transparent">
+                    <TableCell className="font-bold text-foreground">Totaal ({list.length})</TableCell>
                     <TableCell className="hidden md:table-cell" />
-                    <TableCell>
-                      <span className="text-emerald-400 font-bold">
+                    <TableCell className="text-right">
+                      <span className="text-foreground font-bold tabular-nums">
                         {fmtEuro(list.reduce((sum, c) => sum + parseEuro(c.recurring_fee), 0))}
                       </span>
                     </TableCell>
@@ -296,90 +288,146 @@ export default function DashboardOverview({ leads, clients }: Props) {
       )}
 
       {/* ── Revenue Analytics ── */}
-      <div className="bg-card rounded-xl border border-border p-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-3">
-          <h3 className="text-base font-semibold text-card-foreground">Omzet Analytics</h3>
-          <Tabs value={revPeriod} onValueChange={setRevPeriod}>
-            <TabsList className="bg-muted h-8">
-              {["dag", "week", "maand", "kwartaal", "jaar"].map((p) => (
-                <TabsTrigger key={p} value={p} className="text-[11px] capitalize px-3 h-7">{p}</TabsTrigger>
-              ))}
-            </TabsList>
-          </Tabs>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
+        {/* Revenue Split */}
+        <ChartCard
+          title="Revenue Split"
+          subtitle="Setup vs Recurring"
+          periodTabs={periods}
+          activePeriod={revPeriod}
+          onPeriodChange={setRevPeriod}
+        >
+          {revenueTimeline.length === 0 ? (
+            <EmptyChart />
+          ) : (
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={revenueTimeline}>
+                <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+                <XAxis dataKey="label" stroke={SLATE} fontSize={11} interval="preserveStartEnd" tickLine={false} axisLine={false} />
+                <YAxis stroke={SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={tooltipStyle} formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]} />
+                <Legend iconType="circle" iconSize={8} />
+                <Bar dataKey="setup" stackId="a" fill={ACCENT} name="Setup" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="recurring" stackId="a" fill={ACCENT_LIGHT} name="Recurring" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </ChartCard>
+
+        {/* Cumulative */}
+        <ChartCard title="Cumulatieve Omzet" subtitle="Totale opbrengst over tijd">
+          {revenueTimeline.length === 0 ? (
+            <EmptyChart />
+          ) : (
+            <ResponsiveContainer width="100%" height={240}>
+              <AreaChart data={revenueTimeline}>
+                <defs>
+                  <linearGradient id="cumGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={ACCENT} stopOpacity={0.15} />
+                    <stop offset="95%" stopColor={ACCENT} stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+                <XAxis dataKey="label" stroke={SLATE} fontSize={11} interval="preserveStartEnd" tickLine={false} axisLine={false} />
+                <YAxis stroke={SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]} />
+                <Area type="monotone" dataKey="cumulatief" stroke={ACCENT} fill="url(#cumGrad)" strokeWidth={2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          )}
+        </ChartCard>
+
+        {/* Profit Margin */}
+        <ChartCard title="Winstmarge" subtitle="Marge percentage per periode">
+          {revenueTimeline.length === 0 ? (
+            <EmptyChart />
+          ) : (
+            <ResponsiveContainer width="100%" height={240}>
+              <LineChart data={revenueTimeline}>
+                <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+                <XAxis dataKey="label" stroke={SLATE} fontSize={11} interval="preserveStartEnd" tickLine={false} axisLine={false} />
+                <YAxis stroke={SLATE} fontSize={11} tickFormatter={(v) => `${v}%`} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`${value}%`, "Marge"]} />
+                <Line type="monotone" dataKey="margin" stroke={GREEN} strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </ChartCard>
+
+        {/* Forecast */}
+        <ChartCard title="Omzet Forecast" subtitle="Projectie komende 6 maanden">
+          {forecastData.length === 0 ? (
+            <EmptyChart />
+          ) : (
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={forecastData}>
+                <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+                <XAxis dataKey="label" stroke={SLATE} fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke={SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} tickLine={false} axisLine={false} />
+                <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Forecast"]} />
+                <Bar dataKey="forecast" fill={ACCENT_LIGHT} radius={[6, 6, 0, 0]} opacity={0.8} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </ChartCard>
+      </div>
+    </div>
+  );
+}
+
+/* ── Reusable Chart Card ── */
+function ChartCard({ title, subtitle, children, periodTabs, activePeriod, onPeriodChange }: {
+  title: string;
+  subtitle?: string;
+  children: React.ReactNode;
+  periodTabs?: string[];
+  activePeriod?: string;
+  onPeriodChange?: (p: string) => void;
+}) {
+  return (
+    <div className="bg-card rounded-xl border border-border shadow-sm p-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-5 gap-2">
+        <div className="flex items-center gap-2">
+          <div>
+            <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+            {subtitle && <p className="text-[11px] text-muted-foreground mt-0.5">{subtitle}</p>}
+          </div>
+          <TooltipProvider>
+            <UITooltip>
+              <TooltipTrigger asChild>
+                <Info className="w-3.5 h-3.5 text-muted-foreground/40 cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent><p className="text-xs">{subtitle || title}</p></TooltipContent>
+            </UITooltip>
+          </TooltipProvider>
         </div>
-
-        {revenueTimeline.length === 0 ? (
-          <p className="text-muted-foreground text-sm text-center py-8">Nog geen klanten</p>
-        ) : (
-          <div className="space-y-8">
-            {/* Revenue Split */}
-            <div>
-              <h4 className="text-xs font-medium text-muted-foreground mb-3">Setup vs Recurring</h4>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={revenueTimeline}>
-                  <CartesianGrid strokeDasharray="3 3" stroke={CHART_BG} />
-                  <XAxis dataKey="label" stroke={CHART_SLATE} fontSize={11} interval="preserveStartEnd" />
-                  <YAxis stroke={CHART_SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} />
-                  <Tooltip contentStyle={tooltipStyle} formatter={(value: number, name: string) => [`€${value.toLocaleString("nl-NL")}`, name === "setup" ? "Setup" : "Recurring"]} />
-                  <Legend />
-                  <Bar dataKey="setup" stackId="a" fill={CHART_GOLD} name="Setup" radius={[0, 0, 0, 0]} />
-                  <Bar dataKey="recurring" stackId="a" fill={CHART_GOLD_DARK} name="Recurring" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Cumulative Trendline */}
-            <div>
-              <h4 className="text-xs font-medium text-muted-foreground mb-3">Cumulatieve omzet</h4>
-              <ResponsiveContainer width="100%" height={180}>
-                <AreaChart data={revenueTimeline}>
-                  <defs>
-                    <linearGradient id="trendGradNew" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor={CHART_GOLD} stopOpacity={0.3} />
-                      <stop offset="95%" stopColor={CHART_GOLD} stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" stroke={CHART_BG} />
-                  <XAxis dataKey="label" stroke={CHART_SLATE} fontSize={11} interval="preserveStartEnd" />
-                  <YAxis stroke={CHART_SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} />
-                  <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Cumulatief"]} />
-                  <Area type="monotone" dataKey="cumulatief" stroke={CHART_GOLD} fill="url(#trendGradNew)" strokeWidth={2} />
-                </AreaChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Profit Margin Trend */}
-            <div>
-              <h4 className="text-xs font-medium text-muted-foreground mb-3">Winstmarge trend</h4>
-              <ResponsiveContainer width="100%" height={160}>
-                <LineChart data={revenueTimeline}>
-                  <CartesianGrid strokeDasharray="3 3" stroke={CHART_BG} />
-                  <XAxis dataKey="label" stroke={CHART_SLATE} fontSize={11} interval="preserveStartEnd" />
-                  <YAxis stroke={CHART_SLATE} fontSize={11} tickFormatter={(v) => `${v}%`} />
-                  <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`${value}%`, "Marge"]} />
-                  <Line type="monotone" dataKey="margin" stroke={CHART_GREEN} strokeWidth={2} dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-
-            {/* Revenue Forecast */}
-            {forecastData.length > 0 && (
-              <div>
-                <h4 className="text-xs font-medium text-muted-foreground mb-3">Omzet forecast (6 maanden)</h4>
-                <ResponsiveContainer width="100%" height={160}>
-                  <BarChart data={forecastData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke={CHART_BG} />
-                    <XAxis dataKey="label" stroke={CHART_SLATE} fontSize={11} />
-                    <YAxis stroke={CHART_SLATE} fontSize={11} tickFormatter={(v) => `€${v}`} />
-                    <Tooltip contentStyle={tooltipStyle} formatter={(value: number) => [`€${value.toLocaleString("nl-NL")}`, "Forecast"]} />
-                    <Bar dataKey="forecast" fill="hsl(194,28%,49%)" radius={[4, 4, 0, 0]} opacity={0.7} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            )}
+        {periodTabs && activePeriod && onPeriodChange && (
+          <div className="flex bg-muted/60 rounded-lg p-0.5">
+            {periodTabs.map((p) => (
+              <button
+                key={p}
+                onClick={() => onPeriodChange(p)}
+                className={`text-[11px] capitalize px-3 py-1 rounded-md font-medium transition-all ${
+                  activePeriod === p
+                    ? "bg-card text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {p}
+              </button>
+            ))}
           </div>
         )}
       </div>
+      {children}
+    </div>
+  );
+}
+
+function EmptyChart() {
+  return (
+    <div className="h-[240px] flex items-center justify-center">
+      <p className="text-sm text-muted-foreground">Nog geen data beschikbaar</p>
     </div>
   );
 }
