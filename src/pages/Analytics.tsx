@@ -41,7 +41,7 @@ function ChartSkeleton({ height = "h-64" }: { height?: string }) {
   return <Skeleton className={`w-full ${height} rounded-lg`} />;
 }
 
-export default function AnalyticsPage() {
+export default function AnalyticsPage({ embedded = false }: { embedded?: boolean }) {
   const { signOut } = useAuth();
   const [range, setRange] = useState<DateRange>("7d");
   const { data: events = [], isLoading, refresh } = useSiteAnalytics(range);
@@ -134,6 +134,115 @@ export default function AnalyticsPage() {
 
   const PIE_COLORS = [NAVY, GOLD];
 
+  if (embedded) {
+    return (
+      <div className="space-y-6">
+        {/* Date Range Picker */}
+        <div className="flex items-center gap-2">
+          {RANGE_OPTIONS.map((opt) => (
+            <Button
+              key={opt.value}
+              variant={range === opt.value ? "default" : "outline"}
+              size="sm"
+              onClick={() => setRange(opt.value)}
+              className="font-mono text-xs"
+            >
+              {opt.label}
+            </Button>
+          ))}
+          <Button variant="ghost" size="sm" onClick={refresh} className="ml-auto text-muted-foreground hover:text-foreground gap-1.5">
+            <RefreshCw className="w-4 h-4" /> Vernieuwen
+          </Button>
+        </div>
+
+        {/* KPI Cards */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+          {isLoading ? (
+            <>
+              <KpiSkeleton /><KpiSkeleton /><KpiSkeleton /><KpiSkeleton />
+            </>
+          ) : (
+            <>
+              <KpiCard icon={Users} label="Unieke sessies" value={String(metrics.uniqueSessions)} />
+              <KpiCard icon={TrendingUp} label="Paginaweergaven" value={String(metrics.pageViews)} />
+              <KpiCard icon={Target} label="Actieve leads" value={String(metrics.activeLeads)} />
+              <KpiCard icon={Percent} label="Conversie" value={`${metrics.convRate}%`} />
+            </>
+          )}
+        </div>
+
+        {/* Traffic Flow Chart */}
+        <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm p-4 sm:p-6">
+          <h2 className="text-sm font-semibold text-foreground mb-4">Bezoekers & Paginaweergaven</h2>
+          {isLoading ? (
+            <ChartSkeleton height="h-72" />
+          ) : (
+            <ResponsiveContainer width="100%" height={288}>
+              <AreaChart data={trafficData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="label" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                <Tooltip contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 }} />
+                <Area type="monotone" dataKey="visitors" stroke={NAVY} fill={NAVY} fillOpacity={0.15} strokeWidth={2} />
+                <Area type="monotone" dataKey="views" stroke={GOLD} fill={GOLD} fillOpacity={0.1} strokeWidth={2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+
+        {/* Funnel + Pie Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm p-4 sm:p-6">
+            <h2 className="text-sm font-semibold text-foreground mb-4">Conversie Trechter</h2>
+            {isLoading ? (
+              <ChartSkeleton height="h-48" />
+            ) : (
+              <ResponsiveContainer width="100%" height={192}>
+                <BarChart data={funnelData} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis type="number" tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                  <YAxis dataKey="name" type="category" width={90} tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }} />
+                  <Tooltip contentStyle={{ backgroundColor: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8, fontSize: 12 }} />
+                  <Bar dataKey="value" fill={NAVY} radius={[0, 4, 4, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm p-4 sm:p-6">
+            <h2 className="text-sm font-semibold text-foreground mb-4">Apparaat Verdeling</h2>
+            {isLoading ? (
+              <ChartSkeleton height="h-48" />
+            ) : (
+              <ResponsiveContainer width="100%" height={192}>
+                <PieChart>
+                  <Pie data={deviceData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                    {deviceData.map((_, i) => (<Cell key={i} fill={PIE_COLORS[i]} />))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm p-4 sm:p-6">
+            <h2 className="text-sm font-semibold text-foreground mb-4">Bron Verdeling</h2>
+            {isLoading ? (
+              <ChartSkeleton height="h-48" />
+            ) : (
+              <ResponsiveContainer width="100%" height={192}>
+                <PieChart>
+                  <Pie data={sourceData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
+                    {sourceData.map((_, i) => (<Cell key={i} fill={PIE_COLORS[i]} />))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background dark">
       {/* Header */}
@@ -146,12 +255,7 @@ export default function AnalyticsPage() {
             <h1 className="text-lg font-bold">Website Analytics</h1>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={refresh}
-              className="text-charcoal-foreground/60 hover:text-primary gap-1.5"
-            >
+            <Button variant="ghost" size="sm" onClick={refresh} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
               <RefreshCw className="w-4 h-4" /> Vernieuwen
             </Button>
             <Button variant="ghost" size="sm" onClick={() => signOut()} className="text-charcoal-foreground/60 hover:text-primary gap-1.5">
@@ -204,84 +308,41 @@ export default function AnalyticsPage() {
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 14%, 20%)" />
                 <XAxis dataKey="label" tick={{ fontSize: 11, fontFamily: "monospace", fill: SLATE }} />
                 <YAxis tick={{ fontSize: 11, fontFamily: "monospace", fill: SLATE }} />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(222, 14%, 15%)",
-                    border: "1px solid hsl(222, 14%, 20%)",
-                    borderRadius: 8,
-                    fontFamily: "monospace",
-                    fontSize: 12,
-                  }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="visitors"
-                  name="Bezoekers"
-                  stroke={NAVY}
-                  fill={NAVY}
-                  fillOpacity={0.1}
-                  strokeWidth={2}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="views"
-                  name="Weergaven"
-                  stroke={GOLD}
-                  fill={GOLD}
-                  fillOpacity={0.05}
-                  strokeWidth={2}
-                />
+                <Tooltip contentStyle={{ backgroundColor: "hsl(222, 14%, 15%)", border: "1px solid hsl(222, 14%, 20%)", borderRadius: 8, fontFamily: "monospace", fontSize: 12 }} />
+                <Area type="monotone" dataKey="visitors" stroke={NAVY} fill={NAVY} fillOpacity={0.15} strokeWidth={2} />
+                <Area type="monotone" dataKey="views" stroke={GOLD} fill={GOLD} fillOpacity={0.1} strokeWidth={2} />
               </AreaChart>
             </ResponsiveContainer>
           )}
         </div>
 
-        {/* Conversion Funnel */}
-        <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
-          <h2 className="text-sm font-semibold text-card-foreground mb-4">Conversie Funnel</h2>
-          {isLoading ? (
-            <ChartSkeleton height="h-40" />
-          ) : (
-            <ResponsiveContainer width="100%" height={160}>
-              <BarChart data={funnelData} layout="vertical" barCategoryGap="30%">
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 14%, 20%)" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 11, fontFamily: "monospace", fill: SLATE }} />
-                <YAxis
-                  type="category"
-                  dataKey="name"
-                  tick={{ fontSize: 11, fill: SLATE }}
-                  width={120}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "hsl(222, 14%, 15%)",
-                    border: "1px solid hsl(222, 14%, 20%)",
-                    borderRadius: 8,
-                    fontFamily: "monospace",
-                    fontSize: 12,
-                  }}
-                />
-                <Bar dataKey="value" fill={NAVY} radius={[0, 4, 4, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </div>
-
-        {/* Device & Source Pies */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Funnel + Pie Charts */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
-            <h2 className="text-sm font-semibold text-card-foreground mb-4 flex items-center gap-2">
-              <Monitor className="w-4 h-4" /> Apparaat
-            </h2>
+            <h2 className="text-sm font-semibold text-card-foreground mb-4">Conversie Trechter</h2>
+            {isLoading ? (
+              <ChartSkeleton height="h-48" />
+            ) : (
+              <ResponsiveContainer width="100%" height={192}>
+                <BarChart data={funnelData} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 14%, 20%)" />
+                  <XAxis type="number" tick={{ fontSize: 11, fontFamily: "monospace", fill: SLATE }} />
+                  <YAxis dataKey="name" type="category" width={90} tick={{ fontSize: 11, fontFamily: "monospace", fill: SLATE }} />
+                  <Tooltip contentStyle={{ backgroundColor: "hsl(222, 14%, 15%)", border: "1px solid hsl(222, 14%, 20%)", borderRadius: 8, fontFamily: "monospace", fontSize: 12 }} />
+                  <Bar dataKey="value" fill={NAVY} radius={[0, 4, 4, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+          <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
+            <h2 className="text-sm font-semibold text-card-foreground mb-4">Apparaat Verdeling</h2>
             {isLoading ? (
               <ChartSkeleton height="h-48" />
             ) : (
               <ResponsiveContainer width="100%" height={192}>
                 <PieChart>
                   <Pie data={deviceData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                    {deviceData.map((_, i) => (
-                      <Cell key={i} fill={PIE_COLORS[i]} />
-                    ))}
+                    {deviceData.map((_, i) => (<Cell key={i} fill={PIE_COLORS[i]} />))}
                   </Pie>
                   <Tooltip />
                 </PieChart>
@@ -289,18 +350,14 @@ export default function AnalyticsPage() {
             )}
           </div>
           <div className="bg-card rounded-lg border border-border p-4 sm:p-6">
-            <h2 className="text-sm font-semibold text-card-foreground mb-4 flex items-center gap-2">
-              <Globe className="w-4 h-4" /> Bron
-            </h2>
+            <h2 className="text-sm font-semibold text-card-foreground mb-4">Bron Verdeling</h2>
             {isLoading ? (
               <ChartSkeleton height="h-48" />
             ) : (
               <ResponsiveContainer width="100%" height={192}>
                 <PieChart>
                   <Pie data={sourceData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} dataKey="value" label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}>
-                    {sourceData.map((_, i) => (
-                      <Cell key={i} fill={PIE_COLORS[i]} />
-                    ))}
+                    {sourceData.map((_, i) => (<Cell key={i} fill={PIE_COLORS[i]} />))}
                   </Pie>
                   <Tooltip />
                 </PieChart>
