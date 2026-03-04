@@ -2,37 +2,39 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 import portfolioSheff from "@/assets/portfolio-shefftrades.png";
 import portfolioLeplana from "@/assets/portfolio-leplana.png";
 import portfolioMomentum from "@/assets/portfolio-momentumos-1.png";
 
-const cases = [
-  {
-    title: "SheffTrades",
-    desc: "AI-powered trade management. Standardizing workflows across the industry.",
-    img: portfolioSheff,
-    icon: "S",
-    iconBg: "bg-gray-900",
-  },
-  {
-    title: "LePlana",
-    desc: "Where event planners manage, collaborate and scale seamlessly.",
-    img: portfolioLeplana,
-    icon: "L",
-    iconBg: "bg-emerald-600",
-  },
-  {
-    title: "MomentumOS",
-    desc: "The gamified engine powering data-driven growth intelligence.",
-    img: portfolioMomentum,
-    icon: "M",
-    iconBg: "bg-purple-600",
-  },
-];
-
 const HomeWork = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+
+  const cases = [
+    {
+      title: "SheffTrades",
+      descKey: "homeWork.sheff.desc",
+      img: portfolioSheff,
+      icon: "S",
+      iconBg: "bg-gray-900",
+    },
+    {
+      title: "LePlana",
+      descKey: "homeWork.leplana.desc",
+      img: portfolioLeplana,
+      icon: "L",
+      iconBg: "bg-emerald-600",
+    },
+    {
+      title: "MomentumOS",
+      descKey: "homeWork.momentum.desc",
+      img: portfolioMomentum,
+      icon: "M",
+      iconBg: "bg-purple-600",
+    },
+  ];
 
   return (
     <section className="py-24 px-6 bg-white">
@@ -44,16 +46,16 @@ const HomeWork = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-black tracking-tight">Explore work</h2>
+          <h2 className="text-4xl md:text-6xl font-bold text-black tracking-tight">{t("homeWork.heading")}</h2>
           <p className="text-gray-400 mt-4 max-w-lg mx-auto">
-            We build polished, production-ready apps that look great and scale fast.
+            {t("homeWork.subtitle")}
           </p>
           <Button
             onClick={() => navigate("/portfolio")}
             className="rounded-full bg-black text-white hover:bg-black/90 font-medium mt-6 gap-1"
           >
             <ChevronRight className="w-4 h-4" />
-            View all work
+            {t("homeWork.cta")}
           </Button>
         </motion.div>
 
@@ -86,7 +88,7 @@ const HomeWork = () => {
                 </div>
                 <div>
                   <h3 className="text-black font-semibold text-base">{cs.title}</h3>
-                  <p className="text-gray-400 text-sm mt-0.5 leading-relaxed">{cs.desc}</p>
+                  <p className="text-gray-400 text-sm mt-0.5 leading-relaxed">{t(cs.descKey)}</p>
                 </div>
               </div>
             </motion.div>
