@@ -17,9 +17,7 @@ export default function GlobalSearch({ leads, clients, onSelectLead, onSelectCli
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    };
+    const handler = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false); };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
@@ -28,16 +26,8 @@ export default function GlobalSearch({ leads, clients, onSelectLead, onSelectCli
     if (!query || query.length < 2) return { leads: [], clients: [] };
     const q = query.toLowerCase();
     return {
-      leads: leads.filter((l) =>
-        l.name.toLowerCase().includes(q) ||
-        l.company?.toLowerCase().includes(q) ||
-        l.email?.toLowerCase().includes(q)
-      ).slice(0, 5),
-      clients: clients.filter((c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.company?.toLowerCase().includes(q) ||
-        c.email?.toLowerCase().includes(q)
-      ).slice(0, 5),
+      leads: leads.filter((l) => l.name.toLowerCase().includes(q) || l.company?.toLowerCase().includes(q) || l.email?.toLowerCase().includes(q)).slice(0, 5),
+      clients: clients.filter((c) => c.name.toLowerCase().includes(q) || c.company?.toLowerCase().includes(q) || c.email?.toLowerCase().includes(q)).slice(0, 5),
     };
   }, [query, leads, clients]);
 
@@ -52,7 +42,7 @@ export default function GlobalSearch({ leads, clients, onSelectLead, onSelectCli
           value={query}
           onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
           onFocus={() => setOpen(true)}
-          className="pl-9 pr-8 h-9 text-sm bg-muted/60 border-border/60 rounded-lg focus:bg-card focus:border-border shadow-sm transition-colors"
+          className="pl-9 pr-8 h-9 text-sm bg-muted/40 dark:bg-muted/20 border-border/50 rounded-xl focus:bg-card focus:border-border shadow-sm backdrop-blur-sm transition-all"
         />
         {query && (
           <button onClick={() => { setQuery(""); setOpen(false); }} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">
@@ -62,21 +52,17 @@ export default function GlobalSearch({ leads, clients, onSelectLead, onSelectCli
       </div>
 
       {open && query.length >= 2 && (
-        <div className="absolute top-full mt-1.5 left-0 right-0 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute top-full mt-2 left-0 right-0 bg-card/95 backdrop-blur-xl border border-border/60 rounded-2xl shadow-xl dark:shadow-2xl dark:shadow-black/40 z-50 overflow-hidden max-h-80 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150">
           {!hasResults ? (
-            <p className="text-muted-foreground text-sm text-center py-6">Geen resultaten voor "{query}"</p>
+            <p className="text-muted-foreground text-sm text-center py-6">Geen resultaten voor &ldquo;{query}&rdquo;</p>
           ) : (
             <>
               {results.leads.length > 0 && (
                 <div>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium px-3 py-2 bg-muted/40 border-b border-border">Leads</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold px-4 py-2 bg-muted/30 dark:bg-muted/15 border-b border-border/40">Leads</p>
                   {results.leads.map((lead) => (
-                    <button
-                      key={lead.id}
-                      onClick={() => { onSelectLead(lead); setOpen(false); setQuery(""); }}
-                      className="w-full text-left px-3 py-2.5 hover:bg-muted/50 transition-colors flex items-center gap-3"
-                    >
-                      <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center shrink-0">
+                    <button key={lead.id} onClick={() => { onSelectLead(lead); setOpen(false); setQuery(""); }} className="w-full text-left px-4 py-2.5 hover:bg-muted/40 dark:hover:bg-muted/20 transition-colors flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-muted/60 dark:bg-muted/30 flex items-center justify-center shrink-0">
                         <User className="w-3.5 h-3.5 text-muted-foreground" />
                       </div>
                       <div className="min-w-0">
@@ -89,14 +75,10 @@ export default function GlobalSearch({ leads, clients, onSelectLead, onSelectCli
               )}
               {results.clients.length > 0 && (
                 <div>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium px-3 py-2 bg-muted/40 border-b border-border">Klanten</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold px-4 py-2 bg-muted/30 dark:bg-muted/15 border-b border-border/40">Klanten</p>
                   {results.clients.map((client) => (
-                    <button
-                      key={client.id}
-                      onClick={() => { onSelectClient(client); setOpen(false); setQuery(""); }}
-                      className="w-full text-left px-3 py-2.5 hover:bg-muted/50 transition-colors flex items-center gap-3"
-                    >
-                      <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center shrink-0">
+                    <button key={client.id} onClick={() => { onSelectClient(client); setOpen(false); setQuery(""); }} className="w-full text-left px-4 py-2.5 hover:bg-muted/40 dark:hover:bg-muted/20 transition-colors flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-muted/60 dark:bg-muted/30 flex items-center justify-center shrink-0">
                         <Building2 className="w-3.5 h-3.5 text-muted-foreground" />
                       </div>
                       <div className="min-w-0">

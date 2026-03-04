@@ -14,10 +14,7 @@ function parseEuro(val: string | null): number {
   return parseFloat(cleaned) || 0;
 }
 
-interface Props {
-  client: Client;
-  onClose: () => void;
-}
+interface Props { client: Client; onClose: () => void; }
 
 export default function ClientDetailPanel({ client, onClose }: Props) {
   const { data: invoices = [], isLoading } = useClientInvoices(client.id);
@@ -35,46 +32,23 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
   const profit = totalRevenue - creditCost - txFees;
   const profitPct = totalRevenue > 0 ? (profit / totalRevenue) * 100 : 0;
 
-  const websiteUrl = client.website
-    ? client.website.startsWith("http") ? client.website : `https://${client.website}`
-    : null;
+  const websiteUrl = client.website ? (client.website.startsWith("http") ? client.website : `https://${client.website}`) : null;
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      uploadInvoice.mutate({ clientId: client.id, file });
-      e.target.value = "";
-    }
-  };
-
-  const handleDownload = async (filePath: string, fileName: string) => {
-    setDownloading(filePath);
-    try {
-      const url = await getSignedInvoiceUrl(filePath);
-      window.open(url, "_blank");
-    } catch {
-      // fallback
-    }
-    setDownloading(null);
-  };
-
-  const handleDelete = (id: string, filePath: string) => {
-    if (confirm("Factuur verwijderen?")) {
-      deleteInvoice.mutate({ id, filePath, clientId: client.id });
-    }
-  };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => { const file = e.target.files?.[0]; if (file) { uploadInvoice.mutate({ clientId: client.id, file }); e.target.value = ""; } };
+  const handleDownload = async (filePath: string, _fileName: string) => { setDownloading(filePath); try { const url = await getSignedInvoiceUrl(filePath); window.open(url, "_blank"); } catch {} setDownloading(null); };
+  const handleDelete = (id: string, filePath: string) => { if (confirm("Factuur verwijderen?")) { deleteInvoice.mutate({ id, filePath, clientId: client.id }); } };
 
   return (
-    <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden animate-in fade-in slide-in-from-right-2 duration-200">
+    <div className="bg-card/90 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm dark:shadow-lg dark:shadow-black/20 overflow-hidden animate-in fade-in slide-in-from-right-2 duration-200">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-border flex items-center justify-between">
+      <div className="px-5 py-4 border-b border-border/60 flex items-center justify-between">
         <div>
-          <h3 className="text-base font-semibold text-foreground">{client.name}</h3>
+          <h3 className="text-base font-semibold text-foreground tracking-tight">{client.name}</h3>
           {client.company && client.company !== client.name && (
             <p className="text-sm text-muted-foreground mt-0.5">{client.company}</p>
           )}
         </div>
-        <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-muted">
+        <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-all p-1.5 rounded-xl hover:bg-muted/60">
           <X className="w-4 h-4" />
         </button>
       </div>
@@ -83,19 +57,19 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
         {/* Quick Actions */}
         <div className="grid grid-cols-3 gap-2">
           {client.phone && (
-            <a href={`tel:${client.phone}`} className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={`tel:${client.phone}`} className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <Phone className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">Bellen</span>
             </a>
           )}
           {client.email && (
-            <a href={`mailto:${client.email}`} className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={`mailto:${client.email}`} className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <Mail className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">E-mail</span>
             </a>
           )}
           {websiteUrl && (
-            <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <Globe className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">Website</span>
             </a>
@@ -104,11 +78,11 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
 
         {/* Financial Summary */}
         {totalRevenue > 0 && (
-          <div className="rounded-xl border border-border overflow-hidden">
-            <div className="px-4 py-3 bg-muted/30 border-b border-border">
+          <div className="rounded-2xl border border-border/60 overflow-hidden">
+            <div className="px-4 py-3 bg-muted/20 dark:bg-muted/10 border-b border-border/60">
               <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Financial Summary</p>
             </div>
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border/40">
               {client.setup_fee && (
                 <div className="flex justify-between px-4 py-2.5">
                   <span className="text-sm text-muted-foreground">Setup Fee</span>
@@ -117,9 +91,7 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
               )}
               {client.recurring_fee && (
                 <div className="flex justify-between px-4 py-2.5">
-                  <span className="text-sm text-muted-foreground">
-                    Fee {client.billing_cycle === "jaarlijks" ? "(jaar)" : "(mnd)"}
-                  </span>
+                  <span className="text-sm text-muted-foreground">Fee {client.billing_cycle === "jaarlijks" ? "(jaar)" : "(mnd)"}</span>
                   <span className="text-sm font-medium text-foreground tabular-nums">€{client.recurring_fee}</span>
                 </div>
               )}
@@ -130,34 +102,29 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
               {creditCost > 0 && (
                 <div className="flex justify-between px-4 py-2.5">
                   <span className="text-sm text-muted-foreground">Credits ({client.credits_used}×)</span>
-                  <span className="text-sm font-medium text-red-600 tabular-nums">-€{creditCost.toFixed(2)}</span>
+                  <span className="text-sm font-medium text-red-600 dark:text-red-400 tabular-nums">-€{creditCost.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between px-4 py-2.5">
                 <span className="text-sm text-muted-foreground">Tx fees (2.8%)</span>
-                <span className="text-sm font-medium text-red-600 tabular-nums">-€{txFees.toFixed(2)}</span>
+                <span className="text-sm font-medium text-red-600 dark:text-red-400 tabular-nums">-€{txFees.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between items-center px-4 py-3 bg-muted/20">
+              <div className="flex justify-between items-center px-4 py-3 bg-muted/15 dark:bg-muted/10">
                 <span className="text-sm font-semibold text-foreground">Profit</span>
                 <div className="flex items-center gap-2">
-                  <span className={`text-sm font-bold tabular-nums ${profit >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
-                    €{profit.toFixed(0)}
-                  </span>
+                  <span className={`text-sm font-bold tabular-nums ${profit >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>€{profit.toFixed(0)}</span>
                   <Badge variant="outline" className={`text-[10px] px-1.5 py-0 font-medium ${
-                    profitPct >= 70 ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : 
-                    profitPct >= 50 ? "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20" : 
+                    profitPct >= 70 ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20" :
+                    profitPct >= 50 ? "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20" :
                     "text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20"
-                  }`}>
-                    {profitPct.toFixed(1)}%
-                  </Badge>
+                  }`}>{profitPct.toFixed(1)}%</Badge>
                 </div>
               </div>
             </div>
-            {/* Margin Bar */}
-            <div className="px-4 py-3 border-t border-border">
+            <div className="px-4 py-3 border-t border-border/60">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[11px] text-muted-foreground">Marge</span>
-                <span className="text-[11px] font-medium text-foreground">{profitPct.toFixed(1)}%</span>
+                <span className="text-[11px] text-muted-foreground font-medium">Marge</span>
+                <span className="text-[11px] font-semibold text-foreground">{profitPct.toFixed(1)}%</span>
               </div>
               <Progress value={Math.max(0, Math.min(100, profitPct))} className="h-1.5" />
             </div>
@@ -167,38 +134,25 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
         {/* Details */}
         <div className="space-y-2 text-sm">
           {client.start_date && (
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Startdatum</span>
-              <span className="text-foreground tabular-nums">{format(new Date(client.start_date), "d MMM yyyy", { locale: nl })}</span>
-            </div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Startdatum</span><span className="text-foreground tabular-nums">{format(new Date(client.start_date), "d MMM yyyy", { locale: nl })}</span></div>
           )}
           {client.credits_used != null && client.credits_used > 0 && (
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Credits gebruikt</span>
-              <span className="text-foreground tabular-nums">{client.credits_used}</span>
-            </div>
+            <div className="flex justify-between"><span className="text-muted-foreground">Credits gebruikt</span><span className="text-foreground tabular-nums">{client.credits_used}</span></div>
           )}
           {client.notes && (
-            <div className="pt-2 border-t border-border">
-              <span className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider block mb-1">Notities</span>
+            <div className="pt-2 border-t border-border/40">
+              <span className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wider block mb-1">Notities</span>
               <p className="text-foreground text-sm whitespace-pre-wrap">{client.notes}</p>
             </div>
           )}
         </div>
 
         {/* Invoices */}
-        <div className="pt-3 border-t border-border">
+        <div className="pt-3 border-t border-border/60">
           <div className="flex items-center justify-between mb-3">
             <h4 className="text-sm font-semibold text-foreground">Facturen</h4>
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-1.5 text-xs h-7 shadow-sm"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={uploadInvoice.isPending}
-            >
-              <Upload className="w-3 h-3" />
-              {uploadInvoice.isPending ? "Uploaden..." : "Upload"}
+            <Button variant="outline" size="sm" className="gap-1.5 text-xs h-7 shadow-sm border-border/60" onClick={() => fileInputRef.current?.click()} disabled={uploadInvoice.isPending}>
+              <Upload className="w-3 h-3" />{uploadInvoice.isPending ? "Uploaden..." : "Upload"}
             </Button>
             <input ref={fileInputRef} type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" className="hidden" onChange={handleFileChange} />
           </div>
@@ -206,41 +160,26 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
           {isLoading ? (
             <p className="text-muted-foreground text-xs text-center py-4">Laden...</p>
           ) : invoices.length === 0 ? (
-            <div className="py-6 text-center">
-              <FileText className="w-8 h-8 text-muted-foreground/30 mx-auto mb-2" />
+            <div className="py-8 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-muted/40 mx-auto mb-3 flex items-center justify-center">
+                <FileText className="w-5 h-5 text-muted-foreground/40" />
+              </div>
               <p className="text-xs text-muted-foreground">Nog geen facturen</p>
             </div>
           ) : (
             <div className="space-y-1.5">
               {invoices.map((inv) => (
-                <div key={inv.id} className="flex items-center justify-between bg-muted/40 rounded-lg px-3 py-2 border border-border/50 hover:bg-muted/60 transition-colors">
+                <div key={inv.id} className="flex items-center justify-between bg-muted/30 dark:bg-muted/15 rounded-xl px-3 py-2 border border-border/30 hover:bg-muted/50 dark:hover:bg-muted/30 transition-colors">
                   <div className="flex items-center gap-2 min-w-0">
                     <FileText className="w-4 h-4 text-muted-foreground shrink-0" />
                     <div className="min-w-0">
                       <p className="text-sm text-foreground truncate">{inv.file_name}</p>
-                      <p className="text-[10px] text-muted-foreground">
-                        {format(new Date(inv.created_at), "d MMM yyyy", { locale: nl })}
-                      </p>
+                      <p className="text-[10px] text-muted-foreground">{format(new Date(inv.created_at), "d MMM yyyy", { locale: nl })}</p>
                     </div>
                   </div>
                   <div className="flex gap-0.5 shrink-0">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-7 w-7 text-muted-foreground hover:text-foreground"
-                      onClick={() => handleDownload(inv.file_path, inv.file_name)}
-                      disabled={downloading === inv.file_path}
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-7 w-7 text-muted-foreground hover:text-destructive"
-                      onClick={() => handleDelete(inv.id, inv.file_path)}
-                    >
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => handleDownload(inv.file_path, inv.file_name)} disabled={downloading === inv.file_path}><Download className="w-3.5 h-3.5" /></Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleDelete(inv.id, inv.file_path)}><Trash2 className="w-3.5 h-3.5" /></Button>
                   </div>
                 </div>
               ))}

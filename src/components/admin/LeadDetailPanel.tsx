@@ -21,10 +21,7 @@ function parseEuro(val: string | null): number {
   return parseFloat(cleaned) || 0;
 }
 
-interface Props {
-  lead: Lead;
-  onClose: () => void;
-}
+interface Props { lead: Lead; onClose: () => void; }
 
 export default function LeadDetailPanel({ lead, onClose }: Props) {
   const [note, setNote] = useState("");
@@ -37,37 +34,23 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
   const isTargetDeal = budget >= 750 && budget <= 2000;
   const isPaid = lead.status === "gewonnen";
 
-  const handleStatusChange = (status: LeadStatus) => {
-    updateLead.mutate({ id: lead.id, status });
-  };
-
-  const handleAddNote = () => {
-    if (!note.trim()) return;
-    addNote.mutate({ lead_id: lead.id, content: note.trim() });
-    setNote("");
-  };
-
-  const handleDelete = () => {
-    if (confirm("Weet je zeker dat je deze lead wilt verwijderen?")) {
-      deleteLead.mutate(lead.id);
-      onClose();
-    }
-  };
+  const handleStatusChange = (status: LeadStatus) => { updateLead.mutate({ id: lead.id, status }); };
+  const handleAddNote = () => { if (!note.trim()) return; addNote.mutate({ lead_id: lead.id, content: note.trim() }); setNote(""); };
+  const handleDelete = () => { if (confirm("Weet je zeker dat je deze lead wilt verwijderen?")) { deleteLead.mutate(lead.id); onClose(); } };
 
   return (
-    <div className="bg-card border border-border rounded-xl shadow-sm overflow-hidden animate-in fade-in slide-in-from-right-2 duration-200">
+    <div className="bg-card/90 backdrop-blur-sm border border-border/60 rounded-2xl shadow-sm dark:shadow-lg dark:shadow-black/20 overflow-hidden animate-in fade-in slide-in-from-right-2 duration-200">
       {/* Header */}
-      <div className="px-5 py-4 border-b border-border flex items-start justify-between">
+      <div className="px-5 py-4 border-b border-border/60 flex items-start justify-between">
         <div>
-          <h2 className="text-base font-semibold text-foreground">{lead.name}</h2>
+          <h2 className="text-base font-semibold text-foreground tracking-tight">{lead.name}</h2>
           {lead.company && (
             <div className="flex items-center gap-1.5 text-muted-foreground text-sm mt-0.5">
-              <Building2 className="w-3.5 h-3.5" />
-              {lead.company}
+              <Building2 className="w-3.5 h-3.5" />{lead.company}
             </div>
           )}
         </div>
-        <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-muted">
+        <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-all p-1.5 rounded-xl hover:bg-muted/60">
           <X className="w-4 h-4" />
         </button>
       </div>
@@ -75,36 +58,30 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
       <div className="p-5 space-y-4">
         {/* Payment & Deal Status */}
         <div className="flex gap-2 flex-wrap">
-          <Badge variant="outline" className={`text-xs font-medium border ${
-            isPaid
-              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
-              : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-          }`}>
+          <Badge variant="outline" className={`text-xs font-medium border ${isPaid ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"}`}>
             {isPaid ? "✅ Fee voldaan" : "⚠️ Betaal de fee"}
           </Badge>
           {isTargetDeal && (
-            <Badge variant="outline" className="text-xs font-medium border bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">
-              🎯 Target Deal
-            </Badge>
+            <Badge variant="outline" className="text-xs font-medium border bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">🎯 Target Deal</Badge>
           )}
         </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-3 gap-2">
           {lead.phone && (
-            <a href={`tel:${lead.phone}`} className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={`tel:${lead.phone}`} className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <PhoneCall className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">Bellen</span>
             </a>
           )}
           {lead.phone && (
-            <a href={`https://wa.me/${lead.phone.replace(/[^0-9+]/g, "")}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={`https://wa.me/${lead.phone.replace(/[^0-9+]/g, "")}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <MessageCircle className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">WhatsApp</span>
             </a>
           )}
           {lead.email && (
-            <a href={`mailto:${lead.email}`} className="flex flex-col items-center gap-1.5 bg-muted/50 rounded-xl p-3 hover:bg-muted transition-colors border border-transparent hover:border-border">
+            <a href={`mailto:${lead.email}`} className="flex flex-col items-center gap-1.5 bg-muted/40 dark:bg-muted/20 rounded-xl p-3 hover:bg-muted/60 dark:hover:bg-muted/40 transition-all border border-border/30 hover:border-border/60">
               <Mail className="w-4 h-4 text-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">E-mail</span>
             </a>
@@ -113,21 +90,17 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
 
         {/* Status */}
         <div>
-          <label className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider mb-1.5 block">Status</label>
+          <label className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wider mb-1.5 block">Status</label>
           <Select value={lead.status} onValueChange={(v) => handleStatusChange(v as LeadStatus)}>
-            <SelectTrigger className="bg-card border-border shadow-sm h-9">
-              <SelectValue />
-            </SelectTrigger>
+            <SelectTrigger className="bg-card border-border/60 shadow-sm h-9"><SelectValue /></SelectTrigger>
             <SelectContent>
-              {Object.entries(statusConfig).map(([key, cfg]) => (
-                <SelectItem key={key} value={key}>{cfg.label}</SelectItem>
-              ))}
+              {Object.entries(statusConfig).map(([key, cfg]) => (<SelectItem key={key} value={key}>{cfg.label}</SelectItem>))}
             </SelectContent>
           </Select>
         </div>
 
         {/* Contact & Deal info */}
-        <div className="bg-muted/40 rounded-xl p-4 space-y-2.5 border border-border/50">
+        <div className="bg-muted/30 dark:bg-muted/15 rounded-xl p-4 space-y-2.5 border border-border/40">
           {lead.email && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Mail className="w-3.5 h-3.5 shrink-0" />
@@ -141,21 +114,20 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
             </div>
           )}
           {lead.budget && (
-            <div className="flex items-center justify-between text-sm pt-2 border-t border-border/50">
+            <div className="flex items-center justify-between text-sm pt-2 border-t border-border/40">
               <span className="text-muted-foreground">Budget</span>
               <span className="font-semibold text-foreground tabular-nums">{lead.budget}</span>
             </div>
           )}
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <Calendar className="w-3.5 h-3.5" />
-            {format(new Date(lead.created_at), "d MMM yyyy, HH:mm", { locale: nl })}
+            <Calendar className="w-3.5 h-3.5" />{format(new Date(lead.created_at), "d MMM yyyy, HH:mm", { locale: nl })}
           </div>
         </div>
 
         {lead.message && (
           <div>
-            <label className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider mb-1.5 block">Bericht</label>
-            <p className="text-sm text-foreground bg-muted/40 p-3 rounded-lg border border-border/50">{lead.message}</p>
+            <label className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wider mb-1.5 block">Bericht</label>
+            <p className="text-sm text-foreground bg-muted/30 dark:bg-muted/15 p-3 rounded-xl border border-border/40">{lead.message}</p>
           </div>
         )}
 
@@ -163,26 +135,19 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <MessageSquare className="w-3.5 h-3.5 text-muted-foreground" />
-            <label className="text-[11px] text-muted-foreground font-medium uppercase tracking-wider">Notities ({notes.length})</label>
+            <label className="text-[11px] text-muted-foreground font-semibold uppercase tracking-wider">Notities ({notes.length})</label>
           </div>
           <div className="flex gap-2 mb-3">
-            <Textarea
-              placeholder="Schrijf een notitie..."
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              className="bg-card border-border text-sm min-h-[60px] shadow-sm"
-            />
-            <Button size="icon" variant="outline" className="shrink-0 shadow-sm" onClick={handleAddNote} disabled={!note.trim()}>
+            <Textarea placeholder="Schrijf een notitie..." value={note} onChange={(e) => setNote(e.target.value)} className="bg-card border-border/60 text-sm min-h-[60px] shadow-sm" />
+            <Button size="icon" variant="outline" className="shrink-0 shadow-sm border-border/60" onClick={handleAddNote} disabled={!note.trim()}>
               <Send className="w-4 h-4" />
             </Button>
           </div>
           <div className="space-y-2 max-h-48 overflow-y-auto">
             {notes.map((n) => (
-              <div key={n.id} className="bg-muted/40 rounded-lg p-3 border border-border/50">
+              <div key={n.id} className="bg-muted/30 dark:bg-muted/15 rounded-xl p-3 border border-border/40">
                 <p className="text-sm text-foreground">{n.content}</p>
-                <span className="text-[11px] text-muted-foreground mt-1 block">
-                  {format(new Date(n.created_at), "d MMM yyyy, HH:mm", { locale: nl })}
-                </span>
+                <span className="text-[11px] text-muted-foreground mt-1 block">{format(new Date(n.created_at), "d MMM yyyy, HH:mm", { locale: nl })}</span>
               </div>
             ))}
           </div>

@@ -26,29 +26,18 @@ export default function ClientsSection() {
   const filtered = useMemo(() => {
     if (!search) return clients;
     const q = search.toLowerCase();
-    return clients.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        (c.company?.toLowerCase() || "").includes(q) ||
-        (c.email?.toLowerCase() || "").includes(q)
-    );
+    return clients.filter((c) => c.name.toLowerCase().includes(q) || (c.company?.toLowerCase() || "").includes(q) || (c.email?.toLowerCase() || "").includes(q));
   }, [clients, search]);
 
-  const handleDelete = (id: string) => {
-    if (confirm("Weet je zeker dat je deze klant wilt verwijderen?")) {
-      deleteClient.mutate(id);
-      if (selectedClient?.id === id) setSelectedClient(null);
-    }
-  };
-
+  const handleDelete = (id: string) => { if (confirm("Weet je zeker dat je deze klant wilt verwijderen?")) { deleteClient.mutate(id); if (selectedClient?.id === id) setSelectedClient(null); } };
   const activeClient = selectedClient ? clients.find((c) => c.id === selectedClient.id) || null : null;
 
   return (
     <>
-      <div className="space-y-4">
+      <div className="space-y-5">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-foreground">Klanten</h2>
+            <h2 className="text-lg font-semibold text-foreground tracking-tight">Klanten</h2>
             <p className="text-xs text-muted-foreground mt-0.5">{clients.length} klanten</p>
           </div>
           <AddClientDialog />
@@ -56,64 +45,47 @@ export default function ClientsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           <div className="lg:col-span-2 space-y-3">
-            {/* Search */}
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Zoek op naam, bedrijf of e-mail..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="pl-9 h-9 text-sm bg-card border-border shadow-sm"
-              />
+              <Input placeholder="Zoek op naam, bedrijf of e-mail..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9 h-9 text-sm bg-card/80 border-border/60 shadow-sm backdrop-blur-sm" />
             </div>
 
-            {/* Table Card */}
-            <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+            <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm dark:shadow-lg dark:shadow-black/20 overflow-hidden transition-shadow duration-300">
               {isLoading ? (
-                <div className="p-4 space-y-3">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="flex gap-3">
-                      <Skeleton className="h-5 w-32" />
-                      <Skeleton className="h-5 w-24" />
-                      <Skeleton className="h-5 w-16" />
-                      <Skeleton className="h-5 w-20" />
-                    </div>
-                  ))}
+                <div className="p-5 space-y-3">
+                  {[...Array(5)].map((_, i) => (<div key={i} className="flex gap-4"><Skeleton className="h-5 w-32 rounded-md" /><Skeleton className="h-5 w-24 rounded-md" /><Skeleton className="h-5 w-16 rounded-md" /><Skeleton className="h-5 w-20 rounded-md" /></div>))}
                 </div>
               ) : filtered.length === 0 ? (
-                <div className="py-16 text-center">
-                  <Building2 className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
-                  <p className="text-sm text-muted-foreground">Geen klanten gevonden</p>
+                <div className="py-20 text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-muted/60 mx-auto mb-4 flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-muted-foreground/40" />
+                  </div>
+                  <p className="text-sm font-medium text-muted-foreground">Geen klanten gevonden</p>
                   <p className="text-xs text-muted-foreground/60 mt-1">Voeg een nieuwe klant toe om te beginnen</p>
                 </div>
               ) : isMobile ? (
-                <div className="divide-y divide-border">
-                  {filtered.map((client) => (
-                    <MobileClientCard
-                      key={client.id}
-                      client={client}
-                      isActive={activeClient?.id === client.id}
-                      onClick={() => setSelectedClient(client)}
-                    />
-                  ))}
+                <div className="divide-y divide-border/60">
+                  {filtered.map((client) => (<MobileClientCard key={client.id} client={client} isActive={activeClient?.id === client.id} onClick={() => setSelectedClient(client)} />))}
                 </div>
               ) : (
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-muted/30 hover:bg-muted/30">
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10">Naam</TableHead>
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10 hidden md:table-cell">Bedrijf</TableHead>
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10 hidden lg:table-cell text-right">Setup Fee</TableHead>
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10 hidden lg:table-cell text-right">Fee</TableHead>
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10 hidden md:table-cell">Startdatum</TableHead>
-                      <TableHead className="text-xs font-medium text-muted-foreground h-10 w-[80px]"></TableHead>
+                    <TableRow className="bg-muted/20 hover:bg-muted/20 border-b border-border/60">
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10">Naam</TableHead>
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10 hidden md:table-cell">Bedrijf</TableHead>
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10 hidden lg:table-cell text-right">Setup Fee</TableHead>
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10 hidden lg:table-cell text-right">Fee</TableHead>
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10 hidden md:table-cell">Startdatum</TableHead>
+                      <TableHead className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider h-10 w-[80px]"></TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filtered.map((client) => (
+                    {filtered.map((client, idx) => (
                       <TableRow
                         key={client.id}
-                        className={`cursor-pointer transition-colors hover:bg-muted/40 ${activeClient?.id === client.id ? "bg-accent/5 border-l-2 border-l-foreground" : ""}`}
+                        className={`cursor-pointer transition-all duration-150 hover:bg-muted/40 ${
+                          activeClient?.id === client.id ? "bg-muted/50 ring-1 ring-inset ring-foreground/5" : idx % 2 === 1 ? "bg-muted/10" : ""
+                        }`}
                         onClick={() => setSelectedClient(client)}
                       >
                         <TableCell className="py-3">
@@ -126,23 +98,15 @@ export default function ClientsSection() {
                           {client.recurring_fee ? (
                             <div className="flex items-center justify-end gap-1.5">
                               <span className="text-sm font-medium text-foreground tabular-nums">€{client.recurring_fee}</span>
-                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
-                                {client.billing_cycle === "jaarlijks" ? "/jaar" : "/mnd"}
-                              </Badge>
+                              <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{client.billing_cycle === "jaarlijks" ? "/jaar" : "/mnd"}</Badge>
                             </div>
                           ) : "—"}
                         </TableCell>
-                        <TableCell className="text-sm text-muted-foreground hidden md:table-cell tabular-nums">
-                          {client.start_date ? format(new Date(client.start_date), "d MMM yyyy", { locale: nl }) : "—"}
-                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground hidden md:table-cell tabular-nums">{client.start_date ? format(new Date(client.start_date), "d MMM yyyy", { locale: nl }) : "—"}</TableCell>
                         <TableCell>
                           <div className="flex gap-0.5" onClick={(e) => e.stopPropagation()}>
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => setEditingClient(client)}>
-                              <Pencil className="w-3.5 h-3.5" />
-                            </Button>
-                            <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleDelete(client.id)}>
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </Button>
+                            <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground" onClick={() => setEditingClient(client)}><Pencil className="w-3.5 h-3.5" /></Button>
+                            <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-destructive" onClick={() => handleDelete(client.id)}><Trash2 className="w-3.5 h-3.5" /></Button>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -153,15 +117,14 @@ export default function ClientsSection() {
             </div>
           </div>
 
-          {/* Detail Panel */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="sticky top-20">
               {activeClient ? (
                 <ClientDetailPanel client={activeClient} onClose={() => setSelectedClient(null)} />
               ) : (
-                <div className="bg-card rounded-xl border border-border shadow-sm p-10 text-center">
-                  <div className="w-12 h-12 rounded-full bg-muted mx-auto mb-3 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-muted-foreground/50" />
+                <div className="bg-card/80 backdrop-blur-sm rounded-2xl border border-border/60 shadow-sm p-10 text-center">
+                  <div className="w-14 h-14 rounded-2xl bg-muted/60 mx-auto mb-4 flex items-center justify-center">
+                    <Building2 className="w-6 h-6 text-muted-foreground/40" />
                   </div>
                   <p className="text-sm font-medium text-muted-foreground">Selecteer een klant</p>
                   <p className="text-xs text-muted-foreground/60 mt-1">Klik op een rij voor details en facturen</p>
@@ -172,21 +135,8 @@ export default function ClientsSection() {
         </div>
       </div>
 
-      {editingClient && (
-        <EditClientDialog
-          client={editingClient}
-          open={!!editingClient}
-          onOpenChange={(open) => { if (!open) setEditingClient(null); }}
-        />
-      )}
-
-      {/* Mobile Drawer */}
-      <MobileClientDrawer
-        client={activeClient}
-        open={isMobile && !!activeClient}
-        onClose={() => setSelectedClient(null)}
-        onEdit={(c) => { setEditingClient(c); setSelectedClient(null); }}
-      />
+      {editingClient && (<EditClientDialog client={editingClient} open={!!editingClient} onOpenChange={(open) => { if (!open) setEditingClient(null); }} />)}
+      <MobileClientDrawer client={activeClient} open={isMobile && !!activeClient} onClose={() => setSelectedClient(null)} onEdit={(c) => { setEditingClient(c); setSelectedClient(null); }} />
     </>
   );
 }
