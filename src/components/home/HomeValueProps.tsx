@@ -206,22 +206,16 @@ const HomeValueProps = () => {
             <div className="flex justify-center flex-1 items-center mb-6">
               <div className="w-full max-w-xs rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-3">
                 {/* Comparison header */}
-                <div className="grid grid-cols-[1fr_auto_auto] gap-3 items-center pb-2 border-b border-gray-100">
+                <div className="grid grid-cols-[1fr_auto] gap-3 items-center pb-2 border-b border-gray-100">
                   <span className="text-xs font-medium text-gray-400 uppercase tracking-wider"></span>
                   <span className="text-[10px] font-bold text-red-400 uppercase tracking-wider w-14 text-center">Others</span>
-                  <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider w-14 text-center">Solyn</span>
                 </div>
                 {/* Rows */}
                 {freedomItems.map((itemKey, i) => (
-                  <div key={i} className="grid grid-cols-[1fr_auto_auto] gap-3 items-center py-1.5">
+                  <div key={i} className="grid grid-cols-[1fr_auto] gap-3 items-center py-1.5">
                     <span className="text-sm text-gray-600">{t(itemKey)}</span>
                     <div className="w-14 flex justify-center">
                       <XCircle className="w-4 h-4 text-red-400" />
-                    </div>
-                    <div className="w-14 flex justify-center">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
                     </div>
                   </div>
                 ))}
