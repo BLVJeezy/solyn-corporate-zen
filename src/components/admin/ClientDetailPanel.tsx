@@ -140,13 +140,13 @@ export default function ClientDetailPanel({ client, onClose }: Props) {
               <div className="flex justify-between items-center px-4 py-3 bg-muted/20">
                 <span className="text-sm font-semibold text-foreground">Profit</span>
                 <div className="flex items-center gap-2">
-                  <span className={`text-sm font-bold tabular-nums ${profit >= 0 ? "text-emerald-600" : "text-red-600"}`}>
+                  <span className={`text-sm font-bold tabular-nums ${profit >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
                     €{profit.toFixed(0)}
                   </span>
                   <Badge variant="outline" className={`text-[10px] px-1.5 py-0 font-medium ${
-                    profitPct >= 70 ? "text-emerald-700 bg-emerald-50 border-emerald-200" : 
-                    profitPct >= 50 ? "text-amber-700 bg-amber-50 border-amber-200" : 
-                    "text-red-700 bg-red-50 border-red-200"
+                    profitPct >= 70 ? "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20" : 
+                    profitPct >= 50 ? "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20" : 
+                    "text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20"
                   }`}>
                     {profitPct.toFixed(1)}%
                   </Badge>

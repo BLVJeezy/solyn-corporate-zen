@@ -9,10 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Lead, LeadStatus, useLeadNotes, useUpdateLead, useAddNote, useDeleteLead } from "@/hooks/useLeads";
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
-  nieuw: { label: "Nieuw", className: "bg-blue-50 text-blue-700 border-blue-200" },
-  in_behandeling: { label: "In behandeling", className: "bg-amber-50 text-amber-700 border-amber-200" },
-  gewonnen: { label: "Gewonnen", className: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-  verloren: { label: "Verloren", className: "bg-red-50 text-red-700 border-red-200" },
+  nieuw: { label: "Nieuw", className: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" },
+  in_behandeling: { label: "In behandeling", className: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20" },
+  gewonnen: { label: "Gewonnen", className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" },
+  verloren: { label: "Verloren", className: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20" },
 };
 
 function parseEuro(val: string | null): number {
@@ -77,13 +77,13 @@ export default function LeadDetailPanel({ lead, onClose }: Props) {
         <div className="flex gap-2 flex-wrap">
           <Badge variant="outline" className={`text-xs font-medium border ${
             isPaid
-              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-              : "bg-amber-50 text-amber-700 border-amber-200"
+              ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20"
+              : "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
           }`}>
             {isPaid ? "✅ Fee voldaan" : "⚠️ Betaal de fee"}
           </Badge>
           {isTargetDeal && (
-            <Badge variant="outline" className="text-xs font-medium border bg-blue-50 text-blue-700 border-blue-200">
+            <Badge variant="outline" className="text-xs font-medium border bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">
               🎯 Target Deal
             </Badge>
           )}

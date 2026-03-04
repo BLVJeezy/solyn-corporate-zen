@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, Plus, UserPlus, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, Plus, UserPlus, ChevronLeft, ChevronRight, Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
@@ -24,10 +24,10 @@ import GlobalSearch from "@/components/admin/GlobalSearch";
 import ExportButtons from "@/components/admin/ExportButtons";
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
-  nieuw: { label: "Nieuw", className: "bg-blue-50 text-blue-700 border-blue-200" },
-  in_behandeling: { label: "In behandeling", className: "bg-amber-50 text-amber-700 border-amber-200" },
-  gewonnen: { label: "Gewonnen", className: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-  verloren: { label: "Verloren", className: "bg-red-50 text-red-700 border-red-200" },
+  nieuw: { label: "Nieuw", className: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" },
+  in_behandeling: { label: "In behandeling", className: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20" },
+  gewonnen: { label: "Gewonnen", className: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20" },
+  verloren: { label: "Verloren", className: "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20" },
 };
 
 const sidebarItems = [
@@ -47,6 +47,11 @@ const AdminPage = () => {
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [activeTab, setActiveTab] = useState("overview");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [adminDark, setAdminDark] = useState(() => localStorage.getItem("admin-dark") === "true");
+
+  useEffect(() => {
+    localStorage.setItem("admin-dark", String(adminDark));
+  }, [adminDark]);
 
   const filteredLeads = useMemo(() => {
     return leads.filter((l) => {
@@ -70,6 +75,7 @@ const AdminPage = () => {
   };
 
   return (
+    <div className={adminDark ? "dark" : ""}>
     <div className="min-h-screen bg-muted/30">
       {/* ── Sticky Header ── */}
       <header className="bg-card/80 backdrop-blur-xl border-b border-border sticky top-0 z-40">
@@ -94,6 +100,15 @@ const AdminPage = () => {
           </div>
 
           <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setAdminDark(!adminDark)}
+              className="text-muted-foreground hover:text-foreground h-8 w-8 p-0"
+              title={adminDark ? "Light mode" : "Dark mode"}
+            >
+              {adminDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </Button>
             <ExportButtons leads={leads} clients={clients} />
             <Link to="/admin/analytics">
               <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground h-8 w-8 p-0 lg:w-auto lg:px-3 lg:gap-1.5">
@@ -319,6 +334,7 @@ const AdminPage = () => {
           </div>
         </main>
       </div>
+    </div>
     </div>
   );
 };
