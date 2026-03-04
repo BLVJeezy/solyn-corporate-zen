@@ -3,7 +3,7 @@ import { PLACEHOLDER_LOGOS } from "./placeholders";
 
 const metrics = [
   { label: "Products Built", value: "200+", },
-  { label: "Satisfied clients", value: "98%", },
+  { label: "Satisfied clients", value: "100%", },
   { label: "Countries", value: "12+", },
 ];
 
