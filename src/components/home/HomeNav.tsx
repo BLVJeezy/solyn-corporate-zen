@@ -4,17 +4,22 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { Lang } from "@/i18n/translations";
 
-const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/portfolio" },
-  { label: "Pricing", href: "/pricing" },
-];
+const languages: Lang[] = ["NL", "FR", "EN"];
 
 const HomeNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const { lang, setLang, t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.services"), href: "/about" },
+    { label: t("nav.portfolio"), href: "/portfolio" },
+    { label: t("nav.pricing"), href: "/pricing" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -59,9 +64,24 @@ const HomeNav = () => {
                 onClick={() => navigate("/book")}
                 className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-5 text-sm"
               >
-                Book a Call
+                {t("nav.bookCall")}
               </Button>
             </div>
+          </div>
+
+          {/* Desktop language switcher */}
+          <div className="hidden md:flex items-center gap-0.5 text-sm">
+            {languages.map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
+                  lang === l ? "bg-black/10 text-black" : "text-black/40 hover:text-black"
+                }`}
+              >
+                {l}
+              </button>
+            ))}
           </div>
 
           {/* Mobile toggle */}
@@ -105,11 +125,26 @@ const HomeNav = () => {
                   {link.label}
                 </a>
               ))}
+
+              <div className="flex gap-2 py-2 px-1">
+                {languages.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => setLang(l)}
+                    className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+                      lang === l ? "bg-black text-white" : "text-black/50 hover:text-black"
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+
               <Button
                 className="bg-black text-white hover:bg-black/90 font-medium rounded-full mt-1 w-full"
                 onClick={() => { setMobileOpen(false); navigate("/book"); }}
               >
-                Book a Call
+                {t("nav.bookCall")}
               </Button>
             </motion.div>
           </>

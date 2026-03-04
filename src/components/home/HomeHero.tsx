@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import lovableLogo from "@/assets/solyn-icon.svg";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 // Import showcase images
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
@@ -12,15 +13,16 @@ import showcaseMomentum from "@/assets/showcase-momentumos.png";
 import showcaseLeplana from "@/assets/showcase-leplana.png";
 
 const showcaseItems = [
-{ img: showcaseBelgomed, alt: "Belgomed" },
-{ img: showcaseDetailing, alt: "Auto Detailing" },
-{ img: showcaseAtelier9, alt: "L'atelier 9" },
-{ img: showcaseMomentum, alt: "MomentumOS" },
-{ img: showcaseLeplana, alt: "Le Plan A" }];
-
+  { img: showcaseBelgomed, alt: "Belgomed" },
+  { img: showcaseDetailing, alt: "Auto Detailing" },
+  { img: showcaseAtelier9, alt: "L'atelier 9" },
+  { img: showcaseMomentum, alt: "MomentumOS" },
+  { img: showcaseLeplana, alt: "Le Plan A" },
+];
 
 const HomeHero = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden bg-white">
@@ -30,24 +32,29 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-8">
-          
+          className="mb-8"
+        >
           <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 shadow-sm">
-            Official <span className="font-semibold text-black">Gold</span> Partner of
+            {t("homeHero.badge")} <span className="font-semibold text-black">{t("homeHero.badgePartner")}</span> {t("homeHero.badgeOf")}
             <img src={lovableLogo} alt="Lovable" className="h-5 w-auto" fetchPriority="high" decoding="async" />
             <span className="font-bold text-black">Lovable</span>
           </div>
         </motion.div>
 
-        {/* Headline — left aligned */}
+        {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl">
-          
+          className="max-w-3xl"
+        >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight leading-[1.1] text-left lg:text-5xl">
-            Turn your idea into a ready to<br className="hidden sm:block" /> launch MVP in 2-weeks
+            {t("homeHero.headline").split("\n").map((line, i) => (
+              <span key={i}>
+                {line}
+                {i === 0 && <br className="hidden sm:block" />}
+              </span>
+            ))}
           </h1>
         </motion.div>
 
@@ -56,9 +63,9 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="text-gray-500 text-base sm:text-lg max-w-xl mt-6 leading-relaxed">
-          
-          The #1 AI product studio — trusted by startups and founders to design, build, and launch products that scale.
+          className="text-gray-500 text-base sm:text-lg max-w-xl mt-6 leading-relaxed"
+        >
+          {t("homeHero.subheadline")}
         </motion.p>
 
         {/* CTAs */}
@@ -66,21 +73,21 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="flex flex-wrap items-center gap-3 mt-8">
-          
+          className="flex flex-wrap items-center gap-3 mt-8"
+        >
           <Button
             onClick={() => navigate("/book")}
-            className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-7 py-6 text-base gap-1">
-            
+            className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-7 py-6 text-base gap-1"
+          >
             <ChevronRight className="w-4 h-4" />
-            Book a Call
+            {t("homeHero.cta1")}
           </Button>
           <Button
             variant="outline"
             onClick={() => navigate("/pricing")}
-            className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base">
-            
-            View Pricing
+            className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base"
+          >
+            {t("homeHero.cta2")}
           </Button>
         </motion.div>
       </div>
@@ -90,29 +97,29 @@ const HomeHero = () => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="mt-16 w-full overflow-hidden">
-        
+        className="mt-16 w-full overflow-hidden"
+      >
         <div className="relative">
           <div className="flex gap-5 animate-infinite-scroll w-max">
-            {[...showcaseItems, ...showcaseItems].map((item, i) =>
-            <div
-              key={i}
-              className="flex-shrink-0 w-[420px] sm:w-[520px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
-              
+            {[...showcaseItems, ...showcaseItems].map((item, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[420px] sm:w-[520px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm"
+              >
                 <img
-                src={item.img}
-                alt={item.alt}
-                className="w-full h-auto object-cover"
-                decoding="async"
-                fetchPriority={i < 3 ? "high" : "auto"} />
-              
+                  src={item.img}
+                  alt={item.alt}
+                  className="w-full h-auto object-cover"
+                  decoding="async"
+                  fetchPriority={i < 3 ? "high" : "auto"}
+                />
               </div>
-            )}
+            ))}
           </div>
         </div>
       </motion.div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default HomeHero;
