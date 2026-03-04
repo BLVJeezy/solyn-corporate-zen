@@ -35,7 +35,7 @@ const AboutHero = () => {
           </Button>
           <Button
             onClick={() => navigate("/pricing")}
-            className="rounded-full border-[hsl(40_48%_56%_/_0.3)] text-white hover:bg-white/5 hover:border-[hsl(40_48%_56%_/_0.5)] font-medium px-7 py-6 text-base"
+            className="rounded-full border-white/20 bg-white/10 text-white hover:bg-white/15 font-medium px-7 py-6 text-base"
             variant="outline"
           >
             {t("aboutHero.cta2")}
