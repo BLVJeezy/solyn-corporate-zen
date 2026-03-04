@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Palette, XCircle } from "lucide-react";
+import { Palette, XCircle, Check } from "lucide-react";
 import solynIcon from "@/assets/solyn-icon.svg";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -156,15 +156,28 @@ const HomeValueProps = () => {
             className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8"
           >
             <div className="mb-8">
-              <p className="font-bold text-black text-lg mb-5">{t("homeValue.freedom.sayNo")}</p>
-              <ul className="space-y-3">
+              <div className="w-full rounded-xl bg-white border border-gray-100 shadow-sm p-5 space-y-3">
+                {/* Comparison header */}
+                <div className="grid grid-cols-[1fr_auto_auto] gap-3 items-center pb-2 border-b border-gray-100">
+                  <span className="text-xs font-medium text-gray-400 uppercase tracking-wider"></span>
+                  <span className="text-[10px] font-bold text-red-400 uppercase tracking-wider w-16 text-center">Others</span>
+                  <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-wider w-16 text-center">Solyn</span>
+                </div>
+                {/* Rows */}
                 {freedomItems.map((itemKey, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-gray-600">
-                    <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    {t(itemKey)}
-                  </li>
+                  <div key={i} className="grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+                    <span className="text-sm text-gray-600">{t(itemKey)}</span>
+                    <div className="w-16 flex justify-center">
+                      <XCircle className="w-4 h-4 text-red-400" />
+                    </div>
+                    <div className="w-16 flex justify-center">
+                      <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-white" />
+                      </div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
             <h3 className="text-black font-bold text-xl mb-3 text-center">{t("homeValue.freedom.title")}</h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto text-center">
