@@ -64,39 +64,62 @@ const HomeValueProps = () => {
             transition={{ delay: 0.1 }}
             className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
           >
-            {/* Async workflow mockup */}
+            {/* Chat mockup */}
             <div className="mb-8 w-full max-w-xs mx-auto">
-              <div className="rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-3">
-                {/* Header */}
+              <div className="rounded-xl bg-white border border-gray-100 shadow-lg p-3 space-y-2">
+                {/* Chat header */}
                 <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
-                    <span className="text-[8px] text-white font-bold">S</span>
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
+                    <span className="text-[9px] text-white font-bold">S</span>
                   </div>
-                  <span className="text-xs font-semibold text-gray-700">Solyn</span>
-                  <span className="text-[10px] text-gray-300 ml-auto">async</span>
+                  <div>
+                    <span className="text-xs font-semibold text-gray-700 block leading-tight">Solyn</span>
+                    <span className="text-[9px] text-emerald-400">online</span>
+                  </div>
                 </div>
-                {/* Timeline items */}
-                <div className="space-y-2.5">
-                  <div className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                {/* Messages */}
+                <div className="space-y-2 py-1">
+                  {/* Incoming */}
+                  <div className="flex items-end gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-gray-200 shrink-0 flex items-center justify-center">
+                      <span className="text-[6px] font-bold text-gray-500">S</span>
+                    </div>
                     <div>
-                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat1")}</p>
-                      <p className="text-[10px] text-gray-300 mt-0.5">09:00</p>
+                      <div className="bg-gray-100 rounded-2xl rounded-bl-md px-3 py-2 max-w-[85%]">
+                        <p className="text-[11px] text-gray-700">{t("homeValue.collab.chat1")}</p>
+                      </div>
+                      <p className="text-[8px] text-gray-300 mt-0.5 ml-1">09:00</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-1.5 shrink-0" />
+                  {/* Outgoing */}
+                  <div className="flex justify-end">
                     <div>
-                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat2")}</p>
-                      <p className="text-[10px] text-gray-300 mt-0.5">14:30</p>
+                      <div className="bg-gray-900 rounded-2xl rounded-br-md px-3 py-2 max-w-[85%]">
+                        <p className="text-[11px] text-white">{t("homeValue.collab.chat2")}</p>
+                      </div>
+                      <p className="text-[8px] text-gray-300 mt-0.5 text-right mr-1">14:30</p>
                     </div>
                   </div>
-                  <div className="flex items-start gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-violet-400 mt-1.5 shrink-0" />
-                    <div>
-                      <p className="text-xs font-medium text-gray-700">{t("homeValue.collab.chat3")}</p>
-                      <p className="text-[10px] text-gray-300 mt-0.5">18:00</p>
+                  {/* Incoming */}
+                  <div className="flex items-end gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-gray-200 shrink-0 flex items-center justify-center">
+                      <span className="text-[6px] font-bold text-gray-500">S</span>
                     </div>
+                    <div>
+                      <div className="bg-gray-100 rounded-2xl rounded-bl-md px-3 py-2 max-w-[85%]">
+                        <p className="text-[11px] text-gray-700">{t("homeValue.collab.chat3")}</p>
+                      </div>
+                      <p className="text-[8px] text-gray-300 mt-0.5 ml-1">18:00</p>
+                    </div>
+                  </div>
+                </div>
+                {/* Input bar */}
+                <div className="flex items-center gap-2 pt-1 border-t border-gray-100">
+                  <div className="flex-1 h-6 bg-gray-50 rounded-full border border-gray-100 px-3 flex items-center">
+                    <span className="text-[9px] text-gray-300">Type a message...</span>
+                  </div>
+                  <div className="w-6 h-6 rounded-full bg-gray-900 flex items-center justify-center shrink-0">
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M12 5l7 7-7 7" /></svg>
                   </div>
                 </div>
               </div>
