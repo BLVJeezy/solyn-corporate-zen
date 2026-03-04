@@ -19,6 +19,15 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.cta1": "Start Jouw Project",
     "hero.cta2": "Bekijk Diensten",
 
+    // Home Hero
+    "homeHero.badge": "Officiële",
+    "homeHero.badgePartner": "Gold",
+    "homeHero.badgeOf": "Partner van",
+    "homeHero.headline": "Zet je idee om in een\nlanceerklare MVP in 2 weken",
+    "homeHero.subheadline": "De #1 AI product studio — vertrouwd door startups en founders om producten te ontwerpen, bouwen en lanceren die schalen.",
+    "homeHero.cta1": "Boek een Gesprek",
+    "homeHero.cta2": "Bekijk Prijzen",
+
     // Services
     "services.heading1": "Onze",
     "services.heading2": "Diensten",
@@ -231,6 +240,15 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.cta1": "Démarrez Votre Projet",
     "hero.cta2": "Voir les Services",
 
+    // Home Hero
+    "homeHero.badge": "Officiel",
+    "homeHero.badgePartner": "Gold",
+    "homeHero.badgeOf": "Partenaire de",
+    "homeHero.headline": "Transformez votre idée en un\nMVP prêt à lancer en 2 semaines",
+    "homeHero.subheadline": "Le studio produit IA n°1 — choisi par les startups et fondateurs pour concevoir, construire et lancer des produits qui scalent.",
+    "homeHero.cta1": "Réserver un Appel",
+    "homeHero.cta2": "Voir les Tarifs",
+
     // Services
     "services.heading1": "Nos",
     "services.heading2": "Services",
@@ -442,6 +460,15 @@ export const translations: Record<Lang, Record<string, string>> = {
     "hero.subtitle": "We help ambitious founders bring their ideas to life.",
     "hero.cta1": "Start Your Project",
     "hero.cta2": "View Services",
+
+    // Home Hero
+    "homeHero.badge": "Official",
+    "homeHero.badgePartner": "Gold",
+    "homeHero.badgeOf": "Partner of",
+    "homeHero.headline": "Turn your idea into a ready to\nlaunch MVP in 2-weeks",
+    "homeHero.subheadline": "The #1 AI product studio — trusted by startups and founders to design, build, and launch products that scale.",
+    "homeHero.cta1": "Book a Call",
+    "homeHero.cta2": "View Pricing",
 
     // Services
     "services.heading1": "Our",
