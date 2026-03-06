@@ -1,4 +1,4 @@
-export const CALENDLY_URL = "https://calendly.com/solyn/global";
+export const CALENDLY_URL = "https://calendly.com/solyn/discovery-call";
 
 export const loadCalendlyScript = () => {
   if (!document.getElementById("calendly-script")) {
