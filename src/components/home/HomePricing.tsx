@@ -114,10 +114,6 @@ const HomePricing = () => {
                     </span>
                 }
 
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(websitePlans[0].priceKey)}</span>
-                    <span className="text-sm text-gray-500 ml-2">{t(websitePlans[0].periodKey)}</span>
-                  </div>
 
                   <Button
                   onClick={() => navigate("/book")}
@@ -172,10 +168,6 @@ const HomePricing = () => {
                       </div>
                     </div>
 
-                    <div className="mb-6">
-                      <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t(websitePlans[1].priceKey)}</span>
-                      <span className="text-sm text-white/60 ml-2">{t(websitePlans[1].periodKey)}</span>
-                    </div>
 
                     <Button
                     onClick={() => navigate("/book")}
@@ -228,10 +220,6 @@ const HomePricing = () => {
 
                   <p className="text-sm text-gray-500 mb-6">{t("pricing.sprints.desc")}</p>
 
-                  <div className="mb-1">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t("pricing.sprints.price")}</span>
-                    <span className="text-sm text-gray-500 ml-2">{t("pricing.sprints.period")}</span>
-                  </div>
                   <p className="text-xs text-gray-400 mb-6">{t("pricing.sprints.pauseCancel")}</p>
 
                   <Button
@@ -280,10 +268,6 @@ const HomePricing = () => {
 
                     <p className="text-sm text-white/50 mb-6">{t("pricing.diamond.subtitle")}</p>
 
-                    <div className="mb-1">
-                      <span className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">{t("pricing.diamond.price")}</span>
-                      <span className="text-sm text-white/60 ml-2">{t("pricing.diamond.setupLabel")}</span>
-                    </div>
                     <p className="text-xs text-white/40 mb-6">{t("pricing.diamond.pauseCancel")}</p>
 
                     <Button
