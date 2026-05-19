@@ -22,6 +22,8 @@ import portfolioPilates from "@/assets/portfolio-poortpilates-1.png";
 import portfolioPilates2 from "@/assets/portfolio-poortpilates-2.png";
 import portfolioLux from "@/assets/portfolio-luxfitness-1.png";
 import portfolioLux2 from "@/assets/portfolio-luxfitness-2.png";
+import portfolioRiory from "@/assets/portfolio-riory-1.png";
+import portfolioRiory2 from "@/assets/portfolio-riory-2.png";
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -124,7 +126,8 @@ const PortfolioSection = () => {
   { images: [{ src: portfolioWedding, label: "Homepage" }], title: "Wedding App", descKey: "portfolio.p8.desc", category: "apps", brandColor: "#f5f0e8" },
   { images: [{ src: portfolioDaroumi, label: "Homepage" }, { src: portfolioDaroumi2, label: "Menu" }], title: "Dar Oumi", descKey: "portfolio.p9.desc", category: "websites", brandColor: "#3d3226" },
   { images: [{ src: portfolioPilates, label: "Homepage" }, { src: portfolioPilates2, label: "Lessen" }], title: "Poort Pilates", descKey: "portfolio.p10.desc", category: "websites", brandColor: "#c8a55a" },
-  { images: [{ src: portfolioLux, label: "Homepage" }, { src: portfolioLux2, label: "Reserveringen" }], title: "Lux Fitness", descKey: "portfolio.p11.desc", category: "websites", brandColor: "#d4a843" }];
+  { images: [{ src: portfolioLux, label: "Homepage" }, { src: portfolioLux2, label: "Reserveringen" }], title: "Lux Fitness", descKey: "portfolio.p11.desc", category: "websites", brandColor: "#d4a843" },
+  { images: [{ src: portfolioRiory, label: "Homepage" }, { src: portfolioRiory2, label: "Referenties" }], title: "Riory BV", descKey: "portfolio.p12.desc", category: "websites", brandColor: "#0a0a0a" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
