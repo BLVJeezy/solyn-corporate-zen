@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import solynLogo from "@/assets/solyn-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { Lang } from "@/i18n/translations";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 
 const languages: Lang[] = ["NL", "FR", "EN"];
@@ -17,11 +18,14 @@ const Navbar = () => {
   const { lang, setLang, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
+  const { settings } = useSiteSettings();
 
-  // TEMP: Home & About hidden. To restore, re-add:
-  //   { label: t("nav.services"), href: "/about" },
-  //   { label: t("nav.portfolio"), href: "/portfolio" },
+  // About link only appears when both Home and About are enabled (Home off ⇒ About off).
+  const aboutVisible = settings.home_enabled && settings.about_enabled;
+
   const navLinks = [
+    ...(aboutVisible ? [{ label: t("nav.services"), href: "/about" }] : []),
+    ...(settings.home_enabled ? [{ label: t("nav.portfolio"), href: "/portfolio" }] : []),
     { label: t("nav.pricing"), href: "/pricing" },
   ];
 
