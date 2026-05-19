@@ -18,9 +18,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // TEMP: Home & About hidden. To restore, re-add:
+  //   { label: t("nav.services"), href: "/about" },
+  //   { label: t("nav.portfolio"), href: "/portfolio" },
   const navLinks = [
-    { label: t("nav.services"), href: "/about" },
-    { label: t("nav.portfolio"), href: "/portfolio" },
     { label: t("nav.pricing"), href: "/pricing" },
   ];
 
