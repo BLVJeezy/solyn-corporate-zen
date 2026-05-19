@@ -116,6 +116,7 @@ const ProjectCard = ({ project, index, t, onOpenImage }: {project: Project;index
 const PortfolioSection = () => {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<ProjectCategory>("websites");
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   const projects: Project[] = [
   { images: [{ src: portfolio1, label: "Homepage" }, { src: portfolio1b, label: "Diensten" }], title: "Belgomed BV", descKey: "portfolio.p1.desc", category: "websites", brandColor: "#0a2622" },
