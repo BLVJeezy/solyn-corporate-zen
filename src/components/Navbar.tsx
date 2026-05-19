@@ -23,9 +23,11 @@ const Navbar = () => {
   // About link only appears when both Home and About are enabled (Home off ⇒ About off).
   const aboutVisible = settings.home_enabled && settings.about_enabled;
 
+  // Portfolio is always in the nav. When Home is disabled it lives at "/", otherwise at "/portfolio".
+  const portfolioHref = settings.home_enabled ? "/portfolio" : "/";
   const navLinks = [
     ...(aboutVisible ? [{ label: t("nav.services"), href: "/about" }] : []),
-    ...(settings.home_enabled ? [{ label: t("nav.portfolio"), href: "/portfolio" }] : []),
+    { label: t("nav.portfolio"), href: portfolioHref },
     { label: t("nav.pricing"), href: "/pricing" },
   ];
 
