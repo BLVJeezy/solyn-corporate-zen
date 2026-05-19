@@ -195,11 +195,29 @@ const PortfolioSection = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-14">
             
             {filtered.map((project, index) =>
-            <ProjectCard key={project.title} project={project} index={index} t={t} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+              t={t}
+              onOpenImage={(src, alt) => setLightbox({ src, alt })}
+            />
             )}
           </motion.div>
         </AnimatePresence>
       </div>
+
+      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
+        <DialogContent className="max-w-[95vw] md:max-w-6xl p-0 bg-transparent border-none shadow-none">
+          {lightbox && (
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full h-auto max-h-[90vh] object-contain rounded-xl shadow-2xl"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </section>);
 
 };
