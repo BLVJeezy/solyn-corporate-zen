@@ -30,6 +30,37 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function AppRoutes() {
+  const { settings } = useSiteSettings();
+  // Product rule: when Home is hidden, About is hidden too.
+  const aboutVisible = settings.home_enabled && settings.about_enabled;
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={settings.home_enabled ? <Index /> : <Portfolio />}
+      />
+      <Route
+        path="/about"
+        element={aboutVisible ? <About /> : <Navigate to="/" replace />}
+      />
+      <Route
+        path="/portfolio"
+        element={settings.home_enabled ? <Portfolio /> : <Navigate to="/" replace />}
+      />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/book" element={<BookCall />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+      <Route path="/admin/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/terms" element={<TermsOfService />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} forcedTheme="light">
@@ -40,26 +71,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <ScrollToTop />
-              <Routes>
-                {/* TEMP: Home & About hidden — Portfolio acts as homepage.
-                    To restore: replace this block with the original routes:
-                      <Route path="/" element={<Index />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/portfolio" element={<Portfolio />} />
-                */}
-                <Route path="/" element={<Portfolio />} />
-                <Route path="/about" element={<Navigate to="/" replace />} />
-                <Route path="/portfolio" element={<Navigate to="/" replace />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/book" element={<BookCall />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/reset-password" element={<ResetPassword />} />
-                <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
-                <Route path="/admin/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<TermsOfService />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <AppRoutes />
             </BrowserRouter>
           </TooltipProvider>
         </AuthProvider>
