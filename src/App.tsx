@@ -40,9 +40,15 @@ const App = () => (
             <BrowserRouter>
               <ScrollToTop />
               <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/portfolio" element={<Portfolio />} />
+                {/* TEMP: Home & About hidden — Portfolio acts as homepage.
+                    To restore: replace this block with the original routes:
+                      <Route path="/" element={<Index />} />
+                      <Route path="/about" element={<About />} />
+                      <Route path="/portfolio" element={<Portfolio />} />
+                */}
+                <Route path="/" element={<Portfolio />} />
+                <Route path="/about" element={<Navigate to="/" replace />} />
+                <Route path="/portfolio" element={<Navigate to="/" replace />} />
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/book" element={<BookCall />} />
                 <Route path="/login" element={<Login />} />
