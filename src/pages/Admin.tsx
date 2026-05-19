@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, lazy, Suspense } from "react";
-import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, ChevronLeft, ChevronRight, Moon, Sun, Activity } from "lucide-react";
+import { ArrowLeft, LogOut, BarChart3, Search, LayoutDashboard, Users, Building2, Coins, ChevronLeft, ChevronRight, Moon, Sun, Activity, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import { nl } from "date-fns/locale";
@@ -22,6 +22,7 @@ import DashboardOverview from "@/components/admin/DashboardOverview";
 import CreditsAnalytics from "@/components/admin/CreditsAnalytics";
 import GlobalSearch from "@/components/admin/GlobalSearch";
 import ExportButtons from "@/components/admin/ExportButtons";
+import SiteSettingsSection from "@/components/admin/SiteSettingsSection";
 
 const statusConfig: Record<LeadStatus, { label: string; className: string }> = {
   nieuw: { label: "Nieuw", className: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20" },
@@ -36,6 +37,7 @@ const sidebarItems = [
   { id: "clients", icon: Building2, label: "Klanten" },
   { id: "credits", icon: Coins, label: "Credits" },
   { id: "analytics", icon: Activity, label: "Analytics" },
+  { id: "settings", icon: Settings, label: "Instellingen" },
 ];
 
 const LazyAnalytics = lazy(() => import("@/pages/Analytics"));
@@ -348,6 +350,9 @@ const AdminPage = () => {
                 <LazyAnalytics embedded />
               </Suspense>
             )}
+
+            {/* ═══ Settings ═══ */}
+            {activeTab === "settings" && <SiteSettingsSection />}
           </div>
         </main>
       </div>
