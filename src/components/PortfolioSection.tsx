@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import portfolio1 from "@/assets/portfolio-1.png";
 import portfolio1b from "@/assets/portfolio-1b.png";
 import portfolio2 from "@/assets/portfolio-2.png";
@@ -40,7 +41,25 @@ interface Project {
   brandColor?: string; // bg color matching the app/website branding
 }
 
-const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (key: string) => string;}) => {
+const ProjectCard = ({ project, index, t, onOpenImage }: {project: Project;index: number;t: (key: string) => string;onOpenImage: (src: string, alt: string) => void;}) => {
+  const imgBtnClass = "block w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 rounded-lg";
+  const renderImg = (img: ProjectImage, extraClass: string) => (
+    <button
+      type="button"
+      onClick={(e) => { e.stopPropagation(); onOpenImage(img.src, `${project.title} - ${img.label}`); }}
+      className={`${imgBtnClass} ${extraClass.includes('h-[55%]') || extraClass.includes('h-[45%]') ? extraClass.match(/h-\[[^\]]+\]/)?.[0] ?? '' : 'h-full'}`}
+      aria-label={`Open ${project.title} - ${img.label}`}
+    >
+      <img
+        src={img.src}
+        alt={`${project.title} - ${img.label}`}
+        className={`w-full h-full object-cover object-top rounded-lg shadow-xl transition-transform duration-500 group-hover:scale-[1.02] ${extraClass}`}
+        loading="lazy"
+        decoding="async"
+      />
+    </button>
+  );
+
   return (
     <motion.div
       key={project.title}
@@ -55,47 +74,30 @@ const ProjectCard = ({ project, index, t }: {project: Project;index: number;t: (
         style={{ background: project.brandColor || 'linear-gradient(to bottom right, #f0eeeb, #e8e5e0)' }}>
         {project.images.length === 1 ? (
         /* Single image - clean full view */
-        <img
-          src={project.images[0].src}
-          alt={project.title}
-          className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
-           loading="lazy"
-           decoding="async" />) : (
-
+        <button
+          type="button"
+          onClick={() => onOpenImage(project.images[0].src, project.title)}
+          className={`${imgBtnClass} h-full`}
+          aria-label={`Open ${project.title}`}
+        >
+          <img
+            src={project.images[0].src}
+            alt={project.title}
+            className="w-full h-full object-cover object-top rounded-lg shadow-lg transition-transform duration-500 group-hover:scale-[1.02]"
+            loading="lazy"
+            decoding="async" />
+        </button>) : (
 
         /* Multi-image layout */
         <div className={`relative w-full h-full ${project.images.length === 2 ? 'flex flex-col gap-2' : 'grid grid-cols-2 gap-2'} p-1`}>
-            <img
-              src={project.images[0].src}
-              alt={`${project.title} - ${project.images[0].label}`}
-              className={`w-full rounded-lg shadow-xl object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[55%]' : 'h-full'}`}
-               loading="lazy"
-               decoding="async" />
-            <img
-              src={project.images[1].src}
-              alt={`${project.title} - ${project.images[1].label}`}
-              className={`w-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02] ${project.images.length === 2 ? 'h-[45%]' : 'h-full'}`}
-               loading="lazy"
-               decoding="async" />
-            {project.images[2] && (
-              <img
-                src={project.images[2].src}
-                alt={`${project.title} - ${project.images[2].label}`}
-                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-                 loading="lazy"
-                 decoding="async" />
-            )}
-            {project.images[3] && (
-              <img
-                src={project.images[3].src}
-                alt={`${project.title} - ${project.images[3].label}`}
-                className="w-full h-full rounded-lg shadow-xl object-cover object-top border border-white/30 transition-transform duration-500 group-hover:scale-[1.02]"
-                 loading="lazy"
-                 decoding="async" />
-            )}
+            {renderImg(project.images[0], project.images.length === 2 ? 'h-[55%]' : '')}
+            {renderImg(project.images[1], project.images.length === 2 ? 'h-[45%]' : '')}
+            {project.images[2] && renderImg(project.images[2], '')}
+            {project.images[3] && renderImg(project.images[3], '')}
           </div>)
         }
       </div>
+
 
       {/* Project info below card */}
       <div className="mt-5 flex items-start gap-3">
