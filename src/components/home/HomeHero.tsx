@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import lovableLogo from "@/assets/solyn-icon.svg";
+
 import { useLanguage } from "@/i18n/LanguageContext";
 
 // Import showcase images
@@ -27,19 +27,6 @@ const HomeHero = () => {
   return (
     <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-8"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-600 shadow-sm">
-            {t("homeHero.badge")} <span className="font-semibold text-black">{t("homeHero.badgePartner")}</span> {t("homeHero.badgeOf")}
-            <img src={lovableLogo} alt="Lovable" className="h-5 w-auto" fetchPriority="high" decoding="async" />
-            <span className="font-bold text-black">Lovable</span>
-          </div>
-        </motion.div>
 
         {/* Headline */}
         <motion.div
