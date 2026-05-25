@@ -20,11 +20,18 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
     update({ website_issues: next });
   };
 
+  const toggleStyle = (s: StylePreference) => {
+    const next = state.style_preference.includes(s)
+      ? state.style_preference.filter((x) => x !== s)
+      : [...state.style_preference, s];
+    update({ style_preference: next });
+  };
+
   const valid =
     state.has_website !== null &&
     (state.has_website
       ? state.website_url.trim().length > 0
-      : state.style_preference !== "");
+      : state.style_preference.length > 0);
 
   return (
     <StepShell
@@ -81,14 +88,15 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
               placeholder={t("funnel.s2.inspPh")}
             />
           </Field>
-          <Field label={t("funnel.s2.styleLabel")}>
+          <Field label={t("funnel.s2.styleLabel")} hint={t("funnel.selectAll")}>
             <div className="grid sm:grid-cols-2 gap-2.5">
               {(Object.keys(stylePreferenceKeys) as StylePreference[]).map((k) => (
                 <ChoiceCard
                   key={k}
                   label={t(stylePreferenceKeys[k])}
-                  selected={state.style_preference === k}
-                  onClick={() => update({ style_preference: k })}
+                  selected={state.style_preference.includes(k)}
+                  onClick={() => toggleStyle(k)}
+                  multi
                 />
               ))}
             </div>

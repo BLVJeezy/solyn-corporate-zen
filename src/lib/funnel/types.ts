@@ -63,7 +63,7 @@ export interface FunnelState {
   website_issues: WebsiteIssue[];
   website_keep: string;
   style_inspiration: string;
-  style_preference: StylePreference | "";
+  style_preference: StylePreference[];
 
   // Step 3
   avoid_text: string;
@@ -91,7 +91,7 @@ export const INITIAL_STATE: FunnelState = {
   website_issues: [],
   website_keep: "",
   style_inspiration: "",
-  style_preference: "",
+  style_preference: [],
   avoid_text: "",
   website_type: "",
   seo_important: null,
