@@ -1,4 +1,10 @@
 project_id = "cynoxjhfelshonhbnubt"
 
-[functions.process-email-queue]
-verify_jwt = true
+[functions.submit-qualified-lead]
+verify_jwt = false
+
+[functions.create-booking]
+verify_jwt = false
+
+[functions.booking-availability]
+verify_jwt = false
