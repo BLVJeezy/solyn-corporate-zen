@@ -1,4 +1,4 @@
-import { FunnelState, ReferralSource, SpokenLanguage } from "@/lib/funnel/types";
+import { FunnelState, ReferralSource } from "@/lib/funnel/types";
 import StepShell from "./StepShell";
 import { Field, GlassInput, GlassTextarea, ChoiceCard } from "./FieldKit";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -10,7 +10,6 @@ interface Props {
 }
 
 const REFERRAL_OPTIONS: ReferralSource[] = ["google", "facebook", "instagram", "ai", "word_of_mouth", "other"];
-const LANGUAGE_OPTIONS: SpokenLanguage[] = ["nl", "fr", "en", "other"];
 
 const StepBasicInfo = ({ state, update, onNext }: Props) => {
   const { t } = useLanguage();
@@ -18,7 +17,6 @@ const StepBasicInfo = ({ state, update, onNext }: Props) => {
     state.full_name.trim().length >= 2 &&
     state.business_name.trim().length >= 1 &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email) &&
-    state.preferred_language !== "" &&
     state.referral_source !== "";
 
   return (
@@ -71,18 +69,6 @@ const StepBasicInfo = ({ state, update, onNext }: Props) => {
           onChange={(e) => update({ business_description: e.target.value })}
           placeholder={t("funnel.s1.bizDescPh")}
         />
-      </Field>
-      <Field label={t("funnel.s1.language")}>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-          {LANGUAGE_OPTIONS.map((k) => (
-            <ChoiceCard
-              key={k}
-              label={t(`language.${k}`)}
-              selected={state.preferred_language === k}
-              onClick={() => update({ preferred_language: k })}
-            />
-          ))}
-        </div>
       </Field>
       <Field label={t("funnel.s1.referral")}>
         <div className="grid sm:grid-cols-2 gap-2.5">
