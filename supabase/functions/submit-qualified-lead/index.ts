@@ -31,7 +31,7 @@ Deno.serve(async (req) => {
       website_issues: funnel.website_issues || [],
       website_keep: funnel.website_keep || null,
       style_inspiration: funnel.style_inspiration || null,
-      style_preference: funnel.style_preference || null,
+      style_preference: Array.isArray(funnel.style_preference) ? funnel.style_preference.join(",") : (funnel.style_preference || null),
       avoid_text: funnel.avoid_text || null,
       website_type: funnel.website_type || null,
       seo_important: typeof funnel.seo_important === "boolean" ? funnel.seo_important : null,
