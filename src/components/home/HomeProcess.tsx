@@ -121,7 +121,6 @@ const HomeProcess = () => {
                           decoding="async"
                         />
                       </motion.div>
-                    )}
                   </div>
                 </div>
               </motion.div>
