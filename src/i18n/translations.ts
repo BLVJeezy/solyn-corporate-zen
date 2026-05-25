@@ -163,7 +163,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.diamond.f2": "Database + API integraties",
     "pricing.diamond.f3": "Authenticatie & onboarding flow",
     "pricing.diamond.f4": "Product design componenten",
-    "pricing.diamond.f5": "Communicatie via Slack",
+    "pricing.diamond.f5": "Communicatie via WhatsApp",
     "pricing.diamond.f6": "Wekelijkse voortgangsupdates",
 
     // Sprints
@@ -178,7 +178,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.sprints.f2": "Onbeperkte revisies",
     "pricing.sprints.f3": "Product strategie & roadmap",
     "pricing.sprints.f4": "Integraties & API's",
-    "pricing.sprints.f5": "Communicatie via Slack",
+    "pricing.sprints.f5": "Communicatie via WhatsApp",
     "pricing.sprints.f6": "Wekelijkse voortgangsupdates",
     "pricing.whatsIncluded": "Wat is inbegrepen:",
 
@@ -251,8 +251,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeProcess.grow.title": "Schaal sneller met AI-tools",
     "homeProcess.grow.text": "Wij gebruiken geavanceerde AI-tools zoals Lovable, Cursor en Supabase om 10x sneller te leveren dan traditionele ontwikkeling.",
     "homeProcess.collaborate.tab": "Samenwerken",
-    "homeProcess.collaborate.title": "Blijf flexibel met async samenwerking",
-    "homeProcess.collaborate.text": "Communiceer via Slack, ontvang wekelijkse updates en geef feedback asynchroon. Geen onnodige meetings of tijdzone-frictie.",
+    "homeProcess.collaborate.title": "Blijf flexibel met WhatsApp samenwerking",
+    "homeProcess.collaborate.text": "Communiceer via WhatsApp, ontvang updates en geef feedback asynchroon. Geen onnodige meetings of tijdzone-frictie.",
 
     // Home Work
     "homeWork.heading": "Bekijk ons werk",
@@ -309,7 +309,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeFAQ.ai.q1": "Welke AI-features kunnen jullie bouwen?",
     "homeFAQ.ai.a1": "Wij bouwen AI-gestuurde chatbots, aanbevelingsengines, contentgeneratie, data-analysetools en custom LLM-integraties met OpenAI, Gemini en meer.",
     "homeFAQ.ai.q2": "Kunnen jullie integreren met mijn bestaande tools?",
-    "homeFAQ.ai.a2": "Ja. We integreren met Stripe, Supabase, OpenAI, Slack, Zapier en tientallen andere services. Custom API-integraties zijn onze specialiteit.",
+    "homeFAQ.ai.a2": "Ja. We integreren met Stripe, Supabase, OpenAI, WhatsApp, Zapier en tientallen andere services. Custom API-integraties zijn onze specialiteit.",
 
     // Home CTA
     "homeCTA.bookTitle": "Boek een gesprek",
@@ -495,7 +495,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.diamond.f2": "Intégrations base de données + API",
     "pricing.diamond.f3": "Authentification & flux d'onboarding",
     "pricing.diamond.f4": "Composants de design produit",
-    "pricing.diamond.f5": "Communication via Slack",
+    "pricing.diamond.f5": "Communication via WhatsApp",
     "pricing.diamond.f6": "Mises à jour hebdomadaires",
 
     // Sprints
@@ -510,7 +510,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.sprints.f2": "Révisions illimitées",
     "pricing.sprints.f3": "Stratégie produit & roadmap",
     "pricing.sprints.f4": "Intégrations & API's",
-    "pricing.sprints.f5": "Communication via Slack",
+    "pricing.sprints.f5": "Communication via WhatsApp",
     "pricing.sprints.f6": "Mises à jour hebdomadaires",
     "pricing.whatsIncluded": "Ce qui est inclus :",
 
@@ -583,8 +583,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeProcess.grow.title": "Accélérez avec des outils IA",
     "homeProcess.grow.text": "Nous utilisons des outils IA de pointe comme Lovable, Cursor et Supabase pour livrer 10x plus vite que le développement traditionnel.",
     "homeProcess.collaborate.tab": "Collaborer",
-    "homeProcess.collaborate.title": "Restez flexible avec la collaboration asynchrone",
-    "homeProcess.collaborate.text": "Communiquez via Slack, recevez des mises à jour hebdomadaires et donnez vos retours de manière asynchrone. Pas de réunions inutiles.",
+    "homeProcess.collaborate.title": "Restez flexible avec la collaboration WhatsApp",
+    "homeProcess.collaborate.text": "Communiquez via WhatsApp, recevez des mises à jour et donnez vos retours de manière asynchrone. Pas de réunions inutiles.",
 
     // Home Work
     "homeWork.heading": "Découvrez nos réalisations",
@@ -641,7 +641,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeFAQ.ai.q1": "Quelles fonctionnalités IA pouvez-vous construire ?",
     "homeFAQ.ai.a1": "Nous construisons des chatbots IA, des moteurs de recommandation, de la génération de contenu, des outils d'analyse de données et des intégrations LLM personnalisées.",
     "homeFAQ.ai.q2": "Pouvez-vous intégrer avec mes outils existants ?",
-    "homeFAQ.ai.a2": "Oui. Nous intégrons avec Stripe, Supabase, OpenAI, Slack, Zapier et des dizaines d'autres services. Les intégrations API personnalisées sont notre spécialité.",
+    "homeFAQ.ai.a2": "Oui. Nous intégrons avec Stripe, Supabase, OpenAI, WhatsApp, Zapier et des dizaines d'autres services. Les intégrations API personnalisées sont notre spécialité.",
 
     // Home CTA
     "homeCTA.bookTitle": "Réservez un appel",
@@ -827,7 +827,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.diamond.f2": "Database + API integrations",
     "pricing.diamond.f3": "User authentication & onboarding flow",
     "pricing.diamond.f4": "Product design components",
-    "pricing.diamond.f5": "Communication via Slack",
+    "pricing.diamond.f5": "Communication via WhatsApp",
     "pricing.diamond.f6": "Weekly progress updates",
 
     // Sprints
@@ -842,7 +842,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.sprints.f2": "Unlimited revisions",
     "pricing.sprints.f3": "Product strategy & roadmap",
     "pricing.sprints.f4": "Integrations & API's",
-    "pricing.sprints.f5": "Communication via Slack",
+    "pricing.sprints.f5": "Communication via WhatsApp",
     "pricing.sprints.f6": "Weekly progress updates",
     "pricing.whatsIncluded": "What's included:",
 
@@ -915,8 +915,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeProcess.grow.title": "Move faster with AI-powered tools",
     "homeProcess.grow.text": "We leverage cutting-edge AI tools like Lovable, Cursor, and Supabase to deliver 10x faster than traditional development.",
     "homeProcess.collaborate.tab": "Collaborate",
-    "homeProcess.collaborate.title": "Stay flexible with async collaboration",
-    "homeProcess.collaborate.text": "Communicate via Slack, get weekly updates, and provide feedback asynchronously. No unnecessary meetings or time zone friction.",
+    "homeProcess.collaborate.title": "Stay flexible with WhatsApp collaboration",
+    "homeProcess.collaborate.text": "Communicate via WhatsApp, get updates, and provide feedback asynchronously. No unnecessary meetings or time zone friction.",
 
     // Home Work
     "homeWork.heading": "Explore work",
