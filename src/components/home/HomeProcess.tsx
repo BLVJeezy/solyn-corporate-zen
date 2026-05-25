@@ -41,14 +41,6 @@ const HomeProcess = () => {
       image: showcaseRoadmap,
     },
     {
-      icon: Cpu,
-      tabKey: "homeProcess.grow.tab",
-      titleKey: "homeProcess.grow.title",
-      textKey: "homeProcess.grow.text",
-      image: showcaseAtelier9,
-      toolScroll: true,
-    },
-    {
       icon: MessageCircle,
       tabKey: "homeProcess.collaborate.tab",
       titleKey: "homeProcess.collaborate.title",
