@@ -1235,7 +1235,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "funnel.s1.phonePh": "+32 …",
     "funnel.s1.bizDesc": "What does your business do?",
     "funnel.s1.bizDescPh": "One or two sentences about your business and customers.",
-    "funnel.s1.referral": "How did you hear about us?",
     // Step 2
     "funnel.s2.eyebrow": "Step 2 — Website status",
     "funnel.s2.title": "Do you currently have a website?",
