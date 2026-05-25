@@ -44,8 +44,8 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
   ].join("\r\n");
   const icsUrl = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
 
-  const niceDate = start.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-  const niceTime = start.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", hour12: false });
+  const niceDate = start.toLocaleDateString(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const niceTime = start.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", hour12: false });
 
   return (
     <motion.div
