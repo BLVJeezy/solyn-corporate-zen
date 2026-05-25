@@ -1,0 +1,38 @@
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+
+const StepDisqualified = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    className="text-center py-12"
+  >
+    <motion.div
+      initial={{ scale: 0.6, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 to-amber-400/5 border border-amber-300/20 flex items-center justify-center mx-auto mb-8"
+    >
+      <Sparkles className="w-7 h-7 text-amber-300" />
+    </motion.div>
+
+    <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.15] mb-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent max-w-xl mx-auto">
+      Thank you for your interest
+    </h1>
+    <p className="text-white/55 text-base leading-relaxed max-w-lg mx-auto mb-10">
+      At the moment we only take on projects that are aligned with our premium development process.
+      We'll keep your information on file and may reach out in the future when there's a great fit.
+    </p>
+
+    <Link
+      to="/"
+      className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-white/[0.05] border border-white/10 text-white/80 hover:bg-white/[0.08] hover:text-white text-sm font-medium transition-all"
+    >
+      Back to home
+    </Link>
+  </motion.div>
+);
+
+export default StepDisqualified;
