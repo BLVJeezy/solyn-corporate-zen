@@ -14,6 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          cancellation_reason: string | null
+          created_at: string
+          duration_minutes: number
+          id: string
+          lead_id: string
+          meeting_link: string | null
+          scheduled_at: string
+          status: Database["public"]["Enums"]["booking_status"]
+          timezone: string
+          updated_at: string
+        }
+        Insert: {
+          cancellation_reason?: string | null
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          lead_id: string
+          meeting_link?: string | null
+          scheduled_at: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          timezone?: string
+          updated_at?: string
+        }
+        Update: {
+          cancellation_reason?: string | null
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          lead_id?: string
+          meeting_link?: string | null
+          scheduled_at?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          timezone?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "qualified_leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       client_invoices: {
         Row: {
           client_id: string
@@ -270,6 +317,99 @@ export type Database = {
         }
         Relationships: []
       }
+      qualified_leads: {
+        Row: {
+          admin_notes: string | null
+          ai_ranking: Database["public"]["Enums"]["ai_ranking_pref"] | null
+          avoid_text: string | null
+          budget_range: string
+          business_description: string | null
+          business_name: string
+          contacted: boolean
+          created_at: string
+          disqualification_reason: string | null
+          email: string
+          features_needed: string[] | null
+          full_name: string
+          has_website: boolean
+          id: string
+          investment_ready: Database["public"]["Enums"]["investment_ready_pref"]
+          launch_timeline: string
+          phone: string | null
+          qualification_status: Database["public"]["Enums"]["qualification_status"]
+          raw_payload: Json | null
+          referral_source: string | null
+          seo_important: boolean | null
+          style_inspiration: string | null
+          style_preference: string | null
+          updated_at: string
+          website_issues: string[] | null
+          website_keep: string | null
+          website_type: Database["public"]["Enums"]["website_type_pref"] | null
+          website_url: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          ai_ranking?: Database["public"]["Enums"]["ai_ranking_pref"] | null
+          avoid_text?: string | null
+          budget_range: string
+          business_description?: string | null
+          business_name: string
+          contacted?: boolean
+          created_at?: string
+          disqualification_reason?: string | null
+          email: string
+          features_needed?: string[] | null
+          full_name: string
+          has_website?: boolean
+          id?: string
+          investment_ready: Database["public"]["Enums"]["investment_ready_pref"]
+          launch_timeline: string
+          phone?: string | null
+          qualification_status: Database["public"]["Enums"]["qualification_status"]
+          raw_payload?: Json | null
+          referral_source?: string | null
+          seo_important?: boolean | null
+          style_inspiration?: string | null
+          style_preference?: string | null
+          updated_at?: string
+          website_issues?: string[] | null
+          website_keep?: string | null
+          website_type?: Database["public"]["Enums"]["website_type_pref"] | null
+          website_url?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          ai_ranking?: Database["public"]["Enums"]["ai_ranking_pref"] | null
+          avoid_text?: string | null
+          budget_range?: string
+          business_description?: string | null
+          business_name?: string
+          contacted?: boolean
+          created_at?: string
+          disqualification_reason?: string | null
+          email?: string
+          features_needed?: string[] | null
+          full_name?: string
+          has_website?: boolean
+          id?: string
+          investment_ready?: Database["public"]["Enums"]["investment_ready_pref"]
+          launch_timeline?: string
+          phone?: string | null
+          qualification_status?: Database["public"]["Enums"]["qualification_status"]
+          raw_payload?: Json | null
+          referral_source?: string | null
+          seo_important?: boolean | null
+          style_inspiration?: string | null
+          style_preference?: string | null
+          updated_at?: string
+          website_issues?: string[] | null
+          website_keep?: string | null
+          website_type?: Database["public"]["Enums"]["website_type_pref"] | null
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       site_analytics: {
         Row: {
           country: string | null
@@ -411,9 +551,14 @@ export type Database = {
       }
     }
     Enums: {
+      ai_ranking_pref: "yes" | "no" | "unsure"
       app_role: "admin" | "user"
       billing_cycle: "maandelijks" | "jaarlijks"
+      booking_status: "scheduled" | "cancelled" | "completed" | "rescheduled"
+      investment_ready_pref: "yes" | "maybe" | "no"
       lead_status: "nieuw" | "in_behandeling" | "gewonnen" | "verloren"
+      qualification_status: "qualified" | "disqualified"
+      website_type_pref: "hardcoded" | "cms" | "unsure"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -541,9 +686,14 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      ai_ranking_pref: ["yes", "no", "unsure"],
       app_role: ["admin", "user"],
       billing_cycle: ["maandelijks", "jaarlijks"],
+      booking_status: ["scheduled", "cancelled", "completed", "rescheduled"],
+      investment_ready_pref: ["yes", "maybe", "no"],
       lead_status: ["nieuw", "in_behandeling", "gewonnen", "verloren"],
+      qualification_status: ["qualified", "disqualified"],
+      website_type_pref: ["hardcoded", "cms", "unsure"],
     },
   },
 } as const

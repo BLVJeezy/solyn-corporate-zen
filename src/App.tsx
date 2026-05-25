@@ -11,7 +11,7 @@ import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
-import BookCall from "./pages/BookCall";
+import Apply from "./pages/Apply";
 import Admin from "./pages/Admin";
 import Analytics from "./pages/Analytics";
 import Login from "./pages/Login";
@@ -49,7 +49,8 @@ function AppRoutes() {
         element={settings.home_enabled ? <Portfolio /> : <Navigate to="/" replace />}
       />
       <Route path="/pricing" element={<Pricing />} />
-      <Route path="/book" element={<BookCall />} />
+      <Route path="/book" element={<Apply />} />
+      <Route path="/apply" element={<Apply />} />
       <Route path="/login" element={<Login />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
