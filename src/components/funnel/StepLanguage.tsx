@@ -45,7 +45,7 @@ const StepLanguage = ({ state, update, onNext }: Props) => {
           <ChoiceCard
             key={opt.key}
             label={t(opt.labelKey)}
-            selected={selectedLang === opt.key}
+            selected={currentLang === opt.key}
             onClick={() => handleSelect(opt.key)}
           />
         ))}
