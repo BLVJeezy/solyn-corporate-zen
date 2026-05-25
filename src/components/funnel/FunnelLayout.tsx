@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface FunnelLayoutProps {
@@ -23,9 +22,11 @@ const FunnelLayout = ({ step, totalSteps, children, hideProgress }: FunnelLayout
       {/* Top bar */}
       <header className="relative z-10 px-6 lg:px-10 py-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-300 to-zinc-400 flex items-center justify-center shadow-lg shadow-amber-500/20">
-            <Sparkles className="w-4 h-4 text-zinc-900" />
-          </div>
+          <img
+            src="/solyn-logo-192.png"
+            alt="Solyn Global"
+            className="w-8 h-8 rounded-lg object-cover shadow-lg shadow-amber-500/20"
+          />
           <span className="text-sm font-semibold tracking-tight">Solyn Global</span>
         </Link>
         {!hideProgress && (
