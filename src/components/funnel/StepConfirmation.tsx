@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Calendar, Apple } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
   scheduledAt: string;
@@ -15,6 +16,8 @@ function toICSDate(d: Date) {
 }
 
 const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
+  const { t, lang } = useLanguage();
+  const locale = lang === "NL" ? "nl-BE" : lang === "FR" ? "fr-BE" : "en-GB";
   const start = new Date(scheduledAt);
   const end = new Date(start.getTime() + 30 * 60 * 1000);
   const title = "Solyn Global — Strategy Session";
@@ -41,8 +44,8 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
   ].join("\r\n");
   const icsUrl = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
 
-  const niceDate = start.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-  const niceTime = start.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", hour12: false });
+  const niceDate = start.toLocaleDateString(locale, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const niceTime = start.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", hour12: false });
 
   return (
     <motion.div
@@ -61,17 +64,18 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
       </motion.div>
 
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.15] mb-3 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
-        Your strategy session is booked
+        {t("funnel.cf.title")}
       </h1>
       <p className="text-white/55 text-base leading-relaxed max-w-lg mx-auto mb-8">
-        Thank you for booking with Solyn Global. We've sent a confirmation to{" "}
-        <span className="text-white/85">{email}</span>. The meeting link will follow shortly.
+        {t("funnel.cf.subBefore")}
+        <span className="text-white/85">{email}</span>
+        {t("funnel.cf.subAfter")}
       </p>
 
       <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 mb-7 text-left max-w-md mx-auto">
-        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Date</p>
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">{t("funnel.cf.dateLabel")}</p>
         <p className="text-base font-medium mb-4">{niceDate}</p>
-        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Time</p>
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">{t("funnel.cf.timeLabel")}</p>
         <p className="text-base font-medium mb-1">{niceTime}</p>
         <p className="text-xs text-white/40">{timezone}</p>
       </div>
@@ -89,7 +93,7 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
       </div>
 
       <Link to="/" className="text-sm text-white/50 hover:text-white/80 transition-colors">
-        ← Back to home
+        {t("funnel.cf.back")}
       </Link>
     </motion.div>
   );

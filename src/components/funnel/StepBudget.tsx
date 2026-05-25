@@ -1,7 +1,8 @@
 import { FunnelState, BudgetRange, Timeline, InvestmentReady } from "@/lib/funnel/types";
-import { budgetLabels, timelineLabels, investmentReadyLabels } from "@/lib/funnel/labels";
+import { budgetKeys, timelineKeys, investmentReadyKeys } from "@/lib/funnel/labels";
 import StepShell from "./StepShell";
 import { Field, ChoiceCard } from "./FieldKit";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
   state: FunnelState;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const StepBudget = ({ state, update, onNext, onBack, loading }: Props) => {
+  const { t } = useLanguage();
   const valid =
     state.budget_range !== "" &&
     state.launch_timeline !== "" &&
@@ -19,23 +21,20 @@ const StepBudget = ({ state, update, onNext, onBack, loading }: Props) => {
 
   return (
     <StepShell
-      eyebrow="Step 4 — Budget & timeline"
-      title="Budget & launch window"
+      eyebrow={t("funnel.s4.eyebrow")}
+      title={t("funnel.s4.title")}
       onNext={onNext}
       onBack={onBack}
       nextDisabled={!valid}
-      nextLabel="Review & continue"
+      nextLabel={t("funnel.s4.review")}
       loading={loading}
     >
-      <Field
-        label="What is your estimated investment budget for this project?"
-        hint="We create premium websites focused on conversion, branding and long-term growth. This helps us determine if we're the right fit."
-      >
+      <Field label={t("funnel.s4.budgetLabel")} hint={t("funnel.s4.budgetHint")}>
         <div className="grid sm:grid-cols-2 gap-2.5">
-          {(Object.keys(budgetLabels) as BudgetRange[]).map((k) => (
+          {(Object.keys(budgetKeys) as BudgetRange[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={budgetLabels[k]}
+              label={t(budgetKeys[k])}
               selected={state.budget_range === k}
               onClick={() => update({ budget_range: k })}
             />
@@ -43,12 +42,12 @@ const StepBudget = ({ state, update, onNext, onBack, loading }: Props) => {
         </div>
       </Field>
 
-      <Field label="When would you like to launch?">
+      <Field label={t("funnel.s4.timelineLabel")}>
         <div className="grid sm:grid-cols-2 gap-2.5">
-          {(Object.keys(timelineLabels) as Timeline[]).map((k) => (
+          {(Object.keys(timelineKeys) as Timeline[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={timelineLabels[k]}
+              label={t(timelineKeys[k])}
               selected={state.launch_timeline === k}
               onClick={() => update({ launch_timeline: k })}
             />
@@ -56,12 +55,12 @@ const StepBudget = ({ state, update, onNext, onBack, loading }: Props) => {
         </div>
       </Field>
 
-      <Field label="Are you ready to invest in a professional online presence if the demo convinces you?">
+      <Field label={t("funnel.s4.readyLabel")}>
         <div className="grid grid-cols-3 gap-3">
           {(["yes", "maybe", "no"] as InvestmentReady[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={investmentReadyLabels[k]}
+              label={t(investmentReadyKeys[k])}
               selected={state.investment_ready === k}
               onClick={() => update({ investment_ready: k })}
             />
