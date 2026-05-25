@@ -747,7 +747,7 @@ export const translations: Record<Lang, Record<string, string>> = {
 
     // Why Us
     "whyUs.card1Title": "Move with speed",
-    "whyUs.card1Desc": "As an AI team, we understand we're selling speed and time. So we make it our priority to take steps internally and externally to push things the extra step faster.",
+    "whyUs.card1Desc": "As a tech team, we understand we're selling speed and time. So we make it our priority to take steps internally and externally to push things the extra step faster.",
     "whyUs.card2Title": "User-experience focused",
     "whyUs.card2Desc": "We believe UI/UX is a make or break when it comes to products in this era. Building a product the users wants to come back to is more important than ever.",
     "whyUs.card3Title": "Collaboration always",
