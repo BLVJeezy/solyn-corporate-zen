@@ -64,17 +64,18 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
       </motion.div>
 
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.15] mb-3 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
-        Your strategy session is booked
+        {t("funnel.cf.title")}
       </h1>
       <p className="text-white/55 text-base leading-relaxed max-w-lg mx-auto mb-8">
-        Thank you for booking with Solyn Global. We've sent a confirmation to{" "}
-        <span className="text-white/85">{email}</span>. The meeting link will follow shortly.
+        {t("funnel.cf.subBefore")}
+        <span className="text-white/85">{email}</span>
+        {t("funnel.cf.subAfter")}
       </p>
 
       <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-6 mb-7 text-left max-w-md mx-auto">
-        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Date</p>
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">{t("funnel.cf.dateLabel")}</p>
         <p className="text-base font-medium mb-4">{niceDate}</p>
-        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">Time</p>
+        <p className="text-xs uppercase tracking-wider text-white/40 mb-1">{t("funnel.cf.timeLabel")}</p>
         <p className="text-base font-medium mb-1">{niceTime}</p>
         <p className="text-xs text-white/40">{timezone}</p>
       </div>
@@ -92,7 +93,7 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
       </div>
 
       <Link to="/" className="text-sm text-white/50 hover:text-white/80 transition-colors">
-        ← Back to home
+        {t("funnel.cf.back")}
       </Link>
     </motion.div>
   );
