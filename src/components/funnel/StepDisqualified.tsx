@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -16,9 +15,13 @@ const StepDisqualified = () => {
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 to-amber-400/5 border border-amber-300/20 flex items-center justify-center mx-auto mb-8"
+        className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 to-amber-400/5 border border-amber-300/20 flex items-center justify-center mx-auto mb-8 overflow-hidden"
       >
-        <Sparkles className="w-7 h-7 text-amber-300" />
+        <img
+          src="/solyn-logo-192.png"
+          alt="Solyn"
+          className="w-full h-full object-cover"
+        />
       </motion.div>
 
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.15] mb-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent max-w-xl mx-auto">
