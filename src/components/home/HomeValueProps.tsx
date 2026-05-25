@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Palette, XCircle, Check } from "lucide-react";
-import solynIcon from "@/assets/solyn-icon.svg";
+import { XCircle } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HomeValueProps = () => {
@@ -31,31 +30,8 @@ const HomeValueProps = () => {
           </h2>
         </motion.div>
 
-        {/* Row 1: AI Native + Async collaboration */}
+        {/* Row 1: Async collaboration */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
-          {/* AI Native */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
-          >
-            <div className="flex justify-center mb-8">
-              <div className="relative w-28 h-28 rounded-3xl flex items-center justify-center">
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-400 via-pink-400 to-blue-500 opacity-30 blur-xl scale-125" />
-                <div className="relative w-24 h-24 rounded-3xl bg-white border border-gray-100 shadow-sm flex items-center justify-center">
-                  <img src={solynIcon} alt="Solyn" className="w-14 h-14" />
-                </div>
-              </div>
-            </div>
-            <h3 className="text-black font-bold text-xl mb-3">
-              {t("homeValue.aiNative.title")}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">
-              {t("homeValue.aiNative.desc")}
-            </p>
-          </motion.div>
-
           {/* Clear async collaboration */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
