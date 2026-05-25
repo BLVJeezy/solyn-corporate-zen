@@ -14,7 +14,7 @@ const StepDisqualified = () => {
       <motion.div
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.7, ease: [1, 0.3, 1] }}
+        transition={{ delay: 0.2, duration: 0.7, ease: [1.16, 1.3, 1] }}
         className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300/20 to-amber-400/5 border border-amber-300/20 flex items-center justify-center mx-auto mb-8 overflow-hidden"
       >
         <img
