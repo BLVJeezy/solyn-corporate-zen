@@ -54,6 +54,48 @@ Deno.serve(async (req) => {
       .single();
     if (bErr) throw bErr;
 
+    // Pull full lead details for owner email
+    const { data: fullLead } = await supabase
+      .from("qualified_leads")
+      .select("full_name, business_name, email, phone, business_description, budget_range, launch_timeline")
+      .eq("id", lead_id)
+      .maybeSingle();
+
+    const tz = timezone || "Europe/Brussels";
+    try {
+      await Promise.all([
+        supabase.functions.invoke("send-transactional-email", {
+          body: {
+            templateName: "customer-booking-confirmed",
+            recipientEmail: lead.email,
+            idempotencyKey: `customer-booking-${booking.id}`,
+            templateData: {
+              name: lead.full_name,
+              scheduled_at: slot.toISOString(),
+              timezone: tz,
+              meeting_link: "",
+            },
+          },
+        }),
+        supabase.functions.invoke("send-transactional-email", {
+          body: {
+            templateName: "owner-new-booking",
+            recipientEmail: "owner@placeholder",
+            idempotencyKey: `owner-booking-${booking.id}`,
+            templateData: {
+              ...(fullLead || { full_name: lead.full_name, email: lead.email }),
+              scheduled_at: slot.toISOString(),
+              timezone: tz,
+              lead_id,
+              booking_id: booking.id,
+            },
+          },
+        }),
+      ]);
+    } catch (mailErr) {
+      console.error("email dispatch failed (non-fatal)", mailErr);
+    }
+
     return new Response(JSON.stringify({ ok: true, booking_id: booking.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
