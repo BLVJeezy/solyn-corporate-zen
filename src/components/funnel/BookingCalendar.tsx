@@ -163,15 +163,16 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
     >
       <p className="text-[11px] uppercase tracking-[0.18em] text-amber-300/80 font-medium mb-4">
-        Step 5 — Book your strategy call
+        {t("funnel.bk.eyebrow")}
       </p>
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[1.1] mb-3 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
-        Pick a time that works
+        {t("funnel.bk.title")}
       </h1>
-      <p className="text-white/55 text-base mb-2">A 30-minute strategy session with our team.</p>
+      <p className="text-white/55 text-base mb-2">{t("funnel.bk.sub")}</p>
       <p className="text-white/40 text-xs flex items-center gap-1.5 mb-8">
-        <Globe className="w-3 h-3" /> Times shown in your timezone: <span className="text-white/60">{visitorTz}</span>
+        <Globe className="w-3 h-3" /> {t("funnel.bk.tz")} <span className="text-white/60">{visitorTz}</span>
       </p>
+
 
       <div className="grid lg:grid-cols-[1fr,260px] gap-6">
         {/* Calendar */}
