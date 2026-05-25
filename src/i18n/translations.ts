@@ -947,9 +947,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeValue.freedom.item3": "Micromanagement",
     "homeValue.freedom.item4": "Long contracts",
 
-    // Home Testimonials
-    "homeTestimonials.heading": "Trusted by industry leaders.",
-    "homeTestimonials.headingGray": "Hear what clients are saying about Process.",
 
     // Home FAQ
     "homeFAQ.heading": "Questions?",
