@@ -1,7 +1,8 @@
 import { FunnelState, WebsiteIssue, StylePreference } from "@/lib/funnel/types";
-import { websiteIssueLabels, stylePreferenceLabels } from "@/lib/funnel/labels";
+import { websiteIssueKeys, stylePreferenceKeys } from "@/lib/funnel/labels";
 import StepShell from "./StepShell";
 import { Field, GlassInput, GlassTextarea, ChoiceCard } from "./FieldKit";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
   state: FunnelState;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
+  const { t } = useLanguage();
   const toggleIssue = (issue: WebsiteIssue) => {
     const next = state.website_issues.includes(issue)
       ? state.website_issues.filter((i) => i !== issue)
@@ -26,20 +28,20 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
 
   return (
     <StepShell
-      eyebrow="Step 2 — Website status"
-      title="Do you currently have a website?"
+      eyebrow={t("funnel.s2.eyebrow")}
+      title={t("funnel.s2.title")}
       onNext={onNext}
       onBack={onBack}
       nextDisabled={!valid}
     >
       <div className="grid grid-cols-2 gap-3">
-        <ChoiceCard label="Yes" selected={state.has_website === true} onClick={() => update({ has_website: true })} />
-        <ChoiceCard label="No" selected={state.has_website === false} onClick={() => update({ has_website: false })} />
+        <ChoiceCard label={t("funnel.yes")} selected={state.has_website === true} onClick={() => update({ has_website: true })} />
+        <ChoiceCard label={t("funnel.no")} selected={state.has_website === false} onClick={() => update({ has_website: false })} />
       </div>
 
       {state.has_website === true && (
         <div className="space-y-5 pt-2">
-          <Field label="Current website URL">
+          <Field label={t("funnel.s2.urlLabel")}>
             <GlassInput
               type="url"
               value={state.website_url}
@@ -47,12 +49,12 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
               placeholder="https://"
             />
           </Field>
-          <Field label="What currently bothers you most about your website?" hint="Select all that apply">
+          <Field label={t("funnel.s2.issuesLabel")} hint={t("funnel.selectAll")}>
             <div className="grid sm:grid-cols-2 gap-2.5">
-              {(Object.keys(websiteIssueLabels) as WebsiteIssue[]).map((k) => (
+              {(Object.keys(websiteIssueKeys) as WebsiteIssue[]).map((k) => (
                 <ChoiceCard
                   key={k}
-                  label={websiteIssueLabels[k]}
+                  label={t(websiteIssueKeys[k])}
                   selected={state.website_issues.includes(k)}
                   onClick={() => toggleIssue(k)}
                   multi
@@ -60,11 +62,11 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
               ))}
             </div>
           </Field>
-          <Field label="What would you like to keep from your current website?">
+          <Field label={t("funnel.s2.keepLabel")}>
             <GlassTextarea
               value={state.website_keep}
               onChange={(e) => update({ website_keep: e.target.value })}
-              placeholder="Logo, color palette, certain content…"
+              placeholder={t("funnel.s2.keepPh")}
             />
           </Field>
         </div>
@@ -72,19 +74,19 @@ const StepWebsite = ({ state, update, onNext, onBack }: Props) => {
 
       {state.has_website === false && (
         <div className="space-y-5 pt-2">
-          <Field label="Websites or competitors whose style you like">
+          <Field label={t("funnel.s2.inspLabel")}>
             <GlassTextarea
               value={state.style_inspiration}
               onChange={(e) => update({ style_inspiration: e.target.value })}
-              placeholder="Drop a few URLs or names…"
+              placeholder={t("funnel.s2.inspPh")}
             />
           </Field>
-          <Field label="What type of style are you looking for?">
+          <Field label={t("funnel.s2.styleLabel")}>
             <div className="grid sm:grid-cols-2 gap-2.5">
-              {(Object.keys(stylePreferenceLabels) as StylePreference[]).map((k) => (
+              {(Object.keys(stylePreferenceKeys) as StylePreference[]).map((k) => (
                 <ChoiceCard
                   key={k}
-                  label={stylePreferenceLabels[k]}
+                  label={t(stylePreferenceKeys[k])}
                   selected={state.style_preference === k}
                   onClick={() => update({ style_preference: k })}
                 />
