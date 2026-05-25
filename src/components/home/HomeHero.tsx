@@ -36,12 +36,7 @@ const HomeHero = () => {
           className="max-w-3xl"
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight leading-[1.1] text-left lg:text-5xl">
-            {t("homeHero.headline").split("\n").map((line, i) => (
-              <span key={i}>
-                {line}
-                {i === 0 && <br className="hidden sm:block" />}
-              </span>
-            ))}
+            {t("homeHero.headline")}
           </h1>
         </motion.div>
 
