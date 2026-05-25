@@ -79,3 +79,4 @@ export const budgetLabels = budgetKeys;
 export const timelineLabels = timelineKeys;
 export const aiRankingLabels = aiRankingKeys;
 export const investmentReadyLabels = investmentReadyKeys;
+export const websiteTypeLabels = websiteTypeKeys;
