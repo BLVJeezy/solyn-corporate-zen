@@ -1,7 +1,8 @@
 import { FunnelState, Feature, WebsiteType, AiRanking } from "@/lib/funnel/types";
-import { featureLabels, websiteTypeLabels, aiRankingLabels } from "@/lib/funnel/labels";
+import { featureKeys, websiteTypeKeys, aiRankingKeys } from "@/lib/funnel/labels";
 import StepShell from "./StepShell";
 import { Field, GlassTextarea, ChoiceCard } from "./FieldKit";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
   state: FunnelState;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const StepProject = ({ state, update, onNext, onBack }: Props) => {
+  const { t } = useLanguage();
   const toggleFeature = (f: Feature) => {
     const next = state.features_needed.includes(f)
       ? state.features_needed.filter((i) => i !== f)
@@ -25,27 +27,27 @@ const StepProject = ({ state, update, onNext, onBack }: Props) => {
 
   return (
     <StepShell
-      eyebrow="Step 3 — Project qualification"
-      title="Tell us about your project"
+      eyebrow={t("funnel.s3.eyebrow")}
+      title={t("funnel.s3.title")}
       onNext={onNext}
       onBack={onBack}
       nextDisabled={!valid}
     >
-      <Field label="What do you absolutely NOT want on your website?">
+      <Field label={t("funnel.s3.avoidLabel")}>
         <GlassTextarea
           value={state.avoid_text}
           onChange={(e) => update({ avoid_text: e.target.value })}
-          placeholder="Pop-ups, stock photos, anything specific to avoid…"
+          placeholder={t("funnel.s3.avoidPh")}
         />
       </Field>
 
-      <Field label="What type of website are you looking for?">
+      <Field label={t("funnel.s3.typeLabel")}>
         <div className="grid gap-2.5">
           {(["hardcoded", "cms"] as WebsiteType[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={websiteTypeLabels[k].title}
-              description={websiteTypeLabels[k].desc}
+              label={t(websiteTypeKeys[k].title)}
+              description={t(websiteTypeKeys[k].desc)}
               selected={state.website_type === k}
               onClick={() => update({ website_type: k })}
             />
@@ -53,22 +55,19 @@ const StepProject = ({ state, update, onNext, onBack }: Props) => {
         </div>
       </Field>
 
-      <Field label="Is Google ranking (SEO) important for your business?">
+      <Field label={t("funnel.s3.seoLabel")}>
         <div className="grid grid-cols-2 gap-3">
-          <ChoiceCard label="Yes" selected={state.seo_important === true} onClick={() => update({ seo_important: true })} />
-          <ChoiceCard label="No" selected={state.seo_important === false} onClick={() => update({ seo_important: false })} />
+          <ChoiceCard label={t("funnel.yes")} selected={state.seo_important === true} onClick={() => update({ seo_important: true })} />
+          <ChoiceCard label={t("funnel.no")} selected={state.seo_important === false} onClick={() => update({ seo_important: false })} />
         </div>
       </Field>
 
-      <Field
-        label="Is AI ranking important for your business?"
-        hint="For example appearing in ChatGPT or AI search recommendations."
-      >
+      <Field label={t("funnel.s3.aiLabel")} hint={t("funnel.s3.aiHint")}>
         <div className="grid grid-cols-3 gap-3">
           {(["yes", "no", "unsure"] as AiRanking[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={aiRankingLabels[k]}
+              label={t(aiRankingKeys[k])}
               selected={state.ai_ranking === k}
               onClick={() => update({ ai_ranking: k })}
             />
@@ -76,12 +75,12 @@ const StepProject = ({ state, update, onNext, onBack }: Props) => {
         </div>
       </Field>
 
-      <Field label="What functionalities do you need?" hint="Select all that apply">
+      <Field label={t("funnel.s3.featuresLabel")} hint={t("funnel.selectAll")}>
         <div className="grid sm:grid-cols-2 gap-2.5">
-          {(Object.keys(featureLabels) as Feature[]).map((k) => (
+          {(Object.keys(featureKeys) as Feature[]).map((k) => (
             <ChoiceCard
               key={k}
-              label={featureLabels[k]}
+              label={t(featureKeys[k])}
               selected={state.features_needed.includes(k)}
               onClick={() => toggleFeature(k)}
               multi
