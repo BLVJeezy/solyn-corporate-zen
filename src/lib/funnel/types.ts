@@ -84,6 +84,7 @@ export const INITIAL_STATE: FunnelState = {
   email: "",
   phone: "",
   business_description: "",
+  preferred_language: "",
   referral_source: "",
   has_website: null,
   website_url: "",
