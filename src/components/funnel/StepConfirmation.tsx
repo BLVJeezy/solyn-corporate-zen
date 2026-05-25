@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, Calendar, Apple } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
   scheduledAt: string;
