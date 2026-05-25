@@ -70,13 +70,13 @@ const HomeNav = () => {
           </div>
 
           {/* Desktop language switcher */}
-          <div className="hidden md:flex items-center gap-0.5 text-sm">
+          <div className="hidden md:flex items-center gap-0.5 text-sm rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm shadow-sm px-1.5 py-1">
             {languages.map((l) => (
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                  lang === l ? "bg-black/10 text-black" : "text-black/40 hover:text-black"
+                className={`px-2.5 py-1 rounded-full text-xs font-medium transition-colors ${
+                  lang === l ? "bg-black text-white" : "text-black/50 hover:text-black"
                 }`}
               >
                 {l}
