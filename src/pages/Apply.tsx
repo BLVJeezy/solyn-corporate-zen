@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { FunnelState, INITIAL_STATE, isQualified } from "@/lib/funnel/types";
 import { loadFunnelState, saveFunnelState, clearFunnelState } from "@/lib/funnel/storage";
 import FunnelLayout from "@/components/funnel/FunnelLayout";
+import StepLanguage from "@/components/funnel/StepLanguage";
 import StepBasicInfo from "@/components/funnel/StepBasicInfo";
 import StepWebsite from "@/components/funnel/StepWebsite";
 import StepProject from "@/components/funnel/StepProject";
@@ -16,12 +17,12 @@ import BookingCalendar from "@/components/funnel/BookingCalendar";
 
 type Phase = "form" | "disqualified" | "booking" | "confirmed";
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 const Apply = () => {
   const navigate = useNavigate();
   const [state, setState] = useState<FunnelState>(INITIAL_STATE);
-  const [step, setStep] = useState(1); // 1..4 form steps
+  const [step, setStep] = useState(1); // 1..5 form steps
   const [phase, setPhase] = useState<Phase>("form");
   const [leadId, setLeadId] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -39,7 +40,7 @@ const Apply = () => {
 
   const update = (patch: Partial<FunnelState>) => setState((s) => ({ ...s, ...patch }));
 
-  const goNext = () => setStep((s) => Math.min(s + 1, 4));
+  const goNext = () => setStep((s) => Math.min(s + 1, 5));
   const goBack = () => setStep((s) => Math.max(s - 1, 1));
 
   const submitLead = async () => {
@@ -67,21 +68,24 @@ const Apply = () => {
 
   return (
     <FunnelLayout
-      step={phase === "booking" ? 5 : phase === "confirmed" ? TOTAL_STEPS : step}
+      step={phase === "booking" ? 6 : phase === "confirmed" ? TOTAL_STEPS : step}
       totalSteps={TOTAL_STEPS}
       hideProgress={phase === "disqualified" || phase === "confirmed"}
     >
       <AnimatePresence mode="wait">
         {phase === "form" && step === 1 && (
-          <StepBasicInfo key="s1" state={state} update={update} onNext={goNext} />
+          <StepLanguage key="lang" state={state} update={update} onNext={goNext} />
         )}
         {phase === "form" && step === 2 && (
-          <StepWebsite key="s2" state={state} update={update} onNext={goNext} onBack={goBack} />
+          <StepBasicInfo key="s1" state={state} update={update} onNext={goNext} />
         )}
         {phase === "form" && step === 3 && (
-          <StepProject key="s3" state={state} update={update} onNext={goNext} onBack={goBack} />
+          <StepWebsite key="s2" state={state} update={update} onNext={goNext} onBack={goBack} />
         )}
         {phase === "form" && step === 4 && (
+          <StepProject key="s3" state={state} update={update} onNext={goNext} onBack={goBack} />
+        )}
+        {phase === "form" && step === 5 && (
           <StepBudget
             key="s4"
             state={state}
