@@ -327,8 +327,15 @@ export const translations: Record<Lang, Record<string, string>> = {
     "funnel.selectAll": "Selecteer alles wat van toepassing is",
     "funnel.yes": "Ja",
     "funnel.no": "Nee",
+    // Language Step
+    "funnel.lang.eyebrow": "Stap 1 — Taal",
+    "funnel.lang.title": "In welke taal wilt u doorgaan?",
+    "funnel.lang.subtitle": "Kies uw voorkeurstaal om verder te gaan.",
+    "funnel.lang.nl": "Nederlands",
+    "funnel.lang.fr": "Français",
+    "funnel.lang.en": "English",
     // Step 1
-    "funnel.s1.eyebrow": "Stap 1 — Introductie",
+    "funnel.s1.eyebrow": "Stap 2 — Introductie",
     "funnel.s1.title": "Laten we kijken of we een goede match zijn",
     "funnel.s1.subtitle": "Beantwoord enkele snelle vragen zodat we uw bedrijf begrijpen en de juiste strategie voorbereiden.",
     "funnel.s1.fullName": "Volledige naam",
@@ -342,7 +349,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "funnel.s1.bizDesc": "Wat doet uw bedrijf?",
     "funnel.s1.bizDescPh": "Een of twee zinnen over uw bedrijf en klanten.",
     // Step 2
-    "funnel.s2.eyebrow": "Stap 2 — Status website",
+    "funnel.s2.eyebrow": "Stap 3 — Status website",
     "funnel.s2.title": "Heeft u momenteel een website?",
     "funnel.s2.urlLabel": "Huidige website-URL",
     "funnel.s2.issuesLabel": "Wat stoort u nu het meest aan uw website?",
@@ -368,7 +375,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "stylePreference.futuristic": "Futuristisch / tech",
     "stylePreference.bold": "Krachtig & conversiegericht",
     // Step 3
-    "funnel.s3.eyebrow": "Stap 3 — Projectkwalificatie",
+    "funnel.s3.eyebrow": "Stap 4 — Projectkwalificatie",
     "funnel.s3.title": "Vertel ons over uw project",
     "funnel.s3.avoidLabel": "Wat wilt u absoluut NIET op uw website?",
     "funnel.s3.avoidPh": "Pop-ups, stockfoto's, specifieke zaken om te vermijden…",
@@ -396,7 +403,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "feature.client_portal": "Klantportaal met login",
     "feature.other": "Andere",
     // Step 4
-    "funnel.s4.eyebrow": "Stap 4 — Budget & timing",
+    "funnel.s4.eyebrow": "Stap 5 — Budget & timing",
     "funnel.s4.title": "Budget & lanceringsperiode",
     "funnel.s4.budgetLabel": "Wat is uw geschatte investeringsbudget voor dit project?",
     "funnel.s4.budgetHint": "We bouwen premium websites gericht op conversie, branding en groei. Zo bepalen we of we een match zijn.",
@@ -425,7 +432,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "funnel.cf.timeLabel": "Tijd",
     "funnel.cf.back": "← Terug naar home",
     // Booking calendar
-    "funnel.bk.eyebrow": "Stap 5 — Boek uw strategiegesprek",
+    "funnel.bk.eyebrow": "Stap 6 — Boek uw strategiegesprek",
     "funnel.bk.title": "Kies een tijd die past",
     "funnel.bk.sub": "Een strategiesessie van 30 minuten met ons team.",
     "funnel.bk.tz": "Tijden weergegeven in uw tijdzone:",
@@ -434,7 +441,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "funnel.bk.selectDate": "Selecteer een datum om beschikbare tijden te zien.",
     "funnel.bk.confirm": "Boeking bevestigen",
     "funnel.bk.confirming": "Bevestigen…",
-    "funnel.s1.language": "Welke taal spreekt u?",
     "funnel.s1.referral": "Hoe heeft u over ons gehoord?",
     "language.nl": "Nederlands",
     "language.fr": "Frans",
