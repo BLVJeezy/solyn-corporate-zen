@@ -297,11 +297,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeFAQ.services.a1": "Wij bieden MVP-ontwikkeling, product sprints, doorlopende development en integratiediensten aan. Alles van design tot deployment.",
     "homeFAQ.services.q2": "Wat is Lovable en hoe werkt het?",
     "homeFAQ.services.a2": "Lovable is een modern ontwikkelplatform dat we gebruiken om productie-klare applicaties sneller te bouwen. Het stelt ons in staat om snel te itereren met behoud van codekwaliteit.",
-    "homeFAQ.pricing": "Prijzen & Tijdlijnen",
-    "homeFAQ.pricing.q1": "Hoeveel kost het?",
-    "homeFAQ.pricing.a1": "Onze sprint pakketten starten vanaf €4.500 per twee weken. Volledige MVP-ontwikkeling is eenmalig €9.500. Geen contracten of verborgen kosten.",
-    "homeFAQ.pricing.q2": "Hoe lang duurt het om een MVP te bouwen?",
-    "homeFAQ.pricing.a2": "De meeste MVP's worden binnen 2 weken opgeleverd. Complexe projecten kunnen 3-4 weken duren afhankelijk van de scope en integraties.",
 
     // Home CTA
     "homeCTA.bookTitle": "Boek een gesprek",
@@ -621,11 +616,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeFAQ.services.a1": "Nous proposons le développement de MVP, des sprints produit, du développement continu par abonnement et des services d'intégration. Du design au déploiement.",
     "homeFAQ.services.q2": "Qu'est-ce que Lovable et comment ça marche ?",
     "homeFAQ.services.a2": "Lovable est une plateforme de développement moderne que nous utilisons pour construire des applications prêtes pour la production plus rapidement, tout en maintenant la qualité du code.",
-    "homeFAQ.pricing": "Tarifs & Délais",
-    "homeFAQ.pricing.q1": "Combien ça coûte ?",
-    "homeFAQ.pricing.a1": "Nos forfaits sprint commencent à 4 500€ bimensuels. Le développement MVP complet est à 9 500€ en une fois. Pas de contrats ni de frais cachés.",
-    "homeFAQ.pricing.q2": "Combien de temps faut-il pour construire un MVP ?",
-    "homeFAQ.pricing.a2": "La plupart des MVP sont livrés en 2 semaines. Les projets complexes peuvent prendre 3-4 semaines selon la portée et les intégrations.",
 
     // Home CTA
     "homeCTA.bookTitle": "Réservez un appel",
@@ -945,11 +935,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeFAQ.services.a1": "We offer MVP development, product sprints, ongoing subscription development, and integration services. Everything from design to deployment.",
     "homeFAQ.services.q2": "What is Lovable and how does it work?",
     "homeFAQ.services.a2": "Lovable is a modern development platform we use to build production-ready applications faster. It allows us to iterate rapidly while maintaining code quality.",
-    "homeFAQ.pricing": "Pricing & Timelines",
-    "homeFAQ.pricing.q1": "How much does it cost?",
-    "homeFAQ.pricing.a1": "Our sprint packages start at €4,500 bi-weekly. Full MVP development is a one-time €9,500. No contracts or hidden fees.",
-    "homeFAQ.pricing.q2": "How long does it take to build an MVP?",
-    "homeFAQ.pricing.a2": "Most MVPs are delivered within 2 weeks. Complex projects may take 3-4 weeks depending on scope and integrations.",
 
     // Home CTA
     "homeCTA.bookTitle": "Book a call",
