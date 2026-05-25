@@ -233,13 +233,13 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
           <h3 className="text-xs font-medium text-white/60 uppercase tracking-wider mb-3 flex items-center gap-1.5">
             <Clock className="w-3 h-3" />
             {selectedDate
-              ? selectedDate.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })
-              : "Pick a date"}
+              ? selectedDate.toLocaleDateString(locale, { weekday: "short", month: "short", day: "numeric" })
+              : t("funnel.bk.pickDate")}
           </h3>
           {selectedDate ? (
             <div className="space-y-1.5 max-h-[320px] overflow-y-auto pr-1">
               <AnimatePresence mode="popLayout">
-                {slotsForDate.length === 0 && <p className="text-xs text-white/40">No slots available.</p>}
+                {slotsForDate.length === 0 && <p className="text-xs text-white/40">{t("funnel.bk.noSlots")}</p>}
                 {slotsForDate.map((s) => (
                   <motion.button
                     key={s.iso}
