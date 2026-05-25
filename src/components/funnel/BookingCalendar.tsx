@@ -152,7 +152,7 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
     }
   };
 
-  const monthLabel = monthCursor.toLocaleDateString(undefined, { month: "long", year: "numeric" });
+  const monthLabel = monthCursor.toLocaleDateString(locale, { month: "long", year: "numeric" });
   const canGoPrev = monthCursor > new Date(today.getFullYear(), today.getMonth(), 1);
   const canGoNext = new Date(monthCursor.getFullYear(), monthCursor.getMonth() + 1, 1) <= maxDate;
 
