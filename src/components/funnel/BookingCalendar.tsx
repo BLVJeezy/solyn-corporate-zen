@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface AvailabilityConfig {
   timezone: string;
