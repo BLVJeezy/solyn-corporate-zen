@@ -16,6 +16,8 @@ function toICSDate(d: Date) {
 }
 
 const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
+  const { t, lang } = useLanguage();
+  const locale = lang === "NL" ? "nl-BE" : lang === "FR" ? "fr-BE" : "en-GB";
   const start = new Date(scheduledAt);
   const end = new Date(start.getTime() + 30 * 60 * 1000);
   const title = "Solyn Global — Strategy Session";
