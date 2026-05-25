@@ -30,19 +30,19 @@ const HomeValueProps = () => {
           </h2>
         </motion.div>
 
-        {/* Row 1: Async collaboration */}
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        {/* Cards grid */}
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Clear async collaboration */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 text-center"
+            className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 flex flex-col"
           >
             {/* Chat mockup */}
-            <div className="mb-8 w-full max-w-xs mx-auto">
-              <div className="rounded-xl bg-white border border-gray-100 shadow-lg p-3 space-y-2">
+            <div className="mb-8 w-full max-w-xs mx-auto flex-1 flex items-center">
+              <div className="w-full rounded-xl bg-white border border-gray-100 shadow-lg p-3 space-y-2">
                 {/* Chat header */}
                 <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
                   <div className="w-7 h-7 rounded-full bg-gradient-to-br from-gray-800 to-gray-600 flex items-center justify-center">
@@ -100,18 +100,16 @@ const HomeValueProps = () => {
                 </div>
               </div>
             </div>
-            <h3 className="text-black font-bold text-xl mb-3">
-              {t("homeValue.collab.title")}
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">
-              {t("homeValue.collab.desc")}
-            </p>
+            <div className="text-center mt-auto">
+              <h3 className="text-black font-bold text-xl mb-3">
+                {t("homeValue.collab.title")}
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">
+                {t("homeValue.collab.desc")}
+              </p>
+            </div>
           </motion.div>
-        </div>
 
-        {/* Row 2: Design matters + Operate with freedom */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {/* Design matters */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
