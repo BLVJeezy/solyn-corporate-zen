@@ -30,8 +30,7 @@ const StepLanguage = ({ state, update, onNext }: Props) => {
     update({ preferred_language: langToSpoken[l] });
   };
 
-  const selectedLang = currentLang;
-  const valid = selectedLang !== "";
+  const valid = state.preferred_language !== "";
 
   return (
     <StepShell
