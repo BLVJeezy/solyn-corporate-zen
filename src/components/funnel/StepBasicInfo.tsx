@@ -1,6 +1,6 @@
-import { FunnelState } from "@/lib/funnel/types";
+import { FunnelState, ReferralSource, SpokenLanguage } from "@/lib/funnel/types";
 import StepShell from "./StepShell";
-import { Field, GlassInput, GlassTextarea } from "./FieldKit";
+import { Field, GlassInput, GlassTextarea, ChoiceCard } from "./FieldKit";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 interface Props {
@@ -9,12 +9,17 @@ interface Props {
   onNext: () => void;
 }
 
+const REFERRAL_OPTIONS: ReferralSource[] = ["google", "facebook", "instagram", "ai", "word_of_mouth", "other"];
+const LANGUAGE_OPTIONS: SpokenLanguage[] = ["nl", "fr", "en", "other"];
+
 const StepBasicInfo = ({ state, update, onNext }: Props) => {
   const { t } = useLanguage();
   const valid =
     state.full_name.trim().length >= 2 &&
     state.business_name.trim().length >= 1 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email);
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(state.email) &&
+    state.preferred_language !== "" &&
+    state.referral_source !== "";
 
   return (
     <StepShell
@@ -67,12 +72,29 @@ const StepBasicInfo = ({ state, update, onNext }: Props) => {
           placeholder={t("funnel.s1.bizDescPh")}
         />
       </Field>
+      <Field label={t("funnel.s1.language")}>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          {LANGUAGE_OPTIONS.map((k) => (
+            <ChoiceCard
+              key={k}
+              label={t(`language.${k}`)}
+              selected={state.preferred_language === k}
+              onClick={() => update({ preferred_language: k })}
+            />
+          ))}
+        </div>
+      </Field>
       <Field label={t("funnel.s1.referral")}>
-        <GlassInput
-          value={state.referral_source}
-          onChange={(e) => update({ referral_source: e.target.value })}
-          placeholder={t("funnel.s1.referralPh")}
-        />
+        <div className="grid sm:grid-cols-2 gap-2.5">
+          {REFERRAL_OPTIONS.map((k) => (
+            <ChoiceCard
+              key={k}
+              label={t(`referral.${k}`)}
+              selected={state.referral_source === k}
+              onClick={() => update({ referral_source: k })}
+            />
+          ))}
+        </div>
       </Field>
     </StepShell>
   );
