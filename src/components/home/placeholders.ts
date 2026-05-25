@@ -30,14 +30,6 @@ export const PLACEHOLDER_CASE_STUDIES = [
   },
 ];
 
-export const PLACEHOLDER_TESTIMONIALS = [
-  { quote: "Solyn delivered our MVP in under two weeks. The quality was beyond what we expected from any agency.", name: "Sarah K.", title: "CEO @ TechStart" },
-  { quote: "Working with Solyn felt like having a senior engineering team on demand. They understood our vision from day one.", name: "Marcus L.", title: "Founder @ FinFlow" },
-  { quote: "The speed and polish of the final product was incredible. We launched to paying customers within 3 weeks.", name: "Emily R.", title: "CPO @ HealthStack" },
-  { quote: "They didn't just build what we asked — they improved the product with smart suggestions throughout.", name: "David W.", title: "CTO @ DataBridge" },
-  { quote: "Best investment we've made. Our MVP helped us raise our seed round successfully.", name: "Aisha M.", title: "Founder @ EduLeap" },
-  { quote: "Solyn's AI-native approach means faster iterations and better code quality. Highly recommend.", name: "James T.", title: "VP Eng @ ScaleOps" },
-];
 
 export const PLACEHOLDER_LOGOS = [
   "TechStart", "FinFlow", "HealthStack", "DataBridge", "EduLeap", "ScaleOps", "CloudNine", "NexGen",

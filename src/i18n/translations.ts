@@ -283,9 +283,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeValue.freedom.item3": "Micromanagement",
     "homeValue.freedom.item4": "Lange contracten",
 
-    // Home Testimonials
-    "homeTestimonials.heading": "Vertrouwd door marktleiders.",
-    "homeTestimonials.headingGray": "Hoor wat klanten zeggen over ons proces.",
 
     // Home FAQ
     "homeFAQ.heading": "Vragen?",
@@ -615,9 +612,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeValue.freedom.item3": "Micromanagement",
     "homeValue.freedom.item4": "Longs contrats",
 
-    // Home Testimonials
-    "homeTestimonials.heading": "Approuvé par les leaders du secteur.",
-    "homeTestimonials.headingGray": "Découvrez ce que nos clients disent de notre processus.",
 
     // Home FAQ
     "homeFAQ.heading": "Questions ?",
@@ -947,9 +941,6 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeValue.freedom.item3": "Micromanagement",
     "homeValue.freedom.item4": "Long contracts",
 
-    // Home Testimonials
-    "homeTestimonials.heading": "Trusted by industry leaders.",
-    "homeTestimonials.headingGray": "Hear what clients are saying about Process.",
 
     // Home FAQ
     "homeFAQ.heading": "Questions?",
