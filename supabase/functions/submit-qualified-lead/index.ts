@@ -50,18 +50,11 @@ Deno.serve(async (req) => {
 
     // Fire-and-forget transactional emails
     const templateData = {
-      full_name: funnel.full_name,
-      business_name: funnel.business_name,
-      email: funnel.email,
-      phone: funnel.phone || null,
-      business_description: funnel.business_description || null,
-      budget_range: funnel.budget_range || null,
-      launch_timeline: funnel.launch_timeline || null,
-      preferred_language: funnel.preferred_language || null,
-      referral_source: funnel.referral_source || null,
+      ...funnel,
       qualification_status,
       disqualification_reason: disqualification_reason || null,
       lead_id: data.id,
+      submitted_at: new Date().toISOString(),
     };
     try {
       await Promise.all([
