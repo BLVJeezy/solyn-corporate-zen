@@ -126,7 +126,7 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
       const booked = bookedSlots.has(iso);
       slots.push({
         iso,
-        label: cur.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", hour12: false }),
+        label: cur.toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit", hour12: false }),
         disabled: tooSoon || booked,
       });
       cur.setMinutes(cur.getMinutes() + config.slot_minutes);
