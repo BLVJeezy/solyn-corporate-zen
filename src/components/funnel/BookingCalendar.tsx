@@ -275,14 +275,14 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
           onClick={onBack}
           className="text-white/60 hover:text-white hover:bg-white/5 rounded-full gap-2"
         >
-          <ArrowLeft className="w-4 h-4" /> Back
+          <ArrowLeft className="w-4 h-4" /> {t("funnel.back")}
         </Button>
         <Button
           onClick={confirmBooking}
           disabled={!selectedSlot || submitting}
           className="bg-white text-zinc-900 hover:bg-white/90 rounded-full px-6 font-medium disabled:opacity-40"
         >
-          {submitting ? "Confirming…" : "Confirm booking"}
+          {submitting ? t("funnel.bk.confirming") : t("funnel.bk.confirm")}
         </Button>
       </div>
     </motion.div>
