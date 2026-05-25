@@ -38,6 +38,8 @@ function sameDay(a: Date, b: Date) {
 }
 
 const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => {
+  const { t, lang } = useLanguage();
+  const locale = lang === "NL" ? "nl-BE" : lang === "FR" ? "fr-BE" : "en-GB";
   const [config, setConfig] = useState<AvailabilityConfig>(DEFAULT_CONFIG);
   const [monthCursor, setMonthCursor] = useState(() => {
     const d = new Date();
