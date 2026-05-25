@@ -262,7 +262,7 @@ const BookingCalendar = ({ leadId, onBooked, onBack }: BookingCalendarProps) => 
               </AnimatePresence>
             </div>
           ) : (
-            <p className="text-xs text-white/40">Select a date to see available times.</p>
+            <p className="text-xs text-white/40">{t("funnel.bk.selectDate")}</p>
           )}
         </div>
       </div>
