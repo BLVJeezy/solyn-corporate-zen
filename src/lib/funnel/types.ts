@@ -44,6 +44,9 @@ export type BudgetRange =
 
 export type Timeline = "asap" | "1_month" | "3_months" | "exploring";
 
+export type ReferralSource = "google" | "facebook" | "instagram" | "ai" | "word_of_mouth" | "other";
+export type SpokenLanguage = "nl" | "fr" | "en" | "other";
+
 export interface FunnelState {
   // Step 1
   full_name: string;
@@ -51,7 +54,8 @@ export interface FunnelState {
   email: string;
   phone: string;
   business_description: string;
-  referral_source: string;
+  preferred_language: SpokenLanguage | "";
+  referral_source: ReferralSource | "";
 
   // Step 2
   has_website: boolean | null;
