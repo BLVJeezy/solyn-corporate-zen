@@ -6,7 +6,6 @@ import HomeWork from "@/components/home/HomeWork";
 import HomeValueProps from "@/components/home/HomeValueProps";
 import MobileViewSection from "@/components/MobileViewSection";
 import HomePricing from "@/components/home/HomePricing";
-import HomeTestimonials from "@/components/home/HomeTestimonials";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import HomeCTA from "@/components/home/HomeCTA";
 import HomeFooter from "@/components/home/HomeFooter";
