@@ -24,7 +24,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner van",
     "homeHero.headline": "Zet je idee om in een\nlanceerklare MVP in 2 weken",
-    "homeHero.subheadline": "De #1 AI product studio — vertrouwd door startups en founders om producten te ontwerpen, bouwen en lanceren die schalen.",
+    "homeHero.subheadline": "De #1 product studio — vertrouwd door startups en founders om producten te ontwerpen, bouwen en lanceren die schalen.",
     "homeHero.cta1": "Boek een Gesprek",
     "homeHero.cta2": "Bekijk Prijzen",
 
@@ -672,7 +672,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner of",
     "homeHero.headline": "Turn your idea into a ready to\nlaunch MVP in 2-weeks",
-    "homeHero.subheadline": "The #1 AI product studio — trusted by startups and founders to design, build, and launch products that scale.",
+    "homeHero.subheadline": "The #1 product studio — trusted by startups and founders to design, build, and launch products that scale.",
     "homeHero.cta1": "Book a Call",
     "homeHero.cta2": "View Pricing",
 
