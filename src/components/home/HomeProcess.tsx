@@ -41,14 +41,6 @@ const HomeProcess = () => {
       image: showcaseRoadmap,
     },
     {
-      icon: Cpu,
-      tabKey: "homeProcess.grow.tab",
-      titleKey: "homeProcess.grow.title",
-      textKey: "homeProcess.grow.text",
-      image: showcaseAtelier9,
-      toolScroll: true,
-    },
-    {
       icon: MessageCircle,
       tabKey: "homeProcess.collaborate.tab",
       titleKey: "homeProcess.collaborate.title",
@@ -114,27 +106,14 @@ const HomeProcess = () => {
                       </p>
                     </div>
                     {/* Visual */}
-                    {step.toolScroll ? (
-                      <div className="relative rounded-2xl bg-gray-50 border border-gray-100 shadow-sm aspect-[3/1] md:aspect-[4/3] flex items-center overflow-hidden">
-                        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
-                        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
-                        <div className="w-full overflow-hidden">
-                          <div className="flex gap-8 md:gap-14 animate-infinite-scroll w-max items-center py-4 md:py-8">
-                            {[...toolIcons, ...toolIcons, ...toolIcons, ...toolIcons].map((icon, j) => (
-                              <img key={j} src={icon.src} alt={icon.alt} className="h-16 md:h-32 w-auto flex-shrink-0 drop-shadow-lg" />
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <motion.div
-                        initial={imageAnimations[i]?.initial}
-                        whileInView={imageAnimations[i]?.animate}
-                        viewport={{ once: true, margin: "-80px" }}
-                        transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                        className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm"
-                      >
-                        <img
+                    <motion.div
+                      initial={imageAnimations[i]?.initial}
+                      whileInView={imageAnimations[i]?.animate}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+                      className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm"
+                    >
+                      <img
                           src={step.image}
                           alt={t(step.tabKey)}
                           className="w-full h-auto object-cover"
@@ -142,7 +121,6 @@ const HomeProcess = () => {
                           decoding="async"
                         />
                       </motion.div>
-                    )}
                   </div>
                 </div>
               </motion.div>
