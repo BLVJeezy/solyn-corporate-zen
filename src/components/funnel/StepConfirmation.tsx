@@ -92,6 +92,34 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
         </a>
       </div>
 
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-xl mx-auto mb-10 text-left"
+      >
+        <p className="text-[11px] uppercase tracking-[0.18em] text-amber-300/80 font-semibold mb-3 text-center">
+          While you wait
+        </p>
+        <h2 className="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2 text-center">
+          How we helped a client land <span className="text-amber-300">40 extra bookings in under 15 days</span>
+        </h2>
+        <p className="text-white/55 text-sm leading-relaxed mb-5 text-center">
+          A quick look at what we do at Solyn — and the exact playbook that turned one client's quiet pipeline into a fully-booked calendar in two weeks.
+        </p>
+
+        <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.03] shadow-[0_20px_60px_-20px_rgba(252,211,77,0.15)]">
+          <video
+            src="/case-study.mp4"
+            poster="/case-study-poster.jpg"
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full aspect-video bg-zinc-900"
+          />
+        </div>
+      </motion.div>
+
       <Link to="/" className="text-sm text-white/50 hover:text-white/80 transition-colors">
         {t("funnel.cf.back")}
       </Link>
