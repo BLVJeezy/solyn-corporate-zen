@@ -25,13 +25,6 @@ const HomeFAQ = () => {
         { qKey: "homeFAQ.services.q2", aKey: "homeFAQ.services.a2" },
       ],
     },
-    {
-      categoryKey: "homeFAQ.pricing",
-      items: [
-        { qKey: "homeFAQ.pricing.q1", aKey: "homeFAQ.pricing.a1" },
-        { qKey: "homeFAQ.pricing.q2", aKey: "homeFAQ.pricing.a2" },
-      ],
-    },
   ];
 
   return (
