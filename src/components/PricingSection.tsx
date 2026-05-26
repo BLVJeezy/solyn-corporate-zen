@@ -265,13 +265,13 @@ const PricingSection = () => {
                 transition={{ delay: 0.08 }}
                 className="rounded-2xl border border-border bg-card p-4 sm:p-5 md:p-8 flex flex-col">
                 
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
-                <Rocket className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center shrink-0">
+                <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </span>
-              <div>
-                <h3 className="text-lg font-bold text-foreground">{t("pricing.sprints.name")}</h3>
-                <p className="text-xs text-muted-foreground">{t("pricing.sprints.subtitle")}</p>
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg font-bold text-foreground">{t("pricing.sprints.name")}</h3>
+                <p className="text-[11px] sm:text-xs text-muted-foreground">{t("pricing.sprints.subtitle")}</p>
               </div>
             </div>
 
