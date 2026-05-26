@@ -48,17 +48,12 @@ const Apply = () => {
     const q = isQualified(state);
     try {
       const { data, error } = await supabase.functions.invoke("submit-qualified-lead", {
-        body: { funnel: state, qualification_status: q.qualified ? "qualified" : "disqualified", disqualification_reason: q.reason ?? null },
+        body: { funnel: state, qualification_status: "qualified", disqualification_reason: q.qualified ? null : q.reason ?? null },
       });
       if (error) throw error;
       if (!data?.lead_id) throw new Error("Submission failed");
       setLeadId(data.lead_id);
-      if (q.qualified) {
-        setPhase("booking");
-      } else {
-        setPhase("disqualified");
-        clearFunnelState();
-      }
+      setPhase("booking");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Submission failed");
     } finally {
