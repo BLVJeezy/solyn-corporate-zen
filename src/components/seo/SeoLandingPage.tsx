@@ -9,6 +9,7 @@ import HomeNav from "@/components/home/HomeNav";
 import HomeFooter from "@/components/home/HomeFooter";
 import { Button } from "@/components/ui/button";
 import { SeoLandingContent } from "@/content/seoLandingContent";
+import SeoPortfolioScroll from "@/components/seo/SeoPortfolioScroll";
 
 const serviceIcons = [Sparkles, ShoppingBag, Palette, Search, MousePointerClick, Wrench];
 const whyIcons = [Rocket, Check, Search, Shield];
