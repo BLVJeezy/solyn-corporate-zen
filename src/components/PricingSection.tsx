@@ -55,7 +55,7 @@ const PricingSection = () => {
     priceKey: "pricing.growth.price",
     periodKey: "pricing.growth.period",
     oldPrice: null,
-    features: ["pricing.growth.f1", "pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
+    features: ["pricing.growth.f2", "pricing.growth.f3", "pricing.growth.f4", "pricing.growth.f5"],
     ctaKey: "pricing.growth.cta",
     icon: Zap,
     texture: silverTexture,
