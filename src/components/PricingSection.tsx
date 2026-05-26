@@ -321,13 +321,13 @@ const PricingSection = () => {
                 
 
             <div className="relative z-10 flex flex-col flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                  <Crown className="w-5 h-5 text-white" />
+              <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center shrink-0">
+                  <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </span>
-                <div>
-                  <h3 className="text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
-                  <p className="text-xs text-white/60">{t("pricing.diamond.desc")}</p>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
+                  <p className="text-[11px] sm:text-xs text-white/60">{t("pricing.diamond.desc")}</p>
                 </div>
               </div>
 
