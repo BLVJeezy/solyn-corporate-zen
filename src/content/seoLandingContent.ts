@@ -35,10 +35,6 @@ export type SeoLandingContent = {
   industriesTitle: string;
   industriesSubtitle: string;
   industries: string[];
-  // Pricing teaser
-  pricingTitle: string;
-  pricingSubtitle: string;
-  pricingItems: { name: string; price: string; period: string; bullets: string[]; cta: string }[];
   // Testimonials
   testimonialsTitle: string;
   testimonials: { quote: string; author: string; role: string }[];
