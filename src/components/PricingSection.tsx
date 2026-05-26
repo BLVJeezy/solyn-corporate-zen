@@ -109,11 +109,11 @@ const PricingSection = () => {
         
 
         {/* Tab Pill Toggle */}
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center mb-8 sm:mb-10">
           <div className="inline-flex rounded-full bg-muted p-1 border border-border">
             <button
               onClick={() => setActiveTab("websites")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
               activeTab === "websites" ?
               "bg-foreground text-background shadow-sm" :
               "text-muted-foreground hover:text-foreground"}`
@@ -123,7 +123,7 @@ const PricingSection = () => {
             </button>
             <button
               onClick={() => setActiveTab("apps")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
               activeTab === "apps" ?
               "bg-foreground text-background shadow-sm" :
               "text-muted-foreground hover:text-foreground"}`
