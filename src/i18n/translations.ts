@@ -23,7 +23,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiële",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner van",
-    "homeHero.headline": "Zet je idee om in een lanceerklare MVP in 2 weken",
+    "homeHero.headline": "Een website laten maken bij Solyn",
     "homeHero.subheadline": "De #1 product studio — vertrouwd door startups en founders om producten te ontwerpen, bouwen en lanceren die schalen.",
     "homeHero.cta1": "Boek een Gesprek",
     "homeHero.cta2": "Bekijk Prijzen",
