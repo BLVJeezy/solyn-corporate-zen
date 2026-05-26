@@ -210,7 +210,7 @@ const PricingSection = () => {
 
                 <Button
                   onClick={() => navigate("/book")}
-                  className={`w-full font-medium rounded-full mb-6 ${buttonClass}`}
+                  className={`w-full font-medium rounded-full mb-5 sm:mb-6 ${buttonClass}`}
                   variant={isFeatured && !isPremium ? "default" : "outline"}>
                   {t(plans[0].ctaKey)}
                   <ArrowRight className="ml-2 w-4 h-4" />
