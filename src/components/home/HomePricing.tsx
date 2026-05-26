@@ -23,17 +23,6 @@ const HomePricing = () => {
     ctaKey: "pricing.growth.cta",
     icon: Zap,
     dark: false
-  },
-  {
-    nameKey: "pricing.mvp.name",
-    descKey: "pricing.mvp.desc",
-    priceKey: "pricing.mvp.price",
-    periodKey: "pricing.mvp.period",
-
-    features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-    ctaKey: "pricing.mvp.cta",
-    icon: Rocket,
-    dark: true
   }];
 
 
