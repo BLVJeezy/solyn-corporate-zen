@@ -13,7 +13,7 @@ const servicesByLang: Record<Lang, { label: string; items: { label: string; href
   NL: {
     label: "Diensten",
     items: [
-      { label: "Website laten maken", href: "/website-laten-maken", desc: "Professionele website op maat — vanaf €3.000" },
+      { label: "Website laten maken", href: "/website-laten-maken", desc: "Professionele website op maat" },
       { label: "Création site web", href: "/creation-site-web", desc: "Pour le marché francophone" },
       { label: "Web development company", href: "/web-development-company", desc: "International / English market" },
     ],
@@ -21,7 +21,7 @@ const servicesByLang: Record<Lang, { label: string; items: { label: string; href
   FR: {
     label: "Services",
     items: [
-      { label: "Création site web", href: "/creation-site-web", desc: "Site web professionnel sur mesure — dès 3.000€" },
+      { label: "Création site web", href: "/creation-site-web", desc: "Site web professionnel sur mesure" },
       { label: "Website laten maken", href: "/website-laten-maken", desc: "Pour le marché néerlandophone" },
       { label: "Web development company", href: "/web-development-company", desc: "International / English market" },
     ],
@@ -29,7 +29,7 @@ const servicesByLang: Record<Lang, { label: string; items: { label: string; href
   EN: {
     label: "Services",
     items: [
-      { label: "Web development company", href: "/web-development-company", desc: "Custom websites built fast — from €3,000" },
+      { label: "Web development company", href: "/web-development-company", desc: "Custom websites built fast" },
       { label: "Website laten maken", href: "/website-laten-maken", desc: "For Dutch-speaking markets" },
       { label: "Création site web", href: "/creation-site-web", desc: "For French-speaking markets" },
     ],
