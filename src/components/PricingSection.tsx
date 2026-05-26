@@ -204,7 +204,7 @@ const PricingSection = () => {
                   </div>
                 </div>
 
-                <p className={`text-sm mb-5 leading-relaxed ${descClass}`}>
+                <p className={`text-sm mb-4 sm:mb-5 leading-relaxed ${descClass}`}>
                   {t(`pricing.tier.${tierKey}.desc`)}
                 </p>
 
