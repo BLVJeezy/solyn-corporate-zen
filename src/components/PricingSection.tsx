@@ -144,8 +144,8 @@ const PricingSection = () => {
             transition={{ duration: 0.25 }}>
             
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 md:gap-0 items-stretch mb-5">
-          {/* Monthly Maintenance - Light card (like Sprints) */}
+        <div className="max-w-md mx-auto">
+          {/* Monthly Maintenance - Light card */}
           <motion.div
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -187,68 +187,6 @@ const PricingSection = () => {
                 </li>
                   )}
             </ul>
-          </motion.div>
-
-          {/* Plus divider */}
-          <div className="hidden md:flex items-center justify-center px-4">
-            <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
-          </div>
-          <div className="flex md:hidden items-center justify-center py-4">
-            <span className="w-10 h-10 rounded-full bg-muted border border-border flex items-center justify-center text-xl font-bold text-muted-foreground">+</span>
-          </div>
-
-          {/* Website Development - Dark card (like MVP) */}
-          <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.08 }}
-                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
-                style={{
-                  backgroundImage: `url(${diamondsBg})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center"
-                }}>
-                
-            <div className="absolute inset-0 bg-black/60 z-0" />
-            <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-[1]"
-                  style={{
-                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.15) 55%, transparent 60%)",
-                    animation: "shimmer 2.5s ease-in-out infinite"
-                  }} />
-                
-
-            <div className="relative z-10 flex flex-col flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                  <Rocket className="w-5 h-5 text-white" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-bold text-white">{t(plans[1].nameKey)}</h3>
-                  <p className="text-xs text-white/60">{t(plans[1].descKey)}</p>
-                </div>
-              </div>
-
-
-              <Button
-                    onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
-                    
-                {t(plans[1].ctaKey)}
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-
-              <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
-              <ul className="space-y-2.5 flex-1">
-                {plans[1].features.map((fKey) =>
-                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
-                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
-                    {t(fKey)}
-                  </li>
-                    )}
-              </ul>
-            </div>
           </motion.div>
         </div>
         </motion.div>
