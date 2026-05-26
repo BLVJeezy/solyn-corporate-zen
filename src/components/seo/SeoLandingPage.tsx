@@ -252,57 +252,6 @@ const SeoLandingPage = ({ content }: { content: SeoLandingContent }) => {
         </div>
       </section>
 
-      {/* PRICING */}
-      <section className="px-6 py-20 md:py-28 bg-[hsl(0_0%_98%)]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4">{content.pricingTitle}</h2>
-            <p className="text-gray-600">{content.pricingSubtitle}</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {content.pricingItems.map((item, i) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.1 }} viewport={{ once: true }}
-                className={`p-8 rounded-3xl border ${
-                  i === 1
-                    ? "bg-[hsl(0_0%_7%)] text-white border-transparent shadow-xl scale-[1.02]"
-                    : "bg-white border-gray-100"
-                }`}
-              >
-                {i === 1 && (
-                  <div className="inline-block text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-gradient-to-r from-[#c9a84c] to-[#8a7a3d] text-black font-semibold mb-4">
-                    Meest gekozen
-                  </div>
-                )}
-                <h3 className="text-lg font-semibold mb-1">{item.name}</h3>
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-4xl font-medium tracking-tight">{item.price}</span>
-                  <span className={`text-xs ${i === 1 ? "text-white/50" : "text-gray-500"}`}>{item.period}</span>
-                </div>
-                <ul className="space-y-2.5 mb-7">
-                  {item.bullets.map((b) => (
-                    <li key={b} className="flex gap-2 text-sm">
-                      <Check className={`w-4 h-4 flex-shrink-0 mt-0.5 ${i === 1 ? "text-[#c9a84c]" : "text-green-600"}`} />
-                      <span className={i === 1 ? "text-white/85" : "text-gray-700"}>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  onClick={() => navigate("/apply")}
-                  className={`w-full rounded-full ${
-                    i === 1 ? "bg-white text-black hover:bg-white/90" : "bg-black text-white hover:bg-black/90"
-                  }`}
-                >
-                  {item.cta}
-                </Button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* TESTIMONIALS */}
       <section className="px-6 py-20 md:py-28">
         <div className="max-w-6xl mx-auto">
