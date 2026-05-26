@@ -275,13 +275,13 @@ const PricingSection = () => {
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground mb-6">{t("pricing.sprints.desc")}</p>
+            <p className="text-sm text-muted-foreground mb-4 sm:mb-6">{t("pricing.sprints.desc")}</p>
 
-            <p className="text-xs text-muted-foreground mb-6">{t("pricing.sprints.pauseCancel")}</p>
+            <p className="text-xs text-muted-foreground mb-4 sm:mb-6">{t("pricing.sprints.pauseCancel")}</p>
 
             <Button
                   onClick={() => navigate("/book")}
-                  className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-6"
+                  className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-5 sm:mb-6"
                   variant="outline">
                   
               {t("pricing.sprints.cta")}
