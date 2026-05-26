@@ -263,7 +263,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.08 }}
-                className="rounded-2xl border border-border bg-card p-7 md:p-8 flex flex-col">
+                className="rounded-2xl border border-border bg-card p-4 sm:p-5 md:p-8 flex flex-col">
                 
             <div className="flex items-center gap-3 mb-4">
               <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
