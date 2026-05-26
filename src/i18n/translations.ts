@@ -567,7 +567,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.bookCall.subtitle": "Réservez un appel gratuit de 15 minutes avec notre équipe",
     "pricing.mostPopular": "Le plus populaire",
     "pricing.label": "Forfaits",
-    "pricing.heading": "Prix Transparents",
+    "pricing.heading": "Prix",
     "pricing.subtitle": "Pas de frais cachés. Choisissez le forfait qui correspond à votre phase.",
     "pricing.section.websites": "Création de Sites Web",
     "pricing.section.apps": "Développement d'Applications",
