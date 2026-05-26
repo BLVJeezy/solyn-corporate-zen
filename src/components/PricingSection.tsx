@@ -144,7 +144,7 @@ const PricingSection = () => {
             transition={{ duration: 0.25 }}>
             
         {/* Plans Grid - 3 tier cards */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid md:grid-cols-3 gap-3 md:gap-6">
           {(["starter", "business", "larger"] as const).map((tierKey, idx) => {
             const isFeatured = tierKey === "business";
             const isPremium = tierKey === "larger";
