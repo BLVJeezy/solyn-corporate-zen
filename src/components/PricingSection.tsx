@@ -216,8 +216,8 @@ const PricingSection = () => {
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
 
-                <h4 className={`text-sm font-semibold mb-3 ${includedClass}`}>{t("pricing.whatsIncluded")}</h4>
-                <ul className="space-y-2.5 flex-1">
+                <h4 className={`text-sm font-semibold mb-2.5 sm:mb-3 ${includedClass}`}>{t("pricing.whatsIncluded")}</h4>
+                <ul className="space-y-2 sm:space-y-2.5 flex-1">
                   {featureKeys.map((fKey) => {
                     const raw = t(fKey);
                     const [label, ...rest] = raw.split("::");
