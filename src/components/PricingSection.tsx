@@ -145,71 +145,69 @@ const PricingSection = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}>
             
-        {/* Plans Grid */}
-        <div className="max-w-md mx-auto">
-          {/* Monthly Maintenance - Light card */}
-          <motion.div
+        {/* Plans Grid - 3 tier cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {(["starter", "business", "larger"] as const).map((tierKey, idx) => {
+            const isFeatured = tierKey === "business";
+            return (
+              <motion.div
+                key={tierKey}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="rounded-2xl border border-border bg-card p-7 md:p-8 flex flex-col">
-                
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-foreground">{t(plans[0].nameKey)}</h3>
-                <p className="text-xs text-muted-foreground">{t(plans[0].descKey)}</p>
-              </div>
-            </div>
+                transition={{ delay: idx * 0.08 }}
+                className={`rounded-2xl border p-7 md:p-8 flex flex-col ${
+                  isFeatured
+                    ? "border-foreground bg-card shadow-lg"
+                    : "border-border bg-card"
+                }`}>
 
-            {plans[0].badge &&
-                <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground bg-muted px-2.5 py-1 rounded-full self-start mb-3">
-                {t(plans[0].badge)}
-              </span>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-white" />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground">{t(`pricing.growth.tier.${tierKey}`)}</h3>
+                    <p className="text-xs text-muted-foreground">{t(plans[0].nameKey)}</p>
+                  </div>
+                </div>
+
+                {plans[0].badge &&
+                  <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground bg-muted px-2.5 py-1 rounded-full self-start mb-4">
+                    {t(plans[0].badge)}
+                  </span>
                 }
 
-            {/* Tier toggle */}
-            <div className="inline-flex rounded-full bg-muted p-1 border border-border mb-5 self-start">
-              {(["starter", "business", "larger"] as const).map((opt) =>
-                <button
-                  key={opt}
-                  onClick={() => setTier(opt)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
-                    tier === opt
-                      ? "bg-foreground text-background shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}>
-                  {t(`pricing.growth.tier.${opt}`)}
-                </button>
-              )}
-            </div>
-
-            <Button
+                <Button
                   onClick={() => navigate("/book")}
-                  className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-6"
-                  variant="outline">
-                  
-              {t(plans[0].ctaKey)}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
+                  className={`w-full font-medium rounded-full mb-6 ${
+                    isFeatured
+                      ? "bg-foreground text-background hover:bg-foreground/90"
+                      : "border border-border bg-card text-foreground hover:bg-muted"
+                  }`}
+                  variant={isFeatured ? "default" : "outline"}>
+                  {t(plans[0].ctaKey)}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
 
-            <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
-            <ul className="space-y-2.5 flex-1">
-              <li key={tierPagesKey} className="flex items-center gap-2 text-sm text-foreground font-medium">
-                <CheckCircle className="w-4 h-4 text-foreground/70 flex-shrink-0" />
-                {t(tierPagesKey)}
-              </li>
-              {plans[0].features.map((fKey) =>
-                  <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
-                  {t(fKey)}
-                </li>
+                <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
+                <ul className="space-y-2.5 flex-1">
+                  <li className="flex items-center gap-2 text-sm text-foreground font-medium">
+                    <CheckCircle className="w-4 h-4 text-foreground/70 flex-shrink-0" />
+                    {t(`pricing.growth.tier.${tierKey}.pages`)}
+                  </li>
+                  {plans[0].features.map((fKey) =>
+                    <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
+                      {t(fKey)}
+                    </li>
                   )}
-            </ul>
-          </motion.div>
+                </ul>
+              </motion.div>
+            );
+          })}
         </div>
+
         </motion.div>
           }
 
