@@ -170,6 +170,21 @@ const PricingSection = () => {
               </span>
                 }
 
+            {/* Tier toggle */}
+            <div className="inline-flex rounded-full bg-muted p-1 border border-border mb-5 self-start">
+              {(["starter", "business", "larger"] as const).map((opt) =>
+                <button
+                  key={opt}
+                  onClick={() => setTier(opt)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${
+                    tier === opt
+                      ? "bg-foreground text-background shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}>
+                  {t(`pricing.growth.tier.${opt}`)}
+                </button>
+              )}
+            </div>
 
             <Button
                   onClick={() => navigate("/book")}
@@ -182,6 +197,10 @@ const PricingSection = () => {
 
             <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
             <ul className="space-y-2.5 flex-1">
+              <li key={tierPagesKey} className="flex items-center gap-2 text-sm text-foreground font-medium">
+                <CheckCircle className="w-4 h-4 text-foreground/70 flex-shrink-0" />
+                {t(tierPagesKey)}
+              </li>
               {plans[0].features.map((fKey) =>
                   <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
