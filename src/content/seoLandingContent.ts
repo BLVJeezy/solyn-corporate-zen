@@ -56,16 +56,17 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     locale: "nl",
     path: "/website-laten-maken",
     hreflang: "nl-BE",
-    metaTitle: "Website Laten Maken | Webdevelopment Bedrijf Solyn — Vanaf €3.000",
+    metaTitle: "Website Laten Maken | Webdevelopment Bedrijf Solyn — Prijs Op Maat",
     metaDescription:
       "Een professionele website laten maken? Solyn is hét webdevelopment bedrijf voor ondernemers, KMO's en startups. Snelle, SEO-vriendelijke websites op maat. Vraag gratis offerte.",
+
     keywords:
       "website laten maken, webdevelopment bedrijf, website bouwen, webdesign, website op maat, webdevelopment Belgïe, professionele website, website kopen, webbureau, web design Antwerpen, website maken prijs",
     eyebrow: "Webdevelopment bedrijf · België & EU",
     h1: "Website laten maken die écht klanten oplevert",
     h1Highlight: "klanten oplevert",
     subHeadline:
-      "Solyn is het webdevelopment bedrijf voor ondernemers die een professionele website willen laten maken — snel, SEO-geoptimaliseerd en volledig op maat. Van €3.000, opgeleverd in 7 tot 14 dagen.",
+      "Solyn is het webdevelopment bedrijf voor ondernemers die een professionele website willen laten maken — snel, SEO-geoptimaliseerd en volledig op maat. Prijs steeds op maat van uw project, opgeleverd in 7 tot 14 dagen.",
     ctaPrimary: "Vraag gratis offerte aan",
     ctaSecondary: "Bekijk onze projecten",
     trustLine: "Vertrouwd door 200+ ondernemers in België, Nederland en daarbuiten",
@@ -73,7 +74,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     stats: [
       { value: "200+", label: "Websites gebouwd" },
       { value: "14 dagen", label: "Gem. opleverduur" },
-      { value: "€3K", label: "Startprijs op maat" },
+      { value: "Op maat", label: "Prijs per project" },
       { value: "98%", label: "Klanttevredenheid" },
     ],
     servicesTitle: "Wat we voor u bouwen",
@@ -118,9 +119,10 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
         desc: "Geen maandenlange trajecten. We werken in sprints en zetten uw website live binnen twee weken — zonder kwaliteitsverlies.",
       },
       {
-        title: "Vaste prijs vanaf €3.000",
-        desc: "Transparante prijzen, geen verborgen kosten. U weet vooraf exact wat u betaalt en wat u krijgt.",
+        title: "Prijs altijd op maat",
+        desc: "Transparante offerte op maat van uw project, doelen en budget. U weet vooraf exact wat u betaalt en wat u krijgt — geen verborgen kosten.",
       },
+
       {
         title: "SEO standaard inbegrepen",
         desc: "Technische SEO, gestructureerde data, snelle laadtijden en zoekwoordoptimalisatie zitten standaard in elk pakket.",
@@ -156,7 +158,8 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     faq: [
       {
         q: "Wat kost het om een website te laten maken in 2026?",
-        a: "Een professionele website laten maken kost bij Solyn vanaf €3.000 voor een Starter Website tot €9.500+ voor een volledig maatwerk platform of webshop. De exacte prijs hangt af van het aantal pagina's, integraties en SEO-strategie.",
+        a: "Bij Solyn is de prijs altijd op maat van uw project. We bekijken samen het aantal pagina's, integraties, design-wensen en SEO-strategie en bezorgen u binnen 48 uur een vaste offerte — zonder verborgen kosten.",
+
       },
       {
         q: "Hoe lang duurt het om een website te bouwen?",
@@ -186,7 +189,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     longFormParagraphs: [
       "Een website laten maken is in 2026 geen luxe meer — het is de basis van elk professioneel bedrijf. Of u nu een lokale dienstverlener bent, een KMO, een startup of een gevestigde merknaam: uw website is meestal het eerste contactmoment met een potentiële klant. Daarom is het cruciaal om niet zomaar 'een website' te laten bouwen, maar te kiezen voor een webdevelopment bedrijf dat snelheid, design én SEO op het hoogste niveau combineert.",
       "Bij Solyn bouwen we websites op maat voor ondernemers die meer willen dan een online visitekaartje. We combineren strakke webdesign, technische optimalisatie en SEO-copywriting in één traject. Het resultaat: een website die er prachtig uitziet, razendsnel laadt, hoog scoort in Google en — vooral — daadwerkelijk leads en klanten oplevert. Onze klanten zien gemiddeld 3× meer aanvragen binnen drie maanden na lancering.",
-      "Wat ons onderscheidt als webdevelopment bedrijf is onze focus op transparantie en snelheid. We werken in sprints van één tot twee weken, hanteren vaste prijzen vanaf €3.000 en leveren uw website op binnen 14 dagen. U weet vooraf exact wat u krijgt, wat het kost en wanneer het live staat. Geen verrassingen, geen eindeloze offertes, geen verborgen kosten.",
+      "Wat ons onderscheidt als webdevelopment bedrijf is onze focus op transparantie en snelheid. We werken in sprints van één tot twee weken, hanteren een prijs op maat van uw project en leveren uw website op binnen 14 dagen. U weet vooraf exact wat u krijgt, wat het kost en wanneer het live staat. Geen verrassingen, geen eindeloze offertes, geen verborgen kosten.",
       "Wilt u een professionele website laten maken die past bij uw merk, doelgroep en groeidoelen? Vraag vrijblijvend een offerte aan of plan een gratis strategiegesprek. Binnen 48 uur ontvangt u een concreet voorstel met een vaste prijs en planning.",
     ],
   },
@@ -195,7 +198,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     locale: "fr",
     path: "/creation-site-web",
     hreflang: "fr-BE",
-    metaTitle: "Création Site Web | Agence Web Solyn — À partir de 3.000€",
+    metaTitle: "Création Site Web | Agence Web Solyn — Devis Sur Mesure",
     metaDescription:
       "Faire créer un site web professionnel ? Solyn est l'agence web pour entrepreneurs, PME et startups. Sites rapides, SEO-friendly et sur mesure. Devis gratuit.",
     keywords:
@@ -204,7 +207,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     h1: "Création de site web qui génère vraiment des clients",
     h1Highlight: "génère vraiment des clients",
     subHeadline:
-      "Solyn est l'agence web pour les entrepreneurs qui veulent faire créer un site internet professionnel — rapide, optimisé SEO et entièrement sur mesure. À partir de 3.000€, livré en 7 à 14 jours.",
+      "Solyn is l'agence web pour les entrepreneurs qui veulent faire créer un site internet professionnel — rapide, optimisé SEO et entièrement sur mesure. Prix toujours sur mesure de votre projet, livré en 7 à 14 jours.",
     ctaPrimary: "Demander un devis gratuit",
     ctaSecondary: "Voir nos projets",
     trustLine: "Choisi par plus de 200 entrepreneurs en Belgique, France et au-delà",
@@ -212,7 +215,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     stats: [
       { value: "200+", label: "Sites livrés" },
       { value: "14 jours", label: "Délai moyen" },
-      { value: "3K€", label: "Prix de départ" },
+      { value: "Sur mesure", label: "Prix par projet" },
       { value: "98%", label: "Satisfaction client" },
     ],
     servicesTitle: "Ce que nous créons pour vous",
@@ -229,7 +232,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     whyTitle: "Pourquoi les entrepreneurs choisissent Solyn ?",
     whyItems: [
       { title: "Livré rapidement (7–14 jours)", desc: "Pas de projets qui s'éternisent. Nous travaillons en sprints et livrons votre site en deux semaines — sans compromis sur la qualité." },
-      { title: "Prix fixe à partir de 3.000€", desc: "Tarifs transparents, aucun coût caché. Vous savez à l'avance ce que vous payez et ce que vous obtenez." },
+      { title: "Prix toujours sur mesure", desc: "Devis transparent adapté à votre projet, vos objectifs et votre budget. Vous savez à l'avance ce que vous payez — aucun coût caché." },
       { title: "SEO inclus de série", desc: "SEO technique, données structurées, vitesse de chargement et optimisation des mots-clés inclus dans chaque pack." },
       { title: "Vous possédez votre code", desc: "Vous êtes propriétaire à 100% de votre site, code et domaine. Aucun vendor lock-in, aucune mauvaise surprise." },
     ],
@@ -257,7 +260,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     faqTitle: "Questions fréquentes sur la création d'un site web",
     faqSubtitle: "Tout ce qu'il faut savoir avant de faire créer votre site chez Solyn.",
     faq: [
-      { q: "Combien coûte la création d'un site web en 2026 ?", a: "Faire créer un site web chez Solyn coûte à partir de 3.000€ pour un site Starter jusqu'à 9.500€+ pour une plateforme sur mesure ou e-commerce. Le prix dépend du nombre de pages, des intégrations et de la stratégie SEO." },
+      { q: "Combien coûte la création d'un site web en 2026 ?", a: "Chez Solyn, le prix est toujours sur mesure de votre projet. Nous évaluons ensemble le nombre de pages, les intégrations, le design et la stratégie SEO, puis vous envoyons un devis fixe sous 48 h — sans coût caché." },
       { q: "Combien de temps pour créer un site web ?", a: "Notre site Starter est livré en 7 jours, le site Business en 14 jours. Pour les projets sur mesure, prévoyez 4 à 8 semaines selon la portée." },
       { q: "Le SEO est-il inclus ?", a: "Oui. Chaque site que nous créons inclut le SEO technique, la vitesse de chargement, l'optimisation mobile, les données structurées et l'optimisation des mots-clés. Le contenu SEO continu est optionnel en mensuel." },
       { q: "Suis-je propriétaire de mon site et domaine ?", a: "Vous êtes propriétaire à 100% de votre code, design et nom de domaine. Aucun vendor lock-in — vous pouvez migrer à tout moment." },
@@ -271,7 +274,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     longFormParagraphs: [
       "En 2026, faire créer un site web n'est plus un luxe — c'est la base de toute entreprise professionnelle. Que vous soyez un prestataire local, une PME, une startup ou une marque établie : votre site est souvent le premier point de contact avec un client potentiel. Il est donc crucial de ne pas simplement « faire un site », mais de choisir une agence web qui combine rapidité, design et SEO au plus haut niveau.",
       "Chez Solyn, nous créons des sites web sur mesure pour les entrepreneurs qui veulent plus qu'une carte de visite en ligne. Nous combinons design web soigné, optimisation technique et copywriting SEO dans un seul parcours. Le résultat : un site magnifique, ultra-rapide, bien référencé sur Google et — surtout — qui génère réellement des leads. Nos clients voient en moyenne 3× plus de demandes dans les trois mois suivant le lancement.",
-      "Ce qui nous distingue comme agence web, c'est notre obsession de la transparence et de la rapidité. Nous travaillons en sprints d'une à deux semaines, avec des prix fixes à partir de 3.000€, et livrons votre site en 14 jours. Vous savez à l'avance ce que vous obtenez, combien cela coûte et quand cela sera en ligne.",
+      "Ce qui nous distingue comme agence web, c'est notre obsession de la transparence et de la rapidité. Nous travaillons en sprints d'une à de de semaines, avec des prix sur mesure de votre projet, et livrons votre site en 14 jours. Vous savez à l'avance ce que vous obtenez, combien cela coûte et quand cela sera en ligne.",
       "Vous voulez faire créer un site web professionnel adapté à votre marque ? Demandez un devis gratuit ou planifiez un appel stratégique. Vous recevrez une proposition concrète sous 48 heures.",
     ],
   },
@@ -280,7 +283,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     locale: "en",
     path: "/web-development-company",
     hreflang: "en",
-    metaTitle: "Web Development Company | Build a Website with Solyn — From €3,000",
+    metaTitle: "Web Development Company | Build a Website with Solyn — Custom Quotes",
     metaDescription:
       "Looking for a web development company to build your website? Solyn designs and builds fast, SEO-optimised websites for founders, SMEs and startups. Get a free quote.",
     keywords:
@@ -289,7 +292,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     h1: "The web development company that actually wins you customers",
     h1Highlight: "actually wins you customers",
     subHeadline:
-      "Solyn is the web development company for founders who want a professional website built — fast, SEO-optimised and fully custom. From €3,000, delivered in 7 to 14 days.",
+      "Solyn is the web development company for founders who want a professional website built — fast, SEO-optimised and fully custom. Custom pricing based on your project, delivered in 7 to 14 days.",
     ctaPrimary: "Get a free quote",
     ctaSecondary: "See our work",
     trustLine: "Trusted by 200+ founders across Europe and beyond",
@@ -297,7 +300,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     stats: [
       { value: "200+", label: "Websites shipped" },
       { value: "14 days", label: "Avg. delivery" },
-      { value: "€3K", label: "Starting price" },
+      { value: "Custom", label: "Price per project" },
       { value: "98%", label: "Client satisfaction" },
     ],
     servicesTitle: "What we build for you",
@@ -314,7 +317,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     whyTitle: "Why founders choose Solyn",
     whyItems: [
       { title: "Shipped fast (7–14 days)", desc: "No multi-month projects. We work in sprints and launch your website within two weeks — no quality compromise." },
-      { title: "Fixed price from €3,000", desc: "Transparent pricing, no hidden fees. You know exactly what you pay and what you get." },
+      { title: "Custom pricing always", desc: "Transparent quote tailored to your project, goals and budget. You know upfront exactly what you pay — no hidden fees." },
       { title: "SEO included by default", desc: "Technical SEO, structured data, fast loading and on-page optimisation come standard in every package." },
       { title: "You own your code", desc: "You own your code, design and domain 100%. No vendor lock-in, no surprises." },
     ],
@@ -342,7 +345,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     faqTitle: "Frequently asked questions about web development",
     faqSubtitle: "Everything you need to know before hiring Solyn as your web development company.",
     faq: [
-      { q: "How much does a website cost in 2026?", a: "At Solyn, having a professional website built starts at €3,000 for a Starter Website and goes up to €9,500+ for a fully custom platform or webshop. The exact price depends on pages, integrations and SEO strategy." },
+      { q: "How much does a website cost in 2026?", a: "At Solyn, the price is always tailored to your project. We'll review pages, integrations, design and SEO strategy together, then send a fixed quote within 48 hours — with no hidden fees." },
       { q: "How long does it take to build a website?", a: "Our Starter Website ships within 7 days, the Business Website within 14 days. Custom projects typically take 4 to 8 weeks depending on scope." },
       { q: "Is SEO included when you build my website?", a: "Yes. Every website we build includes technical SEO, fast loading, mobile optimisation, structured data and on-page keyword optimisation. Ongoing SEO content is available as an optional monthly add-on." },
       { q: "Do I own my website and domain?", a: "You own your code, design and domain 100%. Solyn never uses vendor lock-in — you can migrate at any time." },
@@ -356,7 +359,7 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
     longFormParagraphs: [
       "In 2026, having a website built is no longer a luxury — it's the foundation of any serious business. Whether you're a local service provider, an SME, a startup or an established brand, your website is usually the first touchpoint with a potential customer. That's why it's critical to choose a web development company that combines speed, design and SEO at the highest level — not just 'a website'.",
       "At Solyn, we build websites for founders who want more than an online business card. We combine sharp web design, technical optimisation and SEO copywriting into a single sprint. The result: a website that looks beautiful, loads in under a second, ranks on Google and — most importantly — actually drives leads and customers. Our clients see on average 3× more inbound inquiries within three months of launch.",
-      "What sets us apart as a web development company is our obsession with transparency and speed. We work in one- to two-week sprints, with fixed prices starting at €3,000, and ship your website within 14 days. You know upfront exactly what you'll get, what it'll cost and when it'll go live. No surprises, no endless quotes, no hidden fees.",
+      "What sets us apart as a web development company is our obsession with transparency and speed. We work in one- to two-week sprints, with custom pricing based on your project, and ship your website within 14 days. You know upfront exactly what you'll get, what it'll cost and when it'll go live. No surprises, no endless quotes, no hidden fees.",
       "Want a professional website built that matches your brand, audience and growth goals? Request a free quote or book a strategy call. You'll get a concrete proposal with a fixed price and timeline within 48 hours.",
     ],
   },
