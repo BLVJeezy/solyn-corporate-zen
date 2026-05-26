@@ -331,13 +331,13 @@ const PricingSection = () => {
                 </div>
               </div>
 
-              <p className="text-sm text-white/50 mb-6">{t("pricing.diamond.subtitle")}</p>
+              <p className="text-sm text-white/50 mb-4 sm:mb-6">{t("pricing.diamond.subtitle")}</p>
 
-              <p className="text-xs text-white/40 mb-6">{t("pricing.diamond.pauseCancel")}</p>
+              <p className="text-xs text-white/40 mb-4 sm:mb-6">{t("pricing.diamond.pauseCancel")}</p>
 
               <Button
                     onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
+                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-5 sm:mb-6">
                     
                 {t("pricing.diamond.cta")}
               </Button>
