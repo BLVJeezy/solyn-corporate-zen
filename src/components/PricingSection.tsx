@@ -342,11 +342,11 @@ const PricingSection = () => {
                 {t("pricing.diamond.cta")}
               </Button>
 
-              <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
-              <ul className="space-y-2.5 flex-1">
+              <h4 className="text-sm font-bold text-white mb-2.5 sm:mb-3">{t("pricing.whatsIncluded")}</h4>
+              <ul className="space-y-2 sm:space-y-2.5 flex-1">
                 {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) =>
-                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
-                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
+                    <li key={fKey} className="flex items-start gap-2 text-sm text-white/60">
+                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
                     {t(fKey)}
                   </li>
                     )}
