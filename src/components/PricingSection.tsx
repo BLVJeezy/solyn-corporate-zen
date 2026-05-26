@@ -287,11 +287,11 @@ const PricingSection = () => {
               {t("pricing.sprints.cta")}
             </Button>
 
-            <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
-            <ul className="space-y-2.5 flex-1">
+            <h4 className="text-sm font-semibold text-foreground mb-2.5 sm:mb-3">{t("pricing.whatsIncluded")}</h4>
+            <ul className="space-y-2 sm:space-y-2.5 flex-1">
               {["pricing.sprints.f1", "pricing.sprints.f2", "pricing.sprints.f3", "pricing.sprints.f4", "pricing.sprints.f5", "pricing.sprints.f6"].map((fKey) =>
-                  <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
+                  <li key={fKey} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0 mt-0.5" />
                   {t(fKey)}
                 </li>
                   )}
