@@ -56,13 +56,14 @@ const StepBudget = ({ state, update, onNext, onBack, loading }: Props) => {
       </Field>
 
       <Field label={t("funnel.s4.readyLabel")}>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {(["yes", "maybe", "no"] as InvestmentReady[]).map((k) => (
             <ChoiceCard
               key={k}
               label={t(investmentReadyKeys[k])}
               selected={state.investment_ready === k}
               onClick={() => update({ investment_ready: k })}
+              compact
             />
           ))}
         </div>
