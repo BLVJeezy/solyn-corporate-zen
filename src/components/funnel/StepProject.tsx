@@ -56,20 +56,21 @@ const StepProject = ({ state, update, onNext, onBack }: Props) => {
       </Field>
 
       <Field label={t("funnel.s3.seoLabel")}>
-        <div className="grid grid-cols-2 gap-3">
-          <ChoiceCard label={t("funnel.yes")} selected={state.seo_important === true} onClick={() => update({ seo_important: true })} />
-          <ChoiceCard label={t("funnel.no")} selected={state.seo_important === false} onClick={() => update({ seo_important: false })} />
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+          <ChoiceCard label={t("funnel.yes")} selected={state.seo_important === true} onClick={() => update({ seo_important: true })} compact />
+          <ChoiceCard label={t("funnel.no")} selected={state.seo_important === false} onClick={() => update({ seo_important: false })} compact />
         </div>
       </Field>
 
       <Field label={t("funnel.s3.aiLabel")} hint={t("funnel.s3.aiHint")}>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
           {(["yes", "no", "unsure"] as AiRanking[]).map((k) => (
             <ChoiceCard
               key={k}
               label={t(aiRankingKeys[k])}
               selected={state.ai_ranking === k}
               onClick={() => update({ ai_ranking: k })}
+              compact
             />
           ))}
         </div>
