@@ -69,7 +69,7 @@ Deno.serve(async (req) => {
         supabase.functions.invoke("send-transactional-email", {
           body: {
             templateName: "owner-new-application",
-            recipientEmail: "owner@placeholder",
+            recipientEmail: Deno.env.get("OWNER_EMAIL") || "jasonbalongo@gmail.com",
             idempotencyKey: `owner-app-${data.id}`,
             templateData,
           },
