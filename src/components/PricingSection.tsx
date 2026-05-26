@@ -220,11 +220,20 @@ const PricingSection = () => {
                 <ul className="space-y-2 sm:space-y-2.5 flex-1">
                   {featureKeys.map((fKey) => {
                     const raw = t(fKey);
-                    const value = raw.includes("::") ? raw.split("::").slice(1).join("::") : raw;
+                    const [label, ...rest] = raw.split("::");
+                    const value = rest.join("::");
                     return (
                       <li key={fKey} className={`flex items-start gap-2 text-sm ${featureTextClass}`}>
                         <CheckCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${checkClass}`} />
-                        <span>{value}</span>
+                        <span>
+                          {value ? (
+                            <>
+                              <span className={`font-semibold ${featureLabelClass}`}>{label}:</span> {value}
+                            </>
+                          ) : (
+                            label
+                          )}
+                        </span>
                       </li>
                     );
                   })}
