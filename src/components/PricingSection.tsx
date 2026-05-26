@@ -144,11 +144,41 @@ const PricingSection = () => {
             transition={{ duration: 0.25 }}>
             
         {/* Plans Grid - 3 tier cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
           {(["starter", "business", "larger"] as const).map((tierKey, idx) => {
             const isFeatured = tierKey === "business";
+            const isPremium = tierKey === "larger";
             const featureCount = tierKey === "starter" ? 6 : 7;
             const featureKeys = Array.from({ length: featureCount }, (_, i) => `pricing.tier.${tierKey}.f${i + 1}`);
+
+            const TierIcon = tierKey === "starter" ? Zap : tierKey === "business" ? Rocket : Crown;
+
+            const cardClasses = isPremium
+              ? "rounded-2xl border border-white/10 bg-[hsl(0_0%_7%)] text-white shadow-xl relative overflow-hidden"
+              : isFeatured
+                ? "rounded-2xl border-2 border-foreground bg-card shadow-xl relative ring-1 ring-foreground/5"
+                : "rounded-2xl border border-border bg-card";
+
+            const iconWrapClasses = isPremium
+              ? "bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-600"
+              : isFeatured
+                ? "bg-gradient-to-br from-violet-500 via-fuchsia-500 to-pink-500"
+                : "bg-gradient-to-br from-sky-400 to-blue-600";
+
+            const headingClass = isPremium ? "text-white" : "text-foreground";
+            const subtitleClass = isPremium ? "text-white/60" : "text-muted-foreground";
+            const descClass = isPremium ? "text-white/70" : "text-muted-foreground";
+            const includedClass = isPremium ? "text-white" : "text-foreground";
+            const featureTextClass = isPremium ? "text-white/70" : "text-muted-foreground";
+            const featureLabelClass = isPremium ? "text-white" : "text-foreground";
+            const checkClass = isPremium ? "text-amber-400" : isFeatured ? "text-violet-500" : "text-sky-500";
+
+            const buttonClass = isPremium
+              ? "bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 text-black hover:brightness-110"
+              : isFeatured
+                ? "bg-foreground text-background hover:bg-foreground/90"
+                : "border border-border bg-card text-foreground hover:bg-muted";
+
             return (
               <motion.div
                 key={tierKey}
@@ -156,51 +186,49 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08 }}
-                className={`rounded-2xl border p-7 md:p-8 flex flex-col ${
-                  isFeatured
-                    ? "border-foreground bg-card shadow-lg"
-                    : "border-border bg-card"
-                }`}>
+                className={`${cardClasses} p-5 sm:p-6 md:p-8 flex flex-col`}>
+
+                {isFeatured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest font-bold text-background bg-foreground px-3 py-1 rounded-full shadow">
+                    {t("pricing.mostPopular")}
+                  </span>
+                )}
 
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-white" />
+                  <span className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-sm ${iconWrapClasses}`}>
+                    <TierIcon className={`w-5 h-5 ${isPremium ? "text-black" : "text-white"}`} />
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold text-foreground">{t(`pricing.growth.tier.${tierKey}`)}</h3>
-                    <p className="text-xs text-muted-foreground">{t(`pricing.tier.${tierKey}.subtitle`)}</p>
+                    <h3 className={`text-lg font-bold ${headingClass}`}>{t(`pricing.growth.tier.${tierKey}`)}</h3>
+                    <p className={`text-xs ${subtitleClass}`}>{t(`pricing.tier.${tierKey}.subtitle`)}</p>
                   </div>
                 </div>
 
-                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                <p className={`text-sm mb-5 leading-relaxed ${descClass}`}>
                   {t(`pricing.tier.${tierKey}.desc`)}
                 </p>
 
                 <Button
                   onClick={() => navigate("/book")}
-                  className={`w-full font-medium rounded-full mb-6 ${
-                    isFeatured
-                      ? "bg-foreground text-background hover:bg-foreground/90"
-                      : "border border-border bg-card text-foreground hover:bg-muted"
-                  }`}
-                  variant={isFeatured ? "default" : "outline"}>
+                  className={`w-full font-medium rounded-full mb-6 ${buttonClass}`}
+                  variant={isFeatured && !isPremium ? "default" : "outline"}>
                   {t(plans[0].ctaKey)}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
 
-                <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
+                <h4 className={`text-sm font-semibold mb-3 ${includedClass}`}>{t("pricing.whatsIncluded")}</h4>
                 <ul className="space-y-2.5 flex-1">
                   {featureKeys.map((fKey) => {
                     const raw = t(fKey);
                     const [label, ...rest] = raw.split("::");
                     const value = rest.join("::");
                     return (
-                      <li key={fKey} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="w-4 h-4 mt-0.5 text-foreground/60 flex-shrink-0" />
+                      <li key={fKey} className={`flex items-start gap-2 text-sm ${featureTextClass}`}>
+                        <CheckCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${checkClass}`} />
                         <span>
                           {value ? (
                             <>
-                              <span className="font-semibold text-foreground">{label}:</span> {value}
+                              <span className={`font-semibold ${featureLabelClass}`}>{label}:</span> {value}
                             </>
                           ) : (
                             label
@@ -214,6 +242,7 @@ const PricingSection = () => {
             );
           })}
         </div>
+
 
 
         </motion.div>
