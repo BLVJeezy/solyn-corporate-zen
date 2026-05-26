@@ -304,7 +304,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.16 }}
-                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+                className="rounded-2xl p-4 sm:p-5 md:p-8 relative overflow-hidden group flex flex-col"
                 style={{
                   backgroundImage: `url(${diamondTexture})`,
                   backgroundSize: "cover",
