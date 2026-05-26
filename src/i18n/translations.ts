@@ -23,8 +23,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiële",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner van",
-    "homeHero.headline": "Een website laten maken bij Solyn",
-    "homeHero.subheadline": "De #1 product studio — vertrouwd door startups en founders om producten te ontwerpen, bouwen en lanceren die schalen.",
+    "homeHero.headline": "Professionele website laten maken — op maat door Solyn",
+    "homeHero.subheadline": "Wij ontwerpen en bouwen snelle, conversiegerichte websites voor ondernemers, KMO's en startups. Vraag een vrijblijvende offerte aan.",
     "homeHero.cta1": "Boek een Gesprek",
     "homeHero.cta2": "Bekijk Prijzen",
 
@@ -476,8 +476,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiel",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partenaire de",
-    "homeHero.headline": "Faire créer son site web par Solyn",
-    "homeHero.subheadline": "Le studio produit IA n°1 — choisi par les startups et fondateurs pour concevoir, construire et lancer des produits qui scalent.",
+    "homeHero.headline": "Faire créer un site web professionnel sur mesure par Solyn",
+    "homeHero.subheadline": "Nous concevons et développons des sites rapides et orientés conversion pour entrepreneurs, PME et startups. Demandez un devis gratuit.",
     "homeHero.cta1": "Réserver un Appel",
     "homeHero.cta2": "Voir les Tarifs",
 
@@ -929,8 +929,8 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Official",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner of",
-    "homeHero.headline": "Have your website built by Solyn",
-    "homeHero.subheadline": "The #1 product studio — trusted by startups and founders to design, build, and launch products that scale.",
+    "homeHero.headline": "Get a professional website built — custom-made by Solyn",
+    "homeHero.subheadline": "We design and build fast, conversion-focused websites for entrepreneurs, SMEs and startups. Request a free quote today.",
     "homeHero.cta1": "Book a Call",
     "homeHero.cta2": "View Pricing",
 
