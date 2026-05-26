@@ -147,6 +147,8 @@ const PricingSection = () => {
         <div className="grid md:grid-cols-3 gap-6">
           {(["starter", "business", "larger"] as const).map((tierKey, idx) => {
             const isFeatured = tierKey === "business";
+            const featureCount = tierKey === "starter" ? 6 : 7;
+            const featureKeys = Array.from({ length: featureCount }, (_, i) => `pricing.tier.${tierKey}.f${i + 1}`);
             return (
               <motion.div
                 key={tierKey}
@@ -166,15 +168,13 @@ const PricingSection = () => {
                   </span>
                   <div>
                     <h3 className="text-lg font-bold text-foreground">{t(`pricing.growth.tier.${tierKey}`)}</h3>
-                    <p className="text-xs text-muted-foreground">{t(plans[0].nameKey)}</p>
+                    <p className="text-xs text-muted-foreground">{t(`pricing.tier.${tierKey}.subtitle`)}</p>
                   </div>
                 </div>
 
-                {plans[0].badge &&
-                  <span className="text-[10px] uppercase tracking-widest font-bold text-muted-foreground bg-muted px-2.5 py-1 rounded-full self-start mb-4">
-                    {t(plans[0].badge)}
-                  </span>
-                }
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
+                  {t(`pricing.tier.${tierKey}.desc`)}
+                </p>
 
                 <Button
                   onClick={() => navigate("/book")}
@@ -190,21 +190,31 @@ const PricingSection = () => {
 
                 <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
                 <ul className="space-y-2.5 flex-1">
-                  <li className="flex items-center gap-2 text-sm text-foreground font-medium">
-                    <CheckCircle className="w-4 h-4 text-foreground/70 flex-shrink-0" />
-                    {t(`pricing.growth.tier.${tierKey}.pages`)}
-                  </li>
-                  {plans[0].features.map((fKey) =>
-                    <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
-                      {t(fKey)}
-                    </li>
-                  )}
+                  {featureKeys.map((fKey) => {
+                    const raw = t(fKey);
+                    const [label, ...rest] = raw.split("::");
+                    const value = rest.join("::");
+                    return (
+                      <li key={fKey} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <CheckCircle className="w-4 h-4 mt-0.5 text-foreground/60 flex-shrink-0" />
+                        <span>
+                          {value ? (
+                            <>
+                              <span className="font-semibold text-foreground">{label}:</span> {value}
+                            </>
+                          ) : (
+                            label
+                          )}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </motion.div>
             );
           })}
         </div>
+
 
         </motion.div>
           }
