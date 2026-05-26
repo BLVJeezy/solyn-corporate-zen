@@ -121,9 +121,10 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.mvp.cta": "Aan de Slag",
     "pricing.sprint.cta": "Bel Ons",
     "pricing.mvp.name": "Website Development",
-    "pricing.mvp.price": "€3.000",
+    "pricing.mvp.price": "Custom websites built fast and good",
+
     "pricing.mvp.period": "eenmalig",
-    "pricing.mvp.desc": "Uw complete website gebouwd en live in 1 week.",
+    "pricing.mvp.desc": "Your complete website built and live in 1 week.",
     "pricing.mvp.f1": "Professionele website op maat",
     "pricing.mvp.f2": "Mobiel-vriendelijk responsive design",
     "pricing.mvp.f3": "CMS of admin-paneel inbegrepen",
