@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight, Zap, Rocket, Crown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import diamondTexture from "@/assets/diamond-texture.jpeg";
-import diamondsBg from "@/assets/diamonds-bg.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HomePricing = () => {
@@ -23,17 +22,6 @@ const HomePricing = () => {
     ctaKey: "pricing.growth.cta",
     icon: Zap,
     dark: false
-  },
-  {
-    nameKey: "pricing.mvp.name",
-    descKey: "pricing.mvp.desc",
-    priceKey: "pricing.mvp.price",
-    periodKey: "pricing.mvp.period",
-
-    features: ["pricing.mvp.f1", "pricing.mvp.f2", "pricing.mvp.f3", "pricing.mvp.f4"],
-    ctaKey: "pricing.mvp.cta",
-    icon: Rocket,
-    dark: true
   }];
 
 
@@ -90,7 +78,7 @@ const HomePricing = () => {
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}>
             
-              <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0 items-stretch">
+              <div className="max-w-md mx-auto">
                 {/* Monthly Maintenance - Light */}
                 <motion.div
                 initial={{ opacity: 0, y: 24 }}
@@ -133,60 +121,6 @@ const HomePricing = () => {
                       </li>
                   )}
                   </ul>
-                </motion.div>
-
-                {/* Plus divider */}
-                <div className="hidden md:flex items-center justify-center px-4">
-                  <span className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-xl font-bold text-gray-400">+</span>
-                </div>
-                <div className="flex md:hidden items-center justify-center py-4">
-                  <span className="w-10 h-10 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center text-xl font-bold text-gray-400">+</span>
-                </div>
-
-                {/* Website Development - Dark */}
-                <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.08 }}
-                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
-                style={{
-                  backgroundImage: `url(${diamondsBg})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center"
-                }}>
-                
-                  <div className="absolute inset-0 bg-black/60 z-0" />
-                  <div className="relative z-10 flex flex-col flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                        <Rocket className="w-5 h-5 text-white" />
-                      </span>
-                      <div>
-                        <h3 className="text-lg font-bold text-white">{t(websitePlans[1].nameKey)}</h3>
-                        <p className="text-xs text-white/60">{t(websitePlans[1].descKey)}</p>
-                      </div>
-                    </div>
-
-
-                    <Button
-                    onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
-                    
-                      {t(websitePlans[1].ctaKey)}
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
-
-                    <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
-                    <ul className="space-y-2.5 flex-1">
-                      {websitePlans[1].features.map((fKey) =>
-                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
-                          <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
-                          {t(fKey)}
-                        </li>
-                    )}
-                    </ul>
-                  </div>
                 </motion.div>
               </div>
             </motion.div>
