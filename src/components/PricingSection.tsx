@@ -363,18 +363,18 @@ const PricingSection = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mt-8">
+          className="rounded-2xl bg-muted/50 border border-border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
           
-          <div className="flex items-center gap-4">
-            <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
-            <div>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <img src={profilePhoto} alt="Profile" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shrink-0" />
+            <div className="min-w-0">
               <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
               <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
             </div>
           </div>
           <Button
             onClick={() => navigate("/book")}
-            className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-5 text-sm shrink-0">
+            className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-4 sm:px-5 text-sm w-full sm:w-auto">
             
             <Calendar className="w-4 h-4 mr-2" />
             {t("nav.bookCall")}
