@@ -94,16 +94,47 @@ const SeoPortfolioScroll = ({ hreflang }: { hreflang: string }) => {
         </motion.div>
       </div>
 
-      <div className="flex justify-center mt-12 px-6">
-        <Button
-          size="lg"
+      <div className="flex justify-center mt-14 px-6">
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
           onClick={() => navigate("/book")}
-          className="rounded-full bg-black text-white hover:bg-black/90 font-semibold px-8 h-14 text-base gap-2 shadow-lg"
+          className="group relative inline-flex items-center gap-3 rounded-full bg-black text-white pl-7 pr-3 py-3 text-base font-semibold shadow-[0_20px_60px_-15px_rgba(201,168,76,0.6)] hover:shadow-[0_25px_70px_-15px_rgba(201,168,76,0.85)] transition-shadow overflow-hidden"
         >
-          <Calendar className="w-5 h-5" />
-          {l.cta}
-        </Button>
+          {/* Gold shimmer sweep */}
+          <span
+            aria-hidden
+            className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(120deg, transparent 30%, rgba(232,200,122,0.35) 50%, transparent 70%)",
+            }}
+          />
+          {/* Outer gold ring */}
+          <span
+            aria-hidden
+            className="absolute inset-0 rounded-full pointer-events-none"
+            style={{
+              boxShadow:
+                "inset 0 0 0 1px rgba(232,200,122,0.35)",
+            }}
+          />
+
+          <span className="relative flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#c9a84c] animate-pulse" />
+            {l.cta}
+          </span>
+
+          <span className="relative flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#e8c87a] via-[#c9a84c] to-[#8a7a3d] text-black transition-transform duration-300 group-hover:rotate-12">
+            <Calendar className="w-4 h-4" />
+          </span>
+        </motion.button>
       </div>
+
 
       <Dialog open={!!open} onOpenChange={(o) => !o && setOpen(null)}>
         <DialogContent className="max-w-5xl p-0 overflow-hidden bg-black border-0">
