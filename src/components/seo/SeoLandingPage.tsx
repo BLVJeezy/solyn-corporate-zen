@@ -143,6 +143,10 @@ const SeoLandingPage = ({ content }: { content: SeoLandingContent }) => {
         </div>
       </section>
 
+      {/* PORTFOLIO INFINITE SCROLL */}
+      <SeoPortfolioScroll hreflang={content.hreflang} />
+
+
       {/* SERVICES */}
       <section className="px-6 py-20 md:py-28 bg-[hsl(0_0%_98%)]">
         <div className="max-w-6xl mx-auto">
