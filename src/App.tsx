@@ -19,6 +19,9 @@ import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import WebsiteLatenMaken from "./pages/WebsiteLatenMaken";
+import CreationSiteWeb from "./pages/CreationSiteWeb";
+import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -50,6 +53,9 @@ function AppRoutes() {
         element={settings.home_enabled ? <Portfolio /> : <Navigate to="/" replace />}
       />
       <Route path="/pricing" element={<Pricing />} />
+      <Route path="/website-laten-maken" element={<WebsiteLatenMaken />} />
+      <Route path="/creation-site-web" element={<CreationSiteWeb />} />
+      <Route path="/web-development-company" element={<WebDevelopmentCompany />} />
       <Route path="/book" element={<Apply />} />
       <Route path="/apply" element={<Apply />} />
       <Route path="/login" element={<Login />} />
