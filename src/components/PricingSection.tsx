@@ -186,7 +186,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08 }}
-                className={`${cardClasses} p-5 sm:p-6 md:p-8 flex flex-col`}>
+                className={`${cardClasses} p-4 sm:p-5 md:p-8 flex flex-col`}>
 
                 {isFeatured && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest font-bold text-background bg-foreground px-3 py-1 rounded-full shadow">
