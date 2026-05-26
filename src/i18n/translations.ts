@@ -476,7 +476,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiel",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partenaire de",
-    "homeHero.headline": "Transformez votre idée en un MVP prêt à lancer en 2 semaines",
+    "homeHero.headline": "Faire créer son site web par Solyn",
     "homeHero.subheadline": "Le studio produit IA n°1 — choisi par les startups et fondateurs pour concevoir, construire et lancer des produits qui scalent.",
     "homeHero.cta1": "Réserver un Appel",
     "homeHero.cta2": "Voir les Tarifs",
