@@ -54,14 +54,41 @@ Deno.serve(async (req) => {
       .single();
     if (bErr) throw bErr;
 
-    // Pull full lead details for owner email
+    // Pull full lead details for owner email + admin lead row
     const { data: fullLead } = await supabase
       .from("qualified_leads")
       .select("full_name, business_name, email, phone, business_description, budget_range, launch_timeline")
       .eq("id", lead_id)
       .maybeSingle();
 
+    // Also add this person to the admin "leads" pipeline (avoid duplicates by email)
+    try {
+      const email = (fullLead?.email || lead.email || "").trim().toLowerCase();
+      if (email) {
+        const { data: existingLead } = await supabase
+          .from("leads")
+          .select("id")
+          .eq("email", email)
+          .maybeSingle();
+        if (!existingLead) {
+          const scheduledStr = slot.toLocaleString("nl-BE", { timeZone: timezone || "Europe/Brussels" });
+          await supabase.from("leads").insert({
+            name: fullLead?.full_name || lead.full_name,
+            company: fullLead?.business_name || null,
+            email,
+            phone: fullLead?.phone || null,
+            budget: fullLead?.budget_range || null,
+            message: `Booking gepland: ${scheduledStr} (${timezone || "Europe/Brussels"})${fullLead?.business_description ? `\n\n${fullLead.business_description}` : ""}`,
+            status: "nieuw",
+          });
+        }
+      }
+    } catch (leadErr) {
+      console.error("admin lead insert failed (non-fatal)", leadErr);
+    }
+
     const tz = timezone || "Europe/Brussels";
+    const ownerEmail = Deno.env.get("OWNER_EMAIL") || "jasonbalongo@gmail.com";
     try {
       await Promise.all([
         supabase.functions.invoke("send-transactional-email", {
@@ -80,7 +107,7 @@ Deno.serve(async (req) => {
         supabase.functions.invoke("send-transactional-email", {
           body: {
             templateName: "owner-new-booking",
-            recipientEmail: "owner@placeholder",
+            recipientEmail: ownerEmail,
             idempotencyKey: `owner-booking-${booking.id}`,
             templateData: {
               ...(fullLead || { full_name: lead.full_name, email: lead.email }),
