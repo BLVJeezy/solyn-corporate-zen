@@ -1,0 +1,19 @@
+# Solyn Global
+
+> Product studio building premium websites, MVPs and custom software for ambitious startups and SMEs across Europe.
+
+Solyn Global ships fast: websites in 1–2 weeks, MVPs in 4–6 weeks. We work in English, Dutch and French.
+
+## Pages
+
+- [Home](/): Overview of services, process, work and pricing.
+- [About](/about): Who we are, how we work and why clients choose us.
+- [Portfolio](/portfolio): Selected websites and apps we've built.
+- [Pricing](/pricing): Subscription website (€300/mo) and one-time MVP (€3.000) plans.
+- [Book a call](/book): Schedule an intro call to scope your project.
+- [Apply](/apply): Start a qualified project application.
+
+## Optional
+
+- [Privacy Policy](/privacy): How we handle data.
+- [Terms of Service](/terms): Contract terms governing our services.
