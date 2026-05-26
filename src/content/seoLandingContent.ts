@@ -145,31 +145,6 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
       "Coaches & consultants", "Vastgoed & makelaars", "Beauty & wellness", "Automotive",
       "E-commerce & retail", "B2B & SaaS startups", "Fitness & sport", "Creatieve sector",
     ],
-    pricingTitle: "Wat kost een website laten maken?",
-    pricingSubtitle: "Transparante pakketten. Geen verrassingen, geen verborgen kosten.",
-    pricingItems: [
-      {
-        name: "Starter Website",
-        price: "€3.000",
-        period: "eenmalig",
-        bullets: ["Tot 5 pagina's op maat", "Mobielvriendelijk responsive design", "Basis SEO + Google Search Console", "Live binnen 7 dagen"],
-        cta: "Vraag offerte",
-      },
-      {
-        name: "Business Website",
-        price: "€5.500",
-        period: "eenmalig",
-        bullets: ["Tot 12 pagina's op maat", "Geavanceerde SEO + schema.org", "CMS / blog ingebouwd", "Integraties (CRM, formulieren, analytics)", "Live binnen 14 dagen"],
-        cta: "Vraag offerte",
-      },
-      {
-        name: "Premium / E-commerce",
-        price: "Op maat",
-        period: "vanaf €9.500",
-        bullets: ["Webshop of maatwerk platform", "Betalingen, voorraad, klantaccounts", "Premium SEO-strategie", "Toegewijd team & roadmap"],
-        cta: "Plan gesprek",
-      },
-    ],
     testimonialsTitle: "Wat klanten zeggen",
     testimonials: [
       { quote: "Binnen 12 dagen stond onze nieuwe website online. We krijgen nu 3× meer aanvragen via Google.", author: "Sara D.", role: "Eigenaar, Beauty Studio Antwerpen" },
@@ -273,13 +248,6 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
       "Coachs & consultants", "Immobilier", "Beauté & bien-être", "Automobile",
       "E-commerce & retail", "B2B & SaaS startups", "Fitness & sport", "Industries créatives",
     ],
-    pricingTitle: "Combien coûte la création d'un site web ?",
-    pricingSubtitle: "Forfaits transparents. Pas de surprises, pas de coûts cachés.",
-    pricingItems: [
-      { name: "Site Starter", price: "3.000€", period: "unique", bullets: ["Jusqu'à 5 pages sur mesure", "Responsive design", "SEO de base + Google Search Console", "Livré en 7 jours"], cta: "Demander un devis" },
-      { name: "Site Business", price: "5.500€", period: "unique", bullets: ["Jusqu'à 12 pages sur mesure", "SEO avancé + schema.org", "CMS / blog intégré", "Intégrations (CRM, analytics)", "Livré en 14 jours"], cta: "Demander un devis" },
-      { name: "Premium / E-commerce", price: "Sur mesure", period: "à partir de 9.500€", bullets: ["Boutique ou plateforme sur mesure", "Paiements, stocks, comptes clients", "Stratégie SEO premium", "Équipe dédiée & roadmap"], cta: "Planifier un appel" },
-    ],
     testimonialsTitle: "Ce que disent nos clients",
     testimonials: [
       { quote: "Notre nouveau site était en ligne en 12 jours. Nous recevons maintenant 3× plus de demandes via Google.", author: "Sara D.", role: "Propriétaire, Beauty Studio Anvers" },
@@ -364,13 +332,6 @@ export const seoLandingContent: Record<"nl" | "fr" | "en", SeoLandingContent> = 
       "Hospitality & restaurants", "Construction & trades", "Healthcare & medical", "Legal & professional services",
       "Coaches & consultants", "Real estate", "Beauty & wellness", "Automotive",
       "E-commerce & retail", "B2B & SaaS startups", "Fitness & sports", "Creative industries",
-    ],
-    pricingTitle: "What does a website cost?",
-    pricingSubtitle: "Transparent packages. No surprises, no hidden fees.",
-    pricingItems: [
-      { name: "Starter Website", price: "€3,000", period: "one-time", bullets: ["Up to 5 custom pages", "Mobile-first responsive design", "Foundational SEO + Search Console", "Live in 7 days"], cta: "Get quote" },
-      { name: "Business Website", price: "€5,500", period: "one-time", bullets: ["Up to 12 custom pages", "Advanced SEO + schema.org", "CMS / blog built in", "Integrations (CRM, analytics)", "Live in 14 days"], cta: "Get quote" },
-      { name: "Premium / E-commerce", price: "Custom", period: "from €9,500", bullets: ["Webshop or custom platform", "Payments, inventory, accounts", "Premium SEO strategy", "Dedicated team & roadmap"], cta: "Book a call" },
     ],
     testimonialsTitle: "What clients say",
     testimonials: [
