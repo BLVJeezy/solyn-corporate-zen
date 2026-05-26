@@ -71,15 +71,15 @@ const PricingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14">
+          className="text-center mb-10 md:mb-14">
           
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
             {t("pricing.label")}
           </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-foreground mt-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-foreground mt-3 tracking-tight">
             {t("pricing.heading")}
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed">
+          <p className="text-muted-foreground mt-3 sm:mt-4 max-w-md mx-auto leading-relaxed text-sm sm:text-base">
             {t("pricing.subtitle")}
           </p>
         </motion.div>
@@ -109,11 +109,11 @@ const PricingSection = () => {
         
 
         {/* Tab Pill Toggle */}
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center mb-8 sm:mb-10">
           <div className="inline-flex rounded-full bg-muted p-1 border border-border">
             <button
               onClick={() => setActiveTab("websites")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
               activeTab === "websites" ?
               "bg-foreground text-background shadow-sm" :
               "text-muted-foreground hover:text-foreground"}`
@@ -123,7 +123,7 @@ const PricingSection = () => {
             </button>
             <button
               onClick={() => setActiveTab("apps")}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+              className={`px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
               activeTab === "apps" ?
               "bg-foreground text-background shadow-sm" :
               "text-muted-foreground hover:text-foreground"}`
@@ -144,7 +144,7 @@ const PricingSection = () => {
             transition={{ duration: 0.25 }}>
             
         {/* Plans Grid - 3 tier cards */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid md:grid-cols-3 gap-3 md:gap-6">
           {(["starter", "business", "larger"] as const).map((tierKey, idx) => {
             const isFeatured = tierKey === "business";
             const isPremium = tierKey === "larger";
@@ -186,38 +186,38 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08 }}
-                className={`${cardClasses} p-5 sm:p-6 md:p-8 flex flex-col`}>
+                className={`${cardClasses} p-4 sm:p-5 md:p-8 flex flex-col`}>
 
                 {isFeatured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest font-bold text-background bg-foreground px-3 py-1 rounded-full shadow">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest font-bold text-background bg-foreground px-3 py-1 rounded-full shadow whitespace-nowrap">
                     {t("pricing.mostPopular")}
                   </span>
                 )}
 
-                <div className="flex items-center gap-3 mb-4">
-                  <span className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-sm ${iconWrapClasses}`}>
-                    <TierIcon className={`w-5 h-5 ${isPremium ? "text-black" : "text-white"}`} />
+                <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                  <span className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-sm ${iconWrapClasses}`}>
+                    <TierIcon className={`w-4 h-4 sm:w-5 sm:h-5 ${isPremium ? "text-black" : "text-white"}`} />
                   </span>
-                  <div>
-                    <h3 className={`text-lg font-bold ${headingClass}`}>{t(`pricing.growth.tier.${tierKey}`)}</h3>
-                    <p className={`text-xs ${subtitleClass}`}>{t(`pricing.tier.${tierKey}.subtitle`)}</p>
+                  <div className="min-w-0">
+                    <h3 className={`text-base sm:text-lg font-bold ${headingClass} truncate`}>{t(`pricing.growth.tier.${tierKey}`)}</h3>
+                    <p className={`text-[11px] sm:text-xs ${subtitleClass}`}>{t(`pricing.tier.${tierKey}.subtitle`)}</p>
                   </div>
                 </div>
 
-                <p className={`text-sm mb-5 leading-relaxed ${descClass}`}>
+                <p className={`text-sm mb-4 sm:mb-5 leading-relaxed ${descClass}`}>
                   {t(`pricing.tier.${tierKey}.desc`)}
                 </p>
 
                 <Button
                   onClick={() => navigate("/book")}
-                  className={`w-full font-medium rounded-full mb-6 ${buttonClass}`}
+                  className={`w-full font-medium rounded-full mb-5 sm:mb-6 ${buttonClass}`}
                   variant={isFeatured && !isPremium ? "default" : "outline"}>
                   {t(plans[0].ctaKey)}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
 
-                <h4 className={`text-sm font-semibold mb-3 ${includedClass}`}>{t("pricing.whatsIncluded")}</h4>
-                <ul className="space-y-2.5 flex-1">
+                <h4 className={`text-sm font-semibold mb-2.5 sm:mb-3 ${includedClass}`}>{t("pricing.whatsIncluded")}</h4>
+                <ul className="space-y-2 sm:space-y-2.5 flex-1">
                   {featureKeys.map((fKey) => {
                     const raw = t(fKey);
                     const [label, ...rest] = raw.split("::");
@@ -263,35 +263,35 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.08 }}
-                className="rounded-2xl border border-border bg-card p-7 md:p-8 flex flex-col">
+                className="rounded-2xl border border-border bg-card p-4 sm:p-5 md:p-8 flex flex-col">
                 
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center">
-                <Rocket className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-pink-500 to-violet-500 flex items-center justify-center shrink-0">
+                <Rocket className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
               </span>
-              <div>
-                <h3 className="text-lg font-bold text-foreground">{t("pricing.sprints.name")}</h3>
-                <p className="text-xs text-muted-foreground">{t("pricing.sprints.subtitle")}</p>
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg font-bold text-foreground">{t("pricing.sprints.name")}</h3>
+                <p className="text-[11px] sm:text-xs text-muted-foreground">{t("pricing.sprints.subtitle")}</p>
               </div>
             </div>
 
-            <p className="text-sm text-muted-foreground mb-6">{t("pricing.sprints.desc")}</p>
+            <p className="text-sm text-muted-foreground mb-4 sm:mb-6">{t("pricing.sprints.desc")}</p>
 
-            <p className="text-xs text-muted-foreground mb-6">{t("pricing.sprints.pauseCancel")}</p>
+            <p className="text-xs text-muted-foreground mb-4 sm:mb-6">{t("pricing.sprints.pauseCancel")}</p>
 
             <Button
                   onClick={() => navigate("/book")}
-                  className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-6"
+                  className="w-full font-medium rounded-full border border-border bg-card text-foreground hover:bg-muted mb-5 sm:mb-6"
                   variant="outline">
                   
               {t("pricing.sprints.cta")}
             </Button>
 
-            <h4 className="text-sm font-semibold text-foreground mb-3">{t("pricing.whatsIncluded")}</h4>
-            <ul className="space-y-2.5 flex-1">
+            <h4 className="text-sm font-semibold text-foreground mb-2.5 sm:mb-3">{t("pricing.whatsIncluded")}</h4>
+            <ul className="space-y-2 sm:space-y-2.5 flex-1">
               {["pricing.sprints.f1", "pricing.sprints.f2", "pricing.sprints.f3", "pricing.sprints.f4", "pricing.sprints.f5", "pricing.sprints.f6"].map((fKey) =>
-                  <li key={fKey} className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0" />
+                  <li key={fKey} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-muted-foreground/60 flex-shrink-0 mt-0.5" />
                   {t(fKey)}
                 </li>
                   )}
@@ -304,7 +304,7 @@ const PricingSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.16 }}
-                className="rounded-2xl p-7 md:p-8 relative overflow-hidden group flex flex-col"
+                className="rounded-2xl p-4 sm:p-5 md:p-8 relative overflow-hidden group flex flex-col"
                 style={{
                   backgroundImage: `url(${diamondTexture})`,
                   backgroundSize: "cover",
@@ -321,32 +321,32 @@ const PricingSection = () => {
                 
 
             <div className="relative z-10 flex flex-col flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center">
-                  <Crown className="w-5 h-5 text-white" />
+              <div className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4">
+                <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-violet-500 to-blue-500 flex items-center justify-center shrink-0">
+                  <Crown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </span>
-                <div>
-                  <h3 className="text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
-                  <p className="text-xs text-white/60">{t("pricing.diamond.desc")}</p>
+                <div className="min-w-0">
+                  <h3 className="text-base sm:text-lg font-bold text-white">{t("pricing.diamond.name")}</h3>
+                  <p className="text-[11px] sm:text-xs text-white/60">{t("pricing.diamond.desc")}</p>
                 </div>
               </div>
 
-              <p className="text-sm text-white/50 mb-6">{t("pricing.diamond.subtitle")}</p>
+              <p className="text-sm text-white/50 mb-4 sm:mb-6">{t("pricing.diamond.subtitle")}</p>
 
-              <p className="text-xs text-white/40 mb-6">{t("pricing.diamond.pauseCancel")}</p>
+              <p className="text-xs text-white/40 mb-4 sm:mb-6">{t("pricing.diamond.pauseCancel")}</p>
 
               <Button
                     onClick={() => navigate("/book")}
-                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-6">
+                    className="w-full font-medium rounded-full bg-white text-black hover:bg-white/90 mb-5 sm:mb-6">
                     
                 {t("pricing.diamond.cta")}
               </Button>
 
-              <h4 className="text-sm font-bold text-white mb-3">{t("pricing.whatsIncluded")}</h4>
-              <ul className="space-y-2.5 flex-1">
+              <h4 className="text-sm font-bold text-white mb-2.5 sm:mb-3">{t("pricing.whatsIncluded")}</h4>
+              <ul className="space-y-2 sm:space-y-2.5 flex-1">
                 {["pricing.diamond.f1", "pricing.diamond.f2", "pricing.diamond.f3", "pricing.diamond.f4", "pricing.diamond.f5", "pricing.diamond.f6"].map((fKey) =>
-                    <li key={fKey} className="flex items-center gap-2 text-sm text-white/60">
-                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0" />
+                    <li key={fKey} className="flex items-start gap-2 text-sm text-white/60">
+                    <CheckCircle className="w-4 h-4 text-white/40 flex-shrink-0 mt-0.5" />
                     {t(fKey)}
                   </li>
                     )}
@@ -363,18 +363,18 @@ const PricingSection = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl bg-muted/50 border border-border p-5 flex items-center justify-between gap-4 mt-8">
+          className="rounded-2xl bg-muted/50 border border-border p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mt-6 sm:mt-8">
           
-          <div className="flex items-center gap-4">
-            <img src={profilePhoto} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
-            <div>
+          <div className="flex items-center gap-3 sm:gap-4">
+            <img src={profilePhoto} alt="Profile" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover shrink-0" />
+            <div className="min-w-0">
               <h4 className="text-sm font-semibold text-foreground">{t("pricing.bookCall.title")}</h4>
               <p className="text-xs text-muted-foreground">{t("pricing.bookCall.subtitle")}</p>
             </div>
           </div>
           <Button
             onClick={() => navigate("/book")}
-            className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-5 text-sm shrink-0">
+            className="rounded-full bg-foreground text-background hover:bg-foreground/90 px-4 sm:px-5 text-sm w-full sm:w-auto">
             
             <Calendar className="w-4 h-4 mr-2" />
             {t("nav.bookCall")}
