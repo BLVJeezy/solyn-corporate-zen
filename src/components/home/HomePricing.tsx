@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, ArrowRight, Zap, Rocket, Crown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import diamondTexture from "@/assets/diamond-texture.jpeg";
-import diamondsBg from "@/assets/diamonds-bg.webp";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HomePricing = () => {

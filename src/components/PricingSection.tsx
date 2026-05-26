@@ -5,10 +5,8 @@ import { ArrowRight, Zap, Rocket, Clock, Crown, CheckCircle, Calendar } from "lu
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import goldTexture from "@/assets/gold-texture.jpeg";
 import silverTexture from "@/assets/silver-texture.webp";
 import diamondTexture from "@/assets/diamond-texture.jpeg";
-import diamondsBg from "@/assets/diamonds-bg.webp";
 import solynLogo from "@/assets/solyn-logo.png";
 import profilePhoto from "@/assets/profile-photo.jpg";
 
