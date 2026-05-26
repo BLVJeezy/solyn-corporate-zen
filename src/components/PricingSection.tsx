@@ -71,15 +71,15 @@ const PricingSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14">
+          className="text-center mb-10 md:mb-14">
           
           <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium">
             {t("pricing.label")}
           </span>
-          <h2 className="text-3xl md:text-5xl font-semibold text-foreground mt-3 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-semibold text-foreground mt-3 tracking-tight">
             {t("pricing.heading")}
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto leading-relaxed">
+          <p className="text-muted-foreground mt-3 sm:mt-4 max-w-md mx-auto leading-relaxed text-sm sm:text-base">
             {t("pricing.subtitle")}
           </p>
         </motion.div>
