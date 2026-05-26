@@ -48,8 +48,6 @@ const PricingSection = () => {
   const navigate = useNavigate();
   const timeLeft = useCountdown();
   const [activeTab, setActiveTab] = useState<"websites" | "apps">("websites");
-  const [tier, setTier] = useState<"starter" | "business" | "larger">("starter");
-  const tierPagesKey = `pricing.growth.tier.${tier}.pages`;
   const plans = [
   {
     nameKey: "pricing.growth.name",
