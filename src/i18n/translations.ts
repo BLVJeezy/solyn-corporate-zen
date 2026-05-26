@@ -214,6 +214,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "pricing.sprints.f5": "Communicatie via WhatsApp",
     "pricing.sprints.f6": "Wekelijkse voortgangsupdates",
     "pricing.whatsIncluded": "Wat is inbegrepen:",
+    "pricing.mostPopular": "Meest gekozen",
 
     // Book a Call
     "book.heading": "Klaar om te starten?",
