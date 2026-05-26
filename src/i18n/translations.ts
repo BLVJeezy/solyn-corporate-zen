@@ -929,7 +929,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Official",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner of",
-    "homeHero.headline": "Turn your idea into a ready to launch MVP in 2-weeks",
+    "homeHero.headline": "Have your website built by Solyn",
     "homeHero.subheadline": "The #1 product studio — trusted by startups and founders to design, build, and launch products that scale.",
     "homeHero.cta1": "Book a Call",
     "homeHero.cta2": "View Pricing",
