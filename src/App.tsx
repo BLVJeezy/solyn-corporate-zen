@@ -23,6 +23,7 @@ import WebsiteLatenMaken from "./pages/WebsiteLatenMaken";
 import CreationSiteWeb from "./pages/CreationSiteWeb";
 import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
+import ThankYouBooking from "./pages/ThankYouBooking";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -65,6 +66,8 @@ function AppRoutes() {
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms" element={<TermsOfService />} />
       <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/thank-you" element={<ThankYouBooking />} />
+      <Route path="/bedankt" element={<ThankYouBooking />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
