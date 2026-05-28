@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, Calendar, TrendingUp, Search, Users, ArrowRight, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import HomeNav from "@/components/home/HomeNav";
-import HomeFooter from "@/components/home/HomeFooter";
+import { CheckCircle2, Calendar, TrendingUp, Search, Users, Star } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import portfolioRiory from "@/assets/portfolio-riory-1.png";
@@ -73,14 +69,10 @@ const cases = [
 ];
 
 const ThankYouBooking = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-white">
-      <HomeNav />
-
       {/* Hero confirmation */}
-      <section className="relative pt-32 md:pt-40 pb-16 overflow-hidden">
+      <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -213,7 +205,7 @@ const ThankYouBooking = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Closing message (no outbound links) */}
       <section className="py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
@@ -224,32 +216,14 @@ const ThankYouBooking = () => {
             className="rounded-3xl bg-[hsl(0_0%_7%)] p-8 md:p-14 text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-              Klaar om jouw <span className="bg-gradient-to-r from-[hsl(40_48%_56%)] to-[hsl(210_15%_70%)] bg-clip-text text-transparent">resultaat</span> te bouwen?
+              Tot binnenkort op onze <span className="bg-gradient-to-r from-[hsl(40_48%_56%)] to-[hsl(210_15%_70%)] bg-clip-text text-transparent">call</span>.
             </h2>
-            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto mb-8">
-              Bekijk in afwachting van onze call ons portfolio en de pakketten die we aanbieden.
+            <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto">
+              Check je inbox voor de bevestiging en de agenda-uitnodiging. We bereiden ons voor en zien je graag op het afgesproken moment.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Button
-                onClick={() => navigate("/portfolio")}
-                className="rounded-full bg-white text-black hover:bg-white/90 font-medium px-7 py-6 text-base gap-1"
-              >
-                Bekijk portfolio
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => navigate("/pricing")}
-                className="rounded-full border-white/20 bg-transparent text-white hover:bg-white/10 font-medium px-7 py-6 text-base"
-              >
-                Bekijk pakketten
-              </Button>
-            </div>
           </motion.div>
         </div>
       </section>
-
-      <HomeFooter />
     </div>
   );
 };
