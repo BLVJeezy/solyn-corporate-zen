@@ -26,7 +26,7 @@ const cases = [
     ],
   },
   {
-    img: portfolioRiory,
+    img: rioryAnalytics,
     name: "Riory — SEO",
     tagline: "Organic search growth",
     metric: "#1",
