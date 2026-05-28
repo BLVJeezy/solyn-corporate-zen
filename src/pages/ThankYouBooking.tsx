@@ -193,7 +193,7 @@ const ThankYouBooking = () => {
       </section>
 
       {/* Case studies */}
-      <section className="py-12 md:py-20">
+      <section id="case-studies" className="py-12 md:py-20">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
