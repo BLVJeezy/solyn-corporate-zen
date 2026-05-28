@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Calendar, TrendingUp, Search, Users, Star } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
