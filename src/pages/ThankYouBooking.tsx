@@ -13,9 +13,9 @@ const cases = [
   {
     img: portfolioRiory,
     name: "Riory",
-    tagline: "Coaching & consulting",
+    tagline: "Rioleringsbedrijf",
     metric: "40+",
-    metricLabel: "Booked appointments in 20 days",
+    metricLabel: "Afspraken geboekt in 20 dagen",
     icon: Calendar,
     description:
       "We bouwden Riory een conversie-gerichte website gekoppeld aan een gestroomlijnde funnel. Binnen 20 dagen na lancering werden er meer dan 40 gekwalificeerde afspraken geboekt — volledig automatisch, zonder extra ad-spend te verdubbelen.",
@@ -28,7 +28,7 @@ const cases = [
   {
     img: rioryAnalytics,
     name: "Riory — SEO",
-    tagline: "Organic search growth",
+    tagline: "Rioleringsbedrijf",
     metric: "#1",
     metricLabel: "Top Google rankings op kerntermen",
     icon: Search,
@@ -43,7 +43,7 @@ const cases = [
   {
     img: showcaseBelgomed,
     name: "Belgomed",
-    tagline: "Medical e-commerce",
+    tagline: "Farmaceutische groothandel",
     metric: "1 week",
     metricLabel: "Volledige ROI na lancering",
     icon: TrendingUp,
@@ -58,7 +58,7 @@ const cases = [
   {
     img: showcaseAtelier9,
     name: "L'Atelier 9",
-    tagline: "Service-based business",
+    tagline: "Beauty Salon",
     metric: "10+",
     metricLabel: "Vaste terugkerende klanten",
     icon: Users,
