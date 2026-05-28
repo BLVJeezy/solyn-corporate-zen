@@ -97,6 +97,16 @@ const ThankYouBooking = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Meta Pixel noscript fallback */}
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
       {/* Hero confirmation */}
       <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center">
