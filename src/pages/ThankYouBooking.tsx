@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Calendar, TrendingUp, Search, Users, Star } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
@@ -69,6 +70,38 @@ const cases = [
 ];
 
 const ThankYouBooking = () => {
+  // Meta Pixel ID — configure via VITE_META_PIXEL_ID env variable
+  const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "";
+
+  useEffect(() => {
+    if (!META_PIXEL_ID) {
+      // eslint-disable-next-line no-console
+      console.warn("Meta Pixel ID not configured. Set VITE_META_PIXEL_ID in your environment.");
+      return;
+    }
+
+    if (typeof (window as any).fbq === "undefined") {
+      const script = document.createElement("script");
+      script.innerHTML = `
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '${META_PIXEL_ID}');
+        fbq('track', 'PageView');
+        fbq('track', 'Schedule');
+      `;
+      document.head.appendChild(script);
+    } else {
+      (window as any).fbq("track", "PageView");
+      (window as any).fbq("track", "Schedule");
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero confirmation */}
