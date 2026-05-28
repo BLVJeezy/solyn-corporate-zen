@@ -123,6 +123,68 @@ const ThankYouBooking = () => {
           alt=""
         />
       </noscript>
+
+      {/* Conversion popup — fires CompleteRegistration */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
+            >
+              <button
+                onClick={() => setShowPopup(false)}
+                aria-label="Sluiten"
+                className="absolute right-4 top-4 rounded-full p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[hsl(40_48%_56%)] to-[hsl(210_15%_70%)] mb-4">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-black tracking-tight mb-2">
+                Bekijk de resultaten van onze klanten
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                Ondernemers zoals jij boekten 40+ afspraken in 20 dagen, verdienden hun investering terug in 1 week en kwamen op #1 in Google. Kijk hoe.
+              </p>
+
+              <button
+                onClick={handleViewResults}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3.5 text-sm font-semibold text-white hover:bg-gray-900 transition-colors"
+              >
+                Kijk nu
+                <Sparkles className="w-4 h-4" />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Hero confirmation */}
+      <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50 border border-green-100 mb-6"
+          >
+            <CheckCircle2 className="w-8 h-8 text-green-600" />
+          </motion.div>
+
+          <motion.div
       {/* Hero confirmation */}
       <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center">
