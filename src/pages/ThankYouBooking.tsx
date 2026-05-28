@@ -97,8 +97,8 @@ const ThankYouBooking = () => {
       `;
       document.head.appendChild(script);
     } else {
-      window.fbq("track", "PageView");
-      window.fbq("track", "Schedule");
+      (window as any).fbq("track", "PageView");
+      (window as any).fbq("track", "Schedule");
     }
   }, []);
 
