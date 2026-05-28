@@ -70,16 +70,9 @@ const cases = [
 ];
 
 const ThankYouBooking = () => {
-  // Meta Pixel ID — configure via VITE_META_PIXEL_ID env variable
-  const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID || "";
+  const META_PIXEL_ID = "1942990739694038";
 
   useEffect(() => {
-    if (!META_PIXEL_ID) {
-      // eslint-disable-next-line no-console
-      console.warn("Meta Pixel ID not configured. Set VITE_META_PIXEL_ID in your environment.");
-      return;
-    }
-
     if (typeof (window as any).fbq === "undefined") {
       const script = document.createElement("script");
       script.innerHTML = `
@@ -104,6 +97,16 @@ const ThankYouBooking = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Meta Pixel noscript fallback */}
+      <noscript>
+        <img
+          height="1"
+          width="1"
+          style={{ display: "none" }}
+          src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          alt=""
+        />
+      </noscript>
       {/* Hero confirmation */}
       <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center">
