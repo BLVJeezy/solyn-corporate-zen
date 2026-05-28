@@ -18,11 +18,11 @@ const cases = [
     metricLabel: "Afspraken geboekt in 20 dagen",
     icon: Calendar,
     description:
-      "We bouwden Riory een conversie-gerichte website gekoppeld aan een gestroomlijnde funnel. Binnen 20 dagen na lancering werden er meer dan 40 gekwalificeerde afspraken geboekt — volledig automatisch, zonder extra ad-spend te verdubbelen.",
+      "We bouwden Riory een conversie-gerichte website gekoppeld aan een gestroomlijnde funnel. Binnen 20 dagen na lancering werden er meer dan 40 gekwalificeerde afspraken geboekt — volledig automatisch, via organische vindbaarheid.",
     highlights: [
       "Conversie-funnel met booking flow",
       "Lead-nurturing via automatische e-mails",
-      "Geoptimaliseerd voor mobiel verkeer vanuit ads",
+      "SEO-geoptimaliseerd voor mobiel verkeer",
     ],
   },
   {
@@ -33,7 +33,7 @@ const cases = [
     metricLabel: "Top Google rankings op kerntermen",
     icon: Search,
     description:
-      "Naast paid traffic legden we een sterke SEO-fundering. Riory ranked nu op de eerste pagina van Google voor de belangrijkste zoekwoorden in zijn niche, wat zorgt voor een constante stroom gratis, hoogwaardige leads.",
+      "We legden een sterke SEO-fundering voor Riory. Hij ranked nu op de eerste pagina van Google voor de belangrijkste zoekwoorden in zijn niche, wat zorgt voor een constante stroom gratis, hoogwaardige leads.",
     highlights: [
       "Technische SEO & site-snelheid optimalisatie",
       "Strategische keyword targeting",
@@ -48,9 +48,9 @@ const cases = [
     metricLabel: "Volledige ROI na lancering",
     icon: TrendingUp,
     description:
-      "Voor Belgomed bouwden we een snelle, vertrouwenwekkende webshop. Hun volledige investering werd al in de eerste week na lancering terugverdiend. Vandaag draait de site winstgevend zonder dat het team handmatig moet ingrijpen.",
+      "Voor Belgomed bouwden we een snelle, vertrouwenwekkende online presence. Hun volledige investering werd al in de eerste week na lancering terugverdiend. Vandaag draait de site winstgevend zonder dat het team handmatig moet ingrijpen.",
     highlights: [
-      "Webshop geoptimaliseerd voor checkout-conversie",
+      "Platform geoptimaliseerd voor conversie",
       "Investering terugverdiend in week 1",
       "Schaalbare basis voor verdere groei",
     ],
