@@ -71,6 +71,7 @@ const cases = [
 
 const ThankYouBooking = () => {
   const META_PIXEL_ID = "1942990739694038";
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (typeof (window as any).fbq === "undefined") {
@@ -93,7 +94,22 @@ const ThankYouBooking = () => {
       (window as any).fbq("track", "PageView");
       (window as any).fbq("track", "Schedule");
     }
+
+    const t = setTimeout(() => setShowPopup(true), 1200);
+    return () => clearTimeout(t);
   }, []);
+
+  const handleViewResults = () => {
+    if (typeof (window as any).fbq !== "undefined") {
+      (window as any).fbq("track", "CompleteRegistration", {
+        content_name: "Thank You — View Client Results",
+        status: "completed",
+      });
+    }
+    setShowPopup(false);
+    const el = document.getElementById("case-studies");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div className="min-h-screen bg-white">
