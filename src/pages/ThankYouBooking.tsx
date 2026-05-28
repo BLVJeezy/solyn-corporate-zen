@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle2, Calendar, TrendingUp, Search, Users, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Calendar, TrendingUp, Search, Users, Star, X, Sparkles } from "lucide-react";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import portfolioRiory from "@/assets/portfolio-riory-1.png";
