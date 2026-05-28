@@ -185,17 +185,6 @@ const ThankYouBooking = () => {
           </motion.div>
 
           <motion.div
-      {/* Hero confirmation */}
-      <section className="relative pt-20 md:pt-28 pb-16 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50 border border-green-100 mb-6"
-          >
-            <CheckCircle2 className="w-8 h-8 text-green-600" />
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 12 }}
