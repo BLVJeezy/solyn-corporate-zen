@@ -7,6 +7,7 @@ import HomeFooter from "@/components/home/HomeFooter";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 import portfolioRiory from "@/assets/portfolio-riory-1.png";
+import rioryAnalytics from "@/assets/riory-analytics.png";
 
 const cases = [
   {
@@ -25,7 +26,7 @@ const cases = [
     ],
   },
   {
-    img: portfolioRiory,
+    img: rioryAnalytics,
     name: "Riory — SEO",
     tagline: "Organic search growth",
     metric: "#1",
