@@ -80,7 +80,7 @@ const ThankYouBooking = () => {
       return;
     }
 
-    if (typeof window.fbq === "undefined") {
+    if (typeof (window as any).fbq === "undefined") {
       const script = document.createElement("script");
       script.innerHTML = `
         !function(f,b,e,v,n,t,s)
