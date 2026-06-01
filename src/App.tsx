@@ -24,6 +24,7 @@ import CreationSiteWeb from "./pages/CreationSiteWeb";
 import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
 import ThankYouBooking from "./pages/ThankYouBooking";
+import HiddenPortfolio from "./pages/HiddenPortfolio";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
