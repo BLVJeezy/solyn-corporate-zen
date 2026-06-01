@@ -24,6 +24,7 @@ import CreationSiteWeb from "./pages/CreationSiteWeb";
 import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
 import ThankYouBooking from "./pages/ThankYouBooking";
+import HiddenPortfolio from "./pages/HiddenPortfolio";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,8 @@ function AppRoutes() {
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/thank-you" element={<ThankYouBooking />} />
       <Route path="/bedankt" element={<ThankYouBooking />} />
+      <Route path="/showcase" element={<HiddenPortfolio />} />
+      <Route path="/realisaties" element={<HiddenPortfolio />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
