@@ -69,6 +69,8 @@ function AppRoutes() {
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/thank-you" element={<ThankYouBooking />} />
       <Route path="/bedankt" element={<ThankYouBooking />} />
+      <Route path="/showcase" element={<HiddenPortfolio />} />
+      <Route path="/realisaties" element={<HiddenPortfolio />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
