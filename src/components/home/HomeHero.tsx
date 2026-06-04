@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Check } from "lucide-react";
 
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -71,6 +71,21 @@ const HomeHero = () => {
           >
             {t("homeHero.cta2")}
           </Button>
+        </motion.div>
+
+        {/* Belgian trust bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600"
+        >
+          {[t("homeHero.trust1"), t("homeHero.trust2"), t("homeHero.trust3"), t("homeHero.trust4")].map((item) => (
+            <div key={item} className="flex items-center gap-1.5">
+              <Check className="w-4 h-4 text-emerald-600 shrink-0" strokeWidth={3} />
+              <span>{item}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
 

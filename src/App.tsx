@@ -25,6 +25,7 @@ import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
 import ThankYouBooking from "./pages/ThankYouBooking";
 import HiddenPortfolio from "./pages/HiddenPortfolio";
+import CityLanding from "./pages/CityLanding";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -71,6 +72,10 @@ function AppRoutes() {
       <Route path="/bedankt" element={<ThankYouBooking />} />
       <Route path="/showcase" element={<HiddenPortfolio />} />
       <Route path="/realisaties" element={<HiddenPortfolio />} />
+      <Route path="/webdesign-brussel" element={<CityLanding />} />
+      <Route path="/webdesign-antwerpen" element={<CityLanding />} />
+      <Route path="/webdesign-gent" element={<CityLanding />} />
+      <Route path="/webdesign-hasselt" element={<CityLanding />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
