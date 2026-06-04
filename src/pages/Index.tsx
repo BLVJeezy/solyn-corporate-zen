@@ -44,6 +44,7 @@ const Index = () => {
       <HomeWork />
       <MobileViewSection />
       <HomeValueProps />
+      <BelgianSocialProof />
       <HomePricing />
       <HomeFAQ />
       <HomeCTA />
