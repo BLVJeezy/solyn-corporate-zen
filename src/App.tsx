@@ -25,6 +25,7 @@ import WebDevelopmentCompany from "./pages/WebDevelopmentCompany";
 import Unsubscribe from "./pages/Unsubscribe";
 import ThankYouBooking from "./pages/ThankYouBooking";
 import HiddenPortfolio from "./pages/HiddenPortfolio";
+import CityLanding from "./pages/CityLanding";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
