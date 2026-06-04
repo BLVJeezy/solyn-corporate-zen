@@ -78,9 +78,17 @@ const HomeFooter = () => {
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
-          <p className="text-gray-300 text-xs select-none" onClick={handleSecretClick}>
-            {t("homeFooter.copyright")}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-xs text-gray-400">
+            <p className="select-none" onClick={handleSecretClick}>
+              {t("homeFooter.copyright")}
+            </p>
+            <span className="hidden sm:inline text-gray-200">·</span>
+            <span>Hasselt, België</span>
+            <span className="hidden sm:inline text-gray-200">·</span>
+            <a href="mailto:info@solyn-global.com" className="hover:text-black transition-colors">
+              info@solyn-global.com
+            </a>
+          </div>
           <div className="flex gap-3">
             <a href="#" className="text-gray-300 hover:text-gray-500 transition-colors">
               <Linkedin className="w-4 h-4" />
