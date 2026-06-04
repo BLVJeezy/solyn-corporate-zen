@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Check, ChevronRight, MapPin, Sparkles, Search, Gauge } from "lucide-react";
