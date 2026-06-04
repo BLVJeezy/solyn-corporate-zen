@@ -26,6 +26,9 @@ import Unsubscribe from "./pages/Unsubscribe";
 import ThankYouBooking from "./pages/ThankYouBooking";
 import HiddenPortfolio from "./pages/HiddenPortfolio";
 import CityLanding from "./pages/CityLanding";
+import MvpDevelopment from "./pages/MvpDevelopment";
+import MaatwerkSoftware from "./pages/MaatwerkSoftware";
+import StartupWebsite from "./pages/StartupWebsite";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -76,6 +79,14 @@ function AppRoutes() {
       <Route path="/webdesign-antwerpen" element={<CityLanding />} />
       <Route path="/webdesign-gent" element={<CityLanding />} />
       <Route path="/webdesign-hasselt" element={<CityLanding />} />
+      <Route path="/webdesign-tongeren" element={<CityLanding />} />
+      <Route path="/webdesign-luik" element={<CityLanding />} />
+      <Route path="/webdesign-namen" element={<CityLanding />} />
+      <Route path="/webdesign-leuven" element={<CityLanding />} />
+      <Route path="/webdesign-mechelen" element={<CityLanding />} />
+      <Route path="/mvp-development" element={<MvpDevelopment />} />
+      <Route path="/maatwerk-software" element={<MaatwerkSoftware />} />
+      <Route path="/startup-website" element={<StartupWebsite />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
