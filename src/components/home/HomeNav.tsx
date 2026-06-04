@@ -13,25 +13,31 @@ const servicesByLang: Record<Lang, { label: string; items: { label: string; href
   NL: {
     label: "Diensten",
     items: [
-      { label: "Website laten maken", href: "/website-laten-maken", desc: "Professionele website op maat" },
+      { label: "Website Laten Maken", href: "/website-laten-maken", desc: "Professionele website op maat" },
+      { label: "MVP Development", href: "/mvp-development", desc: "Van idee naar product in 4–8 weken" },
+      { label: "Maatwerk Software", href: "/maatwerk-software", desc: "Software die exact past op uw workflow" },
+      { label: "Startup Website", href: "/startup-website", desc: "Snel online, conversiegericht & schaalbaar" },
       { label: "Création site web", href: "/creation-site-web", desc: "Pour le marché francophone" },
-      { label: "Web development company", href: "/web-development-company", desc: "International / English market" },
     ],
   },
   FR: {
     label: "Services",
     items: [
       { label: "Création site web", href: "/creation-site-web", desc: "Site web professionnel sur mesure" },
+      { label: "MVP Development", href: "/mvp-development", desc: "De l'idée au produit en 4–8 semaines" },
+      { label: "Logiciel sur mesure", href: "/maatwerk-software", desc: "Logiciel adapté à votre workflow" },
+      { label: "Site startup", href: "/startup-website", desc: "En ligne rapidement, conçu pour convertir" },
       { label: "Website laten maken", href: "/website-laten-maken", desc: "Pour le marché néerlandophone" },
-      { label: "Web development company", href: "/web-development-company", desc: "International / English market" },
     ],
   },
   EN: {
     label: "Services",
     items: [
       { label: "Web development company", href: "/web-development-company", desc: "Custom websites built fast" },
+      { label: "MVP Development", href: "/mvp-development", desc: "From idea to product in 4–8 weeks" },
+      { label: "Custom Software", href: "/maatwerk-software", desc: "Software tailored to your workflow" },
+      { label: "Startup Website", href: "/startup-website", desc: "Live fast, conversion-focused & scalable" },
       { label: "Website laten maken", href: "/website-laten-maken", desc: "For Dutch-speaking markets" },
-      { label: "Création site web", href: "/creation-site-web", desc: "For French-speaking markets" },
     ],
   },
 };
