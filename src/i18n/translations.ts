@@ -513,10 +513,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiel",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partenaire de",
-    "homeHero.headline": "Faire créer un site web professionnel sur mesure par Solyn",
-    "homeHero.subheadline": "Nous concevons et développons des sites rapides et orientés conversion pour entrepreneurs, PME et startups. Demandez un devis gratuit.",
-    "homeHero.cta1": "Réserver un Appel",
+    "homeHero.headline": "Agence Web & SEO en Belgique.",
+    "homeHero.subheadline": "Nous concevons des sites rapides et performants qui se classent en haut de Google — pour les entreprises à Bruxelles, Liège, Namur et partout en Belgique.",
+    "homeHero.cta1": "Demandez un audit gratuit",
     "homeHero.cta2": "Voir les Tarifs",
+    "homeHero.trust1": "Webdesign orienté SEO",
+    "homeHero.trust2": "Actifs à Bruxelles, Liège & Namur",
+    "homeHero.trust3": "Résultats en 90 jours",
+    "homeHero.trust4": "Conçu pour ranker sur Google.be",
 
     // Services
     "services.heading1": "Nos",
