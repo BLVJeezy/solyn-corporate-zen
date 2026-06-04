@@ -8,6 +8,7 @@ import MobileViewSection from "@/components/MobileViewSection";
 import HomePricing from "@/components/home/HomePricing";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import HomeCTA from "@/components/home/HomeCTA";
+import BelgianSocialProof from "@/components/home/BelgianSocialProof";
 import HomeFooter from "@/components/home/HomeFooter";
 import { useTrackPageView } from "@/hooks/useTrackPageView";
 import { useEffect, useRef } from "react";
