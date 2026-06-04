@@ -23,10 +23,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Officiële",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner van",
-    "homeHero.headline": "Professionele website laten maken — op maat door Solyn",
-    "homeHero.subheadline": "Wij ontwerpen en bouwen snelle, conversiegerichte websites voor ondernemers, KMO's en startups. Vraag een vrijblijvende offerte aan.",
-    "homeHero.cta1": "Boek een Gesprek",
+    "homeHero.headline": "Webdesign & SEO Bureau in België.",
+    "homeHero.subheadline": "Wij bouwen snelle, converterende websites die hoog scoren in Google — voor bedrijven in Brussel, Antwerpen, Gent, Hasselt en heel België.",
+    "homeHero.cta1": "Vraag een gratis audit aan",
     "homeHero.cta2": "Bekijk Prijzen",
+    "homeHero.trust1": "SEO-First Webdesign",
+    "homeHero.trust2": "Actief in Brussel, Antwerpen & Gent",
+    "homeHero.trust3": "Resultaten binnen 90 dagen",
+    "homeHero.trust4": "Gebouwd om te ranken op Google.be",
 
     // Services
     "services.heading1": "Onze",
