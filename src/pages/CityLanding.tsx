@@ -7,45 +7,130 @@ import HomeNav from "@/components/home/HomeNav";
 import HomeFooter from "@/components/home/HomeFooter";
 import BelgianSocialProof from "@/components/home/BelgianSocialProof";
 
-type CityKey = "brussel" | "antwerpen" | "gent" | "hasselt";
+type CityKey =
+  | "brussel"
+  | "antwerpen"
+  | "gent"
+  | "hasselt"
+  | "tongeren"
+  | "luik"
+  | "namen"
+  | "leuven"
+  | "mechelen";
 
-const CITIES: Record<CityKey, {
+type CityData = {
   name: string;
   region: string;
   intro: string;
   slug: string;
-}> = {
+  lang: "nl" | "fr";
+  h1: string;
+  metaDescription: string;
+};
+
+const CITIES: Record<CityKey, CityData> = {
   brussel: {
-    name: "Brussel",
-    region: "Brussels Hoofdstedelijk Gewest",
+    name: "Brussel", region: "Brussels Hoofdstedelijk Gewest", lang: "nl", slug: "webdesign-brussel",
+    h1: "Webdesign Brussel — Professionele websites voor Brusselse bedrijven",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Brussel.",
     intro: "Brussel is het kloppende hart van België — een hyper-competitieve markt waar online zichtbaarheid het verschil maakt tussen groei en stilstand. Wij bouwen websites voor Brusselse KMO's, scale-ups en lokale ondernemers die hoger willen scoren in Google.be en meer kwalitatieve leads willen binnenhalen.",
-    slug: "webdesign-brussel",
   },
   antwerpen: {
-    name: "Antwerpen",
-    region: "Provincie Antwerpen",
+    name: "Antwerpen", region: "Antwerpen", lang: "nl", slug: "webdesign-antwerpen",
+    h1: "Webdesign Antwerpen — Professionele websites voor Antwerpse bedrijven",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Antwerpen.",
     intro: "Antwerpen telt duizenden ambitieuze ondernemers. Wij helpen Antwerpse bedrijven met een snelle, mobiel-geoptimaliseerde website die direct converteert — en met lokale SEO die zorgt dat klanten u vinden vóór de concurrent.",
-    slug: "webdesign-antwerpen",
   },
   gent: {
-    name: "Gent",
-    region: "Provincie Oost-Vlaanderen",
+    name: "Gent", region: "Oost-Vlaanderen", lang: "nl", slug: "webdesign-gent",
+    h1: "Webdesign Gent — Professionele websites voor Gentse bedrijven",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Gent.",
     intro: "Gent is een broedplaats voor creatieve en technische ondernemers. Onze webdesign- en SEO-aanpak combineert sterk visueel ontwerp met techniek die ranked op Google.be — speciaal afgestemd op de Gentse markt.",
-    slug: "webdesign-gent",
   },
   hasselt: {
-    name: "Hasselt",
-    region: "Provincie Limburg",
+    name: "Hasselt", region: "Limburg", lang: "nl", slug: "webdesign-hasselt",
+    h1: "Webdesign Hasselt — Professionele websites voor Hasseltse bedrijven",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Hasselt.",
     intro: "Hasselt en de bredere Limburgse regio bieden enorme groeikansen voor lokale KMO's. Wij ontwerpen websites die niet alleen mooi zijn, maar vooral resultaat opleveren — hoger in Google, meer aanvragen, meer omzet.",
-    slug: "webdesign-hasselt",
+  },
+  tongeren: {
+    name: "Tongeren", region: "Limburg", lang: "nl", slug: "webdesign-tongeren",
+    h1: "Webdesign Tongeren — Professionele websites voor bedrijven in Tongeren",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Tongeren en de regio Zuid-Limburg.",
+    intro: "Tongeren is de oudste stad van België met een levendige lokale economie. Wij bouwen voor Tongerse ondernemers websites die opvallen in Google.be en bezoekers omzetten in klanten — afgestemd op de regio Zuid-Limburg.",
+  },
+  luik: {
+    name: "Liège", region: "Liège", lang: "fr", slug: "webdesign-luik",
+    h1: "Création de site web à Liège — Sites web professionnels pour entreprises liégeoises",
+    metaDescription: "Solyn Global crée des sites web premium et MVPs pour startups et PMEs à Liège.",
+    intro: "Liège est l'un des principaux pôles économiques de Wallonie. Nous concevons des sites rapides et orientés conversion pour les entreprises liégeoises qui veulent dominer Google.be et générer plus de leads qualifiés.",
+  },
+  namen: {
+    name: "Namur", region: "Namur", lang: "fr", slug: "webdesign-namen",
+    h1: "Création de site web à Namur — Sites web professionnels pour entreprises namuroises",
+    metaDescription: "Solyn Global crée des sites web premium et MVPs pour startups et PMEs à Namur.",
+    intro: "Namur, capitale de la Wallonie, est un terrain fertile pour les PMEs ambitieuses. Nous construisons des sites web performants, orientés SEO et conversion, parfaitement adaptés au marché namurois.",
+  },
+  leuven: {
+    name: "Leuven", region: "Vlaams-Brabant", lang: "nl", slug: "webdesign-leuven",
+    h1: "Webdesign Leuven — Professionele websites voor bedrijven in Leuven",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Leuven.",
+    intro: "Leuven combineert academische innovatie met een sterk ondernemersklimaat. Wij ontwerpen websites voor Leuvense startups en KMO's die snel willen groeien en hoog willen ranken in Google.be.",
+  },
+  mechelen: {
+    name: "Mechelen", region: "Antwerpen", lang: "nl", slug: "webdesign-mechelen",
+    h1: "Webdesign Mechelen — Professionele websites voor bedrijven in Mechelen",
+    metaDescription: "Solyn Global bouwt premium websites en MVPs voor startups en KMO's in Mechelen.",
+    intro: "Mechelen is uitgegroeid tot een dynamische hub voor ondernemers tussen Brussel en Antwerpen. Wij bouwen websites die de Mechelse markt aanspreken en zichtbaar maken op Google.be.",
   },
 };
 
-const FEATURES = [
+const FEATURES_NL = [
   { icon: Search, title: "Lokale SEO voor Google.be", desc: "Geoptimaliseerd om te ranken voor zoekopdrachten in uw stad en regio." },
   { icon: Gauge, title: "Razendsnelle laadtijden", desc: "Sub-1 seconde laadtijd op desktop én mobiel — cruciaal voor SEO en conversie." },
   { icon: Sparkles, title: "Conversiegericht ontwerp", desc: "Elk element heeft één doel: van bezoeker naar offerte-aanvraag." },
 ];
+const FEATURES_FR = [
+  { icon: Search, title: "SEO local pour Google.be", desc: "Optimisé pour ranker sur les recherches dans votre ville et région." },
+  { icon: Gauge, title: "Temps de chargement ultra-rapides", desc: "Moins d'une seconde sur desktop et mobile — essentiel pour le SEO et la conversion." },
+  { icon: Sparkles, title: "Design orienté conversion", desc: "Chaque élément a un objectif : transformer le visiteur en demande de devis." },
+];
+
+const FAQ_NL = (city: string) => [
+  { q: `Werken jullie ook met bedrijven buiten ${city}?`, a: `Ja. Wij bedienen klanten in heel België, met extra focus op ${city} en omgeving voor lokale SEO-projecten.` },
+  { q: `Hoe lang duurt een webdesign-project?`, a: `De meeste websites zijn live in 2 tot 4 weken. MVP's en complexere projecten lopen typisch 4 tot 8 weken.` },
+  { q: `Wat kost een website in ${city}?`, a: `We werken met een vast maandbedrag vanaf €300/maand of een eenmalige MVP-build vanaf €3.000. Geen verborgen kosten.` },
+];
+const FAQ_FR = (city: string) => [
+  { q: `Travaillez-vous avec des entreprises en dehors de ${city} ?`, a: `Oui. Nous travaillons avec des clients dans toute la Belgique, avec une expertise locale particulière à ${city}.` },
+  { q: `Combien de temps prend un projet de site web ?`, a: `La plupart des sites sont en ligne en 2 à 4 semaines. Les MVPs prennent généralement 4 à 8 semaines.` },
+  { q: `Combien coûte un site web à ${city} ?`, a: `Nous proposons un forfait mensuel dès 300€/mois ou un build MVP unique dès 3.000€. Pas de frais cachés.` },
+];
+
+const COPY = {
+  nl: {
+    badge: (r: string) => r,
+    cta1: "Vraag een gratis audit aan",
+    cta2: "Bekijk Prijzen",
+    trust: (c: string) => ["SEO-First Webdesign", `Actief in ${c}`, "Resultaten binnen 90 dagen", "Gebouwd om te ranken op Google.be"],
+    whyHeading: (c: string) => `Waarom Solyn voor uw onderneming in ${c}?`,
+    whySub: "Lokaal verankerd, technisch sterk, en gericht op meetbaar resultaat in Google.be.",
+    faqHeading: "Veelgestelde vragen",
+    ctaHeading: (c: string) => `Klaar om hoger te ranken in ${c}?`,
+    ctaSub: "Ontvang een gratis audit van uw huidige site met concrete verbeterpunten voor SEO, snelheid en conversie.",
+  },
+  fr: {
+    badge: (r: string) => r,
+    cta1: "Demandez un audit gratuit",
+    cta2: "Voir les Tarifs",
+    trust: (c: string) => ["Webdesign orienté SEO", `Actifs à ${c}`, "Résultats en 90 jours", "Conçu pour ranker sur Google.be"],
+    whyHeading: (c: string) => `Pourquoi choisir Solyn pour votre entreprise à ${c} ?`,
+    whySub: "Ancrés localement, techniquement solides, et focalisés sur des résultats mesurables sur Google.be.",
+    faqHeading: "Questions fréquentes",
+    ctaHeading: (c: string) => `Prêt à ranker plus haut à ${c} ?`,
+    ctaSub: "Recevez un audit gratuit de votre site actuel avec des recommandations concrètes pour le SEO, la vitesse et la conversion.",
+  },
+};
 
 const CityLanding = () => {
   const location = useLocation();
