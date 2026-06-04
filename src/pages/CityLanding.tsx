@@ -143,13 +143,17 @@ const CityLanding = () => {
     return null;
   }
 
-  const title = `Webdesign & SEO in ${data.name} | Solyn Global`;
-  const description = `Webdesign & SEO bureau actief in ${data.name}. Wij bouwen snelle, converterende websites die hoog ranken in Google voor bedrijven in ${data.name} en omgeving.`;
+  const copy = COPY[data.lang];
+  const features = data.lang === "fr" ? FEATURES_FR : FEATURES_NL;
+  const faq = data.lang === "fr" ? FAQ_FR(data.name) : FAQ_NL(data.name);
+  const title = `${data.h1.split(" — ")[0]} | Solyn Global`;
+  const description = data.metaDescription;
   const url = `https://solyn-global.com/${data.slug}`;
 
   return (
     <div className="bg-white min-h-screen">
       <Helmet>
+        <html lang={data.lang} />
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={url} />
@@ -159,15 +163,28 @@ const CityLanding = () => {
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
+          "@type": "ProfessionalService",
           name: "Solyn Global",
-          url,
+          url: "https://solyn-global.com",
           description,
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Tongeren",
+            addressRegion: "Limburg",
+            postalCode: "3700",
+            addressCountry: "BE",
+          },
           areaServed: { "@type": "City", name: data.name },
-          serviceType: ["Webdesign", "SEO", "Lokale SEO", "Website Redesign"],
-          address: { "@type": "PostalAddress", addressLocality: "Hasselt", addressCountry: "BE" },
-          email: "info@solyn-global.com",
-          inLanguage: ["nl", "fr"],
+          serviceType: "Webdesign & MVP Development",
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
         })}</script>
       </Helmet>
 
@@ -183,7 +200,7 @@ const CityLanding = () => {
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium mb-6"
           >
             <MapPin className="w-3.5 h-3.5" />
-            {data.region}
+            {copy.badge(data.region)}
           </motion.div>
 
           <motion.h1
@@ -192,7 +209,7 @@ const CityLanding = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight leading-[1.1]"
           >
-            Webdesign & SEO in {data.name}
+            {data.h1}
           </motion.h1>
 
           <motion.p
@@ -215,24 +232,19 @@ const CityLanding = () => {
               className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-7 py-6 text-base gap-1"
             >
               <ChevronRight className="w-4 h-4" />
-              Vraag een gratis audit aan
+              {copy.cta1}
             </Button>
             <Button
               variant="outline"
               onClick={() => navigate("/pricing")}
               className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base"
             >
-              Bekijk Prijzen
+              {copy.cta2}
             </Button>
           </motion.div>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600">
-            {[
-              "SEO-First Webdesign",
-              `Actief in ${data.name}`,
-              "Resultaten binnen 90 dagen",
-              "Gebouwd om te ranken op Google.be",
-            ].map((item) => (
+            {copy.trust(data.name).map((item) => (
               <div key={item} className="flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" strokeWidth={3} />
                 <span>{item}</span>
@@ -247,14 +259,12 @@ const CityLanding = () => {
         <div className="max-w-6xl mx-auto">
           <div className="max-w-2xl mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight">
-              Waarom Solyn voor uw onderneming in {data.name}?
+              {copy.whyHeading(data.name)}
             </h2>
-            <p className="text-gray-500 mt-3">
-              Lokaal verankerd, technisch sterk, en gericht op meetbaar resultaat in Google.be.
-            </p>
+            <p className="text-gray-500 mt-3">{copy.whySub}</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {FEATURES.map((f, i) => (
+            {features.map((f, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -276,21 +286,36 @@ const CityLanding = () => {
 
       <BelgianSocialProof />
 
+      {/* FAQ */}
+      <section className="py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight mb-10">
+            {copy.faqHeading}
+          </h2>
+          <div className="space-y-4">
+            {faq.map((item, i) => (
+              <div key={i} className="border border-gray-100 rounded-2xl p-6 bg-white">
+                <h3 className="font-semibold text-black">{item.q}</h3>
+                <p className="text-gray-500 text-sm mt-2 leading-relaxed">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto bg-black rounded-3xl p-12 md:p-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Klaar om hoger te ranken in {data.name}?
+            {copy.ctaHeading(data.name)}
           </h2>
-          <p className="text-white/60 mt-4 max-w-xl mx-auto">
-            Ontvang een gratis audit van uw huidige site met concrete verbeterpunten voor SEO, snelheid en conversie.
-          </p>
+          <p className="text-white/60 mt-4 max-w-xl mx-auto">{copy.ctaSub}</p>
           <Button
             onClick={() => navigate("/book")}
             className="mt-8 rounded-full bg-white text-black hover:bg-white/90 font-medium px-7 py-6 text-base gap-1"
           >
             <ChevronRight className="w-4 h-4" />
-            Vraag een gratis audit aan
+            {copy.cta1}
           </Button>
         </div>
       </section>
