@@ -72,6 +72,10 @@ function AppRoutes() {
       <Route path="/bedankt" element={<ThankYouBooking />} />
       <Route path="/showcase" element={<HiddenPortfolio />} />
       <Route path="/realisaties" element={<HiddenPortfolio />} />
+      <Route path="/webdesign-brussel" element={<CityLanding />} />
+      <Route path="/webdesign-antwerpen" element={<CityLanding />} />
+      <Route path="/webdesign-gent" element={<CityLanding />} />
+      <Route path="/webdesign-hasselt" element={<CityLanding />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
