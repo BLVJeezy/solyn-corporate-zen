@@ -1002,10 +1002,14 @@ export const translations: Record<Lang, Record<string, string>> = {
     "homeHero.badge": "Official",
     "homeHero.badgePartner": "Gold",
     "homeHero.badgeOf": "Partner of",
-    "homeHero.headline": "Get a professional website built — custom-made by Solyn",
-    "homeHero.subheadline": "We design and build fast, conversion-focused websites for entrepreneurs, SMEs and startups. Request a free quote today.",
-    "homeHero.cta1": "Book a Call",
+    "homeHero.headline": "Web Design & SEO Agency in Belgium.",
+    "homeHero.subheadline": "We build fast, high-converting websites that rank on Google — for businesses in Brussels, Antwerp, Ghent, Hasselt and across Belgium.",
+    "homeHero.cta1": "Request a free audit",
     "homeHero.cta2": "View Pricing",
+    "homeHero.trust1": "SEO-First Web Design",
+    "homeHero.trust2": "Active in Brussels, Antwerp & Ghent",
+    "homeHero.trust3": "Results within 90 days",
+    "homeHero.trust4": "Built to rank on Google.be",
 
     // Services
     "services.heading1": "Our",
