@@ -48,9 +48,10 @@ const FEATURES = [
 ];
 
 const CityLanding = () => {
-  const { city } = useParams<{ city: CityKey }>();
+  const location = useLocation();
+  const slug = location.pathname.replace(/^\/webdesign-/, "").replace(/\/$/, "") as CityKey;
   const navigate = useNavigate();
-  const data = city && CITIES[city as CityKey];
+  const data = CITIES[slug];
 
   if (!data) {
     navigate("/", { replace: true });
