@@ -26,7 +26,7 @@ const Navbar = () => {
   // Portfolio is always in the nav. When Home is disabled it lives at "/", otherwise at "/portfolio".
   const portfolioHref = settings.home_enabled ? "/portfolio" : "/";
   const navLinks = [
-    ...(aboutVisible ? [{ label: t("nav.services"), href: "/about" }] : []),
+    ...(aboutVisible ? [{ label: t("nav.services"), href: "/seo-bureau" }] : []),
     { label: t("nav.portfolio"), href: portfolioHref },
     { label: t("nav.pricing"), href: "/pricing" },
   ];

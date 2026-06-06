@@ -25,7 +25,6 @@ const SERVICE_LINKS = [
 ];
 
 const COMPANY_LINKS = [
-  { label: "Over Ons", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Prijzen", href: "/pricing" },
   { label: "Gratis Audit", href: "/book" },
