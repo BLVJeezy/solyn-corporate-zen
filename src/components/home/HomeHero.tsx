@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ChevronRight, Check, TrendingUp, Search, Star } from "lucide-react";
+import { ChevronRight, Check, Search } from "lucide-react";
+import HeroCanvas from "./HeroCanvas";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -17,8 +18,8 @@ const showcaseItems = [
 ];
 
 const STATS = [
-  { value: "90 dagen", label: "Gemiddelde tijd naar pagina 1" },
-  { value: "3×", label: "Meer leads na website redesign" },
+  { value: "90 dagen", label: "Gemiddeld naar pagina 1" },
+  { value: "3×", label: "Meer leads na lancering" },
   { value: "100%", label: "Tevreden klanten" },
 ];
 
@@ -26,41 +27,51 @@ const HomeHero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden bg-white min-h-[85vh] flex flex-col">
+      {/* Animated background */}
+      <div className="absolute inset-0 z-0">
+        <HeroCanvas />
+        {/* Subtle grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage: "linear-gradient(to right,#000 1px,transparent 1px),linear-gradient(to bottom,#000 1px,transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+      </div>
 
+      <div className="relative z-10 max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6"
+          className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 w-fit"
         >
           <Search className="w-3.5 h-3.5" />
-          SEO & Webdesign Bureau — Tongeren, Bilzen, Limburg & heel België
+          SEO & Webdesign Bureau — Tongeren · Bilzen · Hoeselt · Limburg
         </motion.div>
 
         {/* Headline */}
-        <motion.div
+        <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.06] max-w-3xl"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight leading-[1.08] text-left">
-            Meer klanten via Google.
-            <span className="text-gray-400"> Wij ranken uw bedrijf hoger.</span>
-          </h1>
-        </motion.div>
+          Meer klanten via Google.
+          <span className="text-gray-400"> Wij ranken uw bedrijf hoger.</span>
+        </motion.h1>
 
-        {/* Subheading */}
+        {/* Sub */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
           className="text-gray-500 text-base sm:text-lg max-w-xl mt-6 leading-relaxed"
         >
-          Wij bouwen snelle, converterende websites met lokale SEO voor KMO's en zelfstandigen in Tongeren, Bilzen, Borgloon en heel België. Gevonden worden door klanten die al zoeken naar wat u biedt.
+          Professionele websites en lokale SEO voor KMO's en zelfstandigen in Tongeren, Bilzen, Hoeselt en heel Limburg. Gevonden worden door klanten die al zoeken naar wat u aanbiedt.
         </motion.p>
 
         {/* CTAs */}
@@ -79,26 +90,21 @@ const HomeHero = () => {
           </Button>
           <Button
             variant="outline"
-            onClick={() => navigate("/webdesign-zuid-limburg")}
+            onClick={() => navigate("/webdesign-limburg")}
             className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base"
           >
             Uw regio bekijken
           </Button>
         </motion.div>
 
-        {/* Trust signals */}
+        {/* Trust */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600"
         >
-          {[
-            "SEO-First Webdesign",
-            "Actief in Tongeren, Bilzen & omgeving",
-            "Resultaten binnen 90 dagen",
-            "Geoptimaliseerd voor Google.be",
-          ].map((item) => (
+          {["SEO-First Webdesign", "Tongeren · Bilzen · Hoeselt · Limburg", "Resultaten binnen 90 dagen", "Geoptimaliseerd voor Google.be"].map((item) => (
             <div key={item} className="flex items-center gap-1.5">
               <Check className="w-4 h-4 text-emerald-600 shrink-0" strokeWidth={3} />
               <span>{item}</span>
@@ -106,7 +112,7 @@ const HomeHero = () => {
           ))}
         </motion.div>
 
-        {/* Stat row */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,7 +120,7 @@ const HomeHero = () => {
           className="mt-12 grid grid-cols-3 gap-4 max-w-lg"
         >
           {STATS.map((s, i) => (
-            <div key={i} className="text-left">
+            <div key={i}>
               <div className="text-2xl sm:text-3xl font-bold text-black tracking-tight">{s.value}</div>
               <div className="text-xs text-gray-400 mt-1 leading-tight">{s.label}</div>
             </div>
@@ -122,30 +128,19 @@ const HomeHero = () => {
         </motion.div>
       </div>
 
-      {/* Infinite scroll showcase */}
+      {/* Showcase scroll */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="mt-16 w-full overflow-hidden"
+        className="relative z-10 mt-16 w-full overflow-hidden"
       >
-        <div className="relative">
-          <div className="flex gap-5 animate-infinite-scroll w-max">
-            {[...showcaseItems, ...showcaseItems].map((item, i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 w-[420px] sm:w-[520px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm"
-              >
-                <img
-                  src={item.img}
-                  alt={item.alt}
-                  className="w-full h-auto object-cover"
-                  decoding="async"
-                  fetchPriority={i < 3 ? "high" : "auto"}
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex gap-5 animate-infinite-scroll w-max">
+          {[...showcaseItems, ...showcaseItems].map((item, i) => (
+            <div key={i} className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
+              <img src={item.img} alt={item.alt} className="w-full h-auto object-cover" decoding="async" fetchPriority={i < 3 ? "high" : "auto"} />
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>

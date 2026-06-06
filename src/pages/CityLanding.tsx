@@ -17,6 +17,9 @@ type CityKey =
   | "borgloon"
   | "riemst"
   | "sint-truiden"
+  | "hoeselt"
+  | "limburg"
+  | "belgie"
   | "luik"
   | "namen"
   | "leuven"
@@ -223,6 +226,83 @@ const CITIES: Record<CityKey, CityData> = {
       {
         q: "Hoe snel kan mijn website in Sint-Truiden ranken op Google?",
         a: "In een stad als Sint-Truiden, waar de online concurrentie in de meeste niches nog laag is, zien we vaak resultaten binnen 60 tot 90 dagen na publicatie. Dat is mede afhankelijk van uw branche en hoe geoptimaliseerd uw Google Bedrijfsprofiel is.",
+      },
+    ],
+  },
+  hoeselt: {
+    name: "Hoeselt",
+    region: "Zuid-Limburg",
+    lang: "nl",
+    slug: "webdesign-hoeselt",
+    geoLat: 50.8517,
+    geoLng: 5.4878,
+    h1: "Webdesign Hoeselt — Website laten maken voor bedrijven in Hoeselt",
+    metaTitle: "Webdesign Hoeselt | Website Laten Maken Hoeselt | Solyn",
+    metaDescription:
+      "Solyn maakt professionele websites voor zelfstandigen en KMO's in Hoeselt. Lokale SEO, vaste prijs, gevonden worden op Google.be. Gratis audit.",
+    intro:
+      "Hoeselt ligt centraal in Zuid-Limburg, vlakbij Tongeren en Bilzen. De meeste lokale bedrijven hier zijn online nauwelijks zichtbaar — dat is uw kans. Wij bouwen professionele websites voor Hoeseltse ondernemers die gevonden willen worden door klanten in hun gemeente en omgeving.",
+    localContext:
+      "Of u nu actief bent in Hoeselt-centrum, Romershoven, 's Gravenvoeren of omgeving — wij kennen de regio. Lokale SEO voor Hoeselt betekent ranken voor zoekopdrachten als 'schilder Hoeselt', 'loodgieter Hoeselt' of 'website laten maken Hoeselt'.",
+    nearbyTowns: ["Tongeren", "Bilzen", "Riemst", "Borgloon", "Sint-Truiden"],
+    extraFAQ: [
+      {
+        q: "Weinig concurrentie in Hoeselt — is dat een voordeel voor SEO?",
+        a: "Absoluut. In kleine gemeenten zoals Hoeselt is de online concurrentie in de meeste niches minimaal. Een goed geoptimaliseerde website scoort hier sneller dan in grotere steden. Wij benutten dat voordeel maximaal voor u.",
+      },
+    ],
+  },
+  limburg: {
+    name: "Limburg",
+    region: "Provincie Limburg",
+    lang: "nl",
+    slug: "webdesign-limburg",
+    geoLat: 50.9311,
+    geoLng: 5.3378,
+    h1: "Webdesign & SEO in Limburg — Website laten maken voor Limburgse bedrijven",
+    metaTitle: "Webdesign Limburg | Website Laten Maken Limburg | SEO Limburg | Solyn",
+    metaDescription:
+      "Solyn is het webdesign en SEO bureau voor KMO's in heel Limburg. Professionele websites met lokale SEO — Tongeren, Bilzen, Hasselt, Genk en alle gemeenten.",
+    intro:
+      "Solyn is het webdesign- en SEO bureau met roots in Zuid-Limburg, actief in de hele provincie. Van Tongeren tot Genk, van Hasselt tot Sint-Truiden — wij kennen de Limburgse markt en bouwen websites die lokale klanten aantrekken via Google.be.",
+    localContext:
+      "Limburg telt honderden KMO's en zelfstandigen die online nauwelijks zichtbaar zijn. Wij helpen ondernemers in elke gemeente van Limburg om hoger te ranken voor de zoektermen die hun klanten gebruiken.",
+    nearbyTowns: ["Tongeren", "Bilzen", "Hoeselt", "Hasselt", "Genk", "Sint-Truiden", "Borgloon", "Riemst"],
+    extraFAQ: [
+      {
+        q: "Werken jullie in de hele provincie Limburg?",
+        a: "Ja. Wij zijn actief in alle gemeenten van Limburg — van Tongeren en Bilzen in het zuiden tot Genk en Hasselt in het noorden. Lokale kennis is onze troef.",
+      },
+      {
+        q: "Wat zijn de populairste zoektermen in Limburg?",
+        a: "Dat verschilt per gemeente en sector. Wij doen altijd een zoekwoordenonderzoek specifiek voor uw locatie en niche. Typisch zien we veel volume voor 'website laten maken [gemeente]', '[dienst] [gemeente]' en '[sector] Limburg'.",
+      },
+    ],
+  },
+  belgie: {
+    name: "België",
+    region: "België",
+    lang: "nl",
+    slug: "webdesign-belgie",
+    geoLat: 50.8503,
+    geoLng: 4.3517,
+    h1: "Webdesign & SEO Bureau in België — Website laten maken voor Belgische KMO's",
+    metaTitle: "Webdesign België | Website Laten Maken | SEO Bureau België | Solyn",
+    metaDescription:
+      "Solyn is een Belgisch webdesign en SEO bureau voor KMO's en zelfstandigen. Professionele websites met lokale SEO — actief in Vlaanderen, Wallonië en Brussel.",
+    intro:
+      "Solyn is een Belgisch webdesign- en SEO bureau met roots in Limburg, actief in heel België. Wij bouwen professionele websites voor KMO's en zelfstandigen die meer klanten willen aantrekken via Google.be — in Vlaanderen, Brussel en Wallonië.",
+    localContext:
+      "Van een kleine zelfstandige in Hoeselt tot een groeiende KMO in Antwerpen — wij passen onze aanpak aan op uw markt, uw gemeente en uw doelgroep. Belgische SEO betekent denken in postcodes, talen en lokale zoekgedrag.",
+    nearbyTowns: ["Brussel", "Antwerpen", "Gent", "Hasselt", "Tongeren", "Luik", "Namen", "Leuven"],
+    extraFAQ: [
+      {
+        q: "Werken jullie ook voor bedrijven in Wallonië of Brussel?",
+        a: "Ja. Wij zijn tweetalig en bouwen websites in het Nederlands, Frans en Engels. Voor Waalse en Brusselse klanten werken we met Franstalige SEO-content en lokale optimalisatie voor de respectieve regio's.",
+      },
+      {
+        q: "Hoe bereiken jullie ook lokaal de Belgische markt?",
+        a: "Via dedicated landingspagina's per gemeente, correct ingestelde geo-targeting in Google, en een Google Bedrijfsprofiel met de juiste service areas. België is een complex markt — wij kennen de nuances.",
       },
     ],
   },
@@ -674,3 +754,5 @@ const CityLanding = () => {
 };
 
 export default CityLanding;
+
+// This file already has the CITIES object — we add new entries via the patch below
