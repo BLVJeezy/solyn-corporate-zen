@@ -1,14 +1,40 @@
 import { useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter } from "lucide-react";
-import { useLanguage } from "@/i18n/LanguageContext";
+import { Linkedin, Twitter, MapPin } from "lucide-react";
+import solynLogo from "@/assets/solyn-logo.png";
+
+const CITY_LINKS = [
+  { label: "Webdesign Tongeren", href: "/webdesign-tongeren" },
+  { label: "Webdesign Bilzen", href: "/webdesign-bilzen" },
+  { label: "Webdesign Borgloon", href: "/webdesign-borgloon" },
+  { label: "Webdesign Riemst", href: "/webdesign-riemst" },
+  { label: "Webdesign Sint-Truiden", href: "/webdesign-sint-truiden" },
+  { label: "Webdesign Zuid-Limburg", href: "/webdesign-zuid-limburg" },
+  { label: "Webdesign Hasselt", href: "/webdesign-hasselt" },
+  { label: "Webdesign Brussel", href: "/webdesign-brussel" },
+];
+
+const SERVICE_LINKS = [
+  { label: "Lokale SEO", href: "/website-laten-maken" },
+  { label: "Website Laten Maken", href: "/website-laten-maken" },
+  { label: "Website Laten Maken (FR)", href: "/creation-site-web" },
+  { label: "MVP Development", href: "/mvp-development" },
+  { label: "Maatwerk Software", href: "/maatwerk-software" },
+  { label: "Startup Website", href: "/startup-website" },
+];
+
+const COMPANY_LINKS = [
+  { label: "Over Ons", href: "/about" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Prijzen", href: "/pricing" },
+  { label: "Gratis Audit", href: "/book" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "Voorwaarden", href: "/terms" },
+];
 
 const HomeFooter = () => {
-  const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const { t } = useLanguage();
   const clickCount = useRef(0);
   const clickTimer = useRef<NodeJS.Timeout>();
 
@@ -24,55 +50,75 @@ const HomeFooter = () => {
     }
   }, [navigate]);
 
-  const footerLinks = [
-    { labelKey: "homeFooter.about", href: "/about" },
-    { labelKey: "homeFooter.work", href: "/portfolio" },
-    { labelKey: "homeFooter.pricing", href: "/pricing" },
-    { labelKey: "homeFooter.blog", href: "/blog" },
-    { labelKey: "homeFooter.contact", href: "/book" },
-    { labelKey: "homeFooter.testimonials", href: "/testimonials" },
-    { labelKey: "homeFooter.faqs", href: "/faqs" },
-  ];
-
   return (
     <footer className="border-t border-gray-100 py-16 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          {/* Newsletter */}
-          <div>
-            <h3 className="text-xl font-bold text-black mb-2">{t("homeFooter.subscribe")}</h3>
-            <p className="text-gray-400 text-sm mb-6">
-              {t("homeFooter.subtitle")}
+        {/* Top grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <img src={solynLogo} alt="Solyn Global" className="h-8 w-auto mb-4" />
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+              SEO & Webdesign Bureau actief in Tongeren, Bilzen, Borgloon en heel België.
             </p>
-            <div className="flex gap-2 max-w-sm">
-              <Input
-                type="email"
-                placeholder={t("homeFooter.emailPh")}
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="rounded-full border-gray-200 bg-gray-50 text-black placeholder:text-gray-400"
-              />
-              <Button className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-6 flex-shrink-0">
-                {t("homeFooter.signUp")}
-              </Button>
+            <div className="flex items-center gap-1.5 mt-4 text-xs text-gray-400">
+              <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+              Bilzen, Limburg — België
             </div>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-wrap gap-x-8 gap-y-3 md:justify-end md:items-start">
-            {footerLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate(link.href);
-                }}
-                className="text-gray-400 text-sm hover:text-black transition-colors"
-              >
-                {t(link.labelKey)}
-              </a>
-            ))}
+          {/* Services */}
+          <div>
+            <p className="text-xs uppercase tracking-wider font-semibold text-gray-400 mb-4">Diensten</p>
+            <ul className="space-y-2.5">
+              {SERVICE_LINKS.map((l) => (
+                <li key={l.href + l.label}>
+                  <a
+                    href={l.href}
+                    onClick={(e) => { e.preventDefault(); navigate(l.href); }}
+                    className="text-gray-500 text-sm hover:text-black transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Regions */}
+          <div>
+            <p className="text-xs uppercase tracking-wider font-semibold text-gray-400 mb-4">Regio's</p>
+            <ul className="space-y-2.5">
+              {CITY_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={(e) => { e.preventDefault(); navigate(l.href); }}
+                    className="text-gray-500 text-sm hover:text-black transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <p className="text-xs uppercase tracking-wider font-semibold text-gray-400 mb-4">Bedrijf</p>
+            <ul className="space-y-2.5">
+              {COMPANY_LINKS.map((l) => (
+                <li key={l.href + l.label}>
+                  <a
+                    href={l.href}
+                    onClick={(e) => { e.preventDefault(); navigate(l.href); }}
+                    className="text-gray-500 text-sm hover:text-black transition-colors"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
@@ -80,14 +126,14 @@ const HomeFooter = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-gray-100">
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-xs text-gray-400">
             <p className="select-none" onClick={handleSecretClick}>
-              {t("homeFooter.copyright")}
+              © {new Date().getFullYear()} Solyn Global. Alle rechten voorbehouden.
             </p>
-            <span className="hidden sm:inline text-gray-200">·</span>
-            <span>Hasselt, België</span>
             <span className="hidden sm:inline text-gray-200">·</span>
             <a href="mailto:info@solyn-global.com" className="hover:text-black transition-colors">
               info@solyn-global.com
             </a>
+            <span className="hidden sm:inline text-gray-200">·</span>
+            <span>KMO Webdesign & SEO — Tongeren · Bilzen · Borgloon · Limburg</span>
           </div>
           <div className="flex gap-3">
             <a href="#" className="text-gray-300 hover:text-gray-500 transition-colors">

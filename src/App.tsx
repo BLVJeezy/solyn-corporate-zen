@@ -27,6 +27,7 @@ import ThankYouBooking from "./pages/ThankYouBooking";
 import HiddenPortfolio from "./pages/HiddenPortfolio";
 import CityLanding from "./pages/CityLanding";
 import MvpDevelopment from "./pages/MvpDevelopment";
+import ZuidLimburg from "./pages/ZuidLimburg";
 import MaatwerkSoftware from "./pages/MaatwerkSoftware";
 import StartupWebsite from "./pages/StartupWebsite";
 import ScrollToTop from "./components/ScrollToTop";
@@ -80,6 +81,11 @@ function AppRoutes() {
       <Route path="/webdesign-gent" element={<CityLanding />} />
       <Route path="/webdesign-hasselt" element={<CityLanding />} />
       <Route path="/webdesign-tongeren" element={<CityLanding />} />
+      <Route path="/webdesign-bilzen" element={<CityLanding />} />
+      <Route path="/webdesign-borgloon" element={<CityLanding />} />
+      <Route path="/webdesign-riemst" element={<CityLanding />} />
+      <Route path="/webdesign-sint-truiden" element={<CityLanding />} />
+      <Route path="/webdesign-zuid-limburg" element={<ZuidLimburg />} />
       <Route path="/webdesign-luik" element={<CityLanding />} />
       <Route path="/webdesign-namen" element={<CityLanding />} />
       <Route path="/webdesign-leuven" element={<CityLanding />} />

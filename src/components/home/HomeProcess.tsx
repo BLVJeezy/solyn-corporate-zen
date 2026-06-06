@@ -1,136 +1,95 @@
 import { motion } from "framer-motion";
-import { Code2, Map, Cpu, MessageCircle } from "lucide-react";
-import showcaseMvpBuilder from "@/assets/showcase-mvp-builder.png";
-import showcaseRoadmap from "@/assets/showcase-roadmap.png";
-import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
-import showcaseTaskboard from "@/assets/showcase-taskboard.png";
-import iconSupabase from "@/assets/icon-supabase.svg";
-import iconCursor from "@/assets/icon-cursor.svg";
-import iconLovable from "@/assets/icon-lovable.svg";
-import { useLanguage } from "@/i18n/LanguageContext";
+import { Search, Palette, Rocket, BarChart3 } from "lucide-react";
 
-const toolIcons = [
-  { src: iconLovable, alt: "Lovable" },
-  { src: iconCursor, alt: "Cursor" },
-  { src: iconSupabase, alt: "Supabase" },
-];
-
-const imageAnimations = [
-  { initial: { opacity: 0, x: 80, rotate: 3 }, animate: { opacity: 1, x: 0, rotate: 0 } },
-  { initial: { opacity: 0, x: -80, scale: 0.9 }, animate: { opacity: 1, x: 0, scale: 1 } },
-  {},
-  { initial: { opacity: 0, x: 60, y: 40, rotate: -2 }, animate: { opacity: 1, x: 0, y: 0, rotate: 0 } },
+const steps = [
+  {
+    icon: Search,
+    number: "01",
+    title: "Gratis SEO-audit",
+    subtitle: "Wij analyseren uw website en Google-positie",
+    desc: "We kijken naar uw huidige online zichtbaarheid, analyseren wat uw concurrenten doen en identificeren de exacte zoektermen die uw klanten gebruiken. U ontvangt een concreet rapport — gratis, zonder verplichtingen.",
+    tags: ["Zoekwoordenonderzoek", "Concurrent analyse", "Google positie check", "Technische audit"],
+    accent: "bg-emerald-50 text-emerald-700 border-emerald-100",
+  },
+  {
+    icon: Palette,
+    number: "02",
+    title: "Website & SEO-strategie",
+    subtitle: "Wij bouwen uw website met SEO ingebouwd",
+    desc: "Geen SEO als laagje bovenop een bestaande site — wij bouwen het er van dag 1 in. Snelle laadtijden, correcte heading-structuur, lokale landingspagina's en een technische basis die Google begrijpt en beloont.",
+    tags: ["On-page SEO", "Lokale landingspagina's", "Snelheidsoptimalisatie", "Mobile-first"],
+    accent: "bg-blue-50 text-blue-700 border-blue-100",
+  },
+  {
+    icon: Rocket,
+    number: "03",
+    title: "Lancering & Google Bedrijfsprofiel",
+    subtitle: "Live in 2 tot 4 weken",
+    desc: "Zodra uw website live gaat, optimaliseren we ook uw Google Bedrijfsprofiel. Dat is de sleutel tot de lokale kaartresultaten in Google — de eerste drie resultaten die 70% van de lokale zoekopdrachten krijgen.",
+    tags: ["Google Bedrijfsprofiel", "Schema markup", "Sitemap + robots.txt", "Search Console"],
+    accent: "bg-violet-50 text-violet-700 border-violet-100",
+  },
+  {
+    icon: BarChart3,
+    number: "04",
+    title: "Groei & Rapportage",
+    subtitle: "Meetbaar resultaat, elke maand",
+    desc: "Wij leveren maandelijkse rapportages over uw Google-rankings, websiteverkeer en leads. U ziet precies welke zoektermen stijgen, hoeveel bezoekers u krijgt en waar de groeikansen liggen.",
+    tags: ["Maandelijkse ranking-rapporten", "Traffic analyse", "Conversie-tracking", "Continue optimalisatie"],
+    accent: "bg-orange-50 text-orange-700 border-orange-100",
+  },
 ];
 
 const HomeProcess = () => {
-  const { t } = useLanguage();
-
-  const steps = [
-    {
-      icon: Code2,
-      tabKey: "homeProcess.build.tab",
-      titleKey: "homeProcess.build.title",
-      textKey: "homeProcess.build.text",
-      image: showcaseMvpBuilder,
-    },
-    {
-      icon: Map,
-      tabKey: "homeProcess.iterate.tab",
-      titleKey: "homeProcess.iterate.title",
-      textKey: "homeProcess.iterate.text",
-      image: showcaseRoadmap,
-    },
-    {
-      icon: MessageCircle,
-      tabKey: "homeProcess.collaborate.tab",
-      titleKey: "homeProcess.collaborate.title",
-      textKey: "homeProcess.collaborate.text",
-      image: showcaseTaskboard,
-    },
-  ];
-
   return (
-    <section className="relative overflow-x-clip">
-      {/* Top fade */}
-      <div className="h-32 bg-gradient-to-b from-white via-white to-transparent relative z-10" />
-
-      {/* Gradient background */}
-      <div className="relative bg-gradient-to-b from-purple-500 via-purple-900 to-blue-600">
-        {/* Header */}
+    <section className="py-24 px-6 bg-gray-50">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center pt-16 pb-20 px-6"
+          className="max-w-2xl mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-            {t("homeProcess.heading")}{" "}
-            <span className="text-white/50">
-              {t("homeProcess.headingGray")}
-            </span>
+          <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-semibold mb-4">Hoe het werkt</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-black tracking-tight leading-tight">
+            Van onzichtbaar naar{" "}
+            <span className="text-gray-400">pagina 1 van Google</span>
           </h2>
+          <p className="text-gray-500 mt-4 leading-relaxed">
+            Ons bewezen proces zorgt dat uw bedrijf gevonden wordt door klanten die al zoeken naar wat u aanbiedt — in uw gemeente, uw regio, uw markt.
+          </p>
         </motion.div>
 
-        {/* Stacking cards */}
-        <div className="relative px-4 md:px-6 pb-24">
+        <div className="grid md:grid-cols-2 gap-6">
           {steps.map((step, i) => (
-            <div
+            <motion.div
               key={i}
-              className="sticky min-h-[auto] md:h-[80vh]"
-              style={{ top: `${60 + i * 24}px`, zIndex: i + 1 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="max-w-6xl mx-auto"
-              >
-                <div className="rounded-3xl bg-white p-6 md:p-12 shadow-[0_-8px_30px_-6px_rgba(0,0,0,0.15),0_8px_30px_-6px_rgba(0,0,0,0.1)] origin-top overflow-hidden">
-                  {/* Tab label */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-                      <step.icon className="w-4 h-4 text-gray-500" />
-                    </span>
-                    <span className="text-sm font-medium text-gray-500">{t(step.tabKey)}</span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-start">
-                    <div>
-                      <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-black mb-3 md:mb-4 leading-tight break-words">
-                        {t(step.titleKey)}
-                      </h3>
-                      <p className="text-gray-500 leading-relaxed text-sm md:text-base max-w-md">
-                        {t(step.textKey)}
-                      </p>
-                    </div>
-                    {/* Visual */}
-                    <motion.div
-                      initial={imageAnimations[i]?.initial}
-                      whileInView={imageAnimations[i]?.animate}
-                      viewport={{ once: true, margin: "-80px" }}
-                      transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                      className="rounded-2xl bg-gray-50 border border-gray-100 overflow-hidden shadow-sm"
-                    >
-                      <img
-                          src={step.image}
-                          alt={t(step.tabKey)}
-                          className="w-full h-auto object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </motion.div>
-                  </div>
+              <div className="flex items-start justify-between mb-5">
+                <div className={`w-11 h-11 rounded-xl border flex items-center justify-center ${step.accent}`}>
+                  <step.icon className="w-5 h-5" />
                 </div>
-              </motion.div>
-            </div>
+                <span className="text-4xl font-bold text-gray-100 select-none">{step.number}</span>
+              </div>
+              <h3 className="text-xl font-bold text-black mb-1">{step.title}</h3>
+              <p className="text-sm text-gray-400 mb-4 font-medium">{step.subtitle}</p>
+              <p className="text-gray-500 text-sm leading-relaxed mb-6">{step.desc}</p>
+              <div className="flex flex-wrap gap-2">
+                {step.tags.map((tag) => (
+                  <span key={tag} className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div className="h-32 bg-gradient-to-b from-blue-600 via-transparent to-white" />
     </section>
   );
 };

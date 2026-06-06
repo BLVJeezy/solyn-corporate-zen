@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://solyn-global.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://solyn-global.com/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://solyn-global.com/portfolio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/pricing</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/website-laten-maken</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/creation-site-web</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/web-development-company</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/mvp-development</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/maatwerk-software</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/startup-website</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-brussel</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-antwerpen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-gent</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-hasselt</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-tongeren</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-luik</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-namen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-leuven</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/webdesign-mechelen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://solyn-global.com/book</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://solyn-global.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://solyn-global.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <!-- Core pages -->
+  <url><loc>https://solyn-global.com/</loc><lastmod>2025-06-01</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://solyn-global.com/about</loc><lastmod>2025-05-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://solyn-global.com/portfolio</loc><lastmod>2025-06-01</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/pricing</loc><lastmod>2025-05-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/book</loc><lastmod>2025-05-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Service pages -->
+  <url><loc>https://solyn-global.com/website-laten-maken</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/creation-site-web</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/web-development-company</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/mvp-development</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/maatwerk-software</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/startup-website</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Regional hub — Zuid-Limburg -->
+  <url><loc>https://solyn-global.com/webdesign-zuid-limburg</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+
+  <!-- Zuid-Limburg city pages (primary targets) -->
+  <url><loc>https://solyn-global.com/webdesign-tongeren</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-bilzen</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-borgloon</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-riemst</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-sint-truiden</loc><lastmod>2025-06-06</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+
+  <!-- Other Belgian city pages -->
+  <url><loc>https://solyn-global.com/webdesign-hasselt</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-brussel</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-antwerpen</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-gent</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-leuven</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-mechelen</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-luik</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solyn-global.com/webdesign-namen</loc><lastmod>2025-06-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Legal -->
+  <url><loc>https://solyn-global.com/privacy</loc><lastmod>2025-01-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://solyn-global.com/terms</loc><lastmod>2025-01-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
