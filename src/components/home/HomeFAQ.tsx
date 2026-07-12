@@ -33,7 +33,7 @@ const faqGroups = [
     items: [
       {
         q: "Wat kost een professionele website laten maken?",
-        a: "Wij werken met vaste, transparante prijzen. Een professionele website met SEO-basis start vanaf een eenmalige build, daarna optioneel maandelijks onderhoud vanaf €300/maand. U betaalt nooit meer dan afgesproken. Geen verborgen kosten, geen jaarcontracten die u vastzetten.",
+        a: "Wij werken met vaste, transparante prijzen. Een professionele website met SEO-basis start vanaf een eenmalige build, daarna optioneel maandelijks onderhoud voor een vast bedrag. U betaalt nooit meer dan afgesproken. Geen verborgen kosten, geen jaarcontracten die u vastzetten.",
       },
       {
         q: "Hoe lang duurt het bouwen van een website?",

@@ -26,7 +26,6 @@ const SERVICE_LINKS = [
 
 const COMPANY_LINKS = [
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Prijzen", href: "/pricing" },
   { label: "Gratis Audit", href: "/book" },
   { label: "Privacy", href: "/privacy" },
   { label: "Voorwaarden", href: "/terms" },

@@ -61,8 +61,8 @@ const cards = [
       <div className="w-full max-w-xs mx-auto rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-2">
         <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Prijsvergelijking</div>
         {[
-          { label: "Traditioneel bureau", price: "€5.000–15.000", bad: true },
-          { label: "Freelancer (onzeker)", price: "€1.000–8.000", bad: true },
+          { label: "Traditioneel bureau", price: "Duur & traag", bad: true },
+          { label: "Freelancer (onzeker)", price: "Onvoorspelbaar", bad: true },
           { label: "Solyn Global", price: "Vaste, eerlijke prijs", bad: false },
         ].map((row, i) => (
           <div key={i} className={`flex items-center justify-between p-2.5 rounded-lg border ${row.bad ? "border-red-50 bg-red-50/50" : "border-emerald-100 bg-emerald-50"}`}>

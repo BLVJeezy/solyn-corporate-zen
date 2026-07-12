@@ -17,7 +17,7 @@ const StartupWebsite = () => (
       "Conversiegerichte structuur op basis van bewezen startup-frameworks",
       "Geoptimaliseerd voor laadtijd (<1s) en SEO vanaf dag 1",
       "Schaalbaar naar dashboard, klantportaal of webapp zonder rebuild",
-      "Vanaf €300/maand abonnement of eenmalige build vanaf €3.000",
+      "Abonnement of eenmalige build — een vast voorstel na een kort kennismakingsgesprek",
     ]}
     serviceType="Startup Website Development"
     faq={[

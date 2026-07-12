@@ -10,8 +10,8 @@ const PLANS: Record<Tab, {
   icon: React.ElementType;
   name: string;
   tagline: string;
-  price: string;
-  period: string;
+  price?: string;
+  period?: string;
   badge?: string;
   cta: string;
   features: string[];
@@ -22,8 +22,6 @@ const PLANS: Record<Tab, {
       icon: Search,
       name: "Lokale SEO Starter",
       tagline: "Voor zelfstandigen & kleine KMO's",
-      price: "€300",
-      period: "/maand",
       cta: "Start met SEO",
       features: [
         "Google Bedrijfsprofiel optimalisatie",
@@ -38,8 +36,6 @@ const PLANS: Record<Tab, {
       icon: TrendingUp,
       name: "Lokale SEO Business",
       tagline: "Voor groeiende KMO's in de regio",
-      price: "€600",
-      period: "/maand",
       badge: "Meest gekozen",
       cta: "Start Business SEO",
       dark: true,
@@ -60,8 +56,6 @@ const PLANS: Record<Tab, {
       icon: Globe,
       name: "Website Laten Maken",
       tagline: "Professionele website met SEO-basis",
-      price: "Vaste prijs",
-      period: "eenmalig — offerte op maat",
       cta: "Gratis offerte aanvragen",
       features: [
         "Design op maat — geen templates",
@@ -77,8 +71,6 @@ const PLANS: Record<Tab, {
       icon: TrendingUp,
       name: "Website + SEO Onderhoud",
       tagline: "Website bouwen én laten groeien",
-      price: "€300",
-      period: "/maand na build",
       badge: "Beste investering",
       dark: true,
       cta: "Bekijk dit pakket",
@@ -99,8 +91,6 @@ const PLANS: Record<Tab, {
       icon: TrendingUp,
       name: "SEO Dominantie Pakket",
       tagline: "Voor bedrijven die hun regio willen beheersen",
-      price: "Op maat",
-      period: "intake gesprek nodig",
       badge: "Volledig pakket",
       dark: true,
       cta: "Bespreek uw situatie",
@@ -140,10 +130,10 @@ const HomePricing = () => {
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-semibold mb-4">Transparante Prijzen</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-gray-400 font-semibold mb-4">Diensten Op Maat</p>
           <h2 className="text-3xl text-black tracking-tight leading-tight font-bold md:text-4xl">
-            Vaste prijzen.{" "}
-            <span className="text-gray-400">Geen verrassingen. Meetbaar resultaat.</span>
+            Geen vaste pakketten.{" "}
+            <span className="text-gray-400">Een voorstel op maat van uw project.</span>
           </h2>
           <p className="text-gray-500 text-sm mt-3 max-w-lg mx-auto">Maandelijks opzegbaar. Geen jaarcontracten. Geen verborgen kosten.</p>
         </motion.div>
@@ -206,8 +196,9 @@ const HomePricing = () => {
                   </div>
 
                   <div className="mb-6">
-                    <span className={`text-3xl font-bold ${plan.dark ? "text-white" : "text-black"}`}>{plan.price}</span>
-                    <span className={`text-sm ml-1 ${plan.dark ? "text-white/50" : "text-gray-400"}`}>{plan.period}</span>
+                    <span className={`text-sm font-medium ${plan.dark ? "text-white/70" : "text-gray-500"}`}>
+                      Prijs op maat na een kort kennismakingsgesprek
+                    </span>
                   </div>
 
                   <Button

@@ -414,7 +414,7 @@ const FAQ_NL = (city: string) => [
   },
   {
     q: `Wat kost een website in ${city}?`,
-    a: `We werken met een vast maandbedrag vanaf €300/maand of een eenmalige MVP-build vanaf €3.000. Geen verborgen kosten, geen verrassingen.`,
+    a: `We werken met een vast maandbedrag of een eenmalige MVP-build, altijd op maat van uw project. Geen verborgen kosten, geen verrassingen.`,
   },
   {
     q: "Helpen jullie ook met Google Bedrijfsprofiel?",

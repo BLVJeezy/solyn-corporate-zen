@@ -36,8 +36,8 @@ const PACKAGES = [
   },
   {
     name: "Website + SEO pakket",
-    price: "€300",
-    period: "/maand na build",
+    price: "Op maat",
+    period: "maandelijks na build",
     features: ["Business website inbegrepen", "Maandelijkse SEO-optimalisatie", "Google Bedrijfsprofiel beheer", "Maandelijks rankingrapport", "Nieuwe content & pagina's", "WhatsApp support"],
     cta: "Pakket bespreken",
     dark: false,
@@ -46,7 +46,7 @@ const PACKAGES = [
 
 const FAQ = [
   { q: "Hoe lang duurt het bouwen van een website?", a: "De meeste websites zijn live binnen 2 tot 4 weken na de kick-off. Complexere projecten met webshop of meertaligheid duren 4 tot 6 weken. U krijgt altijd een concrete planning vooraf." },
-  { q: "Wat kost een professionele website?", a: "Wij werken met vaste, transparante prijzen op maat van uw project. Na een kort gesprek weet u exact wat het kost — geen verrassingen achteraf. Pakketten starten vanaf €1.500 eenmalig." },
+  { q: "Wat kost een professionele website?", a: "Wij werken met vaste, transparante prijzen op maat van uw project. Na een kort gesprek weet u exact wat het kost — geen verrassingen achteraf." },
   { q: "Bouwen jullie ook webshops?", a: "Ja. Wij bouwen e-commerce websites voor lokale KMO's — van eenvoudige productcatalogi tot volledige webshops met betaalmodules en voorraadbeheer." },
   { q: "Gebruik ik WordPress of een ander CMS?", a: "Dat hangt af van uw noden. Wij werken met moderne technologieën die het beste passen bij uw project: React, Next.js, WordPress of headless CMS. Wij adviseren u eerlijk over de beste keuze." },
   { q: "Wat als ik later extra pagina's wil toevoegen?", a: "Geen probleem. Klanten met een onderhoudsabonnement krijgen maandelijks development-uren inbegrepen voor nieuwe pagina's of aanpassingen. Éénmalige uitbreidingen zijn ook mogelijk." },

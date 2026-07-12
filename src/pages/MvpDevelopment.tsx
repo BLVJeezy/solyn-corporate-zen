@@ -23,7 +23,7 @@ const MvpDevelopment = () => (
     faq={[
       {
         q: "Wat kost een MVP bij Solyn?",
-        a: "Onze MVP-builds starten vanaf €3.000 voor compacte scopes en lopen tot €15.000 voor complexere producten. U weet de prijs vooraf — geen verrassingen op de eindfactuur.",
+        a: "Onze MVP-builds worden geprijsd op basis van scope en complexiteit. U weet de prijs vooraf, na een kort gesprek — geen verrassingen op de eindfactuur.",
       },
       {
         q: "Hoe lang duurt het echt?",

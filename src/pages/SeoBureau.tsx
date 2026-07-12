@@ -28,7 +28,7 @@ const FAQ = [
   { q: "Wat maakt lokale SEO anders dan gewone SEO?", a: "Lokale SEO richt zich op geografische zoekopdrachten: 'loodgieter Tongeren', 'kapper Bilzen', 'boekhouder Hoeselt'. Hierbij speelt uw Google Bedrijfsprofiel een cruciale rol — het bepaalt of u in de kaartresultaten verschijnt, die 70% van de kliks krijgen." },
   { q: "Werken jullie enkel voor bepaalde sectoren?", a: "Nee. Wij werken voor zelfstandigen en KMO's in alle sectoren — bouw, horeca, vrije beroepen, detailhandel, dienstverlening. Elke sector heeft zijn eigen zoekgedrag, dat is precies onze expertise." },
   { q: "Kan ik maandelijks opzeggen?", a: "Ja. Wij werken zonder langdurige contracten. U betaalt per maand en kunt op elk moment stoppen. Wij verdienen ons mandaat door resultaten te leveren, niet door u vast te houden." },
-  { q: "Wat kost lokale SEO?", a: "Onze SEO-pakketten starten vanaf €300/maand voor lokale SEO. Het exacte bedrag hangt af van uw markt, uw concurrenten en de doelstellingen. We geven altijd een eerlijk advies na de gratis audit." },
+  { q: "Wat kost lokale SEO?", a: "De prijs hangt af van uw markt, uw concurrenten en uw doelstellingen. We geven altijd een eerlijk advies en een vaste offerte na de gratis audit — geen verborgen kosten." },
 ];
 
 const SCHEMA = {

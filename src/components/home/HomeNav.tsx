@@ -21,7 +21,6 @@ const REGIONS = [
 
 const NAV_LINKS = [
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Prijzen", href: "/pricing" },
 ];
 
 const Dropdown = ({

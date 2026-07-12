@@ -28,7 +28,6 @@ const Navbar = () => {
   const navLinks = [
     ...(aboutVisible ? [{ label: t("nav.services"), href: "/seo-bureau" }] : []),
     { label: t("nav.portfolio"), href: portfolioHref },
-    { label: t("nav.pricing"), href: "/pricing" },
   ];
 
   useEffect(() => {
@@ -44,7 +43,7 @@ const Navbar = () => {
       return;
     }
 
-    const sections = ["services", "pricing"];
+    const sections = ["services"];
     const observers: IntersectionObserver[] = [];
 
     sections.forEach((id) => {

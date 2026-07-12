@@ -84,7 +84,7 @@ const Index = () => {
       <Helmet>
         <html lang="nl" />
         <title>Webdesign & SEO Bureau Bilzen, Tongeren, Limburg | Solyn Global</title>
-        <meta name="description" content="Solyn Global is het SEO en webdesign bureau voor KMO's en zelfstandigen in Tongeren, Bilzen, Borgloon en heel Limburg. Meer klanten via Google.be — website laten maken vanaf €300/maand." />
+        <meta name="description" content="Solyn Global is het SEO en webdesign bureau voor KMO's en zelfstandigen in Tongeren, Bilzen, Borgloon en heel Limburg. Meer klanten via Google — website laten maken op maat." />
         <link rel="canonical" href="https://solyn-global.com/" />
         <meta property="og:title" content="Webdesign & SEO Bureau — Tongeren, Bilzen, Limburg | Solyn Global" />
         <meta property="og:description" content="Professionele websites en lokale SEO voor Limburgse KMO's. Gevonden worden op Google.be voor uw gemeente en regio." />

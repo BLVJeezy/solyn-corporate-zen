@@ -57,7 +57,7 @@ const FAQ = [
   },
   {
     q: "Wat kost een website laten maken in Zuid-Limburg?",
-    a: "Wij werken met een vast maandbedrag vanaf €300/maand of een eenmalige build vanaf €3.000. Geen verborgen kosten. U weet altijd precies wat u betaalt.",
+    a: "Wij werken met een vast maandbedrag of een eenmalige build, altijd op maat van uw project. Geen verborgen kosten. U weet altijd precies wat u betaalt, na een kort kennismakingsgesprek.",
   },
   {
     q: "Helpen jullie ook met Google Bedrijfsprofiel optimalisatie?",

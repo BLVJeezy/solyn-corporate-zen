@@ -9,7 +9,6 @@ import { AuthProvider, useAuth } from "@/hooks/useAuth";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
 import Index from "./pages/Index";
 import Portfolio from "./pages/Portfolio";
-import Pricing from "./pages/Pricing";
 import Apply from "./pages/Apply";
 import Admin from "./pages/Admin";
 import Analytics from "./pages/Analytics";
@@ -52,7 +51,7 @@ function AppRoutes() {
       <Route path="/about" element={<Navigate to="/" replace />} />
 
       <Route path="/portfolio" element={settings.home_enabled ? <Portfolio /> : <Navigate to="/" replace />} />
-      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/pricing" element={<Navigate to="/apply" replace />} />
 
       {/* Service pages */}
       <Route path="/seo-bureau" element={<SeoBureau />} />
