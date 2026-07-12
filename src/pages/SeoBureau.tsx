@@ -35,7 +35,7 @@ const SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Solyn Global — SEO Bureau Limburg",
-  url: "https://solyn-global.com/seo-bureau",
+  url: "https://solynglobal.be/seo-bureau",
   description: "Lokale SEO bureau actief in Tongeren, Bilzen, Hoeselt, Borgloon en heel Limburg. Wij ranken KMO's en zelfstandigen hoger in Google.be.",
   address: { "@type": "PostalAddress", addressLocality: "Bilzen", addressRegion: "Limburg", postalCode: "3740", addressCountry: "BE" },
   geo: { "@type": "GeoCoordinates", latitude: 50.8689, longitude: 5.5178 },
@@ -54,12 +54,12 @@ const SeoBureau = () => {
     <div className="bg-white min-h-screen">
       <Helmet>
         <html lang="nl" />
-        <title>SEO Bureau Tongeren, Bilzen & Limburg | Lokale SEO | Solyn</title>
-        <meta name="description" content="Solyn is het SEO bureau voor KMO's en zelfstandigen in Tongeren, Bilzen, Hoeselt en heel Limburg. Meer klanten via Google.be — meetbaar resultaat, maandelijks opzegbaar." />
-        <link rel="canonical" href="https://solyn-global.com/seo-bureau" />
+        <title>SEO Bureau Limburg | Tongeren, Bilzen & Hasselt | Solyn</title>
+        <meta name="description" content="Solyn is het SEO bureau voor KMO's en zelfstandigen in Limburg — Tongeren, Bilzen, Hasselt en Hoeselt. Lokale SEO en Google Bedrijfsprofiel optimalisatie, meetbaar resultaat." />
+        <link rel="canonical" href="https://solynglobal.be/seo-bureau" />
         <meta property="og:title" content="SEO Bureau Tongeren, Bilzen & Limburg | Solyn" />
         <meta property="og:description" content="Lokale SEO die uw bedrijf op pagina 1 van Google zet in uw gemeente en regio. Gratis audit aanvragen." />
-        <meta property="og:url" content="https://solyn-global.com/seo-bureau" />
+        <meta property="og:url" content="https://solynglobal.be/seo-bureau" />
         <meta name="geo.region" content="BE-VLI" />
         <meta name="geo.placename" content="Limburg, België" />
         <meta name="keywords" content="SEO bureau Tongeren, SEO bureau Bilzen, lokale SEO Limburg, SEO specialist Hoeselt, Google ranking Limburg, website hoger in Google, SEO audit België" />

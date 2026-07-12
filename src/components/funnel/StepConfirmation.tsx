@@ -32,7 +32,7 @@ const StepConfirmation = ({ scheduledAt, timezone, email, name }: Props) => {
     "VERSION:2.0",
     "PRODID:-//Solyn Global//Booking//EN",
     "BEGIN:VEVENT",
-    `UID:${start.getTime()}@solyn-global.com`,
+    `UID:${start.getTime()}@solynglobal.be`,
     `DTSTAMP:${toICSDate(new Date())}`,
     `DTSTART:${toICSDate(start)}`,
     `DTEND:${toICSDate(end)}`,

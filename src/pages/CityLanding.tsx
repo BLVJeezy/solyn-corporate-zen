@@ -94,10 +94,10 @@ const CITIES: Record<CityKey, CityData> = {
     slug: "webdesign-hasselt",
     geoLat: 50.9311,
     geoLng: 5.3378,
-    h1: "Webdesign Hasselt — Professionele websites voor Hasseltse bedrijven",
-    metaTitle: "Webdesign Hasselt | Website Laten Maken Limburg | Solyn",
+    h1: "Website Laten Maken Hasselt — Professionele websites voor Hasseltse bedrijven",
+    metaTitle: "Website Laten Maken Hasselt | Webdesign & SEO | Solyn",
     metaDescription:
-      "Solyn bouwt professionele websites voor KMO's in Hasselt en heel Limburg. SEO, snelheid en conversie — afgestemd op de Limburgse markt.",
+      "Website laten maken in Hasselt? Solyn bouwt professionele websites voor KMO's in Hasselt en heel Limburg, inclusief SEO en Google Bedrijfsprofiel optimalisatie.",
     intro:
       "Hasselt en de bredere Limburgse regio bieden enorme groeikansen voor lokale KMO's. Wij ontwerpen websites die niet alleen mooi zijn, maar vooral resultaat opleveren — hoger in Google, meer aanvragen, meer omzet.",
     nearbyTowns: ["Genk", "Sint-Truiden", "Tongeren", "Bilzen", "Diepenbeek"],
@@ -504,13 +504,13 @@ const CityLanding = () => {
   const faq = data.extraFAQ ? [...baseFAQ, ...data.extraFAQ] : baseFAQ;
   const title = data.metaTitle ?? `${data.h1.split(" — ")[0]} | Solyn Global`;
   const description = data.metaDescription;
-  const url = `https://solyn-global.com/${data.slug}`;
+  const url = `https://solynglobal.be/${data.slug}`;
 
   const schemaLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Solyn Global",
-    url: "https://solyn-global.com",
+    url: "https://solynglobal.be",
     description,
     telephone: "+32-xxx-xx-xx-xx",
     address: {
@@ -536,7 +536,7 @@ const CityLanding = () => {
     ],
     serviceType: "Webdesign & Lokale SEO",
     priceRange: "€€",
-    sameAs: ["https://solyn-global.com"],
+    sameAs: ["https://solynglobal.be"],
   };
 
   const schemaFAQ = {
@@ -553,7 +553,7 @@ const CityLanding = () => {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://solyn-global.com/" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://solynglobal.be/" },
       {
         "@type": "ListItem",
         position: 2,

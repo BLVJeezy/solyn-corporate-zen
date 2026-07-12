@@ -56,7 +56,7 @@ const SCHEMA = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Solyn Global — Webdesign Bureau Limburg",
-  url: "https://solyn-global.com/webdesign-bureau",
+  url: "https://solynglobal.be/webdesign-bureau",
   description: "Professioneel webdesign bureau voor KMO's in Tongeren, Bilzen, Hoeselt en Limburg. Website laten maken met SEO ingebouwd.",
   address: { "@type": "PostalAddress", addressLocality: "Bilzen", addressRegion: "Limburg", postalCode: "3740", addressCountry: "BE" },
   areaServed: [{ "@type": "City", name: "Tongeren" }, { "@type": "City", name: "Bilzen" }, { "@type": "City", name: "Hoeselt" }, { "@type": "AdministrativeArea", name: "Limburg" }],
@@ -72,7 +72,7 @@ const WebdesignBureau = () => {
         <html lang="nl" />
         <title>Webdesign Bureau Tongeren, Bilzen & Limburg | Website Laten Maken | Solyn</title>
         <meta name="description" content="Website laten maken in Tongeren, Bilzen, Hoeselt of Limburg? Solyn bouwt professionele, snelle websites met SEO ingebouwd. Vaste prijs, oplevering in 2 weken." />
-        <link rel="canonical" href="https://solyn-global.com/webdesign-bureau" />
+        <link rel="canonical" href="https://solynglobal.be/webdesign-bureau" />
         <meta property="og:title" content="Webdesign Bureau Tongeren, Bilzen & Limburg | Solyn" />
         <meta property="og:description" content="Professionele website laten maken met SEO ingebouwd — voor KMO's en zelfstandigen in Limburg." />
         <meta name="keywords" content="webdesign Tongeren, website laten maken Bilzen, webdesign bureau Limburg, website laten maken Hoeselt, professionele website KMO, webdesign België" />

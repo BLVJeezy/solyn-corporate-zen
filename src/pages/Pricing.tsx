@@ -92,7 +92,7 @@ const Pricing = () => {
         <html lang="nl" />
         <title>Prijzen SEO & Webdesign | Transparante Pakketten | Solyn</title>
         <meta name="description" content="Transparante prijzen voor SEO en webdesign in Limburg. Lokale SEO vanaf €300/maand, professionele websites op vaste prijs. Maandelijks opzegbaar, geen verborgen kosten." />
-        <link rel="canonical" href="https://solyn-global.com/pricing" />
+        <link rel="canonical" href="https://solynglobal.be/pricing" />
       </Helmet>
 
       <HomeNav />

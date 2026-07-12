@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
-    const { funnel, qualification_status, disqualification_reason } = await req.json();
+    const { funnel, qualification_status, disqualification_reason, city, wants_website } = await req.json();
     if (!funnel?.email || !funnel?.full_name || !funnel?.business_name) {
       return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
@@ -77,6 +77,47 @@ Deno.serve(async (req) => {
       ]);
     } catch (mailErr) {
       console.error("email dispatch failed (non-fatal)", mailErr);
+    }
+
+    // Fire-and-forget: also push this lead into Solyn OS (ops-hub-charm) onboarding queue
+    try {
+      const websiteNeeded = wants_website
+        ? (funnel.has_website ? ["Ik heb een website, maar die moet vernieuwd worden"] : ["Ik heb nog geen website"])
+        : ["Ik heb al een goede website"];
+      const servicesInterested: string[] = [];
+      if (wants_website) servicesInterested.push("Nieuwe website");
+      if (funnel.seo_important) servicesInterested.push("Lokale SEO (beter vindbaar in Google)");
+      if (servicesInterested.length === 0) servicesInterested.push("Ik weet het nog niet, advies graag");
+
+      const notesParts = [
+        funnel.business_description ? `Bedrijf: ${funnel.business_description}` : null,
+        funnel.budget_range ? `Budget: ${funnel.budget_range}` : null,
+        funnel.launch_timeline ? `Timing: ${funnel.launch_timeline}` : null,
+        funnel.referral_source ? `Via: ${funnel.referral_source}` : null,
+        `Bron: solynglobal.be aanvraagformulier (qualified_leads #${data.id})`,
+      ].filter(Boolean);
+
+      await fetch("https://cmsitclfnesvbcaulwcb.supabase.co/rest/v1/onboarding_submissions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "sb_publishable_our4WGzo9oXJHLCyl4BS2Q_CizdTTjv",
+          "Authorization": "Bearer sb_publishable_our4WGzo9oXJHLCyl4BS2Q_CizdTTjv",
+        },
+        body: JSON.stringify({
+          business_name: funnel.business_name,
+          contact_name: funnel.full_name,
+          contact_phone: funnel.phone || "Niet opgegeven",
+          contact_email: funnel.email,
+          location: city || "",
+          sector: "Other",
+          website_needed: websiteNeeded,
+          services_interested: servicesInterested,
+          notes: notesParts.join(" · "),
+        }),
+      });
+    } catch (syncErr) {
+      console.error("Solyn OS sync failed (non-fatal)", syncErr);
     }
 
     return new Response(JSON.stringify({ ok: true, lead_id: data.id }), {

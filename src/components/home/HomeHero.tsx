@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight, Check, Search } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
+import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -53,6 +54,25 @@ const HomeHero = () => {
           SEO & Webdesign Bureau — Tongeren · Bilzen · Hoeselt · Limburg
         </motion.div>
 
+        {/* Founder trust badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="inline-flex items-center gap-3 mb-6 w-fit"
+        >
+          <PhotoPlaceholder
+            src={undefined}
+            alt="Jason, oprichter Solyn Global"
+            caption="Foto van jezelf"
+            rounded="full"
+            className="w-11 h-11 shrink-0"
+          />
+          <span className="text-sm text-gray-500">
+            Persoonlijk contact met <span className="font-semibold text-gray-700">Jason</span>, geen callcenter
+          </span>
+        </motion.div>
+
         {/* Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -60,8 +80,8 @@ const HomeHero = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.06] max-w-3xl"
         >
-          Meer klanten via Google.
-          <span className="text-gray-400"> Wij ranken uw bedrijf hoger.</span>
+          Website laten maken in Limburg.
+          <span className="text-gray-400"> Wij ranken uw bedrijf hoger op Google.</span>
         </motion.h1>
 
         {/* Sub */}

@@ -31,7 +31,7 @@ const ServicePage = ({
   faq,
 }: ServicePageProps) => {
   const navigate = useNavigate();
-  const url = `https://solyn-global.com/${slug}`;
+  const url = `https://solynglobal.be/${slug}`;
 
   return (
     <div className="bg-white min-h-screen">
@@ -51,7 +51,7 @@ const ServicePage = ({
           provider: {
             "@type": "ProfessionalService",
             name: "Solyn Global",
-            url: "https://solyn-global.com",
+            url: "https://solynglobal.be",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Tongeren",

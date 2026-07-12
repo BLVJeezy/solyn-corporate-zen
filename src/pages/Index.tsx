@@ -6,6 +6,7 @@ import HomeProcess from "@/components/home/HomeProcess";
 import HomeWork from "@/components/home/HomeWork";
 import MobileViewSection from "@/components/MobileViewSection";
 import HomeValueProps from "@/components/home/HomeValueProps";
+import HomeFounder from "@/components/home/HomeFounder";
 import BelgianSocialProof from "@/components/home/BelgianSocialProof";
 import HomePricing from "@/components/home/HomePricing";
 import HomeFAQ from "@/components/home/HomeFAQ";
@@ -19,10 +20,10 @@ const SCHEMA_ORG = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Solyn Global",
-  url: "https://solyn-global.com",
+  url: "https://solynglobal.be",
   description: "SEO & Webdesign Bureau in Bilzen, Tongeren en heel Zuid-Limburg. Wij bouwen professionele websites en lokale SEO-strategieën die KMO's en zelfstandigen helpen hoger te ranken in Google.be.",
   telephone: "+32-xxx-xx-xx-xx",
-  email: "info@solyn-global.com",
+  email: "info@solynglobal.be",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Bilzen",
@@ -54,7 +55,7 @@ const SCHEMA_ORG = {
     opens: "09:00",
     closes: "18:00",
   },
-  sameAs: ["https://solyn-global.com"],
+  sameAs: ["https://solynglobal.be"],
 };
 
 const Index = () => {
@@ -84,11 +85,11 @@ const Index = () => {
       <Helmet>
         <html lang="nl" />
         <title>Webdesign & SEO Bureau Bilzen, Tongeren, Limburg | Solyn Global</title>
-        <meta name="description" content="Solyn Global is het SEO en webdesign bureau voor KMO's en zelfstandigen in Tongeren, Bilzen, Borgloon en heel Limburg. Meer klanten via Google — website laten maken op maat." />
-        <link rel="canonical" href="https://solyn-global.com/" />
+        <meta name="description" content="Website laten maken of uw Google Bedrijfsprofiel optimaliseren in Limburg? Solyn Global helpt KMO's en zelfstandigen in Tongeren, Bilzen en Hasselt hoger scoren op Google." />
+        <link rel="canonical" href="https://solynglobal.be/" />
         <meta property="og:title" content="Webdesign & SEO Bureau — Tongeren, Bilzen, Limburg | Solyn Global" />
         <meta property="og:description" content="Professionele websites en lokale SEO voor Limburgse KMO's. Gevonden worden op Google.be voor uw gemeente en regio." />
-        <meta property="og:url" content="https://solyn-global.com/" />
+        <meta property="og:url" content="https://solynglobal.be/" />
         <meta property="og:type" content="website" />
         <meta name="geo.region" content="BE-VLI" />
         <meta name="geo.placename" content="Bilzen, Limburg" />
@@ -103,6 +104,7 @@ const Index = () => {
       <HomeProcess />
       <BelgianSocialProof />
       <HomeValueProps />
+      <HomeFounder />
       <HomeWork />
       <HomePricing />
       <HomeFAQ />

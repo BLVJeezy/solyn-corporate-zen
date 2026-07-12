@@ -184,6 +184,8 @@ const Apply = () => {
           funnel: { ...INITIAL_STATE, ...funnelPayload },
           qualification_status: "qualified",
           disqualification_reason: null,
+          city: state.city,
+          wants_website: state.service === "website" || state.service === "both",
         },
       });
       if (error) throw error;

@@ -68,13 +68,13 @@ const FAQ = [
 const TITLE = "Webdesign & Lokale SEO in Zuid-Limburg | Solyn";
 const DESC =
   "Solyn maakt professionele websites en lokale SEO voor bedrijven in Tongeren, Bilzen, Borgloon, Riemst en heel Zuid-Limburg. Hogere Google-positie, meer klanten. Gratis audit.";
-const URL = "https://solyn-global.com/webdesign-zuid-limburg";
+const URL = "https://solynglobal.be/webdesign-zuid-limburg";
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   name: "Solyn Global",
-  url: "https://solyn-global.com",
+  url: "https://solynglobal.be",
   description: DESC,
   address: {
     "@type": "PostalAddress",
@@ -115,7 +115,7 @@ const schemaBreadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://solyn-global.com/" },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://solynglobal.be/" },
     {
       "@type": "ListItem",
       position: 2,

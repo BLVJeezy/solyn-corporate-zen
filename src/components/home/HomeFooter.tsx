@@ -16,7 +16,7 @@ const CITY_LINKS = [
 ];
 
 const SERVICE_LINKS = [
-  { label: "Lokale SEO", href: "/website-laten-maken" },
+  { label: "Lokale SEO", href: "/seo-bureau" },
   { label: "Website Laten Maken", href: "/website-laten-maken" },
   { label: "Website Laten Maken (FR)", href: "/creation-site-web" },
   { label: "MVP Development", href: "/mvp-development" },
@@ -127,8 +127,8 @@ const HomeFooter = () => {
               © {new Date().getFullYear()} Solyn Global. Alle rechten voorbehouden.
             </p>
             <span className="hidden sm:inline text-gray-200">·</span>
-            <a href="mailto:info@solyn-global.com" className="hover:text-black transition-colors">
-              info@solyn-global.com
+            <a href="mailto:info@solynglobal.be" className="hover:text-black transition-colors">
+              info@solynglobal.be
             </a>
             <span className="hidden sm:inline text-gray-200">·</span>
             <span>KMO Webdesign & SEO — Tongeren · Bilzen · Borgloon · Limburg</span>

@@ -58,11 +58,11 @@ const HomeCTA = () => {
               Gratis gesprek boeken
             </Button>
             <a
-              href="mailto:info@solyn-global.com"
+              href="mailto:info@solynglobal.be"
               className="text-gray-500 text-sm hover:text-black transition-colors flex items-center gap-1.5"
             >
               <Phone className="w-4 h-4" />
-              info@solyn-global.com
+              info@solynglobal.be
             </a>
           </div>
           <p className="text-gray-300 text-xs mt-6">Geen verplichtingen. Geen sales pitch. Gewoon eerlijk advies.</p>

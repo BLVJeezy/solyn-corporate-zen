@@ -16,7 +16,7 @@ const whyIcons = [Rocket, Check, Search, Shield];
 
 const SeoLandingPage = ({ content }: { content: SeoLandingContent }) => {
   const navigate = useNavigate();
-  const fullUrl = `https://solyn-global.com${content.path}`;
+  const fullUrl = `https://solynglobal.be${content.path}`;
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -34,7 +34,7 @@ const SeoLandingPage = ({ content }: { content: SeoLandingContent }) => {
     name: "Solyn Global",
     url: fullUrl,
     description: content.metaDescription,
-    image: "https://solyn-global.com/solyn-logo-192.png",
+    image: "https://solynglobal.be/solyn-logo-192.png",
     priceRange: "€€",
     areaServed: ["BE", "NL", "FR", "EU"],
     aggregateRating: {
@@ -60,10 +60,10 @@ const SeoLandingPage = ({ content }: { content: SeoLandingContent }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={content.metaTitle} />
         <meta name="twitter:description" content={content.metaDescription} />
-        <link rel="alternate" hrefLang="nl-BE" href="https://solyn-global.com/website-laten-maken" />
-        <link rel="alternate" hrefLang="fr-BE" href="https://solyn-global.com/creation-site-web" />
-        <link rel="alternate" hrefLang="en" href="https://solyn-global.com/web-development-company" />
-        <link rel="alternate" hrefLang="x-default" href="https://solyn-global.com/web-development-company" />
+        <link rel="alternate" hrefLang="nl-BE" href="https://solynglobal.be/website-laten-maken" />
+        <link rel="alternate" hrefLang="fr-BE" href="https://solynglobal.be/creation-site-web" />
+        <link rel="alternate" hrefLang="en" href="https://solynglobal.be/web-development-company" />
+        <link rel="alternate" hrefLang="x-default" href="https://solynglobal.be/web-development-company" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(serviceSchema)}</script>
       </Helmet>
