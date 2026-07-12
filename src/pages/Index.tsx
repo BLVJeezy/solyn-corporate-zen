@@ -91,6 +91,17 @@ const Index = () => {
         <meta property="og:description" content="Professionele websites en lokale SEO voor Limburgse KMO's. Gevonden worden op Google.be voor uw gemeente en regio." />
         <meta property="og:url" content="https://solynglobal.be/" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Solyn Global" />
+        <meta property="og:locale" content="nl_BE" />
+        <meta property="og:image" content="https://solynglobal.be/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Solyn Global — SEO & Webdesign Bureau Limburg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Webdesign & SEO Bureau — Tongeren, Bilzen, Limburg | Solyn Global" />
+        <meta name="twitter:description" content="Professionele websites en lokale SEO voor Limburgse KMO's. Gevonden worden op Google.be." />
+        <meta name="twitter:image" content="https://solynglobal.be/og-image.png" />
+        <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
         <meta name="geo.region" content="BE-VLI" />
         <meta name="geo.placename" content="Bilzen, Limburg" />
         <meta name="geo.position" content="50.8689;5.5178" />

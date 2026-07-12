@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ChevronRight, Check, Search } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
+import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -64,16 +65,6 @@ const HomeHero = () => {
           Website laten maken in Limburg.
           <span className="text-gray-400"> Wij ranken uw bedrijf hoger op Google.</span>
         </motion.h1>
-
-        {/* Sub */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="text-gray-500 text-base sm:text-lg max-w-xl mt-6 leading-relaxed"
-        >
-          Professionele websites en lokale SEO voor KMO's en zelfstandigen in Tongeren, Bilzen, Hoeselt en heel Limburg. Gevonden worden door klanten die al zoeken naar wat u aanbiedt.
-        </motion.p>
 
         {/* CTAs */}
         <motion.div
@@ -137,6 +128,14 @@ const HomeHero = () => {
         className="relative z-10 mt-16 w-full overflow-hidden"
       >
         <div className="flex gap-5 animate-infinite-scroll w-max">
+          <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden">
+            <PhotoPlaceholder
+              alt="Solyn Global aan het werk"
+              caption="Hero-foto — bv. jij aan het werk, of een sfeerbeeld van een klantproject"
+              rounded="2xl"
+              className="w-full aspect-[4/3]"
+            />
+          </div>
           {[...showcaseItems, ...showcaseItems].map((item, i) => (
             <div key={i} className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
               <img src={item.img} alt={item.alt} className="w-full h-auto object-cover" decoding="async" fetchPriority={i < 3 ? "high" : "auto"} />
