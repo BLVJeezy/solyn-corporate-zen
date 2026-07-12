@@ -4,23 +4,23 @@ import { TrendingUp, Search, Users, Star } from "lucide-react";
 const metrics = [
   {
     icon: TrendingUp,
-    value: "90 dagen",
-    label: "Naar pagina 1 van Google",
-    desc: "Gemiddelde tijd voordat onze klanten hoog ranken voor hun lokale zoektermen.",
+    value: "14/15",
+    label: "Zoekwoorden verbeterd in maand één",
+    desc: "Klantcase Riory (loodgieter, Bilzen): 14 van de 15 gemeten zoekwoorden stegen in de eerste maand — het 15e stond al op #1.",
     color: "bg-emerald-50 text-emerald-600",
   },
   {
     icon: Search,
-    value: "3×",
-    label: "Meer leads na lancering",
-    desc: "Klanten zien gemiddeld een verdrievoudiging van het aantal aanvragen na een nieuwe website met lokale SEO.",
+    value: "26",
+    label: "Leads gemeten in één maand",
+    desc: "Dezelfde klant ging van 0 meetbare leads naar 26 in juni — de eerste volledige maand na de SEO-start.",
     color: "bg-blue-50 text-blue-600",
   },
   {
     icon: Users,
-    value: "100%",
-    label: "Tevreden klanten",
-    desc: "Wij leveren op wat we beloven — op tijd, binnen budget en met meetbaar resultaat.",
+    value: "#1",
+    label: "In nieuw gebied bij eerste meting",
+    desc: "Bij uitbreiding naar Riemst stond de klant direct op positie 1 voor twee kernzoektermen — zonder extra werk.",
     color: "bg-violet-50 text-violet-600",
   },
 ];

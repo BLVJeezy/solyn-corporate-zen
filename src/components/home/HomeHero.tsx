@@ -19,9 +19,9 @@ const showcaseItems = [
 ];
 
 const STATS = [
-  { value: "90 dagen", label: "Gemiddeld naar pagina 1" },
-  { value: "3×", label: "Meer leads na lancering" },
-  { value: "100%", label: "Tevreden klanten" },
+  { value: "14 van 15", label: "Zoekwoorden verbeterd in maand 1 (klantcase)" },
+  { value: "26 leads", label: "Gemeten in één maand voor één klant" },
+  { value: "#1", label: "In nieuw servicegebied bij eerste meting" },
 ];
 
 const HomeHero = () => {
@@ -96,7 +96,7 @@ const HomeHero = () => {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600"
         >
-          {["SEO-First Webdesign", "Tongeren · Bilzen · Hoeselt · Limburg", "Resultaten binnen 90 dagen", "Geoptimaliseerd voor Google.be"].map((item) => (
+          {["SEO-First Webdesign", "Tongeren · Bilzen · Hoeselt · Limburg", "Maandelijks meetbaar rapport", "Geoptimaliseerd voor Google.be"].map((item) => (
             <div key={item} className="flex items-center gap-1.5">
               <Check className="w-4 h-4 text-emerald-600 shrink-0" strokeWidth={3} />
               <span>{item}</span>

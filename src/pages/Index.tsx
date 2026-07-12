@@ -105,7 +105,6 @@ const Index = () => {
         <meta name="geo.region" content="BE-VLI" />
         <meta name="geo.placename" content="Bilzen, Limburg" />
         <meta name="geo.position" content="50.8689;5.5178" />
-        <meta name="keywords" content="webdesign Tongeren, webdesign Bilzen, website laten maken Limburg, SEO bureau Tongeren, lokale SEO België, website laten maken KMO, webdesign Borgloon, website Riemst" />
         <script type="application/ld+json">{JSON.stringify(SCHEMA_ORG)}</script>
       </Helmet>
 
