@@ -35,7 +35,29 @@ const clients = [
   "Riory", "MomentumOS", "SheffTrades", "La Mama Restaurant",
 ];
 
+const portfolioPreview = [
+  {
+    name: "Belgomed",
+    category: "Webdesign & SEO",
+    img: showcaseBelgomed,
+    bg: "bg-blue-50",
+  },
+  {
+    name: "Riory",
+    category: "Lokale SEO",
+    img: portfolioRiory,
+    bg: "bg-orange-50",
+  },
+  {
+    name: "L'Atelier 9",
+    category: "Webdesign",
+    img: showcaseAtelier9,
+    bg: "bg-rose-50",
+  },
+];
+
 const HomeMetrics = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
