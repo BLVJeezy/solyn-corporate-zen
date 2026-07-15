@@ -96,7 +96,7 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-700"
+          className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-700 md:text-white"
         >
           {["SEO-First Webdesign", "Tongeren · Bilzen · Hoeselt · Limburg", "Maandelijks meetbaar rapport", "Geoptimaliseerd voor Google.be"].map((item) => (
             <div key={item} className="flex items-center gap-1.5">
@@ -115,8 +115,8 @@ const HomeHero = () => {
         >
           {STATS.map((s, i) => (
             <div key={i}>
-              <div className="text-2xl sm:text-3xl font-bold text-black tracking-tight">{s.value}</div>
-              <div className="text-xs text-gray-600 mt-1 leading-tight">{s.label}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-black md:text-white tracking-tight">{s.value}</div>
+              <div className="text-xs text-gray-600 md:text-white mt-1 leading-tight">{s.label}</div>
             </div>
           ))}
         </motion.div>
