@@ -99,28 +99,6 @@ const HomeMetrics = () => {
           </div>
         </motion.div>
 
-        {/* Trusted by */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center"
-        >
-          <p className="text-gray-400 text-sm mb-8">Vertrouwd door Belgische bedrijven en ondernemers</p>
-          <div className="relative overflow-hidden">
-            <div className="flex items-center gap-12 animate-infinite-scroll whitespace-nowrap">
-              {[...clients, ...clients].map((name, i) => (
-                <span
-                  key={i}
-                  className="text-gray-300 text-lg font-semibold tracking-wider uppercase flex-shrink-0"
-                >
-                  {name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
