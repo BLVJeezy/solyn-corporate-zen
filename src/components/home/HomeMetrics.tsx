@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Search, Users, Star } from "lucide-react";
+import { TrendingUp, Search, Users, Star, ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
+import showcaseBelgomed from "@/assets/showcase-belgomed.png";
+import portfolioRiory from "@/assets/portfolio-riory-1.png";
+import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
 
 const metrics = [
   {
