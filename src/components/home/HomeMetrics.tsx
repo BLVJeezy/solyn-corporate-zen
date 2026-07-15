@@ -118,7 +118,7 @@ const HomeMetrics = () => {
                 onClick={() => navigate("/portfolio")}
                 className="group cursor-pointer"
               >
-                <div className={`rounded-2xl overflow-hidden border border-gray-100 ${item.bg} mb-4`}>
+                <div className="rounded-2xl overflow-hidden border border-gray-100 mb-4" style={{ background: item.bg }}>
                   <img
                     src={item.img}
                     alt={`Portfolio voorbeeld ${item.name}`}
