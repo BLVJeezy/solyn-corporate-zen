@@ -62,10 +62,10 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.06] max-w-3xl"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white md:text-black tracking-tight leading-[1.06] max-w-3xl"
         >
           Website laten maken in Limburg.
-          <span className="text-gray-500 md:text-white"> Wij ranken uw bedrijf hoger op Google.</span>
+          <span className="text-gray-300 md:text-gray-500"> Wij ranken uw bedrijf hoger op Google.</span>
         </motion.h1>
 
         {/* CTAs */}
