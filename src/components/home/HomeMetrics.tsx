@@ -84,6 +84,70 @@ const HomeMetrics = () => {
           ))}
         </div>
 
+        {/* Portfolio preview */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-20"
+        >
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <p className="text-emerald-600 text-sm font-semibold mb-2">Recent werk</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight">
+                Websites die resultaat boeken
+              </h2>
+            </div>
+            <button
+              onClick={() => navigate("/portfolio")}
+              className="hidden sm:flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-black transition-colors"
+            >
+              Bekijk portfolio <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {portfolioPreview.map((item, i) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                onClick={() => navigate("/portfolio")}
+                className="group cursor-pointer"
+              >
+                <div className={`rounded-2xl overflow-hidden border border-gray-100 ${item.bg} mb-4`}>
+                  <img
+                    src={item.img}
+                    alt={`Portfolio voorbeeld ${item.name}`}
+                    className="w-full aspect-[4/3] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h3 className="text-black font-semibold text-base">{item.name}</h3>
+                    <p className="text-gray-400 text-sm">{item.category}</p>
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-gray-300 group-hover:text-black transition-colors" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-6 text-center sm:hidden">
+            <button
+              onClick={() => navigate("/portfolio")}
+              className="inline-flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-black transition-colors"
+            >
+              Bekijk portfolio <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+        </motion.div>
+
         {/* Trusted by */}
         <motion.div
           initial={{ opacity: 0 }}
