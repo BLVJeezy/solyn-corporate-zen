@@ -119,7 +119,7 @@ const HomeHero = () => {
             return (
               <div
                 key={i}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 border border-white/25 text-white lg:bg-white/90 lg:border-gray-200/80 lg:text-gray-800 backdrop-blur-sm"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white/15 border border-white/25 text-white lg:bg-white/90 lg:border-gray-200/80 lg:text-gray-800 backdrop-blur-sm w-full"
               >
                 <Icon className="w-4 h-4 shrink-0" />
                 <span className="text-sm font-semibold whitespace-nowrap">{badge.label}</span>
