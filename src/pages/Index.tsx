@@ -7,7 +7,7 @@ import HomeWork from "@/components/home/HomeWork";
 import MobileViewSection from "@/components/MobileViewSection";
 import HomeValueProps from "@/components/home/HomeValueProps";
 import HomeFounder from "@/components/home/HomeFounder";
-import BelgianSocialProof from "@/components/home/BelgianSocialProof";
+
 import HomePricing from "@/components/home/HomePricing";
 import HomeFAQ from "@/components/home/HomeFAQ";
 import HomeCTA from "@/components/home/HomeCTA";
@@ -112,7 +112,7 @@ const Index = () => {
       <HomeHero />
       <HomeMetrics />
       <HomeProcess />
-      <BelgianSocialProof />
+      
       <HomeValueProps />
       <HomeFounder />
       <HomeWork />
