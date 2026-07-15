@@ -157,7 +157,7 @@ const Apply = () => {
       state.city.trim().length >= 2
     );
     if (step === 3) return state.has_website !== null && (state.has_website ? state.website_url.trim().length > 3 : true);
-    if (step === 4) return state.budget !== "" && state.timeline !== "";
+    if (step === 4) return state.timeline !== "";
     return false;
   };
 
