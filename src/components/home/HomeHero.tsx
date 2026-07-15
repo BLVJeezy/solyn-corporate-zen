@@ -33,7 +33,7 @@ const HomeHero = () => {
       {/* Hero background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroSolynDesk.url}
+          src={mobileHero2.url}
           alt="Solyn Global — SEO analyse in Google Search Console"
           className="w-full h-full object-cover"
           decoding="async"
