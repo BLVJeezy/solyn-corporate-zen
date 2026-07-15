@@ -115,8 +115,8 @@ const HomeHero = () => {
         >
           {STATS.map((s, i) => (
             <div key={i}>
-              <div className="text-2xl sm:text-3xl font-bold text-white md:text-black tracking-tight">{s.value}</div>
-              <div className="text-xs text-gray-300 md:text-gray-600 mt-1 leading-tight">{s.label}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white lg:text-black tracking-tight">{s.value}</div>
+              <div className="text-xs text-gray-300 lg:text-gray-600 mt-1 leading-tight">{s.label}</div>
             </div>
           ))}
         </motion.div>
