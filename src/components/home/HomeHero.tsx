@@ -39,9 +39,9 @@ const HomeHero = () => {
           decoding="async"
           fetchPriority="high"
         />
-        {/* Legibility overlay: near-solid white on mobile, gradient on desktop */}
-        <div className="absolute inset-0 bg-white/92 md:bg-gradient-to-r md:from-white md:via-white/85 md:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent" />
+        {/* Legibility overlay: near-solid white on mobile, image visible on desktop */}
+        <div className="absolute inset-0 bg-white/92 md:bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent md:from-transparent md:via-transparent md:to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center">
@@ -65,7 +65,7 @@ const HomeHero = () => {
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black tracking-tight leading-[1.06] max-w-3xl"
         >
           Website laten maken in Limburg.
-          <span className="text-gray-500"> Wij ranken uw bedrijf hoger op Google.</span>
+          <span className="text-gray-500 md:text-white"> Wij ranken uw bedrijf hoger op Google.</span>
         </motion.h1>
 
         {/* CTAs */}
@@ -96,7 +96,7 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-700"
+          className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-700 md:text-white"
         >
           {["SEO-First Webdesign", "Tongeren · Bilzen · Hoeselt · Limburg", "Maandelijks meetbaar rapport", "Geoptimaliseerd voor Google.be"].map((item) => (
             <div key={item} className="flex items-center gap-1.5">
@@ -116,7 +116,7 @@ const HomeHero = () => {
           {STATS.map((s, i) => (
             <div key={i}>
               <div className="text-2xl sm:text-3xl font-bold text-black tracking-tight">{s.value}</div>
-              <div className="text-xs text-gray-600 mt-1 leading-tight">{s.label}</div>
+              <div className="text-xs text-gray-600 md:text-white mt-1 leading-tight">{s.label}</div>
             </div>
           ))}
         </motion.div>
