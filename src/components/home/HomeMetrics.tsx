@@ -38,30 +38,8 @@ const HomeMetrics = () => {
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        {/* Stat cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-16">
-          {metrics.map((m, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="rounded-2xl bg-gray-50 border border-gray-100 p-8 flex flex-col"
-            >
-              <div className={`w-10 h-10 rounded-xl ${m.color} flex items-center justify-center mb-5`}>
-                <m.icon className="w-5 h-5" />
-              </div>
-              <p className="text-5xl md:text-6xl font-bold text-black tracking-tight mb-2">
-                {m.value}
-              </p>
-              <p className="text-sm font-semibold text-black mb-2">{m.label}</p>
-              <p className="text-xs text-gray-400 leading-relaxed">{m.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Portfolio preview */}
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
