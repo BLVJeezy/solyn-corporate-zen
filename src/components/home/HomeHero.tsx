@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Check, Search } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
-import heroSolynDesk from "@/assets/hero-solyn-desk.png.asset.json";
+import mobileHero2 from "@/assets/mobile-hero-2.png.asset.json";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -33,7 +33,7 @@ const HomeHero = () => {
       {/* Hero background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src={heroSolynDesk.url}
+          src={mobileHero2.url}
           alt="Solyn Global — SEO analyse in Google Search Console"
           className="w-full h-full object-cover"
           decoding="async"
@@ -132,7 +132,7 @@ const HomeHero = () => {
         <div className="flex gap-5 animate-infinite-scroll w-max">
           <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
             <img
-              src={heroSolynDesk.url}
+              src={mobileHero2.url}
               alt="Solyn Global — SEO analyse in Google Search Console"
               className="w-full aspect-[4/3] object-cover"
               decoding="async"
