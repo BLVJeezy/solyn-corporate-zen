@@ -112,7 +112,7 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4 max-w-2xl"
+          className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-5"
         >
           {TRUST_BADGES.map((badge, i) => {
             const Icon = badge.icon;
@@ -120,10 +120,10 @@ const HomeHero = () => {
             return (
               <div
                 key={i}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-white/15 border border-white/25 text-white lg:bg-white/90 lg:border-gray-200/80 lg:text-gray-800 backdrop-blur-sm w-full"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 lg:px-6 lg:py-3.5 rounded-full bg-white/15 border border-white/25 text-white lg:bg-white/90 lg:border-gray-200/80 lg:text-gray-800 backdrop-blur-sm w-full"
               >
-                <Icon className="w-4 h-4 shrink-0" />
-                <span className="text-sm font-semibold whitespace-nowrap">
+                <Icon className="w-4 h-4 lg:w-5 lg:h-5 shrink-0" />
+                <span className="text-sm lg:text-base font-semibold whitespace-nowrap">
                   {hasMobile ? (
                     <>
                       <span className="inline lg:hidden">{(badge as any).labelMobile}</span>
