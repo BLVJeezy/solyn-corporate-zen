@@ -112,7 +112,7 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-12 flex flex-wrap items-center gap-3 max-w-2xl"
+          className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4 max-w-2xl"
         >
           {TRUST_BADGES.map((badge, i) => {
             const Icon = badge.icon;
