@@ -23,7 +23,7 @@ const TRUST_BADGES = [
   { icon: Award, label: "Resultaat gericht" },
   { icon: Shield, label: "GDPR-conform" },
   { icon: Star, labelMobile: "5/5", labelDesktop: "5/5 klantbeoordeling" },
- ocon: MapPin, labelMobile: "Limburg", labelDesktop: "Gevestigd in Limburg" },
+  { icon: MapPin, labelMobile: "Limburg", labelDesktop: "Gevestigd in Limburg" },
 ];
 
 const HomeHero = () => {
