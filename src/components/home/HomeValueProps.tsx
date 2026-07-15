@@ -77,7 +77,7 @@ const cards = [
 
 const HomeValueProps = () => {
   return (
-    <section className="py-24 px-6 bg-white">
+    <section className="py-24 px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,9 +85,9 @@ const HomeValueProps = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-bold text-black tracking-tight leading-tight max-w-3xl mx-auto md:text-4xl">
+          <h2 className="text-3xl font-bold text-white tracking-tight leading-tight max-w-3xl mx-auto md:text-4xl">
             Waarom Solyn?{" "}
-            <span className="text-gray-400">Omdat resultaat telt, niet beloftes.</span>
+            <span className="text-zinc-400">Omdat resultaat telt, niet beloftes.</span>
           </h2>
         </motion.div>
 
@@ -99,14 +99,14 @@ const HomeValueProps = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8 flex flex-col"
+              className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-8 flex flex-col"
             >
               <div className="mb-8 w-full flex-1 flex items-center">
                 {card.visual}
               </div>
               <div className="text-center mt-auto">
-                <h3 className="text-black font-bold text-lg mb-3">{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed max-w-sm mx-auto">{card.desc}</p>
+                <h3 className="text-white font-bold text-lg mb-3">{card.title}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mx-auto">{card.desc}</p>
               </div>
             </motion.div>
           ))}
