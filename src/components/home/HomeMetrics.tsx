@@ -7,10 +7,6 @@ import portfolioRiory from "@/assets/portfolio-riory-1.png";
 import portfolioAtelier9 from "@/assets/portfolio-3.png";
 
 
-const clients = [
-  "Belgomed", "Auto Detailing", "L'Atelier 9", "Le Plan A",
-  "Riory", "MomentumOS", "SheffTrades", "La Mama Restaurant",
-];
 
 const portfolioPreview = [
   {
