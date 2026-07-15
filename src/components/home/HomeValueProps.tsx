@@ -7,20 +7,20 @@ const cards = [
     title: "Lokale SEO die écht werkt",
     desc: "Wij richten ons op de zoektermen die uw lokale klanten gebruiken. 'Loodgieter Tongeren', 'kapper Bilzen', 'boekhoudkantoor Borgloon' — u staat bovenaan, uw concurrent niet.",
     visual: (
-      <div className="w-full max-w-xs mx-auto rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-2.5">
+      <div className="w-full max-w-xs mx-auto rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg p-4 space-y-2.5">
         {["#1 — website laten maken bilzen", "#2 — webdesign tongeren", "#3 — seo bureau limburg"].map((item, i) => (
           <div key={i} className="flex items-center gap-2.5">
-            <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${i === 0 ? "bg-emerald-500 text-white" : "bg-gray-100 text-gray-400"}`}>
+            <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${i === 0 ? "bg-emerald-500 text-white" : "bg-zinc-800 text-zinc-400"}`}>
               {i + 1}
             </div>
-            <div className="flex-1 h-6 rounded-md bg-gray-50 border border-gray-100 flex items-center px-2">
-              <span className="text-[10px] text-gray-600 truncate font-medium">{item}</span>
+            <div className="flex-1 h-6 rounded-md bg-zinc-800/50 border border-zinc-700 flex items-center px-2">
+              <span className="text-[10px] text-zinc-300 truncate font-medium">{item}</span>
             </div>
           </div>
         ))}
-        <div className="pt-1.5 border-t border-gray-100 flex items-center gap-1.5">
+        <div className="pt-1.5 border-t border-zinc-800 flex items-center gap-1.5">
           <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[9px] text-emerald-600 font-semibold">Solyn Global — positie 1</span>
+          <span className="text-[9px] text-emerald-400 font-semibold">Solyn Global — positie 1</span>
         </div>
       </div>
     ),
