@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { TrendingUp, Search, Users, Star, ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import showcaseBelgomed from "@/assets/showcase-belgomed.png";
+import portfolioBelgomed from "@/assets/portfolio-1.png";
 import portfolioRiory from "@/assets/portfolio-riory-1.png";
-import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
+import portfolioAtelier9 from "@/assets/portfolio-3.png";
 
 const metrics = [
   {
@@ -37,22 +37,22 @@ const clients = [
 
 const portfolioPreview = [
   {
-    name: "Belgomed",
+    name: "Belgomed BV",
     category: "Webdesign & SEO",
-    img: showcaseBelgomed,
-    bg: "bg-blue-50",
+    img: portfolioBelgomed,
+    bg: "#0a2622",
   },
   {
-    name: "Riory",
+    name: "Riory BV",
     category: "Lokale SEO",
     img: portfolioRiory,
-    bg: "bg-orange-50",
+    bg: "#0a0a0a",
   },
   {
-    name: "L'Atelier 9",
+    name: "L'atelier 9",
     category: "Webdesign",
-    img: showcaseAtelier9,
-    bg: "bg-rose-50",
+    img: portfolioAtelier9,
+    bg: "#f0eeeb",
   },
 ];
 
@@ -118,7 +118,7 @@ const HomeMetrics = () => {
                 onClick={() => navigate("/portfolio")}
                 className="group cursor-pointer"
               >
-                <div className={`rounded-2xl overflow-hidden border border-gray-100 ${item.bg} mb-4`}>
+                <div className="rounded-2xl overflow-hidden border border-gray-100 mb-4" style={{ background: item.bg }}>
                   <img
                     src={item.img}
                     alt={`Portfolio voorbeeld ${item.name}`}
