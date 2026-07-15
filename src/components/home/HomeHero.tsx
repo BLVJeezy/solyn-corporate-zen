@@ -147,15 +147,6 @@ const HomeHero = () => {
         className="relative z-10 mt-16 w-full overflow-hidden"
       >
         <div className="flex gap-5 animate-infinite-scroll w-max">
-          <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
-            <img
-              src={mobileHero2.url}
-              alt="Solyn Global — SEO analyse in Google Search Console"
-              className="w-full aspect-[4/3] object-cover"
-              decoding="async"
-              fetchPriority="high"
-            />
-          </div>
           {[...showcaseItems, ...showcaseItems].map((item, i) => (
             <div key={i} className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
               <img src={item.img} alt={item.alt} className="w-full h-auto object-cover" decoding="async" fetchPriority={i < 3 ? "high" : "auto"} />
