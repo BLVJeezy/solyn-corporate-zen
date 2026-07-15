@@ -39,9 +39,9 @@ const HomeHero = () => {
           decoding="async"
           fetchPriority="high"
         />
-        {/* Legibility overlay: strong white on left fading to transparent on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 md:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
+        {/* Legibility overlay: near-solid white on mobile, gradient on desktop */}
+        <div className="absolute inset-0 bg-white/92 md:bg-gradient-to-r md:from-white md:via-white/85 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center">
