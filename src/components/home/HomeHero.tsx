@@ -132,7 +132,7 @@ const HomeHero = () => {
         <div className="flex gap-5 animate-infinite-scroll w-max">
           <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
             <img
-              src={heroSolynDesk.url}
+              src={mobileHero2.url}
               alt="Solyn Global — SEO analyse in Google Search Console"
               className="w-full aspect-[4/3] object-cover"
               decoding="async"
