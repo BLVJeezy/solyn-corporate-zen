@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import jasonFounder from "@/assets/jason-founder.png.asset.json";
 
 const HomeFounder = () => {
   return (
