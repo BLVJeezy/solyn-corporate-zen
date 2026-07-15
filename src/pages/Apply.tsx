@@ -69,11 +69,6 @@ const SERVICES = [
   },
 ];
 
-const BUDGETS: { key: BudgetOption; label: string; sub: string }[] = [
-  { key: "300-600", label: "€300 – €600/maand", sub: "Lokale SEO of website onderhoud" },
-  { key: "600-1500", label: "€600 – €1.500/maand", sub: "SEO + website of groeipad" },
-  { key: "1500+", label: "€1.500+/maand", sub: "Volledig pakket, meerdere locaties" },
-];
 
 const TIMELINES: { key: TimelineOption; label: string; sub: string }[] = [
   { key: "asap", label: "Zo snel mogelijk", sub: "Ik wil snel starten" },
