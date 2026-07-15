@@ -40,8 +40,8 @@ const HomeHero = () => {
           fetchPriority="high"
         />
         {/* Legibility overlay: image visible on mobile/tablet, white gradient on desktop */}
-        <div className="absolute inset-0 bg-black/30 md:bg-gradient-to-r md:from-white md:via-white/85 md:to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent md:from-white/90 md:via-transparent md:to-transparent" />
+        <div className="absolute inset-0 bg-black/30 lg:bg-gradient-to-r lg:from-white lg:via-white/85 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:from-white/90 lg:via-transparent lg:to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center">
