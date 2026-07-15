@@ -58,16 +58,16 @@ const cards = [
     title: "Geen verborgen kosten. Vaste prijs.",
     desc: "U weet altijd wat u betaalt. Geen verassingen achteraf, geen langdurige contracten die u vastzetten. Maandelijks opzegbaar. Transparant van dag 1.",
     visual: (
-      <div className="w-full max-w-xs mx-auto rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-2">
-        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-3">Prijsvergelijking</div>
+      <div className="w-full max-w-xs mx-auto rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg p-4 space-y-2">
+        <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-3">Prijsvergelijking</div>
         {[
           { label: "Traditioneel bureau", price: "Duur & traag", bad: true },
           { label: "Freelancer (onzeker)", price: "Onvoorspelbaar", bad: true },
           { label: "Solyn Global", price: "Vaste, eerlijke prijs", bad: false },
         ].map((row, i) => (
-          <div key={i} className={`flex items-center justify-between p-2.5 rounded-lg border ${row.bad ? "border-red-50 bg-red-50/50" : "border-emerald-100 bg-emerald-50"}`}>
-            <span className={`text-[10px] font-medium ${row.bad ? "text-gray-400" : "text-emerald-700"}`}>{row.label}</span>
-            <span className={`text-[10px] font-bold ${row.bad ? "text-red-400 line-through" : "text-emerald-600"}`}>{row.price}</span>
+          <div key={i} className={`flex items-center justify-between p-2.5 rounded-lg border ${row.bad ? "border-red-900/30 bg-red-900/10" : "border-emerald-900/30 bg-emerald-900/10"}`}>
+            <span className={`text-[10px] font-medium ${row.bad ? "text-zinc-400" : "text-emerald-300"}`}>{row.label}</span>
+            <span className={`text-[10px] font-bold ${row.bad ? "text-red-400 line-through" : "text-emerald-400"}`}>{row.price}</span>
           </div>
         ))}
       </div>
