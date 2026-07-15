@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import HomeNav from "@/components/home/HomeNav";
 import HomeFooter from "@/components/home/HomeFooter";
 import BelgianSocialProof from "@/components/home/BelgianSocialProof";
+import webdesignBureauHero from "@/assets/webdesign-bureau-hero.png.asset.json";
 
 const SERVICES = [
   { icon: Globe, title: "Website op maat", desc: "Geen template. Uw website wordt volledig op maat ontworpen en gebouwd — afgestemd op uw merk, uw doelgroep en uw doelen." },
@@ -83,43 +84,55 @@ const WebdesignBureau = () => {
       <HomeNav />
 
       {/* Hero */}
-      <section className="relative pt-32 md:pt-44 pb-20 px-6 bg-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(to right,#000 1px,transparent 1px),linear-gradient(to bottom,#000 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-        <div className="relative max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6"
+      <section className="relative pt-32 md:pt-44 pb-20 px-6 min-h-[75vh] flex items-center overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={webdesignBureauHero.url}
+            alt="Webdesign specialist ontwerpt een professionele website voor een KMO in Limburg"
+            className="w-full h-full object-cover"
+            decoding="async"
+            fetchPriority="high"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto w-full">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 backdrop-blur-sm"
           >
             <Globe className="w-3.5 h-3.5" />
             Webdesign Bureau — Tongeren · Bilzen · Hoeselt · Limburg
           </motion.div>
 
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-black tracking-tight leading-[1.08]"
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.08]"
           >
-            Website laten maken die <span className="text-blue-600">klanten oplevert</span>
+            Website laten maken die <span className="text-emerald-400">klanten oplevert</span>
           </motion.h1>
 
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="text-gray-500 text-base sm:text-lg max-w-2xl mt-6 leading-relaxed"
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+            className="text-white/80 text-base sm:text-lg max-w-2xl mt-6 leading-relaxed"
           >
             Wij bouwen professionele websites voor KMO's en zelfstandigen in Tongeren, Bilzen, Hoeselt en heel Limburg. SEO ingebouwd vanaf dag 1, opgeleverd in 2 tot 4 weken, vaste prijs.
           </motion.p>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
             className="flex flex-wrap gap-3 mt-8"
           >
-            <Button onClick={() => navigate("/book")} className="rounded-full bg-black text-white hover:bg-black/90 font-medium px-7 py-6 text-base gap-1">
+            <Button onClick={() => navigate("/book")} className="rounded-full bg-white text-black hover:bg-white/90 font-medium px-7 py-6 text-base gap-1">
               <ChevronRight className="w-4 h-4" /> Gratis offerte aanvragen
             </Button>
-            <Button variant="outline" onClick={() => navigate("/portfolio")} className="rounded-full border-gray-300 text-black hover:bg-gray-50 font-medium px-7 py-6 text-base">
+            <Button onClick={() => navigate("/portfolio")} className="rounded-full bg-black text-white border border-white/20 hover:bg-zinc-900 font-medium px-7 py-6 text-base">
               Bekijk ons werk
             </Button>
           </motion.div>
 
-          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/80">
             {["Design op maat", "SEO ingebouwd", "Oplevering in 2–4 weken", "Maandelijks opzegbaar onderhoud"].map(t => (
               <div key={t} className="flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" strokeWidth={3} />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" strokeWidth={3} />
                 <span>{t}</span>
               </div>
             ))}
