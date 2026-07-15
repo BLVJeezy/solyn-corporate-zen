@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ChevronRight, Check, Search } from "lucide-react";
+import { ChevronRight, Check, Search, Award, Shield, Star, MapPin } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import mobileHero2 from "@/assets/mobile-hero-2.png.asset.json";
@@ -19,10 +19,11 @@ const showcaseItems = [
   { img: showcaseLeplana, alt: "Le Plan A" },
 ];
 
-const STATS = [
-  { value: "14 van 15", label: "Zoekwoorden verbeterd in maand 1 (klantcase)" },
-  { value: "26 leads", label: "Gemeten in één maand voor één klant" },
-  { value: "#1", label: "In nieuw servicegebied bij eerste meting" },
+const TRUST_BADGES = [
+  { icon: Award, label: "Lovable Gold Partner" },
+  { icon: Shield, label: "GDPR-conform" },
+  { icon: Star, label: "5/5 klantbeoordeling" },
+  { icon: MapPin, label: "Gevestigd in Limburg" },
 ];
 
 const HomeHero = () => {
@@ -106,19 +107,25 @@ const HomeHero = () => {
           ))}
         </motion.div>
 
-        {/* Stats */}
+        {/* Trust badges */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-12 grid grid-cols-3 gap-4 max-w-lg"
+          className="mt-12 flex flex-wrap items-center gap-3 max-w-2xl"
         >
-          {STATS.map((s, i) => (
-            <div key={i}>
-              <div className="text-2xl sm:text-3xl font-bold text-white lg:text-black tracking-tight">{s.value}</div>
-              <div className="text-xs text-gray-300 lg:text-gray-600 mt-1 leading-tight">{s.label}</div>
-            </div>
-          ))}
+          {TRUST_BADGES.map((badge, i) => {
+            const Icon = badge.icon;
+            return (
+              <div
+                key={i}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 border border-white/25 text-white lg:bg-white/90 lg:border-gray-200/80 lg:text-gray-800 backdrop-blur-sm"
+              >
+                <Icon className="w-4 h-4 shrink-0" />
+                <span className="text-sm font-semibold whitespace-nowrap">{badge.label}</span>
+              </div>
+            );
+          })}
         </motion.div>
       </div>
 
