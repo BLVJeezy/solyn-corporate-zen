@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import HomeNav from "@/components/home/HomeNav";
 import HomeFooter from "@/components/home/HomeFooter";
 import BelgianSocialProof from "@/components/home/BelgianSocialProof";
+import seoBureauHero from "@/assets/seo-bureau-hero.png.asset.json";
 
 const SERVICES = [
   { icon: Search, title: "Lokale SEO", desc: "Wij optimaliseren uw website en Google Bedrijfsprofiel zodat u bovenaan verschijnt voor zoekopdrachten in uw gemeente en regio." },
