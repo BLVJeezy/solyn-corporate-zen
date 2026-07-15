@@ -20,7 +20,7 @@ const showcaseItems = [
 ];
 
 const TRUST_BADGES = [
-  { icon: Award, label: "Lovable Gold Partner" },
+  { icon: Award, label: "Resultaat gericht" },
   { icon: Shield, label: "GDPR-conform" },
   { icon: Star, label: "5/5 klantbeoordeling" },
   { icon: MapPin, label: "Gevestigd in Limburg" },
