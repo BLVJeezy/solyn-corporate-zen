@@ -1,34 +1,11 @@
 import { motion } from "framer-motion";
-import { TrendingUp, Search, Users, Star, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import portfolioBelgomed from "@/assets/portfolio-1.png";
 import portfolioRiory from "@/assets/portfolio-riory-1.png";
 import portfolioAtelier9 from "@/assets/portfolio-3.png";
 
-const metrics = [
-  {
-    icon: TrendingUp,
-    value: "14/15",
-    label: "Zoekwoorden verbeterd in maand één",
-    desc: "Klantcase Riory (loodgieter, Bilzen): 14 van de 15 gemeten zoekwoorden stegen in de eerste maand — het 15e stond al op #1.",
-    color: "bg-emerald-50 text-emerald-600",
-  },
-  {
-    icon: Search,
-    value: "26",
-    label: "Leads gemeten in één maand",
-    desc: "Dezelfde klant ging van 0 meetbare leads naar 26 in juni — de eerste volledige maand na de SEO-start.",
-    color: "bg-blue-50 text-blue-600",
-  },
-  {
-    icon: Users,
-    value: "#1",
-    label: "In nieuw gebied bij eerste meting",
-    desc: "Bij uitbreiding naar Riemst stond de klant direct op positie 1 voor twee kernzoektermen — zonder extra werk.",
-    color: "bg-violet-50 text-violet-600",
-  },
-];
 
 const clients = [
   "Belgomed", "Auto Detailing", "L'Atelier 9", "Le Plan A",
