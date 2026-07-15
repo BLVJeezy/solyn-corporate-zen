@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ChevronRight, Check, Search } from "lucide-react";
+import { ChevronRight, Check, Search, Award, Shield, Star, MapPin } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
 import mobileHero2 from "@/assets/mobile-hero-2.png.asset.json";
