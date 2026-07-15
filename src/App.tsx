@@ -42,7 +42,14 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function AppRoutes() {
-  const { settings } = useSiteSettings();
+  const { settings, loading } = useSiteSettings();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white" />
+    );
+  }
+
   return (
     <Routes>
       <Route path="/" element={settings.home_enabled ? <Index /> : <Portfolio />} />
