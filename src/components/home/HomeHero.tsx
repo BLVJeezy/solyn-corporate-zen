@@ -54,7 +54,7 @@ const HomeHero = () => {
           className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full mb-6 w-fit"
         >
           <Search className="w-3.5 h-3.5" />
-          SEO & Webdesign Bureau — Tongeren · Bilzen · Hoeselt · Limburg
+          SEO & Webdesign Bureau ·&nbsp;Tongeren · Bilzen · Hoeselt · Limburg ·&nbsp;
         </motion.div>
 
 
