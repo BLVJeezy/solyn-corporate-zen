@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Check, Search } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import heroSolynDesk from "@/assets/hero-solyn-desk.png.asset.json";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
@@ -128,12 +129,13 @@ const HomeHero = () => {
         className="relative z-10 mt-16 w-full overflow-hidden"
       >
         <div className="flex gap-5 animate-infinite-scroll w-max">
-          <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden">
-            <PhotoPlaceholder
-              alt="Solyn Global aan het werk"
-              caption="Hero-foto — bv. jij aan het werk, of een sfeerbeeld van een klantproject"
-              rounded="2xl"
-              className="w-full aspect-[4/3]"
+          <div className="flex-shrink-0 w-[320px] sm:w-[480px] rounded-2xl overflow-hidden bg-gray-100 border border-gray-100 shadow-sm">
+            <img
+              src={heroSolynDesk.url}
+              alt="Solyn Global — SEO analyse in Google Search Console"
+              className="w-full aspect-[4/3] object-cover"
+              decoding="async"
+              fetchPriority="high"
             />
           </div>
           {[...showcaseItems, ...showcaseItems].map((item, i) => (
