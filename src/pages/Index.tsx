@@ -112,7 +112,6 @@ const Index = () => {
       <HomeHero />
       <HomeMetrics />
       <HomeProcess />
-      
       <HomeValueProps />
       <HomeFounder />
       <HomeWork />
