@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
+import jasonFounder from "@/assets/jason-founder.png.asset.json";
 
 const HomeFounder = () => {
   return (
@@ -13,9 +14,9 @@ const HomeFounder = () => {
           className="shrink-0"
         >
           <PhotoPlaceholder
-            src={undefined}
+            src={jasonFounder.url}
             alt="Jason, oprichter Solyn Global"
-            caption="Foto van jezelf — bv. aan het werk of gewoon rechtop, geen stockfoto-sfeer"
+            caption="Foto van Jason"
             rounded="2xl"
             className="w-48 h-56 md:w-56 md:h-64"
           />
