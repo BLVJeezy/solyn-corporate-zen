@@ -201,11 +201,17 @@ const Apply = () => {
 
   if (phase === "booking" && leadId) {
     return (
-      <BookingCalendar
-        leadId={leadId}
-        onBack={() => setPhase("form")}
-        onBooked={(b) => { setBooking(b); setPhase("confirmed"); clearFunnelState(); }}
-      />
+      <div className="min-h-screen bg-zinc-950 text-white flex flex-col">
+        <div className="flex-1 flex items-start justify-center px-4 py-12">
+          <div className="w-full max-w-3xl">
+            <BookingCalendar
+              leadId={leadId}
+              onBack={() => setPhase("form")}
+              onBooked={(b) => { setBooking(b); setPhase("confirmed"); clearFunnelState(); }}
+            />
+          </div>
+        </div>
+      </div>
     );
   }
 
@@ -345,31 +351,15 @@ const Apply = () => {
               </motion.div>
             )}
 
-            {/* Step 4 — Budget & Timeline */}
+            {/* Step 4 — Timeline */}
             {step === 4 && (
               <motion.div key="s4" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }}>
                 <div className="mb-8">
                   <p className="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-2">Stap 4</p>
-                  <h1 className="text-2xl font-bold text-black">Budget & planning</h1>
+                  <h1 className="text-2xl font-bold text-black">Planning</h1>
                   <p className="text-gray-500 text-sm mt-2">Wij passen ons aan uw situatie aan. Geen verplichtingen.</p>
                 </div>
                 <div className="space-y-6">
-                  <div>
-                    <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-3">Maandelijks budget</p>
-                    <div className="space-y-2.5">
-                      {BUDGETS.map((b) => (
-                        <ChoiceBtn key={b.key} selected={state.budget === b.key} onClick={() => update({ budget: b.key })}>
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <div className="font-semibold text-sm">{b.label}</div>
-                              <div className={`text-xs ${state.budget === b.key ? "text-white/60" : "text-gray-400"}`}>{b.sub}</div>
-                            </div>
-                            {state.budget === b.key && <Check className="w-4 h-4 shrink-0" />}
-                          </div>
-                        </ChoiceBtn>
-                      ))}
-                    </div>
-                  </div>
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-3">Wanneer wilt u starten?</p>
                     <div className="grid grid-cols-3 gap-2.5">
