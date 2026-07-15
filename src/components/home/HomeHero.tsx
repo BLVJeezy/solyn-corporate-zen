@@ -30,17 +30,18 @@ const HomeHero = () => {
 
   return (
     <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden bg-white min-h-[85vh] flex flex-col">
-      {/* Animated background */}
+      {/* Hero background image */}
       <div className="absolute inset-0 z-0">
-        <HeroCanvas />
-        {/* Subtle grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: "linear-gradient(to right,#000 1px,transparent 1px),linear-gradient(to bottom,#000 1px,transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
+        <img
+          src={heroSolynDesk.url}
+          alt="Solyn Global — SEO analyse in Google Search Console"
+          className="w-full h-full object-cover"
+          decoding="async"
+          fetchPriority="high"
         />
+        {/* Legibility overlay: strong white on left fading to transparent on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/20 md:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 flex-1 flex flex-col justify-center">
