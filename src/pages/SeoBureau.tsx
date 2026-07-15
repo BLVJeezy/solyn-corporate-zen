@@ -111,7 +111,7 @@ const SeoBureau = () => {
             <Button onClick={() => navigate("/book")} className="rounded-full bg-white text-black hover:bg-white/90 font-medium px-7 py-6 text-base gap-1">
               <ChevronRight className="w-4 h-4" /> Gratis SEO-audit aanvragen
             </Button>
-            <Button variant="outline" onClick={() => navigate("/pricing")} className="rounded-full border-white/30 text-white hover:bg-white/10 font-medium px-7 py-6 text-base">
+            <Button onClick={() => navigate("/pricing")} className="rounded-full bg-black text-white border border-white/20 hover:bg-zinc-900 font-medium px-7 py-6 text-base">
               Bekijk prijzen
             </Button>
           </motion.div>
