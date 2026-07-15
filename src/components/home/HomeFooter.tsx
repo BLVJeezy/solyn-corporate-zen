@@ -127,8 +127,8 @@ const HomeFooter = () => {
               © {new Date().getFullYear()} Solyn Global. Alle rechten voorbehouden.
             </p>
             <span className="hidden sm:inline text-gray-200">·</span>
-            <a href="mailto:info@solynglobal.be" className="hover:text-black transition-colors">
-              info@solynglobal.be
+            <a href="mailto:jason@solynglobal.be" className="hover:text-black transition-colors">
+              jason@solynglobal.be
             </a>
             <span className="hidden sm:inline text-gray-200">·</span>
             <span>KMO Webdesign & SEO — Tongeren · Bilzen · Borgloon · Limburg</span>

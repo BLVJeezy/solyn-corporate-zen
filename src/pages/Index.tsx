@@ -23,7 +23,7 @@ const SCHEMA_ORG = {
   url: "https://solynglobal.be",
   description: "SEO & Webdesign Bureau in Bilzen, Tongeren en heel Zuid-Limburg. Wij bouwen professionele websites en lokale SEO-strategieën die KMO's en zelfstandigen helpen hoger te ranken in Google.be.",
   telephone: "+32-xxx-xx-xx-xx",
-  email: "info@solynglobal.be",
+  email: "jason@solynglobal.be",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Bilzen",

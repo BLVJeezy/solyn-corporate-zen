@@ -87,8 +87,8 @@ const TermsOfService = () => {
                 <h2 className="text-xl font-semibold text-foreground mb-3">Contact</h2>
                 <p>
                   If you have any questions about these terms, contact us at:{" "}
-                  <a href="mailto:info@solynglobal.be" className="text-primary underline">
-                    info@solynglobal.be
+                  <a href="mailto:jason@solynglobal.be" className="text-primary underline">
+                    jason@solynglobal.be
                   </a>
                 </p>
               </div>
