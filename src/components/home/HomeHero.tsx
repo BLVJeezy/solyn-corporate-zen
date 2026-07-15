@@ -85,7 +85,7 @@ const HomeHero = () => {
           <Button
             variant="outline"
             onClick={() => navigate("/webdesign-limburg")}
-            className="rounded-full bg-black/20 border-white/40 text-white hover:bg-black/30 md:bg-transparent md:border-gray-300 md:text-black md:hover:bg-gray-50 font-medium px-7 py-6 text-base"
+            className="rounded-full bg-black/20 border-white/40 text-white hover:bg-black/30 lg:bg-transparent lg:border-gray-300 lg:text-black lg:hover:bg-gray-50 font-medium px-7 py-6 text-base"
           >
             Uw regio bekijken
           </Button>
