@@ -173,7 +173,6 @@ const Apply = () => {
       has_website: state.has_website ?? false,
       website_url: state.website_url,
       seo_important: state.service === "seo" || state.service === "both",
-      budget_range: state.budget === "300-600" ? "500-1000" : state.budget === "600-1500" ? "1000-2000" : "5000+",
       launch_timeline: state.timeline === "asap" ? "asap" : state.timeline === "1_month" ? "1_month" : "3_months",
       investment_ready: "yes",
     };
