@@ -19,10 +19,11 @@ const showcaseItems = [
   { img: showcaseLeplana, alt: "Le Plan A" },
 ];
 
-const STATS = [
-  { value: "14 van 15", label: "Zoekwoorden verbeterd in maand 1 (klantcase)" },
-  { value: "26 leads", label: "Gemeten in één maand voor één klant" },
-  { value: "#1", label: "In nieuw servicegebied bij eerste meting" },
+const TRUST_BADGES = [
+  { icon: Award, label: "Lovable Gold Partner" },
+  { icon: Shield, label: "GDPR-conform" },
+  { icon: Star, label: "5/5 klantbeoordeling" },
+  { icon: MapPin, label: "Gevestigd in Limburg" },
 ];
 
 const HomeHero = () => {
