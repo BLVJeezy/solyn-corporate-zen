@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, Check, Search } from "lucide-react";
 import HeroCanvas from "./HeroCanvas";
 import PhotoPlaceholder from "@/components/PhotoPlaceholder";
-import heroSolynDesk from "@/assets/hero-solyn-desk.png.asset.json";
+import mobileHero2 from "@/assets/mobile-hero-2.png.asset.json";
 import showcaseBelgomed from "@/assets/showcase-belgomed.png";
 import showcaseDetailing from "@/assets/showcase-detailing.png";
 import showcaseAtelier9 from "@/assets/showcase-atelier9.png";
