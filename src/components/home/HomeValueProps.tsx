@@ -30,10 +30,10 @@ const cards = [
     title: "Websites die laden in minder dan 1 seconde",
     desc: "Laadtijd is een directe Google-rankingfactor. Elke seconde vertraging kost u 7% conversie. Wij bouwen sites die razendsnel zijn — op mobiel én desktop.",
     visual: (
-      <div className="w-full max-w-xs mx-auto rounded-xl bg-white border border-gray-100 shadow-lg p-4 space-y-3">
+      <div className="w-full max-w-xs mx-auto rounded-xl bg-zinc-900 border border-zinc-800 shadow-lg p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Performance Score</span>
-          <span className="text-[10px] text-emerald-600 font-bold">Uitstekend</span>
+          <span className="text-[10px] text-zinc-400 font-medium uppercase tracking-wider">Performance Score</span>
+          <span className="text-[10px] text-emerald-400 font-bold">Uitstekend</span>
         </div>
         {[
           { label: "Laadtijd", value: "0.8s", bar: 92, color: "bg-emerald-400" },
@@ -42,10 +42,10 @@ const cards = [
         ].map((row, i) => (
           <div key={i} className="space-y-1">
             <div className="flex justify-between">
-              <span className="text-[10px] text-gray-500">{row.label}</span>
-              <span className="text-[10px] font-bold text-black">{row.value}</span>
+              <span className="text-[10px] text-zinc-400">{row.label}</span>
+              <span className="text-[10px] font-bold text-white">{row.value}</span>
             </div>
-            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
               <div className={`h-full ${row.color} rounded-full`} style={{ width: `${row.bar}%` }} />
             </div>
           </div>
