@@ -587,6 +587,7 @@ export const translations: Record<Lang, Record<string, string>> = {
   "portfolio.p12.desc": "Site de débouchage et service d'égouts 24/7 avec sélection de région, calculateur de prix et appel d'urgence.",
   "portfolio.p13.desc": "Application commémorative élégante où famille et amis allument des bougies et partagent des hommages.",
   "portfolio.p14.desc": "Salon de coiffure à Tongres spécialisé en cheveux afro et européens, ongles et microshading.",
+  "portfolio.p15.desc": "Site de location Airbnb à Tongres-Borgloon avec sélecteur de dates et réservation directe.",
     "portfolio.filter.all": "Tout",
     "portfolio.filter.websites": "Sites Web",
     "portfolio.filter.apps": "Applications",
