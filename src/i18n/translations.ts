@@ -1078,6 +1078,7 @@ export const translations: Record<Lang, Record<string, string>> = {
   "portfolio.p12.desc": "24/7 drain-unblocking and sewer service website with region picker, price calculator and emergency call.",
   "portfolio.p13.desc": "Elegant memorial app where family and friends light candles and share tributes in loving memory.",
   "portfolio.p14.desc": "Hair salon in Tongeren specialized in Afro and European hair, nails and microshading.",
+  "portfolio.p15.desc": "Airbnb rental website in Tongeren-Borgloon with date picker and direct booking system.",
     "portfolio.filter.all": "All",
     "portfolio.filter.websites": "Websites",
     "portfolio.filter.apps": "Apps",
