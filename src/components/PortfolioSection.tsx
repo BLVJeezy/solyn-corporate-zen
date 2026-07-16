@@ -27,6 +27,10 @@ import portfolioRiory from "@/assets/portfolio-riory-1.png";
 import portfolioRiory2 from "@/assets/portfolio-riory-2.png";
 import portfolioMemorial from "@/assets/portfolio-memorial-1.png";
 import portfolioMemorial2 from "@/assets/portfolio-memorial-2.png";
+import portfolioGigi1Json from "@/assets/portfolio-gigi-1.png.asset.json";
+import portfolioGigi2Json from "@/assets/portfolio-gigi-2.png.asset.json";
+const portfolioGigi1 = portfolioGigi1Json.url;
+const portfolioGigi2 = portfolioGigi2Json.url;
 
 type ProjectCategory = "all" | "websites" | "apps";
 
