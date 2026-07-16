@@ -96,6 +96,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     "portfolio.p13.desc": "Elegante herdenkingsapp waar familie en vrienden kaarsjes aansteken en tributes delen.",
     "portfolio.p14.desc": "Kapsalon in Tongeren gespecialiseerd in afro- en Europees haar, nagels en microshading.",
     "portfolio.p15.desc": "Airbnb-verhuurwebsite in Tongeren-Borgloon met datumkiezer en direct boekingssysteem.",
+    "portfolio.p16.desc": "Vastgoedmakelaar in Empuriabrava & Costa Brava met geavanceerde zoekfunctie en meertalig platform.",
     "portfolio.filter.all": "Alles",
     "portfolio.filter.websites": "Websites",
     "portfolio.filter.apps": "Apps",
