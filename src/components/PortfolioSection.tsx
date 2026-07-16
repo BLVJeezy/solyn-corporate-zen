@@ -35,6 +35,10 @@ import portfolioHorse1Json from "@/assets/portfolio-horsevally-1.png.asset.json"
 import portfolioHorse2Json from "@/assets/portfolio-horsevally-2.png.asset.json";
 const portfolioHorse1 = portfolioHorse1Json.url;
 const portfolioHorse2 = portfolioHorse2Json.url;
+import portfolioImmostar1Json from "@/assets/portfolio-immostar-1.png.asset.json";
+import portfolioImmostar2Json from "@/assets/portfolio-immostar-2.png.asset.json";
+const portfolioImmostar1 = portfolioImmostar1Json.url;
+const portfolioImmostar2 = portfolioImmostar2Json.url;
 
 type ProjectCategory = "all" | "websites" | "apps";
 
