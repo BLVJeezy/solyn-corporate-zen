@@ -35,6 +35,10 @@ import portfolioHorse1Json from "@/assets/portfolio-horsevally-1.png.asset.json"
 import portfolioHorse2Json from "@/assets/portfolio-horsevally-2.png.asset.json";
 const portfolioHorse1 = portfolioHorse1Json.url;
 const portfolioHorse2 = portfolioHorse2Json.url;
+import portfolioImmostar1Json from "@/assets/portfolio-immostar-1.png.asset.json";
+import portfolioImmostar2Json from "@/assets/portfolio-immostar-2.png.asset.json";
+const portfolioImmostar1 = portfolioImmostar1Json.url;
+const portfolioImmostar2 = portfolioImmostar2Json.url;
 
 type ProjectCategory = "all" | "websites" | "apps";
 
@@ -143,7 +147,8 @@ const PortfolioSection = () => {
   { images: [{ src: portfolioRiory, label: "Homepage" }, { src: portfolioRiory2, label: "Referenties" }], title: "Riory BV", descKey: "portfolio.p12.desc", category: "websites", brandColor: "#0a0a0a" },
   { images: [{ src: portfolioMemorial, label: "Memorial" }, { src: portfolioMemorial2, label: "Tributes" }], title: "In Loving Memory", descKey: "portfolio.p13.desc", category: "apps", brandColor: "#f5efe6" },
   { images: [{ src: portfolioGigi1, label: "Homepage" }, { src: portfolioGigi2, label: "Over" }], title: "GiGi L Coiffure", descKey: "portfolio.p14.desc", category: "websites", brandColor: "#1a1613" },
-  { images: [{ src: portfolioHorse1, label: "Homepage" }, { src: portfolioHorse2, label: "Details" }], title: "Horse Vally", descKey: "portfolio.p15.desc", category: "websites", brandColor: "#f5f1ea" }];
+  { images: [{ src: portfolioHorse1, label: "Homepage" }, { src: portfolioHorse2, label: "Details" }], title: "Horse Vally", descKey: "portfolio.p15.desc", category: "websites", brandColor: "#f5f1ea" },
+  { images: [{ src: portfolioImmostar1, label: "Homepage" }, { src: portfolioImmostar2, label: "Properties" }], title: "Immostar", descKey: "portfolio.p16.desc", category: "websites", brandColor: "#0a2540" }];
 
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
