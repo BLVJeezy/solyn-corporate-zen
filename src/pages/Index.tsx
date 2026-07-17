@@ -118,6 +118,26 @@ const Index = () => {
       <HomePricing />
       <HomeFAQ />
       <HomeCTA />
+
+      {/* Google Maps */}
+      <section className="w-full bg-white">
+        <div className="max-w-6xl mx-auto px-6 pb-4">
+          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2522.955013675351!2d5.4616894!3d50.77640749999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0e3c110f0b6fb%3A0xe003edb80d07d71a!2sSolyn%20Global%20LTD!5e0!3m2!1snl!2sbe!4v1784316541337!5m2!1snl!2sbe"
+              width="100%"
+              height="320"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Solyn Global locatie"
+              className="w-full h-[320px] md:h-[400px]"
+            />
+          </div>
+        </div>
+      </section>
+
       <HomeFooter />
     </div>
   );
